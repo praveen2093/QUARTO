@@ -7,6 +7,7 @@ on:
 
 jobs:
   publish:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
@@ -21,10 +22,10 @@ jobs:
       - name: Render Quarto website
         run: quarto render
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Commit generated docs
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-          publish_branch: gh-pages
-          keep_files: false
+          commit_message: "Build Quarto site to docs [skip ci]"
+          file_pattern: docs
+          branch: main
+          push: true

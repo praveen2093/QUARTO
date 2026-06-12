@@ -1,0 +1,331 @@
+[
+  {
+    "objectID": "quarto_tutorial_for_beginners.html",
+    "href": "quarto_tutorial_for_beginners.html",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Welcome! This tutorial is written for people who are completely new to Quarto and may also have no background in R.\nQuarto is a tool for creating: - reports - blogs - websites - books - presentations - PDFs and Word documents\nYou write content in simple plain text using Markdown, and Quarto turns it into polished output.\n\n\n\nQuarto is an open-source publishing system.\nIn simple words: - You write text in a file - You can add headings, lists, images, tables, and code - Quarto converts that file into HTML, PDF, Word, slides, and more\nYou do not need to know R to start using Quarto.\nQuarto can work with: - plain Markdown only - Python - R - Julia - Observable JavaScript\nIf you are a beginner, you can first learn Quarto as a document writing tool without writing any code.\n\n\n\n\nQuarto is useful because it helps you: - write once and create multiple output formats - keep text, code, and results in one place - create professional-looking documents - make reproducible reports - build personal websites, course notes, and books\n\n\nYou can use Quarto to create: - class notes - project reports - resumes - research papers - tutorials - data analysis reports - technical blogs - slide presentations\n\n\n\n\n\nNo.\nThis is very important.\nYou can use Quarto without knowing R.\nThere are two common ways to use Quarto:\n\n\nYou write Markdown and create a document. No programming needed.\n\n\n\nLater, if you want, you can add Python or R code blocks.\nSo if you are a complete beginner, start with text-only documents.\n\n\n\n\n\nTo use Quarto comfortably, install the following:\n\n\n\nQuarto\nA text editor or IDE\n\n\n\n\n\nVS Code (great for beginners)\nRStudio / Positron (optional, even if you do not use R)\n\n\n\n\n\nPython if you want to run Python code later\nR if you want to run R code later\nTinyTeX or TeX Live if you want to create PDFs\n\n\n\n\nGo to the official site: - https://quarto.org/docs/get-started/\nDownload and install Quarto for your operating system.\n\n\n\nOpen your terminal and run:\nquarto --version\nIf Quarto is installed correctly, you will see a version number.\n\n\n\n\n\nMarkdown is a very simple way to format text.\nInstead of clicking buttons for bold headings or lists, you type small symbols.\n\n\n\n\n# Main Title\n## Section Title\n### Smaller Section\n\n\n\n**bold text**\n*italic text*\n\n\n\n- item one\n- item two\n- item three\n\n\n\n1. First step\n2. Second step\n3. Third step\n\n\n\n[Quarto Website](https://quarto.org)\nThis is one reason Quarto is beginner-friendly.\n\n\n\n\n\n\nQuarto documents usually use the .qmd extension.\nCreate a file called:\nhello.qmd\nAdd this content:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n## About Me\n\nI am learning Quarto.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\nThat section is called YAML.\nIt stores document settings like: - title - author - date - output format\nIn this example: - title sets the title of the document - format: html tells Quarto to create an HTML page\n\n\n\n\n\nTo convert a .qmd file into output, Quarto uses the word render.\n\n\nRun:\nquarto render hello.qmd\nQuarto will create an HTML file, usually:\nhello.html\nOpen that file in your browser.\n\n\n\nIf you use VS Code with Quarto installed, you can often preview or render directly from the editor.\n\n\n\n\n\nA simple Quarto document has two main parts:\n\n\nThis controls document settings.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nauthor: \"Your Name\"\ndate: \"2026-06-12\"\nformat: html\n---\n\n\n\nThis is where you write: - headings - paragraphs - lists - images - tables - code blocks\n\n\n\n\n\n\n\n# Heading 1\n## Heading 2\n### Heading 3\n\n\n\nJust write normal text.\n\n\n\nLeave a blank line between paragraphs.\n\n\n\n**bold**\n*italic*\n`code`\n\n\n\n&gt; This is an important note.\n\n\n\n---\n\n\n\n- apple\n- banana\n- orange\n\n\n\n1. Install Quarto\n2. Create a file\n3. Render the file\n\n\n\n\n\nYou can add an image like this:\n![A sample image](images/example.png)\nExplanation: - text inside [] is alternate text - text inside () is the image path\nIf your image is in a folder called images, the file path might be: - images/photo.jpg - images/chart.png\n\n\n\n\n[Visit Quarto](https://quarto.org)\nThis creates a clickable link.\n\n\n\n\nSimple Markdown table:\n| Tool   | Purpose            |\n|--------|--------------------|\n| Quarto | Create documents   |\n| VS Code| Edit files         |\n| Python | Run code optional  |\nThis becomes a formatted table in the output.\n\n\n\n\nEven if you do not know programming yet, it is helpful to understand the idea.\nA code block is a section where you write code.\n\n\n```bash\nquarto render hello.qmd\n\nThis only displays code.\n\n### Executable code block\nIf you have Python or R installed, Quarto can run code blocks and show results.\n\nExample with Python:\n\n````markdown\n```python\nprint(\"Hello from Python\")\n\nIf Python is available, Quarto can run it and include the output.\n\nAgain: **this is optional** for beginners.\n\n---\n\n## 14. A text-only beginner example\n\nCreate a file named `intro.qmd`:\n\n```markdown\n---\ntitle: \"Introduction to Quarto\"\nformat: html\n---\n\n# Welcome\n\nQuarto helps you create beautiful documents.\n\n## What I learned\n\n- Quarto uses `.qmd` files\n- Markdown is easy to write\n- I can create HTML pages\n- I do not need R to begin\n\n## My Next Step\n\nI will learn how to add images and tables.\n```\n\nRender it:\n\n```bash\nquarto render intro.qmd\n```\n\n---\n\n## 15. Creating different output formats\n\nOne powerful feature of Quarto is that you can generate different types of output.\n\n### HTML\n```yaml\nformat: html\n```\n\n### PDF\n```yaml\nformat: pdf\n```\n\n### Word\n```yaml\nformat: docx\n```\n\n### Multiple formats\n```yaml\nformat:\n  html: default\n  pdf: default\n  docx: default\n```\n\nThen run:\n\n```bash\nquarto render yourfile.qmd\n```\n\n### Important note about PDF\nCreating PDFs usually requires a LaTeX installation such as TinyTeX.\n\nIf PDF rendering fails, start with HTML first.\n\n---\n\n## 16. Working with sections\n\nA bigger document can be organized into sections.\n\nExample:\n\n```markdown\n# Chapter 1\n## Topic 1.1\n## Topic 1.2\n\n# Chapter 2\n## Topic 2.1\n```\n\nThis structure helps readers navigate your content.\n\nIn HTML output, Quarto may also generate a table of contents.\n\n---\n\n## 17. Adding a table of contents\n\nYou can enable it in YAML:\n\n```yaml\n---\ntitle: \"My Tutorial\"\nformat:\n  html:\n    toc: true\n---\n```\n\nThis adds a table of contents automatically.\n\n---\n\n## 18. Changing theme and appearance\n\nFor HTML documents, you can choose themes.\n\nExample:\n\n```yaml\n---\ntitle: \"Styled Document\"\nformat:\n  html:\n    theme: cosmo\n---\n```\n\nSome common themes:\n- cosmo\n- litera\n- flatly\n- darkly\n- minty\n\nYou can experiment and see which one you like.\n\n---\n\n## 19. Creating a presentation\n\nQuarto can create slides too.\n\nExample:\n\n```markdown\n---\ntitle: \"My First Presentation\"\nformat: revealjs\n---\n\n# Slide 1\nWelcome to my presentation.\n\n# Slide 2\n- Point one\n- Point two\n```\n\nRender it and Quarto will create a slide deck.\n\n---\n\n## 20. Creating a website\n\nQuarto can also build websites.\n\nA basic website project often includes:\n- `_quarto.yml`\n- `index.qmd`\n- other `.qmd` pages\n\nExample `_quarto.yml`:\n\n```yaml\nproject:\n  type: website\n\nwebsite:\n  title: \"My Website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: about.qmd\n        text: About\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\n```\n\nExample `index.qmd`:\n\n```markdown\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n```\n\nThis is more advanced, but it shows how powerful Quarto is.\n\n---\n\n## 21. What is `_quarto.yml`?\n\nWhen you work on a Quarto project with multiple files, `_quarto.yml` is the main configuration file.\n\nIt can define:\n- project type\n- website settings\n- book settings\n- output format defaults\n- themes\n- navigation\n\nThink of it as the project control file.\n\n---\n\n## 22. How Quarto is different from Word\n\nIn Word, you usually format things visually.\n\nIn Quarto, you write simple plain text with lightweight formatting.\n\n### Benefits of Quarto\n- easier version control with Git and GitHub\n- reusable documents\n- cleaner structure\n- can combine writing and code\n- easier to publish online\n\nAt first it may feel unfamiliar, but many people find it easier over time.\n\n---\n\n## 23. Beginner workflow\n\nHere is a simple beginner workflow:\n\n1. Install Quarto\n2. Create a `.qmd` file\n3. Write Markdown content\n4. Add YAML at the top\n5. Render the file to HTML\n6. Open the output in a browser\n7. Edit and render again\n\nThis is enough to get started.\n\n---\n\n## 24. Common beginner mistakes\n\n### Mistake 1: Forgetting the YAML lines\nYAML must start and end with `---`.\n\n### Mistake 2: Wrong file extension\nUse `.qmd`, not `.txt`.\n\n### Mistake 3: PDF not rendering\nThis often happens because LaTeX is not installed.\n\n### Mistake 4: Broken image path\nMake sure the image file path is correct.\n\n### Mistake 5: Expecting code to run without installing Python or R\nIf you want executable code blocks, you need the related language installed.\n\n---\n\n## 25. Example: A small personal profile page\n\nCreate `profile.qmd`:\n\n```markdown\n---\ntitle: \"My Profile\"\nformat:\n  html:\n    toc: true\n---\n\n# About Me\n\nMy name is Praveen.\n\nI am learning Quarto to create documents and websites.\n\n## Skills I Want to Learn\n\n- Quarto\n- Markdown\n- GitHub\n- Python\n\n## Favorite Resources\n\n- [Quarto](https://quarto.org)\n- [Markdown Guide](https://www.markdownguide.org)\n```\n\nRender it:\n\n```bash\nquarto render profile.qmd\n```\n\n---\n\n## 26. Example: A study notes document\n\n```markdown\n---\ntitle: \"Study Notes\"\nformat: html\n---\n\n# Chapter 1\n\nThis chapter explains the basics.\n\n## Key Points\n\n- Point A\n- Point B\n- Point C\n\n## Summary\n\nThis chapter introduced the main ideas.\n```\n\nThis is useful for students and self-learners.\n\n---\n\n## 27. If you later want to learn code in Quarto\n\nOnce you are comfortable with text and Markdown, you can gradually add code.\n\n### Python example\n\n````markdown\n```python\nname = \"Praveen\"\nprint(\"Hello\", name)\n```\n\n\n\n```r\nx &lt;- 10\nx + 5\n```\nBut remember: learning Quarto does not require learning R first.\n\n\n\n\n\n\nStart with HTML output\nWrite short documents first\nFocus on Markdown before advanced features\nKeep files organized in folders\nUse meaningful file names\nRender often to check your output\nLearn one feature at a time\n\n\n\n\n\nHere is a beginner-friendly order:\n\n\nLearn: - headings - paragraphs - bold and italic - lists - links\n\n\n\nLearn: - YAML title and format - rendering to HTML - adding images - adding tables\n\n\n\nLearn: - themes - table of contents - multiple pages - websites\n\n\n\nOptional: - Python code blocks - R code blocks - PDFs - presentations - books\n\n\n\n\n\n\n\nNo. Anyone can use it for writing and publishing.\n\n\n\nNo. You can start with plain text and Markdown.\n\n\n\nYes, Quarto is open source and free to use.\n\n\n\nYes.\n\n\n\nYes.\n\n\n\nNo. VS Code works very well too.\n\n\n\n\n\nBefore starting, make sure you can do these:\n\ninstall Quarto\ncreate a .qmd file\nwrite a title in YAML\nadd headings and lists\nrender to HTML\nopen the output file\n\nIf you can do these, you are already using Quarto successfully.\n\n\n\n\nQuarto is a beginner-friendly publishing tool.\nEven if you: - do not know R - do not know programming - have never written Markdown before\nYou can still start learning Quarto today.\nThe best way to learn is: - create a small .qmd file - write simple content - render it - improve it step by step\nStart simple, and build confidence gradually.\n\n\n\n\nTry this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#what-is-quarto",
+    "href": "quarto_tutorial_for_beginners.html#what-is-quarto",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Quarto is an open-source publishing system.\nIn simple words: - You write text in a file - You can add headings, lists, images, tables, and code - Quarto converts that file into HTML, PDF, Word, slides, and more\nYou do not need to know R to start using Quarto.\nQuarto can work with: - plain Markdown only - Python - R - Julia - Observable JavaScript\nIf you are a beginner, you can first learn Quarto as a document writing tool without writing any code."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#why-use-quarto",
+    "href": "quarto_tutorial_for_beginners.html#why-use-quarto",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Quarto is useful because it helps you: - write once and create multiple output formats - keep text, code, and results in one place - create professional-looking documents - make reproducible reports - build personal websites, course notes, and books\n\n\nYou can use Quarto to create: - class notes - project reports - resumes - research papers - tutorials - data analysis reports - technical blogs - slide presentations"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#do-i-need-r-to-use-quarto",
+    "href": "quarto_tutorial_for_beginners.html#do-i-need-r-to-use-quarto",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "No.\nThis is very important.\nYou can use Quarto without knowing R.\nThere are two common ways to use Quarto:\n\n\nYou write Markdown and create a document. No programming needed.\n\n\n\nLater, if you want, you can add Python or R code blocks.\nSo if you are a complete beginner, start with text-only documents."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#what-do-i-need-to-install",
+    "href": "quarto_tutorial_for_beginners.html#what-do-i-need-to-install",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "To use Quarto comfortably, install the following:\n\n\n\nQuarto\nA text editor or IDE\n\n\n\n\n\nVS Code (great for beginners)\nRStudio / Positron (optional, even if you do not use R)\n\n\n\n\n\nPython if you want to run Python code later\nR if you want to run R code later\nTinyTeX or TeX Live if you want to create PDFs\n\n\n\n\nGo to the official site: - https://quarto.org/docs/get-started/\nDownload and install Quarto for your operating system.\n\n\n\nOpen your terminal and run:\nquarto --version\nIf Quarto is installed correctly, you will see a version number."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#what-is-markdown",
+    "href": "quarto_tutorial_for_beginners.html#what-is-markdown",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Markdown is a very simple way to format text.\nInstead of clicking buttons for bold headings or lists, you type small symbols.\n\n\n\n\n# Main Title\n## Section Title\n### Smaller Section\n\n\n\n**bold text**\n*italic text*\n\n\n\n- item one\n- item two\n- item three\n\n\n\n1. First step\n2. Second step\n3. Third step\n\n\n\n[Quarto Website](https://quarto.org)\nThis is one reason Quarto is beginner-friendly."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#your-first-quarto-document",
+    "href": "quarto_tutorial_for_beginners.html#your-first-quarto-document",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Quarto documents usually use the .qmd extension.\nCreate a file called:\nhello.qmd\nAdd this content:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n## About Me\n\nI am learning Quarto.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\nThat section is called YAML.\nIt stores document settings like: - title - author - date - output format\nIn this example: - title sets the title of the document - format: html tells Quarto to create an HTML page"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#how-to-render-a-quarto-file",
+    "href": "quarto_tutorial_for_beginners.html#how-to-render-a-quarto-file",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "To convert a .qmd file into output, Quarto uses the word render.\n\n\nRun:\nquarto render hello.qmd\nQuarto will create an HTML file, usually:\nhello.html\nOpen that file in your browser.\n\n\n\nIf you use VS Code with Quarto installed, you can often preview or render directly from the editor."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#understanding-a-quarto-document-structure",
+    "href": "quarto_tutorial_for_beginners.html#understanding-a-quarto-document-structure",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "A simple Quarto document has two main parts:\n\n\nThis controls document settings.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nauthor: \"Your Name\"\ndate: \"2026-06-12\"\nformat: html\n---\n\n\n\nThis is where you write: - headings - paragraphs - lists - images - tables - code blocks"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#basic-formatting-in-quarto",
+    "href": "quarto_tutorial_for_beginners.html#basic-formatting-in-quarto",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "# Heading 1\n## Heading 2\n### Heading 3\n\n\n\nJust write normal text.\n\n\n\nLeave a blank line between paragraphs.\n\n\n\n**bold**\n*italic*\n`code`\n\n\n\n&gt; This is an important note.\n\n\n\n---\n\n\n\n- apple\n- banana\n- orange\n\n\n\n1. Install Quarto\n2. Create a file\n3. Render the file"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#adding-images",
+    "href": "quarto_tutorial_for_beginners.html#adding-images",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "You can add an image like this:\n![A sample image](images/example.png)\nExplanation: - text inside [] is alternate text - text inside () is the image path\nIf your image is in a folder called images, the file path might be: - images/photo.jpg - images/chart.png"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#adding-links",
+    "href": "quarto_tutorial_for_beginners.html#adding-links",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "[Visit Quarto](https://quarto.org)\nThis creates a clickable link."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#adding-tables",
+    "href": "quarto_tutorial_for_beginners.html#adding-tables",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Simple Markdown table:\n| Tool   | Purpose            |\n|--------|--------------------|\n| Quarto | Create documents   |\n| VS Code| Edit files         |\n| Python | Run code optional  |\nThis becomes a formatted table in the output."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#code-blocks-in-quarto",
+    "href": "quarto_tutorial_for_beginners.html#code-blocks-in-quarto",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Even if you do not know programming yet, it is helpful to understand the idea.\nA code block is a section where you write code.\n\n\n```bash\nquarto render hello.qmd\n\nThis only displays code.\n\n### Executable code block\nIf you have Python or R installed, Quarto can run code blocks and show results.\n\nExample with Python:\n\n````markdown\n```python\nprint(\"Hello from Python\")\n\nIf Python is available, Quarto can run it and include the output.\n\nAgain: **this is optional** for beginners.\n\n---\n\n## 14. A text-only beginner example\n\nCreate a file named `intro.qmd`:\n\n```markdown\n---\ntitle: \"Introduction to Quarto\"\nformat: html\n---\n\n# Welcome\n\nQuarto helps you create beautiful documents.\n\n## What I learned\n\n- Quarto uses `.qmd` files\n- Markdown is easy to write\n- I can create HTML pages\n- I do not need R to begin\n\n## My Next Step\n\nI will learn how to add images and tables.\n```\n\nRender it:\n\n```bash\nquarto render intro.qmd\n```\n\n---\n\n## 15. Creating different output formats\n\nOne powerful feature of Quarto is that you can generate different types of output.\n\n### HTML\n```yaml\nformat: html\n```\n\n### PDF\n```yaml\nformat: pdf\n```\n\n### Word\n```yaml\nformat: docx\n```\n\n### Multiple formats\n```yaml\nformat:\n  html: default\n  pdf: default\n  docx: default\n```\n\nThen run:\n\n```bash\nquarto render yourfile.qmd\n```\n\n### Important note about PDF\nCreating PDFs usually requires a LaTeX installation such as TinyTeX.\n\nIf PDF rendering fails, start with HTML first.\n\n---\n\n## 16. Working with sections\n\nA bigger document can be organized into sections.\n\nExample:\n\n```markdown\n# Chapter 1\n## Topic 1.1\n## Topic 1.2\n\n# Chapter 2\n## Topic 2.1\n```\n\nThis structure helps readers navigate your content.\n\nIn HTML output, Quarto may also generate a table of contents.\n\n---\n\n## 17. Adding a table of contents\n\nYou can enable it in YAML:\n\n```yaml\n---\ntitle: \"My Tutorial\"\nformat:\n  html:\n    toc: true\n---\n```\n\nThis adds a table of contents automatically.\n\n---\n\n## 18. Changing theme and appearance\n\nFor HTML documents, you can choose themes.\n\nExample:\n\n```yaml\n---\ntitle: \"Styled Document\"\nformat:\n  html:\n    theme: cosmo\n---\n```\n\nSome common themes:\n- cosmo\n- litera\n- flatly\n- darkly\n- minty\n\nYou can experiment and see which one you like.\n\n---\n\n## 19. Creating a presentation\n\nQuarto can create slides too.\n\nExample:\n\n```markdown\n---\ntitle: \"My First Presentation\"\nformat: revealjs\n---\n\n# Slide 1\nWelcome to my presentation.\n\n# Slide 2\n- Point one\n- Point two\n```\n\nRender it and Quarto will create a slide deck.\n\n---\n\n## 20. Creating a website\n\nQuarto can also build websites.\n\nA basic website project often includes:\n- `_quarto.yml`\n- `index.qmd`\n- other `.qmd` pages\n\nExample `_quarto.yml`:\n\n```yaml\nproject:\n  type: website\n\nwebsite:\n  title: \"My Website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: about.qmd\n        text: About\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\n```\n\nExample `index.qmd`:\n\n```markdown\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n```\n\nThis is more advanced, but it shows how powerful Quarto is.\n\n---\n\n## 21. What is `_quarto.yml`?\n\nWhen you work on a Quarto project with multiple files, `_quarto.yml` is the main configuration file.\n\nIt can define:\n- project type\n- website settings\n- book settings\n- output format defaults\n- themes\n- navigation\n\nThink of it as the project control file.\n\n---\n\n## 22. How Quarto is different from Word\n\nIn Word, you usually format things visually.\n\nIn Quarto, you write simple plain text with lightweight formatting.\n\n### Benefits of Quarto\n- easier version control with Git and GitHub\n- reusable documents\n- cleaner structure\n- can combine writing and code\n- easier to publish online\n\nAt first it may feel unfamiliar, but many people find it easier over time.\n\n---\n\n## 23. Beginner workflow\n\nHere is a simple beginner workflow:\n\n1. Install Quarto\n2. Create a `.qmd` file\n3. Write Markdown content\n4. Add YAML at the top\n5. Render the file to HTML\n6. Open the output in a browser\n7. Edit and render again\n\nThis is enough to get started.\n\n---\n\n## 24. Common beginner mistakes\n\n### Mistake 1: Forgetting the YAML lines\nYAML must start and end with `---`.\n\n### Mistake 2: Wrong file extension\nUse `.qmd`, not `.txt`.\n\n### Mistake 3: PDF not rendering\nThis often happens because LaTeX is not installed.\n\n### Mistake 4: Broken image path\nMake sure the image file path is correct.\n\n### Mistake 5: Expecting code to run without installing Python or R\nIf you want executable code blocks, you need the related language installed.\n\n---\n\n## 25. Example: A small personal profile page\n\nCreate `profile.qmd`:\n\n```markdown\n---\ntitle: \"My Profile\"\nformat:\n  html:\n    toc: true\n---\n\n# About Me\n\nMy name is Praveen.\n\nI am learning Quarto to create documents and websites.\n\n## Skills I Want to Learn\n\n- Quarto\n- Markdown\n- GitHub\n- Python\n\n## Favorite Resources\n\n- [Quarto](https://quarto.org)\n- [Markdown Guide](https://www.markdownguide.org)\n```\n\nRender it:\n\n```bash\nquarto render profile.qmd\n```\n\n---\n\n## 26. Example: A study notes document\n\n```markdown\n---\ntitle: \"Study Notes\"\nformat: html\n---\n\n# Chapter 1\n\nThis chapter explains the basics.\n\n## Key Points\n\n- Point A\n- Point B\n- Point C\n\n## Summary\n\nThis chapter introduced the main ideas.\n```\n\nThis is useful for students and self-learners.\n\n---\n\n## 27. If you later want to learn code in Quarto\n\nOnce you are comfortable with text and Markdown, you can gradually add code.\n\n### Python example\n\n````markdown\n```python\nname = \"Praveen\"\nprint(\"Hello\", name)\n```\n\n\n\n```r\nx &lt;- 10\nx + 5\n```\nBut remember: learning Quarto does not require learning R first."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#best-practices-for-beginners",
+    "href": "quarto_tutorial_for_beginners.html#best-practices-for-beginners",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Start with HTML output\nWrite short documents first\nFocus on Markdown before advanced features\nKeep files organized in folders\nUse meaningful file names\nRender often to check your output\nLearn one feature at a time"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#suggested-learning-path",
+    "href": "quarto_tutorial_for_beginners.html#suggested-learning-path",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Here is a beginner-friendly order:\n\n\nLearn: - headings - paragraphs - bold and italic - lists - links\n\n\n\nLearn: - YAML title and format - rendering to HTML - adding images - adding tables\n\n\n\nLearn: - themes - table of contents - multiple pages - websites\n\n\n\nOptional: - Python code blocks - R code blocks - PDFs - presentations - books"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#frequently-asked-questions",
+    "href": "quarto_tutorial_for_beginners.html#frequently-asked-questions",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "No. Anyone can use it for writing and publishing.\n\n\n\nNo. You can start with plain text and Markdown.\n\n\n\nYes, Quarto is open source and free to use.\n\n\n\nYes.\n\n\n\nYes.\n\n\n\nNo. VS Code works very well too."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#final-beginner-checklist",
+    "href": "quarto_tutorial_for_beginners.html#final-beginner-checklist",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Before starting, make sure you can do these:\n\ninstall Quarto\ncreate a .qmd file\nwrite a title in YAML\nadd headings and lists\nrender to HTML\nopen the output file\n\nIf you can do these, you are already using Quarto successfully."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#conclusion",
+    "href": "quarto_tutorial_for_beginners.html#conclusion",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Quarto is a beginner-friendly publishing tool.\nEven if you: - do not know R - do not know programming - have never written Markdown before\nYou can still start learning Quarto today.\nThe best way to learn is: - create a small .qmd file - write simple content - render it - improve it step by step\nStart simple, and build confidence gradually."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#next-steps",
+    "href": "quarto_tutorial_for_beginners.html#next-steps",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Try this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "This website is built using Quarto and designed for beginners.\n\n\n\nHow Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally\n\n\n\n\nQuarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes\n\n\n\n\n\nAdd a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly\n\n\n\n\n\nQuarto Documentation\nQuarto Website Guide"
+  },
+  {
+    "objectID": "about.html#what-you-will-learn",
+    "href": "about.html#what-you-will-learn",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "How Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally"
+  },
+  {
+    "objectID": "about.html#why-this-is-useful",
+    "href": "about.html#why-this-is-useful",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Quarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes"
+  },
+  {
+    "objectID": "about.html#next-steps",
+    "href": "about.html#next-steps",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Add a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly"
+  },
+  {
+    "objectID": "about.html#more-resources",
+    "href": "about.html#more-resources",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Quarto Documentation\nQuarto Website Guide"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to Your Quarto Website",
+    "section": "",
+    "text": "Quarto makes it easy to write once and publish everywhere.\n\nNo R required for a text-based website\nSimple Markdown + YAML configuration\nBuild modern websites with navigation, themes, and interactive sections\n\nStart the tutorial"
+  },
+  {
+    "objectID": "index.html#what-you-can-do-with-this-site",
+    "href": "index.html#what-you-can-do-with-this-site",
+    "title": "Welcome to Your Quarto Website",
+    "section": "What you can do with this site",
+    "text": "What you can do with this site\n\nLearn Quarto website basics\nExplore page structure and navigation\nUse built-in themes and styles\nCreate content with interactive tabs, callouts, and code snippets"
+  },
+  {
+    "objectID": "index.html#quarto-tutorial-included",
+    "href": "index.html#quarto-tutorial-included",
+    "title": "Welcome to Your Quarto Website",
+    "section": "Quarto tutorial included",
+    "text": "Quarto tutorial included\nThis site includes a full beginner-friendly Quarto tutorial on the Tutorial page.\n\nstep-by-step Quarto basics\nMarkdown and YAML examples\nrendering instructions\ntips for website projects\n\nOpen the tutorial"
+  },
+  {
+    "objectID": "index.html#website-structure",
+    "href": "index.html#website-structure",
+    "title": "Welcome to Your Quarto Website",
+    "section": "Website structure",
+    "text": "Website structure\n\n\n\nFile\nPurpose\n\n\n\n\n_quarto.yml\nSite settings, theme, navigation\n\n\nindex.qmd\nHome page\n\n\ntutorial.qmd\nStep-by-step interactive tutorial\n\n\nabout.qmd\nAdditional information and tips"
+  },
+  {
+    "objectID": "index.html#quick-start",
+    "href": "index.html#quick-start",
+    "title": "Welcome to Your Quarto Website",
+    "section": "Quick start",
+    "text": "Quick start\nCreate a new .qmd file, add YAML at the top, write Markdown, and run:\nquarto render index.qmd\nThen open the generated file in your browser, or render the whole site with:\nquarto render"
+  },
+  {
+    "objectID": "index.html#ready-to-explore",
+    "href": "index.html#ready-to-explore",
+    "title": "Welcome to Your Quarto Website",
+    "section": "Ready to explore?",
+    "text": "Ready to explore?\nClick the tutorial page to learn Quarto website building in a friendly, interactive format."
+  },
+  {
+    "objectID": "tutorial.html",
+    "href": "tutorial.html",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "This page teaches you Quarto step-by-step. It is built for people who are new to Quarto and may not have any background in R.\n\n\n\n\n\n\nImportant\n\n\n\nYou do not need R to use Quarto. Start with plain Markdown and HTML output, then add code later if you want.\n\n\n\n\nQuarto is an open-source publishing system that turns plain text into polished documents and websites.\n\nWrite content in Markdown\nAdd headings, lists, links, images, and tables\nRender to HTML, PDF, Word, slides, and more\n\n\n\n\nQuarto helps you:\n\ncreate one document and output it in multiple formats\nkeep text and code together in one file\nbuild websites, tutorials, and reports\npublish clean content with version control\n\n\n\n\nNo.\nQuarto works with:\n\nplain Markdown only\nPython\nR\nJulia\nObservable JavaScript\n\nFor beginners, start with text-only documents.\n\n\n\n\n\n\nQuarto\nA text editor such as VS Code\n\n\n\n\n\nPython or R if you want executable code blocks\nA TeX engine like TinyTeX or TeX Live for PDF output\n\n\n\n\nquarto --version\nIf Quarto is installed, this prints a version number.\n\n\n\n\nMarkdown is a simple text format that makes writing easy.\n\n\n# Main title\n## Section title\n### Smaller section\n\n\n\n**bold**\n*italic*\n\n\n\n- item one\n- item two\n\n\n\n[Quarto website](https://quarto.org)\n\n\n\n\nCreate a file named hello.qmd and add:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\n\nThe section between --- lines is YAML. It sets the document title, format, and other options.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nformat: html\n---\n\n\n\nRun this command:\nquarto render hello.qmd\nQuarto generates hello.html.\n\n\n\nQuarto websites use multiple .qmd files and a _quarto.yml project file.\nExample _quarto.yml:\nproject:\n  type: website\n\nwebsite:\n  title: \"My Quarto Website\"\n  navbar:\n    right:\n      - href: index.qmd\n        text: Home\n      - href: tutorial.qmd\n        text: Tutorial\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\nExample index.qmd:\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n\n\n\n\n\n![A sample image](images/example.png)\n\n\n\n| Tool   | Purpose          |\n|--------|------------------|\n| Quarto | Create documents |\n| VS Code| Edit files       |\n\n\n\n\nYou can add code blocks that only show code:\nquarto render hello.qmd\nIf you install Python or R, Quarto can also run code and show results.\n\n\n\n\nCode\nprint(\"Hello from Python\")\n\n\nHello from Python\n\n\n\n\n\n\nYou can render HTML, PDF, and Word from one file.\nformat:\n  html: default\n  pdf: default\n  docx: default\n\n\n\n\nForgetting the --- lines in YAML\nUsing the wrong file extension (.qmd instead of .txt)\nBroken image paths\nTrying to run code without installing Python or R\n\n\n\n\n\nInstall Quarto\nCreate a .qmd file\nAdd YAML and Markdown\nRender to HTML\nView the output\nEdit and render again\n\n\n\n\nTry these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
+  },
+  {
+    "objectID": "tutorial.html#what-is-quarto",
+    "href": "tutorial.html#what-is-quarto",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Quarto is an open-source publishing system that turns plain text into polished documents and websites.\n\nWrite content in Markdown\nAdd headings, lists, links, images, and tables\nRender to HTML, PDF, Word, slides, and more"
+  },
+  {
+    "objectID": "tutorial.html#why-use-quarto",
+    "href": "tutorial.html#why-use-quarto",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Quarto helps you:\n\ncreate one document and output it in multiple formats\nkeep text and code together in one file\nbuild websites, tutorials, and reports\npublish clean content with version control"
+  },
+  {
+    "objectID": "tutorial.html#do-i-need-r",
+    "href": "tutorial.html#do-i-need-r",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "No.\nQuarto works with:\n\nplain Markdown only\nPython\nR\nJulia\nObservable JavaScript\n\nFor beginners, start with text-only documents."
+  },
+  {
+    "objectID": "tutorial.html#what-do-i-need",
+    "href": "tutorial.html#what-do-i-need",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Quarto\nA text editor such as VS Code\n\n\n\n\n\nPython or R if you want executable code blocks\nA TeX engine like TinyTeX or TeX Live for PDF output\n\n\n\n\nquarto --version\nIf Quarto is installed, this prints a version number."
+  },
+  {
+    "objectID": "tutorial.html#what-is-markdown",
+    "href": "tutorial.html#what-is-markdown",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Markdown is a simple text format that makes writing easy.\n\n\n# Main title\n## Section title\n### Smaller section\n\n\n\n**bold**\n*italic*\n\n\n\n- item one\n- item two\n\n\n\n[Quarto website](https://quarto.org)"
+  },
+  {
+    "objectID": "tutorial.html#your-first-quarto-document",
+    "href": "tutorial.html#your-first-quarto-document",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Create a file named hello.qmd and add:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start"
+  },
+  {
+    "objectID": "tutorial.html#what-is-yaml",
+    "href": "tutorial.html#what-is-yaml",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "The section between --- lines is YAML. It sets the document title, format, and other options.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nformat: html\n---"
+  },
+  {
+    "objectID": "tutorial.html#render-your-document",
+    "href": "tutorial.html#render-your-document",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Run this command:\nquarto render hello.qmd\nQuarto generates hello.html."
+  },
+  {
+    "objectID": "tutorial.html#create-a-website-page",
+    "href": "tutorial.html#create-a-website-page",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Quarto websites use multiple .qmd files and a _quarto.yml project file.\nExample _quarto.yml:\nproject:\n  type: website\n\nwebsite:\n  title: \"My Quarto Website\"\n  navbar:\n    right:\n      - href: index.qmd\n        text: Home\n      - href: tutorial.qmd\n        text: Tutorial\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\nExample index.qmd:\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website."
+  },
+  {
+    "objectID": "tutorial.html#use-images-and-tables",
+    "href": "tutorial.html#use-images-and-tables",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "![A sample image](images/example.png)\n\n\n\n| Tool   | Purpose          |\n|--------|------------------|\n| Quarto | Create documents |\n| VS Code| Edit files       |"
+  },
+  {
+    "objectID": "tutorial.html#add-code-blocks",
+    "href": "tutorial.html#add-code-blocks",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "You can add code blocks that only show code:\nquarto render hello.qmd\nIf you install Python or R, Quarto can also run code and show results.\n\n\n\n\nCode\nprint(\"Hello from Python\")\n\n\nHello from Python"
+  },
+  {
+    "objectID": "tutorial.html#generate-multiple-outputs",
+    "href": "tutorial.html#generate-multiple-outputs",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "You can render HTML, PDF, and Word from one file.\nformat:\n  html: default\n  pdf: default\n  docx: default"
+  },
+  {
+    "objectID": "tutorial.html#common-beginner-mistakes",
+    "href": "tutorial.html#common-beginner-mistakes",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Forgetting the --- lines in YAML\nUsing the wrong file extension (.qmd instead of .txt)\nBroken image paths\nTrying to run code without installing Python or R"
+  },
+  {
+    "objectID": "tutorial.html#beginner-workflow",
+    "href": "tutorial.html#beginner-workflow",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Install Quarto\nCreate a .qmd file\nAdd YAML and Markdown\nRender to HTML\nView the output\nEdit and render again"
+  },
+  {
+    "objectID": "tutorial.html#next-steps",
+    "href": "tutorial.html#next-steps",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Try these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
+  }
+]

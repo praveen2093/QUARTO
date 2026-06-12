@@ -32,11 +32,16 @@ This repository now includes a GitHub Actions workflow at `.github/workflows/qua
 
 When you push to `main`, GitHub will:
 - install Quarto
-- render the website into `_site`
-- publish the site to the `gh-pages` branch
+- render the website into `docs`
+- commit the generated site back to `main`
 
-After the workflow succeeds, your site will be available at:
+After the workflow succeeds, your site can be served from the `main/docs` folder.
+
+Set GitHub Pages source to:
+
+- Branch: `main`
+- Folder: `/docs`
+
+Your site URL will be:
 
 `https://<your-github-username>.github.io/<repository-name>/`
-
-If needed, enable GitHub Pages in your repository Settings > Pages and choose `gh-pages` as the source.
