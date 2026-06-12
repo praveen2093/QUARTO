@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Quarto Interactive Tutorial"
+  description: "A beginner-friendly Quarto website that teaches you how to build and publish with Quarto."
+  navbar:
+    right:
+      - href: index.qmd
+        text: Home
+      - href: tutorial.qmd
+        text: Tutorial
+      - href: about.qmd
+        text: About
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    code-fold: true
+    code-copy: true
+    css: styles.css

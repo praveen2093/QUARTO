@@ -1,0 +1,34 @@
+---
+title: "About This Tutorial"
+---
+
+# About This Quarto Website
+
+This website is built using Quarto and designed for beginners.
+
+## What you will learn
+
+- How Quarto converts Markdown into a website
+- How to configure navigation
+- How to use themes and custom CSS
+- How to render your site locally
+
+## Why this is useful
+
+Quarto websites are ideal for:
+
+- tutorials
+- documentation
+- project portfolios
+- learning notes
+
+## Next steps
+
+- Add a new page such as `projects.qmd`
+- Create a blog using Quarto website features
+- Experiment with `format: html` options like `theme: darkly`
+
+## More resources
+
+- [Quarto Documentation](https://quarto.org/docs/)
+- [Quarto Website Guide](https://quarto.org/docs/websites/)

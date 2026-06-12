@@ -1,0 +1,49 @@
+---
+title: "Welcome to Your Quarto Website"
+---
+
+::: {.hero}
+# Create a beautiful website with Quarto
+
+Quarto makes it easy to write once and publish everywhere.
+
+- **No R required** for a text-based website
+- **Simple Markdown + YAML** configuration
+- **Build modern websites** with navigation, themes, and interactive sections
+
+[Start the tutorial](tutorial.qmd){.btn .btn-primary}
+:::
+
+## What you can do with this site
+
+- Learn Quarto website basics
+- Explore page structure and navigation
+- Use built-in themes and styles
+- Create content with interactive tabs, callouts, and code snippets
+
+## Website structure
+
+| File | Purpose |
+|------|---------|
+| `_quarto.yml` | Site settings, theme, navigation |
+| `index.qmd` | Home page |
+| `tutorial.qmd` | Step-by-step interactive tutorial |
+| `about.qmd` | Additional information and tips |
+
+## Quick start
+
+Create a new `.qmd` file, add YAML at the top, write Markdown, and run:
+
+```bash
+quarto render index.qmd
+```
+
+Then open the generated file in your browser, or render the whole site with:
+
+```bash
+quarto render
+```
+
+## Ready to explore?
+
+Click the tutorial page to learn Quarto website building in a friendly, interactive format.

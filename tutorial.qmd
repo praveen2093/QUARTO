@@ -1,0 +1,134 @@
+---
+title: "Interactive Quarto Tutorial"
+---
+
+# Build your first Quarto website
+
+Welcome to the interactive tutorial. Each section below helps you build, customize, and publish a Quarto website page-by-page.
+
+::: callout-important
+This tutorial is designed for beginners. You do not need R to follow along — plain Markdown and Quarto are enough.
+:::
+
+## 1. Start with a page
+
+Every Quarto page begins with a YAML header.
+
+```yaml
+---
+title: "My First Quarto Website Page"
+format: html
+---
+```
+
+Then add Markdown content below the header.
+
+## 2. Learn by example
+
+::: columns
+::: column
+### Example content
+
+```markdown
+# Welcome to Quarto
+
+This page is part of a website built with Quarto.
+
+- Create pages with `.qmd`
+- Add navigation in `_quarto.yml`
+- Use beautiful themes
+```
+:::
+
+::: column
+### Preview this page
+
+> In the browser, this becomes a nicely formatted website page with headings, lists, and styling.
+:::
+:::
+
+## 3. Interactive sections
+
+### Tabs example
+
+:::: tabs
+::: tab "Why Quarto?"
+Quarto lets you build websites, documents, presentations, and books from plain text.
+:::
+
+::: tab "Website features"
+- Navigation menus
+- Table of contents
+- Responsive themes
+- Code copy buttons
+:::
+::::
+
+## 4. Add notes and tips
+
+::: callout-tip
+Use `code-copy: true` in `_quarto.yml` to let readers copy code examples with one click.
+:::
+
+## 5. Create navigation
+
+In `_quarto.yml`, add pages to the navbar:
+
+```yaml
+website:
+  navbar:
+    right:
+      - href: index.qmd
+        text: Home
+      - href: tutorial.qmd
+        text: Tutorial
+      - href: about.qmd
+        text: About
+```
+
+## 6. Try a short quiz
+
+::: callout-note
+Answer: You can render the full site with `quarto render` and view the generated pages in `_site/`.
+:::
+
+### Quick check
+
+1. What is the main project file for a Quarto website?  
+2. Which YAML key sets the site theme?  
+3. How do you render the website from the terminal?
+
+> **Tip:** Save your answers and then compare with the next section.
+
+## 7. Customize the look
+
+You can change the theme and add custom styles.
+
+```yaml
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+```
+
+Then add custom CSS in `styles.css`.
+
+## 8. Publish your site
+
+Render the full website:
+
+```bash
+quarto render
+```
+
+Open `_site/index.html` in your browser.
+
+## 9. Keep learning
+
+- Add more pages like `about.qmd`
+- Use images and tables
+- Try a Quarto blog or book project later
+
+::: callout-success
+Nice work! You now have a website-ready Quarto tutorial site that is easy to extend and customize.
+:::
