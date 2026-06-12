@@ -1,0 +1,5 @@
+_site/
+*.deb
+
+/.quarto/
+**/*.quarto_ipynb

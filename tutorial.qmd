@@ -1,134 +1,246 @@
 ---
-title: "Interactive Quarto Tutorial"
+title: "Quarto Tutorial for Beginners"
 ---
 
-# Build your first Quarto website
+# Quarto Tutorial for Complete Beginners
 
-Welcome to the interactive tutorial. Each section below helps you build, customize, and publish a Quarto website page-by-page.
+This page teaches you Quarto step-by-step. It is built for people who are new to Quarto and may not have any background in R.
 
 ::: callout-important
-This tutorial is designed for beginners. You do not need R to follow along — plain Markdown and Quarto are enough.
+You do not need R to use Quarto. Start with plain Markdown and HTML output, then add code later if you want.
 :::
 
-## 1. Start with a page
+## 1. What is Quarto?
 
-Every Quarto page begins with a YAML header.
+Quarto is an open-source publishing system that turns plain text into polished documents and websites.
+
+- Write content in Markdown
+- Add headings, lists, links, images, and tables
+- Render to HTML, PDF, Word, slides, and more
+
+## 2. Why use Quarto?
+
+Quarto helps you:
+
+- create one document and output it in multiple formats
+- keep text and code together in one file
+- build websites, tutorials, and reports
+- publish clean content with version control
+
+## 3. Do I need R?
+
+**No.**
+
+Quarto works with:
+
+- plain Markdown only
+- Python
+- R
+- Julia
+- Observable JavaScript
+
+For beginners, start with text-only documents.
+
+## 4. What do I need?
+
+### Required
+
+- Quarto
+- A text editor such as VS Code
+
+### Optional
+
+- Python or R if you want executable code blocks
+- A TeX engine like TinyTeX or TeX Live for PDF output
+
+### Check Quarto
+
+```bash
+quarto --version
+```
+
+If Quarto is installed, this prints a version number.
+
+## 5. What is Markdown?
+
+Markdown is a simple text format that makes writing easy.
+
+### Headings
+
+```markdown
+# Main title
+## Section title
+### Smaller section
+```
+
+### Bold and italic
+
+```markdown
+**bold**
+*italic*
+```
+
+### Lists
+
+```markdown
+- item one
+- item two
+```
+
+### Links
+
+```markdown
+[Quarto website](https://quarto.org)
+```
+
+## 6. Your first Quarto document
+
+Create a file named `hello.qmd` and add:
+
+```markdown
+---
+title: "My First Quarto Document"
+format: html
+---
+
+# Hello
+
+This is my first Quarto document.
+
+- It is simple
+- It is beginner-friendly
+- I do not need to know R to start
+```
+
+## 7. What is YAML?
+
+The section between `---` lines is YAML. It sets the document title, format, and other options.
+
+Example:
 
 ```yaml
 ---
-title: "My First Quarto Website Page"
+title: "Beginner Tutorial"
 format: html
 ---
 ```
 
-Then add Markdown content below the header.
+## 8. Render your document
 
-## 2. Learn by example
+Run this command:
 
-::: columns
-::: column
-### Example content
-
-```markdown
-# Welcome to Quarto
-
-This page is part of a website built with Quarto.
-
-- Create pages with `.qmd`
-- Add navigation in `_quarto.yml`
-- Use beautiful themes
+```bash
+quarto render hello.qmd
 ```
-:::
 
-::: column
-### Preview this page
+Quarto generates `hello.html`.
 
-> In the browser, this becomes a nicely formatted website page with headings, lists, and styling.
-:::
-:::
+## 9. Create a website page
 
-## 3. Interactive sections
+Quarto websites use multiple `.qmd` files and a `_quarto.yml` project file.
 
-### Tabs example
-
-:::: tabs
-::: tab "Why Quarto?"
-Quarto lets you build websites, documents, presentations, and books from plain text.
-:::
-
-::: tab "Website features"
-- Navigation menus
-- Table of contents
-- Responsive themes
-- Code copy buttons
-:::
-::::
-
-## 4. Add notes and tips
-
-::: callout-tip
-Use `code-copy: true` in `_quarto.yml` to let readers copy code examples with one click.
-:::
-
-## 5. Create navigation
-
-In `_quarto.yml`, add pages to the navbar:
+Example `_quarto.yml`:
 
 ```yaml
+project:
+  type: website
+
 website:
+  title: "My Quarto Website"
   navbar:
     right:
       - href: index.qmd
         text: Home
       - href: tutorial.qmd
         text: Tutorial
-      - href: about.qmd
-        text: About
-```
 
-## 6. Try a short quiz
-
-::: callout-note
-Answer: You can render the full site with `quarto render` and view the generated pages in `_site/`.
-:::
-
-### Quick check
-
-1. What is the main project file for a Quarto website?  
-2. Which YAML key sets the site theme?  
-3. How do you render the website from the terminal?
-
-> **Tip:** Save your answers and then compare with the next section.
-
-## 7. Customize the look
-
-You can change the theme and add custom styles.
-
-```yaml
 format:
   html:
     theme: cosmo
-    css: styles.css
+    toc: true
 ```
 
-Then add custom CSS in `styles.css`.
+Example `index.qmd`:
 
-## 8. Publish your site
+```markdown
+---
+title: "Home"
+---
 
-Render the full website:
+# Welcome
+
+This is my Quarto website.
+```
+
+## 10. Use images and tables
+
+### Image
+
+```markdown
+![A sample image](images/example.png)
+```
+
+### Table
+
+```markdown
+| Tool   | Purpose          |
+|--------|------------------|
+| Quarto | Create documents |
+| VS Code| Edit files       |
+```
+
+## 11. Add code blocks
+
+You can add code blocks that only show code:
 
 ```bash
-quarto render
+quarto render hello.qmd
 ```
 
-Open `_site/index.html` in your browser.
+If you install Python or R, Quarto can also run code and show results.
 
-## 9. Keep learning
+### Python example
 
-- Add more pages like `about.qmd`
-- Use images and tables
-- Try a Quarto blog or book project later
+```{python}
+print("Hello from Python")
+```
+
+## 12. Generate multiple outputs
+
+You can render HTML, PDF, and Word from one file.
+
+```yaml
+format:
+  html: default
+  pdf: default
+  docx: default
+```
+
+## 13. Common beginner mistakes
+
+- Forgetting the `---` lines in YAML
+- Using the wrong file extension (`.qmd` instead of `.txt`)
+- Broken image paths
+- Trying to run code without installing Python or R
+
+## 14. Beginner workflow
+
+1. Install Quarto
+2. Create a `.qmd` file
+3. Add YAML and Markdown
+4. Render to HTML
+5. View the output
+6. Edit and render again
+
+## 15. Next steps
+
+Try these next steps:
+
+- Add another page like `about.qmd`
+- Use a custom theme or CSS
+- Add images, tables, and links
+- Experiment with `format: docx` or `format: pdf`
 
 ::: callout-success
-Nice work! You now have a website-ready Quarto tutorial site that is easy to extend and customize.
+Great! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance.
 :::

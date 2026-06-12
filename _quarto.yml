@@ -10,7 +10,9 @@ website:
       - href: index.qmd
         text: Home
       - href: tutorial.qmd
-        text: Tutorial
+        text: Quick Tutorial
+      - href: quarto_tutorial_for_beginners.qmd
+        text: Full Tutorial
       - href: about.qmd
         text: About
 

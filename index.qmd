@@ -21,6 +21,17 @@ Quarto makes it easy to write once and publish everywhere.
 - Use built-in themes and styles
 - Create content with interactive tabs, callouts, and code snippets
 
+## Quarto tutorial included
+
+This site includes a full beginner-friendly Quarto tutorial on the **Tutorial** page.
+
+- step-by-step Quarto basics
+- Markdown and YAML examples
+- rendering instructions
+- tips for website projects
+
+[Open the tutorial](tutorial.qmd){.btn .btn-secondary}
+
 ## Website structure
 
 | File | Purpose |
