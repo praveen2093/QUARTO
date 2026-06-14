@@ -27,3 +27,8 @@ table {
   background-color: #1967d2 !important;
   border-color: #1558b3 !important;
 }
+
+/* Small tweak for left sidebar tab appearance */
+.qw-sidebar-tabs {
+  border-right: 1px solid rgba(0,0,0,0.06);
+}

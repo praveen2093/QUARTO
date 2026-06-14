@@ -24,3 +24,9 @@ format:
     code-fold: true
     code-copy: true
     css: styles.css
+    navigation:
+      sidebar:
+        - text: Nextflow
+          href: nextflow.qmd
+        - text: QUARTO
+          href: tutorial.qmd

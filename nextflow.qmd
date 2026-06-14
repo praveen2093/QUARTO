@@ -1,0 +1,245 @@
+---
+title: "Nextflow: Quick Guide for Bioinformatics & Cloud"
+---
+
+## 1. Why Nextflow?
+
+Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.
+
+::: callout-important
+This guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values.
+:::
+
+## 2. Quick Start — install and run locally
+
+### Requirements
+- Java 11+ (Nextflow runs on the JVM)
+- `nextflow` CLI (install via curl)
+- Optional: Docker or Conda for reproducible software environments
+
+```bash
+# Install Nextflow (Linux/macOS)
+curl -s https://get.nextflow.io | bash
+# Move to PATH (example)
+sudo mv nextflow /usr/local/bin/
+
+# Verify
+nextflow -v
+```
+
+### Hello-world workflow (`main.nf`)
+```nextflow
+#!/usr/bin/env nextflow
+
+process sayHello {
+  output:
+    file 'hello.txt'
+
+  script:
+  """
+  echo "Hello from Nextflow" > hello.txt
+  """
+}
+
+workflow {
+  sayHello()
+}
+```
+
+Run locally:
+```bash
+nextflow run main.nf -profile standard
+ls -l work/
+cat work/*/hello.txt
+```
+
+## 3. Core Concepts (brief)
+- `process`: computational step (command/script) with input/output.
+- `channel`: stream of data connecting processes.
+- `workflow`: organizes processes and channels.
+
+## 4. Running Nextflow on Google Cloud Platform (GCP)
+
+### Overview
+We demonstrate using GCP Compute + Cloud Storage. For larger work, you can use Nextflow Tower, Google Genomics Pipelines, or compute clusters (GKE).
+
+### Prerequisites
+- `gcloud` installed and authenticated
+- A GCP project and billing enabled
+- A GCS bucket for workspace/storage
+
+```bash
+# Set project and region
+gcloud config set project YOUR_PROJECT_ID
+gcloud config set compute/region us-central1
+# Create bucket (example)
+gsutil mb -l us-central1 gs://your-nextflow-bucket
+```
+
+### Nextflow config for GCP (example `nextflow.config`)
+```groovy
+profiles {
+  gcp {
+    process.executor = 'google-lifesciences'  // uses Google Life Sciences API
+    google {
+      project = 'YOUR_PROJECT_ID'
+      region  = 'us-central1'
+      auth = '/path/to/google-credentials.json'   // or use ADC
+      bucket = 'gs://your-nextflow-bucket'
+    }
+    workDir = 'gs://your-nextflow-bucket/work'
+  }
+}
+```
+
+> Authentication: prefer Application Default Credentials (ADC). To create a service account and key:
+```bash
+gcloud iam service-accounts create nf-runner --display-name "Nextflow runner"
+gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
+  --member="serviceAccount:nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com" \
+  --role="roles/storage.admin"
+gcloud iam service-accounts keys create key.json \
+  --iam-account nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com
+export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/key.json"
+```
+
+### Run on GCP
+```bash
+nextflow run main.nf -profile gcp -with-report report.html -with-trace trace.txt
+```
+
+### Cost & monitoring
+- Store intermediate files in GCS to avoid expensive disk.
+- Use small VM images for lightweight tasks.
+- Monitor via Cloud Console and check `gcloud billing` reports.
+
+## 5. Running Nextflow on AWS
+
+### Overview
+Common backends: S3 for storage, AWS Batch or EC2/ECS as executors.
+
+### Prerequisites
+- `aws` CLI configured (`aws configure`)
+- An S3 bucket and IAM role/user with permissions
+
+```bash
+# Create bucket
+aws s3 mb s3://your-nextflow-bucket --region us-east-1
+```
+
+### Example `nextflow.config` for AWS S3 + Batch
+```groovy
+profiles {
+  aws {
+    process.executor = 'awsbatch'
+    aws {
+      region = 'us-east-1'
+      client {
+        registry = 'public.ecr.aws'  // if using ECR images
+      }
+    }
+    workDir = 's3://your-nextflow-bucket/work'
+  }
+}
+```
+
+### Create IAM role and policy (high level)
+- Create an IAM role for AWS Batch with S3 read/write.
+- Attach policies: `AmazonS3FullAccess` (or scoped) and Batch execution roles.
+
+### Run on AWS
+```bash
+nextflow run main.nf -profile aws -with-report report.html
+```
+
+## 6. Integrating R and Python
+
+### Containerization (recommended)
+- Use Docker images with R and Python environments, or use Conda with Nextflow's `conda` support.
+
+Example process using Python:
+```nextflow
+process runPython {
+  container 'python:3.11-slim'
+  input:
+    path x
+  output:
+    path 'out.txt'
+
+  script:
+  """
+  python -c 'print("Processing", "$x")' > out.txt
+  """
+}
+```
+
+Example `conda` usage:
+```nextflow
+process analysis {
+  conda 'envs/env.yml'
+  script:
+  """
+  Rscript analysis.R input.csv output.csv
+  """
+}
+```
+
+`envs/env.yml` (example)
+```yaml
+name: nf-env
+channels:
+  - conda-forge
+dependencies:
+  - r-base=4.2
+  - r-essentials
+  - python=3.11
+  - pandas
+```
+
+### R script example (`analysis.R`)
+```r
+args <- commandArgs(trailingOnly = TRUE)
+dat <- read.csv(args[1])
+summary <- summary(dat)
+write.csv(as.data.frame(summary), args[2], row.names=FALSE)
+```
+
+### Passing data between R and Python
+- Use files in `workDir` and channels to pass file paths.
+- Keep intermediate files in object storage (S3/GCS) when running in cloud.
+
+## 7. Practical Bioinformatics Example (FASTQ QC & alignment)
+- Process 1: split/validate FASTQ
+- Process 2: run `fastp` or `fastqc`
+- Process 3: align with `bwa` or `minimap2`
+- Use containers for exact tool versions and pin references.
+
+Small example process:
+```nextflow
+process fastqc {
+  container 'biocontainers/fastqc:v0.11.9_cv8'
+  input:
+    path fastq
+  output:
+    path "*.html"
+  """
+  fastqc $fastq -o .
+  """
+}
+```
+
+## 8. Clinical Trials / Regulatory Considerations
+- Enforce data access controls: use private buckets and VPCs.
+- Log and version workflows: enable reports and execution metadata.
+- Separate PHI/PII and use encryption at rest/in transit.
+
+## 9. Best Practices
+- Containerize reproducible environments (Docker/Conda).
+- Test workflows locally before the cloud.
+- Use small sample datasets for CI tests.
+- Keep credentials out of repo; use secret managers or ADC.
+
+## 10. References & Next Steps
+- Nextflow docs: https://www.nextflow.io/docs/
+- Nextflow + Google: https://www.nextflow.io/docs/latest/GoogleCloud.html
+- Nextflow + AWS: https://www.nextflow.io/docs/latest/aws/index.html
