@@ -17,19 +17,20 @@ jobs:
       - name: Install Quarto (manual)
         run: |
           set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y wget jq
           echo "Fetching latest Quarto release..."
           TAG=$(curl -sS https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | jq -r .tag_name)
           echo "Latest release: $TAG"
           ARCH=linux-amd64
-          ASSET_URL=$(curl -sS https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | jq -r ".assets[] | select(.name | test(\"${ARCH}.*\\.deb\")) | .browser_download_url")
+          ASSET_URL=$(curl -sS https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | jq -r --arg arch "$ARCH" '.assets[] | select(.name | test($arch + ".*\\.deb")) | .browser_download_url')
           if [ -z "$ASSET_URL" ]; then
             echo "No .deb asset found for ${ARCH}, attempting tarball fallback..."
-            ASSET_URL=$(curl -sS https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | jq -r ".assets[] | select(.name | test(\"${ARCH}.*\\.(tar.gz|tgz)\")) | .browser_download_url")
+            ASSET_URL=$(curl -sS https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | jq -r --arg arch "$ARCH" '.assets[] | select(.name | test($arch + ".*\\.(tar.gz|tgz)")) | .browser_download_url')
           fi
           echo "Downloading $ASSET_URL"
           wget -q "$ASSET_URL" -O /tmp/quarto_asset
           if file /tmp/quarto_asset | grep -q deb; then
-            sudo apt-get update
             sudo apt-get install -y /tmp/quarto_asset
           else
             tar -xzf /tmp/quarto_asset -C /tmp
