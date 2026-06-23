@@ -1,0 +1,9 @@
+---
+title: "Python — Getting Started"
+---
+
+# Python Tutorials
+
+Welcome to the Python tutorial placeholder. Add notebooks, code examples, and guides here.
+
+[Back to home](index.qmd)

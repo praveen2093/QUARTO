@@ -1,0 +1,9 @@
+---
+title: "Clinical R — Biostatistics & Reporting"
+---
+
+# Clinical R
+
+Clinical-focused R tutorials (biostatistics, regulatory reporting) placeholder.
+
+[Back to home](index.qmd)

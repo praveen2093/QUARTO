@@ -1,0 +1,9 @@
+---
+title: "Statistics — Fundamentals"
+---
+
+# Statistics
+
+Placeholder for statistics tutorials (probability, inference, regression).
+
+[Back to home](index.qmd)

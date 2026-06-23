@@ -1,0 +1,9 @@
+---
+title: "R — Getting Started"
+---
+
+# R Programming Tutorials
+
+Placeholder for R tutorials and examples. Add exercises and datasets here.
+
+[Back to home](index.qmd)

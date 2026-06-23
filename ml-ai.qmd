@@ -1,0 +1,9 @@
+---
+title: "Machine Learning & AI"
+---
+
+# ML & AI
+
+Placeholder for ML and AI tutorials (scikit-learn, TensorFlow, PyTorch, etc.).
+
+[Back to home](index.qmd)
