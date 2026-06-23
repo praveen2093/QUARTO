@@ -1,45 +1,24 @@
 [
   {
+    "objectID": "statistics.html",
+    "href": "statistics.html",
+    "title": "Statistics — Fundamentals",
+    "section": "",
+    "text": "Statistics\nPlaceholder for statistics tutorials (probability, inference, regression).\nBack to home"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Welcome to Your Quarto Website",
+    "title": "StatiX AI & Data Labs",
     "section": "",
-    "text": "Quarto makes it easy to write once and publish everywhere.\n\nNo R required for a text-based website\nSimple Markdown + YAML configuration\nBuild modern websites with navigation, themes, and interactive sections\n\nStart the tutorial"
+    "text": "title: “StatiX AI & Data Labs” description: “Learn practical, industry-aligned technical skills.” —"
   },
   {
-    "objectID": "index.html#what-you-can-do-with-this-site",
-    "href": "index.html#what-you-can-do-with-this-site",
-    "title": "Welcome to Your Quarto Website",
-    "section": "What you can do with this site",
-    "text": "What you can do with this site\n\nLearn Quarto website basics\nExplore page structure and navigation\nUse built-in themes and styles\nCreate content with interactive tabs, callouts, and code snippets"
-  },
-  {
-    "objectID": "index.html#quarto-tutorial-included",
-    "href": "index.html#quarto-tutorial-included",
-    "title": "Welcome to Your Quarto Website",
-    "section": "Quarto tutorial included",
-    "text": "Quarto tutorial included\nThis site includes a full beginner-friendly Quarto tutorial on the Tutorial page.\n\nstep-by-step Quarto basics\nMarkdown and YAML examples\nrendering instructions\ntips for website projects\n\nOpen the tutorial"
-  },
-  {
-    "objectID": "index.html#website-structure",
-    "href": "index.html#website-structure",
-    "title": "Welcome to Your Quarto Website",
-    "section": "Website structure",
-    "text": "Website structure\n\n\n\nFile\nPurpose\n\n\n\n\n_quarto.yml\nSite settings, theme, navigation\n\n\nindex.qmd\nHome page\n\n\ntutorial.qmd\nStep-by-step interactive tutorial\n\n\nabout.qmd\nAdditional information and tips"
-  },
-  {
-    "objectID": "index.html#quick-start",
-    "href": "index.html#quick-start",
-    "title": "Welcome to Your Quarto Website",
-    "section": "Quick start",
-    "text": "Quick start\nCreate a new .qmd file, add YAML at the top, write Markdown, and run:\nquarto render index.qmd\nThen open the generated file in your browser, or render the whole site with:\nquarto render"
-  },
-  {
-    "objectID": "index.html#ready-to-explore",
-    "href": "index.html#ready-to-explore",
-    "title": "Welcome to Your Quarto Website",
-    "section": "Ready to explore?",
-    "text": "Ready to explore?\nClick the tutorial page to learn Quarto website building in a friendly, interactive format."
+    "objectID": "index.html#title-welcome-to-your-quarto-website",
+    "href": "index.html#title-welcome-to-your-quarto-website",
+    "title": "StatiX AI & Data Labs",
+    "section": "",
+    "text": "title: “StatiX AI & Data Labs” description: “Learn practical, industry-aligned technical skills.” —"
   },
   {
     "objectID": "quarto_tutorial_for_beginners.html",
@@ -182,6 +161,55 @@
     "text": "Try this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "This website is built using Quarto and designed for beginners.\n\n\n\nHow Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally\n\n\n\n\nQuarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes\n\n\n\n\n\nAdd a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly\n\n\n\n\n\nQuarto Documentation\nQuarto Website Guide"
+  },
+  {
+    "objectID": "about.html#what-you-will-learn",
+    "href": "about.html#what-you-will-learn",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "How Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally"
+  },
+  {
+    "objectID": "about.html#why-this-is-useful",
+    "href": "about.html#why-this-is-useful",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Quarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes"
+  },
+  {
+    "objectID": "about.html#next-steps",
+    "href": "about.html#next-steps",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Add a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly"
+  },
+  {
+    "objectID": "about.html#more-resources",
+    "href": "about.html#more-resources",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Quarto Documentation\nQuarto Website Guide"
+  },
+  {
+    "objectID": "python.html",
+    "href": "python.html",
+    "title": "Python — Getting Started",
+    "section": "",
+    "text": "Python Tutorials\nWelcome to the Python tutorial placeholder. Add notebooks, code examples, and guides here.\nBack to home"
+  },
+  {
+    "objectID": "r-shiny.html",
+    "href": "r-shiny.html",
+    "title": "R Shiny — Interactive Apps",
+    "section": "",
+    "text": "R Shiny\nPlaceholder page for R Shiny tutorials and example apps.\nBack to home"
+  },
+  {
     "objectID": "tutorial.html",
     "href": "tutorial.html",
     "title": "Quarto Tutorial for Beginners",
@@ -294,39 +322,18 @@
     "text": "Try these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About This Tutorial",
+    "objectID": "ml-ai.html",
+    "href": "ml-ai.html",
+    "title": "Machine Learning & AI",
     "section": "",
-    "text": "This website is built using Quarto and designed for beginners.\n\n\n\nHow Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally\n\n\n\n\nQuarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes\n\n\n\n\n\nAdd a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly\n\n\n\n\n\nQuarto Documentation\nQuarto Website Guide"
+    "text": "ML & AI\nPlaceholder for ML and AI tutorials (scikit-learn, TensorFlow, PyTorch, etc.).\nBack to home"
   },
   {
-    "objectID": "about.html#what-you-will-learn",
-    "href": "about.html#what-you-will-learn",
-    "title": "About This Tutorial",
+    "objectID": "clinical-r.html",
+    "href": "clinical-r.html",
+    "title": "Clinical R — Biostatistics & Reporting",
     "section": "",
-    "text": "How Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally"
-  },
-  {
-    "objectID": "about.html#why-this-is-useful",
-    "href": "about.html#why-this-is-useful",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "Quarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes"
-  },
-  {
-    "objectID": "about.html#next-steps",
-    "href": "about.html#next-steps",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "Add a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly"
-  },
-  {
-    "objectID": "about.html#more-resources",
-    "href": "about.html#more-resources",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "Quarto Documentation\nQuarto Website Guide"
+    "text": "Clinical R\nClinical-focused R tutorials (biostatistics, regulatory reporting) placeholder.\nBack to home"
   },
   {
     "objectID": "nextflow.html",
@@ -404,5 +411,12 @@
     "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
     "section": "10. References & Next Steps",
     "text": "10. References & Next Steps\n\nNextflow docs: https://www.nextflow.io/docs/\nNextflow + Google: https://www.nextflow.io/docs/latest/GoogleCloud.html\nNextflow + AWS: https://www.nextflow.io/docs/latest/aws/index.html"
+  },
+  {
+    "objectID": "r.html",
+    "href": "r.html",
+    "title": "R — Getting Started",
+    "section": "",
+    "text": "R Programming Tutorials\nPlaceholder for R tutorials and examples. Add exercises and datasets here.\nBack to home"
   }
 ]
