@@ -1,430 +1,754 @@
 ---
-title: "Docker for Beginners — Clinical, Pharma & Life Sciences"
+title: "Docker — Professional Tutorial for Life Sciences"
+description: "Industry-standard Docker guide for bioinformatics, clinical programming, pharma, and data science."
+toc-depth: 3
+execute:
+  eval: false
 ---
 
-## 1. What is Docker? (No tech background needed)
-
-Imagine you bake a cake using a **recipe**. You write down every ingredient, every step, and every oven temperature. If someone else follows the **exact same recipe**, they should get the **exact same cake**.
-
-In science and medicine, we face a similar problem with **software**:
-
-- One person runs an analysis on a laptop and gets one result.
-- Another person runs the “same” analysis on a different computer and gets a **different** result — because their software versions, settings, or operating system are not identical.
-
-**Docker solves this** by packaging software — and everything it needs to run — into a **standard box** that works the same way on almost any computer.
-
-::: callout-tip
-**Simple definition:** Docker lets you put an application and all its dependencies into a portable box called a **container**, so it runs the same way everywhere.
+::: {.callout-note}
+**Audience:** Students, bioinformatics researchers, clinical programmers, data scientists, pharmaceutical professionals, and software engineers — including readers with little or no prior experience.
 :::
 
-### A everyday analogy: shipping containers
+## 1. Introduction
 
-Before modern shipping, loading a ship was messy — every crate was a different size and shape.
+**Docker** is a platform that packages an application and everything it needs to run — code, libraries, settings — into a portable unit called a **container**.
 
-Then **standard shipping containers** arrived. Any crane, truck, or ship built for containers could move **any** container, anywhere in the world.
+### Why Docker exists
 
-Docker does the same for software:
+Before containers, teams struggled with a familiar problem: *“It works on my machine.”* Different laptops, servers, and cloud environments had different software versions. Results changed. Audits failed. Pipelines broke in production.
 
-| Real world | Docker world |
-|------------|--------------|
-| Shipping container | **Container** (running app) |
-| Blueprint for the container | **Image** (frozen snapshot) |
-| Factory that builds containers | **Dockerfile** (build instructions) |
-| Warehouse port | **Registry** (e.g. Docker Hub — where images are stored) |
+Docker was created to make software **portable**, **repeatable**, and **isolated**.
 
-You do **not** need to know Linux, cloud computing, or programming to understand the *idea* of Docker. You only need to understand: **same box → same result, anywhere**.
+### The problem Docker solves
 
----
+| Problem | Without Docker | With Docker |
+|---------|----------------|-------------|
+| Environment differences | Results vary by machine | Same image → same behavior |
+| Complex installs | Days installing bioinformatics tools | Pull a pre-built image in minutes |
+| Reproducibility | Hard to prove what ran | Versioned images document the environment |
+| Isolation | Tools conflict on one server | Each container runs independently |
 
-## 2. Why Docker matters in clinical, pharma & bio
+### Where Docker is used in industry
 
-If you work in **clinical research**, **pharmaceutical companies**, or **biotechnology / bioinformatics**, reproducibility and traceability are not optional — they are often **required**.
+- **Pharmaceutical R&D** — reproducible ML and cheminformatics environments
+- **Clinical programming** — fixed R/SAS/Python stacks for TLF generation
+- **Bioinformatics** — pipelines for genomics, proteomics, and multi-omics
+- **Healthcare AI** — deploying models in controlled containers
+- **Cloud & DevOps** — AWS ECS, Google Cloud Run, Kubernetes workloads
 
-### Clinical research & biostatistics
-
-Examples where Docker helps:
-
-- **Clinical trial analysis** — TLFs (Tables, Listings, Figures) for a study should be produced with a **fixed, documented** R or SAS environment.
-- **CDISC workflows** — SDTM/ADaM conversion pipelines that must run identically for every database lock.
-- **Independent verification** — a statistician or QC reviewer can re-run analysis inside the **same container** and confirm results match.
-
-**Why it matters:** Regulators and sponsors ask: *“Can you prove this result was produced with a controlled, repeatable setup?”* Docker is one practical way to answer **yes**.
-
-### Pharmaceutical industry
-
-Examples:
-
-- **Drug discovery pipelines** — chemistry informatics, molecular docking, ML models for target identification.
-- **Manufacturing & QC** — image analysis, batch release calculations, stability study modeling.
-- **Validated systems (GxP)** — in regulated areas, teams document **which exact software version** was used. Container images can be versioned, tagged, and archived like a batch record.
-
-**Why it matters:** In pharma, “it worked on my machine” is not acceptable for submissions, audits, or quality systems.
-
-### Biotechnology & bioinformatics
-
-Examples:
-
-- **Genomics pipelines** — FASTQ → alignment → variant calling (same BWA, GATK, or bcftools versions every time).
-- **Single-cell RNA-seq**, **proteomics**, **metabolomics** — complex tool chains that are painful to install manually.
-- **Cloud & HPC** — run the same pipeline on a laptop for testing, then on AWS/GCP for production (see the [Nextflow guide](nextflow.qmd)).
-
-**Why it matters:** Bioinformatics tools change quickly. Docker **pins** the versions so a paper, pipeline, or clinical genomics report can be reproduced months or years later.
+::: {.callout-tip}
+**Beginner takeaway:** Docker is a standardized box for software. Same box, same result — on your laptop, a lab server, or the cloud.
+:::
 
 ---
 
-## 3. Key ideas — explained in plain language
+## 2. Learning Objectives
 
-You only need four words to start:
+### By the end of this tutorial, you will be able to
 
-### Image
+1. Explain what Docker is and why regulated industries use it
+2. Install Docker Desktop on Windows, macOS, or Linux
+3. Distinguish images, containers, registries, volumes, and networks
+4. Build a custom image using a Dockerfile
+5. Run, stop, and remove containers from the command line
+6. Mount data safely without baking sensitive files into images
+7. Describe where Docker fits in bioinformatics and clinical programming workflows
+8. Apply industry best practices for security, GxP, and reproducibility
+9. Troubleshoot common Docker errors
+10. Complete a mini project: a reproducible clinical summary container
 
-An **image** is a **frozen snapshot** — like a saved recipe + all ingredients pre-measured and sealed.
+---
 
-- It is **read-only** (you don’t edit it while it’s stored).
-- It has a **name and tag**, e.g. `python:3.11` or `rocker/r-ver:4.3`.
+## 3. Why is this important?
 
-### Container
+### Why should someone learn Docker?
 
-A **container** is a **running instance** of an image — like actually baking the cake.
+Docker is one of the most requested skills in bioinformatics, data engineering, and DevOps job postings. It turns fragile setups into shareable, testable environments.
 
-- You can start many containers from one image.
-- When you stop a container, its temporary changes are usually discarded (unless you save them).
+### Why do companies use it?
 
-### Dockerfile
+- **Speed** — onboard new analysts in hours, not weeks
+- **Compliance** — versioned images support audit trails
+- **Scale** — same container runs on one laptop or 1,000 cloud nodes
+- **Cost** — efficient resource use compared to full virtual machines
 
-A **Dockerfile** is a **text file with build instructions** — step-by-step directions for creating an image.
+### Why is it important in bioinformatics?
 
-Example (don’t worry if this looks technical — we explain each line below):
+Genomics pipelines combine dozens of tools (FastQC, BWA, GATK, bcftools). Docker (and Biocontainers) pins exact versions so published results can be reproduced.
 
-```dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY analysis.py .
-CMD ["python", "analysis.py"]
+### Why is it important in clinical programming?
+
+Clinical trial analysis must be **reproducible**. Docker ensures the same R packages, SAS components, or Python libraries are used for every database lock and QC re-run.
+
+### Why is it useful in data science?
+
+Data scientists package models with dependencies so staging and production environments match — reducing “model works locally but fails in deployment” issues.
+
+---
+
+## 4. Architecture Diagram
+
+### Docker core architecture
+
+```{mermaid}
+flowchart LR
+  A[Developer] --> B[Dockerfile]
+  B --> C[Docker Image]
+  C --> D[Docker Container]
+  D --> E[Application]
+  C --> F[Registry / Docker Hub]
+  F --> C
+  D --> G[Volume - Data]
+  D --> H[Network]
 ```
 
-| Line | Plain English |
-|------|---------------|
-| `FROM python:3.11-slim` | Start from a pre-built Python 3.11 image |
-| `WORKDIR /app` | Use `/app` as the working folder inside the box |
-| `COPY analysis.py .` | Copy your script into the box |
-| `CMD [...]` | When the container starts, run this command |
+### Life-sciences workflow placement
 
-### Registry
+```{mermaid}
+flowchart TB
+  A[FASTQ / Clinical Data] --> B[Quality Control]
+  B --> C[Analysis Pipeline]
+  C --> D[Docker Container]
+  D --> E[Nextflow / R / Python]
+  E --> F[Quarto Report]
+  F --> G[Submission / Publication]
+```
 
-A **registry** is an **online library of images**. [Docker Hub](https://hub.docker.com/) is the most common public registry. Companies often use **private registries** for internal or validated images.
+::: {.callout-important}
+**Screenshot placeholder:** Add a screenshot of Docker Desktop showing a running container after completing Section 5.
+:::
 
 ---
 
-## 4. What you need before you start
+## 5. Installation
 
-### On your computer
+### Windows
 
-- A laptop or desktop (Windows, Mac, or Linux)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) — free for personal/educational use
+1. Download [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+2. Enable WSL 2 if prompted (recommended)
+3. Install and restart
+4. Open Docker Desktop and wait until status shows **Running**
 
-::: callout-important
-**You do not need** to know Python, R, Linux, or cloud platforms to learn Docker basics. You only need to copy and run a few commands.
-:::
-
-### Install Docker Desktop
-
-1. Go to [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
-2. Download Docker Desktop for your operating system
-3. Install it and open the Docker Desktop app
-4. Wait until it says Docker is **running** (whale icon in the menu bar / system tray)
-
-### Check that Docker works
-
-Open a terminal (Terminal on Mac, PowerShell or Command Prompt on Windows) and run:
+**Verify:**
 
 ```bash
 docker --version
+docker run hello-world
 ```
 
-You should see something like `Docker version 24.x.x`.
+### macOS
 
-Then run your first container:
+1. Download [Docker Desktop for Mac](https://docs.docker.com/desktop/setup/install/mac-install/) (Apple Silicon or Intel)
+2. Drag Docker to Applications and launch
+3. Accept permissions
+
+**Verify:**
+
+```bash
+docker --version
+docker run hello-world
+```
+
+### Linux (Ubuntu/Debian example)
+
+```bash
+# Install Docker Engine
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Optional: run without sudo
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+**Verify:**
+
+```bash
+docker --version
+docker run hello-world
+```
+
+::: {.callout-warning}
+Corporate laptops may block Docker. Contact IT before installing in pharmaceutical or hospital environments.
+:::
+
+---
+
+## 6. Basic Concepts
+
+### Image
+
+| | |
+|---|---|
+| **Definition** | Read-only template containing an app and its dependencies |
+| **Analogy** | A sealed recipe kit with pre-measured ingredients |
+| **Industry example** | `rocker/r-ver:4.3.2` for a locked clinical R environment |
+| **Best practice** | Always use specific version tags — never `:latest` in production |
+
+### Container
+
+| | |
+|---|---|
+| **Definition** | A running instance of an image |
+| **Analogy** | The actual meal cooked from the recipe kit |
+| **Industry example** | One container per study analysis run |
+| **Best practice** | Use `--rm` for temporary jobs; name containers in long-running services |
+
+### Registry
+
+| | |
+|---|---|
+| **Definition** | Storage and distribution system for images |
+| **Analogy** | A warehouse catalog of standardized boxes |
+| **Industry example** | Private AWS ECR registry for validated pharma images |
+| **Best practice** | Use private registries for internal and GxP workloads |
+
+### Docker Hub
+
+| | |
+|---|---|
+| **Definition** | Public registry maintained by Docker |
+| **Analogy** | An app store for container images |
+| **Industry example** | Pulling official `python:3.11-slim` base images |
+| **Best practice** | Prefer verified publishers; scan images for vulnerabilities |
+
+### Dockerfile
+
+| | |
+|---|---|
+| **Definition** | Text file with step-by-step instructions to build an image |
+| **Analogy** | The master recipe card |
+| **Industry example** | Documented build file archived with study deliverables |
+| **Best practice** | Keep Dockerfiles in version control; review changes like code |
+
+### Volume
+
+| | |
+|---|---|
+| **Definition** | Persistent storage mounted into a container |
+| **Analogy** | A USB drive plugged into the box |
+| **Industry example** | Mount clinical CSV input and TLF output folders |
+| **Best practice** | Never store patient data inside the image — mount at runtime |
+
+### Network
+
+| | |
+|---|---|
+| **Definition** | Virtual network allowing containers to communicate |
+| **Analogy** | Phone lines between offices in the same building |
+| **Industry example** | Connect a Shiny app container to a PostgreSQL container |
+| **Best practice** | Use custom networks; avoid exposing unnecessary ports |
+
+---
+
+## 7. Hands-on Examples
+
+### Example 1 — Hello World
+
+**Problem:** Confirm Docker is installed and working.
+
+**Solution:** Run the official test image.
 
 ```bash
 docker run hello-world
 ```
 
-If you see a friendly “Hello from Docker!” message — **you succeeded**.
+**Expected output:** Message containing `Hello from Docker!`
+
+**Explanation:** Docker downloaded a tiny image, started a container, printed output, and exited.
 
 ---
 
-## 5. Your first useful commands
+### Example 2 — Run R without installing R
 
-Think of these as **remote control buttons** for containers.
+**Problem:** You need R 4.3 but do not want to install it locally.
 
-### See what is running
-
-```bash
-docker ps
-```
-
-Lists **running** containers. (Empty list is normal if nothing is running.)
-
-### See all containers (including stopped)
+**Solution:**
 
 ```bash
-docker ps -a
+docker run --rm rocker/r-ver:4.3 R --version
 ```
 
-### Download and run a pre-built image
+**Expected output:** `R version 4.3.x ...`
 
-```bash
-docker run -it rocker/r-ver:4.3 R --version
-```
-
-This downloads an R environment and prints the R version — **without installing R on your laptop**.
-
-**Why this matters in clinical/bio work:** You can test an analysis in R 4.3 today, and a colleague in another country can run the **identical** R 4.3 environment tomorrow.
-
-### Run a command and exit
-
-```bash
-docker run --rm python:3.11-slim python -c "print('Analysis environment ready')"
-```
-
-- `--rm` = delete the container when it finishes (keeps your machine tidy)
-
-### Stop a running container
-
-```bash
-docker stop CONTAINER_ID
-```
-
-(`CONTAINER_ID` comes from `docker ps`.)
+**Explanation:** The container includes R; your host machine stays unchanged.
 
 ---
 
-## 6. Hands-on example — a mini clinical-style analysis box
+### Example 3 — Interactive Python shell
 
-This example is **educational**, not submission-ready — but it shows the pattern used in real projects.
+**Problem:** Test Python in an isolated environment.
 
-### Step 1: Create a folder
+**Solution:**
 
 ```bash
-mkdir docker-clinical-demo
-cd docker-clinical-demo
+docker run -it --rm python:3.11-slim python
 ```
 
-### Step 2: Create a simple R script
+```python
+print("Docker Python ready")
+exit()
+```
 
-Save this as `summarize.R`:
+**Expected result:** Python REPL opens, prints message, exits cleanly.
+
+---
+
+### Example 4 — Build a clinical summary image
+
+**Problem:** Create a reproducible environment for summarizing patient ages.
+
+**Solution:**
+
+Create `summarize.R`:
 
 ```r
-# Demo: summarize patient ages from a CSV
 args <- commandArgs(trailingOnly = TRUE)
-input_file <- args[1]
-output_file <- args[2]
-
-dat <- read.csv(input_file)
-result <- data.frame(
+dat <- read.csv(args[1])
+out <- data.frame(
   n = nrow(dat),
-  mean_age = mean(dat$age, na.rm = TRUE),
-  min_age = min(dat$age, na.rm = TRUE),
-  max_age = max(dat$age, na.rm = TRUE)
+  mean_age = round(mean(dat$age, na.rm = TRUE), 1)
 )
-write.csv(result, output_file, row.names = FALSE)
-cat("Summary written to", output_file, "\n")
+write.csv(out, args[2], row.names = FALSE)
+cat("Done\n")
 ```
 
-### Step 3: Create sample data
-
-Save as `patients.csv`:
+Create `patients.csv`:
 
 ```csv
 patient_id,age
 001,54
 002,61
 003,47
-004,58
-005,52
 ```
 
-### Step 4: Create a Dockerfile
-
-Save as `Dockerfile`:
+Create `Dockerfile`:
 
 ```dockerfile
 FROM rocker/r-ver:4.3
 WORKDIR /analysis
-COPY summarize.R .
-COPY patients.csv .
+COPY summarize.R patients.csv ./
 CMD ["Rscript", "summarize.R", "patients.csv", "summary.csv"]
 ```
 
-### Step 5: Build the image
+Build and run:
 
 ```bash
-docker build -t clinical-demo:1.0 .
-```
-
-- `-t clinical-demo:1.0` = name and version tag (like a batch number)
-- `.` = use the current folder
-
-### Step 6: Run the container
-
-```bash
-docker run --rm clinical-demo:1.0
-```
-
-### Step 7: Copy the output file out (optional)
-
-```bash
-docker run --rm -v "$(pwd):/output" clinical-demo:1.0 \
+docker build -t clinical-summary:1.0 .
+docker run --rm -v "$(pwd):/output" clinical-summary:1.0 \
   sh -c "Rscript summarize.R patients.csv /output/summary.csv"
+cat summary.csv
 ```
 
-On Windows PowerShell, use:
+**Expected output:** CSV with `n` and `mean_age`.
 
-```powershell
-docker run --rm -v "${PWD}:/output" clinical-demo:1.0 sh -c "Rscript summarize.R patients.csv /output/summary.csv"
-```
-
-Open `summary.csv` — you should see mean, min, and max age.
-
-::: callout-note
-**Industry pattern:** The **image tag** (`clinical-demo:1.0`) documents which environment produced the output. In regulated settings, teams keep that tag in the analysis record.
-:::
+**Explanation:** Image tag `clinical-summary:1.0` documents the exact environment used.
 
 ---
 
-## 7. Docker in pharma & clinical — real scenarios
+### Example 5 — Pull a bioinformatics tool
 
-### Scenario A: Reproducible TLF generation (clinical)
+**Problem:** Run FastQC without manual installation.
 
-**Problem:** Two statisticians get slightly different p-values because one has an older R package.
-
-**Docker approach:**
-
-1. Build an image with fixed R + package versions.
-2. Tag it `study-abc-tlf-env:2024-03-15`.
-3. Every TLF run uses that tag.
-4. QC re-runs the same tag to verify.
-
-### Scenario B: Bioinformatics pipeline (biotech)
-
-**Problem:** Installing BWA, samtools, and GATK manually takes days and breaks on updates.
-
-**Docker approach:**
-
-- Use community images (e.g. from [Biocontainers](https://biocontainers.pro/)).
-- Or build one image with all tools pinned.
-- Run the same image locally, on a server, or in the cloud.
+**Solution:**
 
 ```bash
 docker run --rm biocontainers/fastqc:v0.11.9_cv8 fastqc --help
 ```
 
-### Scenario C: ML model for drug discovery (pharma)
-
-**Problem:** A data scientist trains a model in Python; manufacturing wants to run it in a controlled environment.
-
-**Docker approach:**
-
-- Package model + Python + libraries in an image.
-- Validate the image through your internal QA process.
-- Deploy the **same image** to staging and production.
-
-### Scenario D: Keeping sensitive data separate
-
-**Problem:** Patient-level data must not leak between studies.
-
-**Docker approach:**
-
-- Run each study in a **separate container** with **separate mounted folders**.
-- Never bake patient data *into* the image — mount it at run time only.
-- Combine with encryption, access controls, and audit logs (Docker alone is not enough for HIPAA/GDPR — it is one layer).
+**Expected result:** FastQC help text displayed.
 
 ---
 
-## 8. GxP, validation & audit — what beginners should know
+## 8. Real-world Industry Use Cases
 
-If you work in **GxP** (Good Practice guidelines — GCP, GLP, GMP), Docker is a **tool**, not a shortcut around validation.
+| # | Industry | Use case | How Docker helps |
+|---|----------|----------|------------------|
+| 1 | Bioinformatics | WGS variant calling | Pins BWA, GATK, bcftools versions |
+| 2 | Pharma | Drug target ML models | Same model container in dev and prod |
+| 3 | Clinical trials | TLF regeneration | Locked R/SAS environment per study |
+| 4 | Healthcare | Diagnostic AI deployment | Isolated, scalable inference containers |
+| 5 | CRO | Multi-study platforms | Separate containers per sponsor data |
+| 6 | Manufacturing | Batch QC analytics | Validated image versions per SOP |
+| 7 | Real-world evidence | Claims data pipelines | Reproducible ETL in the cloud |
+| 8 | Genomics core lab | High-throughput FASTQ QC | Parallel containers per sample |
+| 9 | Regulatory | Audit reproduction | Image digest proves what executed |
+| 10 | Data engineering | ETL to data lake | Portable Spark/Python worker images |
+| 11 | AI/ML | Model serving | FastAPI/Torch images on Kubernetes |
+| 12 | Clinical programming | ADaM validation | Shared env for independent QC stats |
 
-**Good practices:**
+---
 
-| Practice | Why |
-|----------|-----|
-| **Version every image** (`:1.0`, `:2024-06-28`) | Traceability — like a batch record |
-| **Document the Dockerfile** | Shows how the environment was built |
-| **Store images in a controlled registry** | Prevents unapproved changes |
-| **Test before production use** | IQ/OQ-style checks on critical containers |
-| **Keep data out of images** | Patient data belongs in secure storage, not baked into layers |
-| **Log who ran what** | Combine Docker with workflow tools (Nextflow, Airflow, CI systems) |
+## 9. Bioinformatics Workflow
 
-::: callout-warning
-Docker helps with **reproducibility** and **isolation**. It does **not** replace SOPs, data privacy rules, 21 CFR Part 11 controls, or formal computer system validation on its own.
+```{mermaid}
+flowchart TB
+  A[FASTQ Files] --> B[Quality Control]
+  B --> C[Alignment]
+  C --> D[Variant Calling]
+  D --> E[Annotation]
+  E --> F[Nextflow Pipeline]
+  F --> G[Docker Containers per Step]
+  G --> H[Quarto / MultiQC Report]
+  H --> I[Publication / Clinical Report]
+```
+
+**Role of Docker:** Each pipeline step (FastQC, alignment, calling) runs inside a container with an exact tool version. Nextflow orchestrates which container runs when. This prevents tool-version drift across samples and sites.
+
+---
+
+## 10. Clinical Programming Workflow
+
+```{mermaid}
+flowchart TB
+  A[Raw CRF Data] --> B[SDTM]
+  B --> C[ADaM]
+  C --> D[Statistical Analysis]
+  D --> E[Tables]
+  D --> F[Listings]
+  D --> G[Figures]
+  E --> H[Submission Package]
+  F --> H
+  G --> H
+```
+
+**How Docker helps:**
+
+- **SDTM/ADaM conversion** — same R/Python/Pinnacle21 automation environment every lock
+- **Analysis** — reproducible `rocker/tidyverse` or SAS-compatible stacks
+- **TLFs** — QC statisticians re-run the identical container to verify outputs
+- **Submission** — image tags archived alongside analysis documentation
+
+::: {.callout-warning}
+Docker supports reproducibility but does **not** replace formal CSV, SOPs, or 21 CFR Part 11 controls by itself.
 :::
 
 ---
 
-## 9. How Docker connects to other tools on this site
+## 11. Best Practices
 
-| Tool | How Docker fits |
-|------|-----------------|
-| [Nextflow](nextflow.qmd) | Runs each pipeline step inside a container — same tools everywhere |
-| [R / Clinical R](clinical-r.qmd) | Fixed R + package versions for TLFs and CDISC work |
-| [Python](python.qmd) | Data science and ML environments that match production |
-| Cloud (AWS, GCP) | Same image on your laptop and in the cloud |
+### DO
 
-**One sentence:** Docker is often the **“standard box”** that other tools **carry** your analysis in.
+- Pin image versions (`:1.0`, `:2024-06-28`)
+- Store Dockerfiles in Git
+- Use multi-stage builds to reduce image size
+- Scan images for CVEs (Trivy, Snyk)
+- Mount data with volumes; keep PHI out of images
+- Document image digest in study files
+
+### DON'T
+
+- Use `:latest` in regulated production
+- Run containers as root when avoidable
+- Store passwords or API keys in Dockerfiles
+- Copy patient datasets into image layers
+- Expose unnecessary ports to the internet
+
+### Performance tips
+
+- Use `-slim` or `-alpine` base images
+- Leverage build cache; order Dockerfile layers from least to most frequently changed
+- Prune unused images: `docker system prune`
+
+### Security tips
+
+- Use private registries for internal images
+- Enable Docker Content Trust where required
+- Apply least-privilege IAM on cloud registries
+
+### Optimization tips
+
+- One process per container when possible
+- Use `.dockerignore` to speed builds
+- Compose multi-container apps with Docker Compose for local dev
 
 ---
 
-## 10. Common beginner mistakes (and fixes)
+## 12. Common Mistakes
 
-| Mistake | Fix |
-|---------|-----|
-| “Docker is installed but commands fail” | Open **Docker Desktop** and wait until it is running |
-| Putting secrets or patient data in a Dockerfile | Use mounted volumes and secret managers — never `COPY` PHI into an image |
-| Using `:latest` tag in production | Always use **specific version tags** |
-| Huge images (slow downloads) | Start from `-slim` base images; only install what you need |
-| Expecting Docker to validate itself | Follow your organization’s QA / CSV process |
-| Confusing **image** and **container** | Image = blueprint; container = running copy |
+| Mistake | Reason | Solution |
+|---------|--------|----------|
+| Docker Desktop not running | Service stopped after reboot | Launch Docker Desktop; wait for green status |
+| `permission denied` on Linux | User not in `docker` group | `sudo usermod -aG docker $USER` |
+| Huge images | Installing unnecessary packages | Use slim bases; multi-stage builds |
+| Data lost after container stops | Wrote inside container filesystem | Use volumes for persistent output |
+| Wrong architecture image | Apple Silicon vs x86 mismatch | Select `arm64` or use `--platform linux/amd64` |
+| PHI in image layers | Copied data in Dockerfile | Mount volumes at runtime only |
+| Port already in use | Another service on same port | Change host port: `-p 8081:8080` |
+| Cannot pull image | Network/proxy/firewall | Configure proxy; use internal mirror |
 
 ---
 
-## 11. Quick reference — commands to remember
+## 13. Troubleshooting Guide
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `Cannot connect to the Docker daemon` | Docker not running | Start Docker Desktop / `sudo systemctl start docker` |
+| `pull access denied` | Private image or auth needed | `docker login` to registry |
+| `no space left on device` | Disk full | `docker system df` then `docker system prune -a` |
+| `exec format error` | CPU architecture mismatch | Use correct platform image |
+| `port is already allocated` | Port conflict | Stop other service or change mapping |
+| Build fails at `COPY` | File missing from context | Check path and `.dockerignore` |
+| Container exits immediately | CMD error | Run interactively: `docker run -it image sh` |
+| Slow performance on Mac | File sharing overhead | Use delegated mounts; limit watched folders |
+
+**Useful diagnostic commands:**
 
 ```bash
-# Check Docker
-docker --version
-
-# First test
-docker run hello-world
-
-# List running containers
-docker ps
-
-# Build an image from a Dockerfile
-docker build -t my-study-env:1.0 .
-
-# Run an image
-docker run --rm my-study-env:1.0
-
-# Run with a folder mounted (data in/out)
-docker run --rm -v "$(pwd):/data" my-study-env:1.0
+docker ps -a
+docker logs CONTAINER_ID
+docker inspect IMAGE_NAME
+docker system df
+docker info
 ```
 
 ---
 
-## 12. Next steps
+## 14. Interview Questions
 
-1. Install Docker Desktop and run `docker run hello-world`.
-2. Try the [clinical demo](#step-1-create-a-folder) above.
-3. Explore [Nextflow](nextflow.qmd) to see containers in multi-step pipelines.
-4. Ask your IT team about **private registries** if you work in a regulated company.
+### Beginner
 
-## 13. Further reading
+**Q1: What is the difference between an image and a container?**  
+**A:** An image is a read-only template; a container is a running instance of that image.
 
-- [Docker Get Started guide](https://docs.docker.com/get-started/)
-- [Docker Desktop documentation](https://docs.docker.com/desktop/)
-- [Biocontainers](https://biocontainers.pro/) — life-sciences tool images
-- [Rocker project](https://rocker-project.org/) — R images for statistics and clinical programming
+**Q2: What is Docker Hub?**  
+**A:** A public registry for storing and sharing container images.
+
+**Q3: Why do bioinformatics teams use Docker?**  
+**A:** To pin tool versions and reproduce pipeline results across machines.
+
+### Intermediate
+
+**Q4: What is a volume and when would you use one?**  
+**A:** Persistent storage mounted into a container — used for input data and output results without baking them into the image.
+
+**Q5: How do Docker and Kubernetes relate?**  
+**A:** Docker builds/runs containers locally; Kubernetes orchestrates many containers across a cluster.
+
+**Q6: How would you make a clinical analysis reproducible with Docker?**  
+**A:** Build a versioned image, document the tag/digest, mount study data at runtime, archive the Dockerfile in version control.
+
+### Advanced
+
+**Q7: What are multi-stage builds?**  
+**A:** Dockerfiles with multiple `FROM` stages — compile in one stage, copy only artifacts to a smaller final image.
+
+**Q8: How do you reduce attack surface in production containers?**  
+**A:** Non-root user, minimal base image, no secrets in layers, regular scanning, read-only filesystem where possible.
+
+**Q9: Explain how Nextflow uses Docker.**  
+**A:** Each process specifies a container image; Nextflow pulls and runs it per task, enabling reproducible scalable pipelines.
+
+---
+
+## 15. Cheat Sheet
+
+```bash
+# Info
+docker --version
+docker info
+
+# Images
+docker pull IMAGE:TAG
+docker images
+docker build -t NAME:TAG .
+docker rmi IMAGE
+
+# Containers
+docker run --rm IMAGE
+docker run -it --rm IMAGE sh
+docker ps
+docker ps -a
+docker stop ID
+docker logs ID
+docker exec -it ID sh
+
+# Data
+docker run -v "$(pwd):/data" IMAGE
+
+# Cleanup
+docker system prune
+docker system prune -a
+```
+
+| Tip | Command |
+|-----|---------|
+| Remove container after exit | `--rm` |
+| Interactive terminal | `-it` |
+| Name a container | `--name myjob` |
+| Map port | `-p 8080:80` |
+| Env variable | `-e VAR=value` |
+
+---
+
+## 16. Summary
+
+- Docker packages apps and dependencies into portable **containers**
+- An **image** is the template; a **container** is the running instance
+- Docker solves reproducibility, isolation, and deployment consistency
+- Life-sciences teams use Docker for genomics pipelines, clinical analysis, and ML
+- Install via **Docker Desktop** (Windows/Mac) or **Docker Engine** (Linux)
+- Build custom environments with a **Dockerfile**
+- Use **volumes** for data — never embed PHI in images
+- Pin **version tags** for regulated and scientific work
+- Combine Docker with **Nextflow** for scalable bioinformatics
+- Combine Docker with **Quarto** for reproducible reports
+- Scan images, prune disk usage, and document image digests
+- Troubleshoot with `docker logs`, `docker ps`, and `docker inspect`
+- Next recommended topics: **Linux → Git → Nextflow → Kubernetes → AWS**
+
+---
+
+## 17. Next Topic
+
+```{mermaid}
+flowchart LR
+  A[Linux] --> B[Git]
+  B --> C[Docker]
+  C --> D[Nextflow]
+  D --> E[Kubernetes]
+  E --> F[AWS]
+```
+
+After Docker, learn **[Nextflow](nextflow.qmd)** to orchestrate multi-step pipelines, or **[Linux foundations](linux.qmd)** if you are new to the command line.
+
+---
+
+## 18. Learning Path
+
+### Bioinformatics roadmap
+
+```{mermaid}
+flowchart TB
+  A[Linux] --> B[Git]
+  B --> C[Docker]
+  C --> D[Nextflow]
+  D --> E[RNA-seq Analysis]
+  E --> F[Variant Calling]
+  F --> G[Cloud / AWS]
+  G --> H[ML & AI]
+```
+
+### Clinical programming roadmap
+
+```{mermaid}
+flowchart TB
+  A[R / SAS Basics] --> B[Linux]
+  B --> C[Git]
+  C --> D[Docker]
+  D --> E[Reproducible TLFs]
+  E --> F[Pharmaverse / ADaM]
+  F --> G[Submission]
+```
+
+---
+
+## 19. Further Reading
+
+| Resource | Link |
+|----------|------|
+| Official Docker docs | [https://docs.docker.com/](https://docs.docker.com/) |
+| Docker GitHub | [https://github.com/docker](https://github.com/docker) |
+| Biocontainers | [https://biocontainers.pro/](https://biocontainers.pro/) |
+| Rocker (R images) | [https://rocker-project.org/](https://rocker-project.org/) |
+| Google Cloud Run + containers | [https://cloud.google.com/run/docs](https://cloud.google.com/run/docs) |
+| NF-Core (Nextflow + Docker) | [https://nf-co.re/](https://nf-co.re/) |
+| Book | *Docker Deep Dive* — Nigel Poulton |
+| YouTube | Docker official channel, TechWorld with Nana |
+
+---
+
+## 20. Mini Project — Reproducible Study Summary Container
+
+### Problem statement
+
+Build a Dockerized R environment that reads a patient CSV and writes a summary CSV — suitable for QC documentation in a mock clinical study.
+
+### Architecture
+
+```{mermaid}
+flowchart LR
+  A[patients.csv] --> B[Docker Volume]
+  B --> C[R Container]
+  C --> D[summary.csv]
+  E[Dockerfile] --> C
+```
+
+### Folder structure
+
+```text
+clinical-docker-project/
+├── Dockerfile
+├── summarize.R
+├── patients.csv
+└── README.md
+```
+
+### Commands
+
+```bash
+mkdir clinical-docker-project && cd clinical-docker-project
+# Add Dockerfile, summarize.R, patients.csv from Example 4
+docker build -t study-qc:1.0 .
+docker run --rm -v "$(pwd):/output" study-qc:1.0 \
+  sh -c "Rscript summarize.R patients.csv /output/summary.csv"
+```
+
+### Expected output
+
+`summary.csv` containing record count and mean age — reproducible when the same `study-qc:1.0` image is used.
+
+::: {.callout-tip}
+Archive the image tag and Git commit hash in your mock study documentation to practice GxP-style traceability.
+:::
+
+---
+
+## 21. Exercises
+
+### 10 practice questions
+
+1. Define image vs container in your own words.
+2. What command verifies Docker installation?
+3. Why should you avoid `:latest` in production?
+4. What flag removes a container after it exits?
+5. How do you mount the current directory into a container?
+6. Name two life-sciences registries or image sources.
+7. Where does Docker fit in a FASTQ-to-VCF pipeline?
+8. Why should PHI not be copied into a Dockerfile?
+9. What command lists running containers?
+10. How does Docker help clinical TLF QC?
+
+### 5 assignments
+
+1. Build an image with Python 3.11 that prints today's date.
+2. Run `rocker/tidyverse` and execute a dplyr pipeline inside the container.
+3. Create a `.dockerignore` and explain what it excludes.
+4. Pull a Biocontainers image and document its tag.
+5. Write a one-page SOP for naming and tagging study images.
+
+### 3 mini projects
+
+1. Dockerize a simple FastQC command on a sample FASTQ file.
+2. Build a two-stage Dockerfile (build tools → minimal runtime).
+3. Compose a web app + database with Docker Compose locally.
+
+### 1 capstone project
+
+Design a reproducible mini pipeline: QC → summary stats → Quarto HTML report — each step in its own versioned container, orchestrated manually or with Nextflow.
+
+---
 
 [Back to home](index.qmd)

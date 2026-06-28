@@ -2,79 +2,163 @@
   {
     "objectID": "nextflow.html",
     "href": "nextflow.html",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
     "section": "",
-    "text": "Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.\n\n\n\n\n\n\nImportant\n\n\n\nThis guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values."
+    "text": "Note\n\n\n\nAudience: Students, bioinformatics researchers, clinical programmers, data scientists, pharmaceutical professionals, and software engineers."
   },
   {
-    "objectID": "nextflow.html#why-nextflow",
-    "href": "nextflow.html#why-nextflow",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "",
-    "text": "Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.\n\n\n\n\n\n\nImportant\n\n\n\nThis guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values."
+    "objectID": "nextflow.html#introduction",
+    "href": "nextflow.html#introduction",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nNextflow is a workflow management system for running computational pipelines. It connects analysis steps, runs them in parallel, and scales from a laptop to the cloud.\n\nWhy Nextflow exists\nBioinformatics and data pipelines often involve many steps, large datasets, and many samples. Shell scripts become hard to maintain, restart, and scale. Nextflow was built to solve reproducible, portable, parallel workflow execution.\n\n\nThe problem Nextflow solves\n\n\n\n\n\n\n\n\nProblem\nWithout Nextflow\nWith Nextflow\n\n\n\n\nParallelism\nManual job arrays\nAutomatic parallel tasks\n\n\nFailures\nRestart from scratch\nResume from last successful step\n\n\nPortability\nScripts tied to one cluster\nProfiles for local, AWS, GCP\n\n\nReproducibility\nAd-hoc environments\nDocker/Singularity/Conda per step\n\n\nComplexity\nSpaghetti bash scripts\nStructured processes and channels\n\n\n\n\n\nWhere Nextflow is used in industry\n\nAcademic genomics cores — RNA-seq, WGS, single-cell pipelines\nPharma bioinformatics — target discovery, biomarker pipelines\nCROs & sequencing vendors — standardized nf-core pipelines\nPublic health — pathogen surveillance (e.g., EPI2ME, viral pipelines)\nCloud-native labs — AWS Batch, Google Life Sciences, Kubernetes"
   },
   {
-    "objectID": "nextflow.html#quick-start-install-and-run-locally",
-    "href": "nextflow.html#quick-start-install-and-run-locally",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "2. Quick Start — install and run locally",
-    "text": "2. Quick Start — install and run locally\n\nRequirements\n\nJava 11+ (Nextflow runs on the JVM)\nnextflow CLI (install via curl)\nOptional: Docker or Conda for reproducible software environments\n\n# Install Nextflow (Linux/macOS)\ncurl -s https://get.nextflow.io | bash\n# Move to PATH (example)\nsudo mv nextflow /usr/local/bin/\n\n# Verify\nnextflow -v\n\n\nHello-world workflow (main.nf)\n#!/usr/bin/env nextflow\n\nprocess sayHello {\n  output:\n    file 'hello.txt'\n\n  script:\n  \"\"\"\n  echo \"Hello from Nextflow\" &gt; hello.txt\n  \"\"\"\n}\n\nworkflow {\n  sayHello()\n}\nRun locally:\nnextflow run main.nf -profile standard\nls -l work/\ncat work/*/hello.txt"
+    "objectID": "nextflow.html#learning-objectives",
+    "href": "nextflow.html#learning-objectives",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "2. Learning Objectives",
+    "text": "2. Learning Objectives\n\nBy the end of this tutorial, you will be able to\n\nExplain what Nextflow is and why bioinformatics teams adopt it\nInstall Nextflow and run a hello-world workflow locally\nDefine processes, channels, and workflows\nConfigure Docker containers for reproducible tool execution\nRun pipelines on AWS and GCP using profiles\nIntegrate R and Python scripts into Nextflow processes\nMap Nextflow to FASTQ-to-report bioinformatics workflows\nApply best practices for clinical and regulated environments\nTroubleshoot common Nextflow errors\nDesign a simple QC pipeline as a mini project"
   },
   {
-    "objectID": "nextflow.html#core-concepts-brief",
-    "href": "nextflow.html#core-concepts-brief",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "3. Core Concepts (brief)",
-    "text": "3. Core Concepts (brief)\n\nprocess: computational step (command/script) with input/output.\nchannel: stream of data connecting processes.\nworkflow: organizes processes and channels."
+    "objectID": "nextflow.html#why-is-this-important",
+    "href": "nextflow.html#why-is-this-important",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "3. Why is this important?",
+    "text": "3. Why is this important?\n\nWhy should someone learn Nextflow?\nNextflow is the de facto standard for portable bioinformatics pipelines. nf-core alone has 100+ community pipelines used worldwide.\n\n\nWhy do companies use it?\n\nScale — process hundreds of samples in parallel\nResume — -resume saves time and cloud cost after failures\nPortability — same pipeline on laptop, HPC, or cloud via profiles\nCommunity — nf-core, Seqera Tower ecosystem\n\n\n\nWhy is it important in bioinformatics?\nGenomics workflows are multi-step and data-heavy. Nextflow manages dependencies, parallelization, and containerized tools automatically.\n\n\nWhy is it important in clinical programming?\nWhile SAS/R dominate TLFs, Nextflow supports omics sub-studies, biomarker pipelines, and reproducible secondary analyses linked to trials.\n\n\nWhy is it useful in data science?\nNextflow orchestrates feature engineering, model training, and batch scoring at scale — especially when combined with Docker and cloud executors."
   },
   {
-    "objectID": "nextflow.html#running-nextflow-on-google-cloud-platform-gcp",
-    "href": "nextflow.html#running-nextflow-on-google-cloud-platform-gcp",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "4. Running Nextflow on Google Cloud Platform (GCP)",
-    "text": "4. Running Nextflow on Google Cloud Platform (GCP)\n\nOverview\nWe demonstrate using GCP Compute + Cloud Storage. For larger work, you can use Nextflow Tower, Google Genomics Pipelines, or compute clusters (GKE).\n\n\nPrerequisites\n\ngcloud installed and authenticated\nA GCP project and billing enabled\nA GCS bucket for workspace/storage\n\n# Set project and region\ngcloud config set project YOUR_PROJECT_ID\ngcloud config set compute/region us-central1\n# Create bucket (example)\ngsutil mb -l us-central1 gs://your-nextflow-bucket\n\n\nNextflow config for GCP (example nextflow.config)\nprofiles {\n  gcp {\n    process.executor = 'google-lifesciences'  // uses Google Life Sciences API\n    google {\n      project = 'YOUR_PROJECT_ID'\n      region  = 'us-central1'\n      auth = '/path/to/google-credentials.json'   // or use ADC\n      bucket = 'gs://your-nextflow-bucket'\n    }\n    workDir = 'gs://your-nextflow-bucket/work'\n  }\n}\n\nAuthentication: prefer Application Default Credentials (ADC). To create a service account and key:\n\ngcloud iam service-accounts create nf-runner --display-name \"Nextflow runner\"\ngcloud projects add-iam-policy-binding YOUR_PROJECT_ID \\\n  --member=\"serviceAccount:nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com\" \\\n  --role=\"roles/storage.admin\"\ngcloud iam service-accounts keys create key.json \\\n  --iam-account nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com\nexport GOOGLE_APPLICATION_CREDENTIALS=\"$(pwd)/key.json\"\n\n\nRun on GCP\nnextflow run main.nf -profile gcp -with-report report.html -with-trace trace.txt\n\n\nCost & monitoring\n\nStore intermediate files in GCS to avoid expensive disk.\nUse small VM images for lightweight tasks.\nMonitor via Cloud Console and check gcloud billing reports."
+    "objectID": "nextflow.html#architecture-diagram",
+    "href": "nextflow.html#architecture-diagram",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "4. Architecture Diagram",
+    "text": "4. Architecture Diagram\n\nNextflow core architecture\n\n\n\n\n\n\n\n\n\n\n\n\n\nPipeline data flow"
   },
   {
-    "objectID": "nextflow.html#running-nextflow-on-aws",
-    "href": "nextflow.html#running-nextflow-on-aws",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "5. Running Nextflow on AWS",
-    "text": "5. Running Nextflow on AWS\n\nOverview\nCommon backends: S3 for storage, AWS Batch or EC2/ECS as executors.\n\n\nPrerequisites\n\naws CLI configured (aws configure)\nAn S3 bucket and IAM role/user with permissions\n\n# Create bucket\naws s3 mb s3://your-nextflow-bucket --region us-east-1\n\n\nExample nextflow.config for AWS S3 + Batch\nprofiles {\n  aws {\n    process.executor = 'awsbatch'\n    aws {\n      region = 'us-east-1'\n      client {\n        registry = 'public.ecr.aws'  // if using ECR images\n      }\n    }\n    workDir = 's3://your-nextflow-bucket/work'\n  }\n}\n\n\nCreate IAM role and policy (high level)\n\nCreate an IAM role for AWS Batch with S3 read/write.\nAttach policies: AmazonS3FullAccess (or scoped) and Batch execution roles.\n\n\n\nRun on AWS\nnextflow run main.nf -profile aws -with-report report.html"
+    "objectID": "nextflow.html#installation",
+    "href": "nextflow.html#installation",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "5. Installation",
+    "text": "5. Installation\n\nWindows (WSL2 recommended)\nNextflow runs best on Linux/macOS. On Windows, use WSL2:\n# Inside WSL Ubuntu\ncurl -s https://get.nextflow.io | bash\nsudo mv nextflow /usr/local/bin/\nnextflow -v\nInstall Java 11+:\nsudo apt-get install -y openjdk-17-jre\njava -version\n\n\nmacOS\ncurl -s https://get.nextflow.io | bash\nsudo mv nextflow /usr/local/bin/\nbrew install openjdk@17\nnextflow -v\n\n\nLinux\ncurl -s https://get.nextflow.io | bash\nsudo mv nextflow /usr/local/bin/\nsudo apt-get install -y openjdk-17-jre\nnextflow -v\nVerify:\nnextflow run hello\n\n\n\n\n\n\nTip\n\n\n\nOptional: Install Docker for containerized processes."
   },
   {
-    "objectID": "nextflow.html#integrating-r-and-python",
-    "href": "nextflow.html#integrating-r-and-python",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "6. Integrating R and Python",
-    "text": "6. Integrating R and Python\n\nContainerization (recommended)\n\nUse Docker images with R and Python environments, or use Conda with Nextflow’s conda support.\n\nExample process using Python:\nprocess runPython {\n  container 'python:3.11-slim'\n  input:\n    path x\n  output:\n    path 'out.txt'\n\n  script:\n  \"\"\"\n  python -c 'print(\"Processing\", \"$x\")' &gt; out.txt\n  \"\"\"\n}\nExample conda usage:\nprocess analysis {\n  conda 'envs/env.yml'\n  script:\n  \"\"\"\n  Rscript analysis.R input.csv output.csv\n  \"\"\"\n}\nenvs/env.yml (example)\nname: nf-env\nchannels:\n  - conda-forge\ndependencies:\n  - r-base=4.2\n  - r-essentials\n  - python=3.11\n  - pandas\n\n\nR script example (analysis.R)\nargs &lt;- commandArgs(trailingOnly = TRUE)\ndat &lt;- read.csv(args[1])\nsummary &lt;- summary(dat)\nwrite.csv(as.data.frame(summary), args[2], row.names=FALSE)\n\n\nPassing data between R and Python\n\nUse files in workDir and channels to pass file paths.\nKeep intermediate files in object storage (S3/GCS) when running in cloud."
+    "objectID": "nextflow.html#basic-concepts",
+    "href": "nextflow.html#basic-concepts",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "6. Basic Concepts",
+    "text": "6. Basic Concepts\n\nProcess\n\n\n\n\n\n\n\nDefinition\nA single computational step with inputs, outputs, and a script\n\n\nAnalogy\nOne station on a factory assembly line\n\n\nIndustry example\nFastQC on each FASTQ file in parallel\n\n\nBest practice\nOne logical task per process; pin container versions\n\n\n\n\n\nChannel\n\n\n\n\n\n\n\nDefinition\nAn asynchronous queue connecting processes with data\n\n\nAnalogy\nA conveyor belt carrying work items\n\n\nIndustry example\nOne channel item per patient sample\n\n\nBest practice\nUse tuple channels for paired-end reads\n\n\n\n\n\nWorkflow\n\n\n\n\n\n\n\nDefinition\nThe DAG (graph) linking processes\n\n\nAnalogy\nThe master floor plan of the factory\n\n\nIndustry example\nQC → align → call variants → annotate\n\n\nBest practice\nKeep main.nf readable; modularize with include\n\n\n\n\n\nExecutor\n\n\n\n\n\n\n\nDefinition\nBackend that runs tasks (local, slurm, awsbatch, etc.)\n\n\nAnalogy\nThe HR department assigning workers to stations\n\n\nIndustry example\nawsbatch for cloud scale\n\n\nBest practice\nUse profiles in nextflow.config\n\n\n\n\n\nProfile\n\n\n\n\n\n\n\nDefinition\nNamed configuration bundle (executor, containers, paths)\n\n\nAnalogy\nA preset mode: “laptop” vs “cloud”\n\n\nIndustry example\n-profile docker,aws\n\n\nBest practice\nNever hardcode credentials in profiles\n\n\n\n\n\nContainer directive\n\n\n\nDefinition\nDocker/Singularity image used by a process\n\n\nAnalogy\nThe standardized toolbox for that station\n\n\nIndustry example\nbiocontainers/fastqc:v0.11.9_cv8\n\n\nBest practice\nAlways specify full image tags\n\n\n\n\n\nwork/ directory\n\n\n\nDefinition\nCached task directories for resume and debugging\n\n\nAnalogy\nThe workshop floor where in-progress jobs live\n\n\nIndustry example\nInspected when a variant-calling step fails\n\n\nBest practice\nUse shared workDir on cloud; enable -resume"
   },
   {
-    "objectID": "nextflow.html#practical-bioinformatics-example-fastq-qc-alignment",
-    "href": "nextflow.html#practical-bioinformatics-example-fastq-qc-alignment",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "7. Practical Bioinformatics Example (FASTQ QC & alignment)",
-    "text": "7. Practical Bioinformatics Example (FASTQ QC & alignment)\n\nProcess 1: split/validate FASTQ\nProcess 2: run fastp or fastqc\nProcess 3: align with bwa or minimap2\nUse containers for exact tool versions and pin references.\n\nSmall example process:\nprocess fastqc {\n  container 'biocontainers/fastqc:v0.11.9_cv8'\n  input:\n    path fastq\n  output:\n    path \"*.html\"\n  \"\"\"\n  fastqc $fastq -o .\n  \"\"\"\n}"
+    "objectID": "nextflow.html#hands-on-examples",
+    "href": "nextflow.html#hands-on-examples",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "7. Hands-on Examples",
+    "text": "7. Hands-on Examples\n\nExample 1 — Hello World\nProblem: Verify Nextflow runs locally.\nSolution: Create main.nf:\n#!/usr/bin/env nextflow\n\nprocess sayHello {\n  output:\n    path 'hello.txt'\n\n  script:\n  \"\"\"\n  echo \"Hello from Nextflow\" &gt; hello.txt\n  \"\"\"\n}\n\nworkflow {\n  sayHello()\n}\nRun:\nnextflow run main.nf\ncat work/*/hello.txt\nExpected output: Hello from Nextflow\n\n\n\nExample 2 — Parallel sample processing\nProblem: Process multiple samples in parallel.\nSolution:\nparams.samples = ['S1', 'S2', 'S3']\n\nprocess greetSample {\n  input:\n    val sample\n\n  output:\n    stdout\n\n  script:\n  \"\"\"\n  echo \"Processing sample ${sample}\"\n  \"\"\"\n}\n\nworkflow {\n  Channel.fromList(params.samples) | greetSample | view\n}\nExpected result: Three lines, order may vary (parallel execution).\n\n\n\nExample 3 — Dockerized FastQC\nProblem: Run FastQC in a reproducible container.\nSolution:\nprocess runFastqc {\n  container 'biocontainers/fastqc:v0.11.9_cv8'\n\n  input:\n    path fastq\n\n  output:\n    path \"*.html\"\n\n  script:\n  \"\"\"\n  fastqc ${fastq}\n  \"\"\"\n}\n\nworkflow {\n  Channel.fromPath('*.fastq.gz') | runFastqc\n}\nExpected result: HTML QC reports per FASTQ file.\n\n\n\nExample 4 — Python in Nextflow\nProblem: Run a Python script inside a pipeline.\nSolution:\nprocess runPython {\n  container 'python:3.11-slim'\n\n  input:\n    path csv\n\n  output:\n    path 'out.txt'\n\n  script:\n  \"\"\"\n  python -c \"import pandas as pd; df=pd.read_csv('${csv}'); print(df.shape)\" &gt; out.txt\n  \"\"\"\n}\n\n\n\nExample 5 — R analysis step\nProblem: Execute analysis.R with Dockerized R.\nSolution:\nprocess runR {\n  container 'rocker/r-ver:4.3'\n\n  input:\n    path input_csv\n\n  output:\n    path 'output.csv'\n\n  script:\n  \"\"\"\n  Rscript analysis.R ${input_csv} output.csv\n  \"\"\"\n}\nanalysis.R:\nargs &lt;- commandArgs(trailingOnly = TRUE)\ndat &lt;- read.csv(args[1])\nwrite.csv(summary(dat), args[2])"
   },
   {
-    "objectID": "nextflow.html#clinical-trials-regulatory-considerations",
-    "href": "nextflow.html#clinical-trials-regulatory-considerations",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "8. Clinical Trials / Regulatory Considerations",
-    "text": "8. Clinical Trials / Regulatory Considerations\n\nEnforce data access controls: use private buckets and VPCs.\nLog and version workflows: enable reports and execution metadata.\nSeparate PHI/PII and use encryption at rest/in transit."
+    "objectID": "nextflow.html#real-world-industry-use-cases",
+    "href": "nextflow.html#real-world-industry-use-cases",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "8. Real-world Industry Use Cases",
+    "text": "8. Real-world Industry Use Cases\n\n\n\n\n\n\n\n\n\n#\nIndustry\nUse case\nHow Nextflow helps\n\n\n\n\n1\nBioinformatics core\nRNA-seq (nf-core/rnaseq)\nEnd-to-end reproducible pipeline\n\n\n2\nPharma\nWGS somatic variant calling\nScales across cloud batch\n\n\n3\nClinical omics\nTrial sub-study biomarkers\nContainerized secondary analysis\n\n\n4\nPublic health\nViral genome surveillance\nRapid parallel sample processing\n\n\n5\nAgriculture genomics\nVariant discovery\nHPC/cloud portability\n\n\n6\nMicrobiome\n16S / metagenomics\nnf-core/mag and related pipelines\n\n\n7\nProteomics\nMass spec pipelines\nCustom Nextflow workflows\n\n\n8\nAI/ML\nBatch model scoring\nParallel inference processes\n\n\n9\nData engineering\nETL orchestration\nScheduled cloud runs via Tower\n\n\n10\nCRO\nStandardized deliverables\nSame pipeline per sponsor SOP\n\n\n11\nSingle-cell\nscRNA-seq at scale\nPartition by sample/library\n\n\n12\nRegulatory\nReproducible omics reports\nVersioned containers + reports"
+  },
+  {
+    "objectID": "nextflow.html#bioinformatics-workflow",
+    "href": "nextflow.html#bioinformatics-workflow",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "9. Bioinformatics Workflow",
+    "text": "9. Bioinformatics Workflow\n\n\n\n\n\n\n\n\n\n\n\nRole of Nextflow: Orchestrates each step, runs samples in parallel, manages retries/resume, and invokes Docker containers per process."
+  },
+  {
+    "objectID": "nextflow.html#clinical-programming-workflow",
+    "href": "nextflow.html#clinical-programming-workflow",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "10. Clinical Programming Workflow",
+    "text": "10. Clinical Programming Workflow\n\n\n\n\n\n\n\n\n\n\n\nHow Nextflow helps: Primary TLFs often use SAS/R, but omics, digital endpoints, and RWE pipelines increasingly use Nextflow for reproducible secondary analyses linked to trials."
   },
   {
     "objectID": "nextflow.html#best-practices",
     "href": "nextflow.html#best-practices",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "9. Best Practices",
-    "text": "9. Best Practices\n\nContainerize reproducible environments (Docker/Conda).\nTest workflows locally before the cloud.\nUse small sample datasets for CI tests.\nKeep credentials out of repo; use secret managers or ADC."
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "11. Best Practices",
+    "text": "11. Best Practices\n\nDO\n\nUse -resume during development\nPin container tags on every process\nStore configs in nextflow.config with profiles\nTest on small datasets first\nPublish reports: -with-report, -with-trace, -with-timeline\nUse nf-core pipelines when applicable\nKeep secrets in environment variables or secret managers\n\n\n\nDON’T\n\nHardcode cloud credentials in Git\nRun production on :latest containers\nIgnore failed tasks in work/ without logs\nMix dev and prod buckets/workDirs\nProcess PHI without access controls on cloud storage\n\n\n\nPerformance tips\n\nMaximize parallelism with channels\nUse appropriate cloud instance types per process\nStore references genomes on shared fast storage\n\n\n\nSecurity tips\n\nPrivate buckets, VPC endpoints, IAM least privilege\nEncrypt data at rest and in transit\nAudit Tower/Nextflow run metadata\n\n\n\nOptimization tips\n\nCache aggressively with -resume\nUse errorStrategy and maxRetries wisely\nProfile with -with-trace before scaling"
   },
   {
-    "objectID": "nextflow.html#references-next-steps",
-    "href": "nextflow.html#references-next-steps",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "10. References & Next Steps",
-    "text": "10. References & Next Steps\n\nNextflow docs: https://www.nextflow.io/docs/\nNextflow + Google: https://www.nextflow.io/docs/latest/GoogleCloud.html\nNextflow + AWS: https://www.nextflow.io/docs/latest/aws/index.html"
+    "objectID": "nextflow.html#common-mistakes",
+    "href": "nextflow.html#common-mistakes",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "12. Common Mistakes",
+    "text": "12. Common Mistakes\n\n\n\n\n\n\n\n\nMistake\nReason\nSolution\n\n\n\n\nJava not installed\nNextflow requires JVM\nInstall Java 11+\n\n\nDocker not available\nContainer engine missing\nInstall Docker; enable in config\n\n\nEmpty channel\nWrong glob or path\nCheck Channel.fromPath patterns\n\n\nPermission denied on cloud\nIAM misconfiguration\nFix roles for S3/Batch/GCP\n\n\nOut of memory\nInstance too small\nIncrease memory in process or instance\n\n\nStale resume cache\nChanged script but same hash confusion\nUse -resume carefully; delete work dir if needed\n\n\nMissing input files\nRelative path issues\nUse absolute paths or params.input\n\n\nSlow local runs\nToo much parallelism on laptop\nLimit maxForks in config"
+  },
+  {
+    "objectID": "nextflow.html#troubleshooting-guide",
+    "href": "nextflow.html#troubleshooting-guide",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "13. Troubleshooting Guide",
+    "text": "13. Troubleshooting Guide\n\n\n\n\n\n\n\n\nError\nCause\nSolution\n\n\n\n\nUnable to acquire lock\nAnother Nextflow run active\nWait or remove .nextflow.lock safely\n\n\nProcess exceeded memory\nOOM kill\nIncrease memory directive\n\n\nCannot find Java\nJAVA_HOME unset\nInstall JRE; export JAVA_HOME\n\n\nDocker not found\nDocker daemon down\nStart Docker Desktop\n\n\nAccess Denied (S3/GCS)\nCredentials/permissions\nFix IAM; verify bucket\n\n\nTask hangs\nNetwork/storage issue\nCheck .command.log in work dir\n\n\nContainer pull fails\nWrong tag or no network\nVerify image name; login to registry\n\n\n\nDiagnostic commands:\nnextflow log\nnextflow run main.nf -resume -with-trace trace.txt\n# Inspect task folder:\ncat work/ab/cd1234*/.command.err\ncat work/ab/cd1234*/.command.log"
+  },
+  {
+    "objectID": "nextflow.html#interview-questions",
+    "href": "nextflow.html#interview-questions",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "14. Interview Questions",
+    "text": "14. Interview Questions\n\nBeginner\nQ1: What is Nextflow?\nA: A workflow manager for parallel, reproducible data and bioinformatics pipelines.\nQ2: What is a process?\nA: A pipeline step with defined inputs, outputs, and execution script.\nQ3: Why use containers with Nextflow?\nA: To pin software versions and ensure reproducibility across environments.\n\n\nIntermediate\nQ4: What does -resume do?\nA: Reuses cached successful tasks from previous runs, rerunning only failed or changed steps.\nQ5: Explain channels.\nA: Queues that pass data between processes asynchronously.\nQ6: How do profiles work?\nA: Named configuration sets selected via -profile for different executors and settings.\n\n\nAdvanced\nQ7: Compare Nextflow with Snakemake.\nA: Both orchestrate workflows; Nextflow emphasizes dataflow channels and cloud-native executors; Snakemake uses rule graphs — choice depends on team and ecosystem.\nQ8: How would you run Nextflow on AWS Batch?\nA: Configure process.executor = 'awsbatch', S3 workDir, IAM roles, and container registry access in nextflow.config.\nQ9: How do you handle secrets?\nA: Environment variables, AWS Secrets Manager, Vault — never commit keys to Git."
+  },
+  {
+    "objectID": "nextflow.html#cheat-sheet",
+    "href": "nextflow.html#cheat-sheet",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "15. Cheat Sheet",
+    "text": "15. Cheat Sheet\n# Install / update\ncurl -s https://get.nextflow.io | bash\nnextflow -v\n\n# Run\nnextflow run main.nf\nnextflow run main.nf -profile docker\nnextflow run main.nf -resume\nnextflow run main.nf -with-report report.html\n\n# Params\nnextflow run main.nf --input data/ --outdir results/\n\n# Info\nnextflow log\nnextflow info\nnextflow pull nf-core/rnaseq\n\n\n\nConcept\nSyntax\n\n\n\n\nProcess input\ninput: path file\n\n\nProcess output\noutput: path \"*.bam\"\n\n\nContainer\ncontainer 'image:tag'\n\n\nChannel from list\nChannel.fromList([...])\n\n\nView channel\n\\| view"
+  },
+  {
+    "objectID": "nextflow.html#summary",
+    "href": "nextflow.html#summary",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "16. Summary",
+    "text": "16. Summary\n\nNextflow orchestrates multi-step computational pipelines\nProcesses run tasks; channels pass data; workflows connect steps\nIt enables parallelism, resume, and cloud scaling\nDocker integration ensures reproducible tool environments\nProfiles switch between local, AWS, GCP, and HPC execution\nnf-core provides production-grade community pipelines\nBioinformatics workflows from FASTQ to report map naturally to Nextflow\nClinical omics sub-studies benefit from reproducible Nextflow pipelines\nUse reports, pinned containers, and secure cloud configuration\nTroubleshoot via work/ logs and -with-trace\nLearn Docker first, then Nextflow, then Kubernetes/AWS for deployment at scale"
+  },
+  {
+    "objectID": "nextflow.html#next-topic",
+    "href": "nextflow.html#next-topic",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "17. Next Topic",
+    "text": "17. Next Topic\n\n\n\n\n\n\n\n\n\n\n\nRecommended next: Kubernetes for cluster orchestration, AWS for cloud execution, or Quarto for publishing pipeline reports."
+  },
+  {
+    "objectID": "nextflow.html#learning-path",
+    "href": "nextflow.html#learning-path",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "18. Learning Path",
+    "text": "18. Learning Path\n\nBioinformatics roadmap\n\n\n\n\n\n\n\n\n\n\n\n\n\nSoftware / data engineering roadmap"
+  },
+  {
+    "objectID": "nextflow.html#further-reading",
+    "href": "nextflow.html#further-reading",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "19. Further Reading",
+    "text": "19. Further Reading\n\n\n\nResource\nLink\n\n\n\n\nNextflow docs\nhttps://www.nextflow.io/docs/\n\n\nNextflow GitHub\nhttps://github.com/nextflow-io/nextflow\n\n\nnf-core\nhttps://nf-co.re/\n\n\nSeqera Tower\nhttps://seqera.io/\n\n\nAWS Batch + Nextflow\nhttps://www.nextflow.io/docs/latest/aws.html\n\n\nGoogle Cloud\nhttps://www.nextflow.io/docs/latest/google.html\n\n\nTraining\nhttps://training.nextflow.io/"
+  },
+  {
+    "objectID": "nextflow.html#mini-project-two-step-qc-pipeline",
+    "href": "nextflow.html#mini-project-two-step-qc-pipeline",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "20. Mini Project — Two-Step QC Pipeline",
+    "text": "20. Mini Project — Two-Step QC Pipeline\n\nProblem statement\nBuild a Nextflow pipeline that greets each sample ID and simulates a QC pass — foundation for real FastQC integration.\n\n\nArchitecture\n\n\n\n\n\n\n\n\n\n\n\n\n\nFolder structure\nnf-qc-demo/\n├── main.nf\n├── nextflow.config\n└── data/\n    └── samples.txt\n\n\nImplementation (main.nf)\nparams.samples = file('data/samples.txt').readLines()\n\nprocess greet {\n  input:\n    val sample\n  output:\n    tuple val(sample), path(\"${sample}.txt\")\n\n  script:\n  \"\"\"\n  echo \"QC passed for ${sample}\" &gt; ${sample}.txt\n  \"\"\"\n}\n\nworkflow {\n  Channel.fromList(params.samples) | greet | view\n}\ndata/samples.txt:\nSAMPLE001\nSAMPLE002\nSAMPLE003\n\n\nCommands\nnextflow run main.nf -with-report report.html\n\n\nExpected output\nThree .txt files in work/ and a timeline/report HTML."
+  },
+  {
+    "objectID": "nextflow.html#exercises",
+    "href": "nextflow.html#exercises",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "21. Exercises",
+    "text": "21. Exercises\n\n10 practice questions\n\nWhat three core concepts define a Nextflow pipeline?\nWhat flag resumes a failed pipeline efficiently?\nHow do you specify a Docker image for a process?\nWhat is the purpose of the work/ directory?\nName one nf-core pipeline and its use case.\nHow does Nextflow achieve parallelism?\nWhat is a profile?\nWhere are task stderr logs stored?\nWhy pin container versions?\nHow does Nextflow relate to Docker?\n\n\n\n5 assignments\n\nAdd a third process to the mini project that aggregates QC results.\nRun hello-world with -with-timeline timeline.html.\nConfigure a docker profile in nextflow.config.\nPull and inspect nf-core/rnaseq parameters (do not run full pipeline).\nDocument an AWS profile skeleton (no credentials).\n\n\n\n3 mini projects\n\nWrap FastQC in Nextflow for all *.fastq.gz in a folder.\nAdd a Python pandas summary process after QC.\nGenerate a Quarto report from pipeline outputs.\n\n\n\n1 capstone project\nDesign a 4-step genomics pipeline (QC → align → stats → report) with Docker containers, -resume, and HTML reports — use mock scripts if data is unavailable."
+  },
+  {
+    "objectID": "nextflow.html#cloud-execution-reference",
+    "href": "nextflow.html#cloud-execution-reference",
+    "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
+    "section": "Cloud execution (reference)",
+    "text": "Cloud execution (reference)\n\nGoogle Cloud Platform\n// nextflow.config excerpt\nprofiles {\n  gcp {\n    process.executor = 'google-lifesciences'\n    google {\n      project = 'YOUR_PROJECT_ID'\n      region  = 'us-central1'\n      bucket = 'gs://your-nextflow-bucket'\n    }\n    workDir = 'gs://your-nextflow-bucket/work'\n  }\n}\nnextflow run main.nf -profile gcp -with-report report.html\n\n\nAWS Batch\nprofiles {\n  aws {\n    process.executor = 'awsbatch'\n    aws.region = 'us-east-1'\n    workDir = 's3://your-nextflow-bucket/work'\n  }\n}\nnextflow run main.nf -profile aws -with-report report.html\n\n\n\n\n\n\nWarning\n\n\n\nReplace placeholder project IDs, buckets, and IAM roles with your organization’s approved cloud resources.\n\n\n\nBack to home"
   },
   {
     "objectID": "r.html",
@@ -86,51 +170,240 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About This Tutorial",
+    "title": "About StatiX AI & Data Labs",
     "section": "",
-    "text": "This website is built using Quarto and designed for beginners.\n\n\n\nHow Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally\n\n\n\n\nQuarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes\n\n\n\n\n\nAdd a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly\n\n\n\n\n\nQuarto Documentation\nQuarto Website Guide"
+    "text": "StatiX AI & Data Labs is a curated learning platform for students and professionals in life sciences, pharmaceuticals, and data-driven healthcare.\nWe publish tutorials that read like official documentation — practical, reproducible, and aligned with how industry teams actually work."
   },
   {
-    "objectID": "about.html#what-you-will-learn",
-    "href": "about.html#what-you-will-learn",
-    "title": "About This Tutorial",
+    "objectID": "about.html#our-mission",
+    "href": "about.html#our-mission",
+    "title": "About StatiX AI & Data Labs",
     "section": "",
-    "text": "How Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally"
+    "text": "StatiX AI & Data Labs is a curated learning platform for students and professionals in life sciences, pharmaceuticals, and data-driven healthcare.\nWe publish tutorials that read like official documentation — practical, reproducible, and aligned with how industry teams actually work."
   },
   {
-    "objectID": "about.html#why-this-is-useful",
-    "href": "about.html#why-this-is-useful",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "Quarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes"
+    "objectID": "about.html#who-this-site-is-for",
+    "href": "about.html#who-this-site-is-for",
+    "title": "About StatiX AI & Data Labs",
+    "section": "Who this site is for",
+    "text": "Who this site is for\n\n\n\n\n\n\n\nAudience\nWhat you will find\n\n\n\n\nStudents\nStep-by-step guides from zero prior knowledge\n\n\nBioinformatics researchers\nDocker, Nextflow, cloud pipelines\n\n\nClinical programmers\nReproducible R environments, ADaM workflows (expanding)\n\n\nData scientists\nContainers, orchestration, ML deployment paths\n\n\nPharmaceutical professionals\nGxP-aware practices, reproducibility, audit-friendly patterns\n\n\nSoftware engineers\nDevOps foundations for regulated data platforms"
   },
   {
-    "objectID": "about.html#next-steps",
-    "href": "about.html#next-steps",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "Add a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly"
+    "objectID": "about.html#documentation-standard",
+    "href": "about.html#documentation-standard",
+    "title": "About StatiX AI & Data Labs",
+    "section": "Documentation standard",
+    "text": "Documentation standard\nEvery StatiX tutorial follows a 25-section professional template:\n\nIntroduction\n\nLearning objectives\n\nWhy it matters (industry context)\n\nArchitecture diagrams (Mermaid)\n\nInstallation (Windows, macOS, Linux)\n\nBasic concepts\n\nHands-on examples\n\nReal-world use cases\n\nBioinformatics workflow placement\n\nClinical programming workflow placement\n\nBest practices\n\nCommon mistakes\n\nTroubleshooting\n\nInterview questions\n\nCheat sheet\n\nSummary\n\nNext topic\n\nLearning paths\n\nFurther reading\n\nMini project\n\nExercises\n\n\n\n\n\n\n\nTip\n\n\n\nAvailable now: Docker and Nextflow use the full template. Other topics are rolling out on the same standard."
   },
   {
-    "objectID": "about.html#more-resources",
-    "href": "about.html#more-resources",
-    "title": "About This Tutorial",
+    "objectID": "about.html#recommended-learning-paths",
+    "href": "about.html#recommended-learning-paths",
+    "title": "About StatiX AI & Data Labs",
+    "section": "Recommended learning paths",
+    "text": "Recommended learning paths\n\nBioinformatics\n\n\n\n\n\nflowchart LR\n  A[Linux] --&gt; B[Git]\n  B --&gt; C[Docker]\n  C --&gt; D[Nextflow]\n  D --&gt; E[Cloud / AWS]\n  E --&gt; F[ML & AI]\n\n\n\n\n\n\n\n\nClinical programming\n\n\n\n\n\nflowchart LR\n  A[R / SAS] --&gt; B[Linux & Git]\n  B --&gt; C[Docker]\n  C --&gt; D[Pharmaverse]\n  D --&gt; E[Reproducible TLFs]\n  E --&gt; F[Submission]\n\n\n\n\n\n\n\n\nData science & engineering\n\n\n\n\n\nflowchart LR\n  A[Python / R] --&gt; B[SQL]\n  B --&gt; C[Linux & Git]\n  C --&gt; D[Docker]\n  D --&gt; E[Kubernetes]\n  E --&gt; F[AWS]"
+  },
+  {
+    "objectID": "about.html#how-to-use-this-site",
+    "href": "about.html#how-to-use-this-site",
+    "title": "About StatiX AI & Data Labs",
+    "section": "How to use this site",
+    "text": "How to use this site\n\nStart on the home page — check Available vs Coming soon badges\n\nFollow tutorials in order if you are new to a path\n\nComplete hands-on examples and mini projects on your machine\n\nUse cheat sheets and troubleshooting sections as job aids"
+  },
+  {
+    "objectID": "about.html#contribute-feedback",
+    "href": "about.html#contribute-feedback",
+    "title": "About StatiX AI & Data Labs",
+    "section": "Contribute & feedback",
+    "text": "Contribute & feedback\nThis site is built with Quarto and published via GitHub Pages.\nRepository: https://github.com/praveen2093/QUARTO\nLive site: https://praveen2093.github.io/QUARTO/\nBack to home"
+  },
+  {
+    "objectID": "docker.html",
+    "href": "docker.html",
+    "title": "Docker — Professional Tutorial for Life Sciences",
     "section": "",
-    "text": "Quarto Documentation\nQuarto Website Guide"
+    "text": "Note\n\n\n\nAudience: Students, bioinformatics researchers, clinical programmers, data scientists, pharmaceutical professionals, and software engineers — including readers with little or no prior experience."
+  },
+  {
+    "objectID": "docker.html#introduction",
+    "href": "docker.html#introduction",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nDocker is a platform that packages an application and everything it needs to run — code, libraries, settings — into a portable unit called a container.\n\nWhy Docker exists\nBefore containers, teams struggled with a familiar problem: “It works on my machine.” Different laptops, servers, and cloud environments had different software versions. Results changed. Audits failed. Pipelines broke in production.\nDocker was created to make software portable, repeatable, and isolated.\n\n\nThe problem Docker solves\n\n\n\n\n\n\n\n\nProblem\nWithout Docker\nWith Docker\n\n\n\n\nEnvironment differences\nResults vary by machine\nSame image → same behavior\n\n\nComplex installs\nDays installing bioinformatics tools\nPull a pre-built image in minutes\n\n\nReproducibility\nHard to prove what ran\nVersioned images document the environment\n\n\nIsolation\nTools conflict on one server\nEach container runs independently\n\n\n\n\n\nWhere Docker is used in industry\n\nPharmaceutical R&D — reproducible ML and cheminformatics environments\nClinical programming — fixed R/SAS/Python stacks for TLF generation\nBioinformatics — pipelines for genomics, proteomics, and multi-omics\nHealthcare AI — deploying models in controlled containers\nCloud & DevOps — AWS ECS, Google Cloud Run, Kubernetes workloads\n\n\n\n\n\n\n\nTip\n\n\n\nBeginner takeaway: Docker is a standardized box for software. Same box, same result — on your laptop, a lab server, or the cloud."
+  },
+  {
+    "objectID": "docker.html#learning-objectives",
+    "href": "docker.html#learning-objectives",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "2. Learning Objectives",
+    "text": "2. Learning Objectives\n\nBy the end of this tutorial, you will be able to\n\nExplain what Docker is and why regulated industries use it\nInstall Docker Desktop on Windows, macOS, or Linux\nDistinguish images, containers, registries, volumes, and networks\nBuild a custom image using a Dockerfile\nRun, stop, and remove containers from the command line\nMount data safely without baking sensitive files into images\nDescribe where Docker fits in bioinformatics and clinical programming workflows\nApply industry best practices for security, GxP, and reproducibility\nTroubleshoot common Docker errors\nComplete a mini project: a reproducible clinical summary container"
+  },
+  {
+    "objectID": "docker.html#why-is-this-important",
+    "href": "docker.html#why-is-this-important",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "3. Why is this important?",
+    "text": "3. Why is this important?\n\nWhy should someone learn Docker?\nDocker is one of the most requested skills in bioinformatics, data engineering, and DevOps job postings. It turns fragile setups into shareable, testable environments.\n\n\nWhy do companies use it?\n\nSpeed — onboard new analysts in hours, not weeks\nCompliance — versioned images support audit trails\nScale — same container runs on one laptop or 1,000 cloud nodes\nCost — efficient resource use compared to full virtual machines\n\n\n\nWhy is it important in bioinformatics?\nGenomics pipelines combine dozens of tools (FastQC, BWA, GATK, bcftools). Docker (and Biocontainers) pins exact versions so published results can be reproduced.\n\n\nWhy is it important in clinical programming?\nClinical trial analysis must be reproducible. Docker ensures the same R packages, SAS components, or Python libraries are used for every database lock and QC re-run.\n\n\nWhy is it useful in data science?\nData scientists package models with dependencies so staging and production environments match — reducing “model works locally but fails in deployment” issues."
+  },
+  {
+    "objectID": "docker.html#architecture-diagram",
+    "href": "docker.html#architecture-diagram",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "4. Architecture Diagram",
+    "text": "4. Architecture Diagram\n\nDocker core architecture\n\n\n\n\n\n\n\n\n\n\n\n\n\nLife-sciences workflow placement\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nScreenshot placeholder: Add a screenshot of Docker Desktop showing a running container after completing Section 5."
+  },
+  {
+    "objectID": "docker.html#installation",
+    "href": "docker.html#installation",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "5. Installation",
+    "text": "5. Installation\n\nWindows\n\nDownload Docker Desktop for Windows\nEnable WSL 2 if prompted (recommended)\nInstall and restart\nOpen Docker Desktop and wait until status shows Running\n\nVerify:\ndocker --version\ndocker run hello-world\n\n\nmacOS\n\nDownload Docker Desktop for Mac (Apple Silicon or Intel)\nDrag Docker to Applications and launch\nAccept permissions\n\nVerify:\ndocker --version\ndocker run hello-world\n\n\nLinux (Ubuntu/Debian example)\n# Install Docker Engine\nsudo apt-get update\nsudo apt-get install -y ca-certificates curl\nsudo install -m 0755 -d /etc/apt/keyrings\nsudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc\nsudo chmod a+r /etc/apt/keyrings/docker.asc\n\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\\n  $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable\" | \\\n  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null\n\nsudo apt-get update\nsudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\n\n# Optional: run without sudo\nsudo usermod -aG docker $USER\nnewgrp docker\nVerify:\ndocker --version\ndocker run hello-world\n\n\n\n\n\n\nWarning\n\n\n\nCorporate laptops may block Docker. Contact IT before installing in pharmaceutical or hospital environments."
+  },
+  {
+    "objectID": "docker.html#basic-concepts",
+    "href": "docker.html#basic-concepts",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "6. Basic Concepts",
+    "text": "6. Basic Concepts\n\nImage\n\n\n\n\n\n\n\nDefinition\nRead-only template containing an app and its dependencies\n\n\nAnalogy\nA sealed recipe kit with pre-measured ingredients\n\n\nIndustry example\nrocker/r-ver:4.3.2 for a locked clinical R environment\n\n\nBest practice\nAlways use specific version tags — never :latest in production\n\n\n\n\n\nContainer\n\n\n\n\n\n\n\nDefinition\nA running instance of an image\n\n\nAnalogy\nThe actual meal cooked from the recipe kit\n\n\nIndustry example\nOne container per study analysis run\n\n\nBest practice\nUse --rm for temporary jobs; name containers in long-running services\n\n\n\n\n\nRegistry\n\n\n\n\n\n\n\nDefinition\nStorage and distribution system for images\n\n\nAnalogy\nA warehouse catalog of standardized boxes\n\n\nIndustry example\nPrivate AWS ECR registry for validated pharma images\n\n\nBest practice\nUse private registries for internal and GxP workloads\n\n\n\n\n\nDocker Hub\n\n\n\n\n\n\n\nDefinition\nPublic registry maintained by Docker\n\n\nAnalogy\nAn app store for container images\n\n\nIndustry example\nPulling official python:3.11-slim base images\n\n\nBest practice\nPrefer verified publishers; scan images for vulnerabilities\n\n\n\n\n\nDockerfile\n\n\n\n\n\n\n\nDefinition\nText file with step-by-step instructions to build an image\n\n\nAnalogy\nThe master recipe card\n\n\nIndustry example\nDocumented build file archived with study deliverables\n\n\nBest practice\nKeep Dockerfiles in version control; review changes like code\n\n\n\n\n\nVolume\n\n\n\n\n\n\n\nDefinition\nPersistent storage mounted into a container\n\n\nAnalogy\nA USB drive plugged into the box\n\n\nIndustry example\nMount clinical CSV input and TLF output folders\n\n\nBest practice\nNever store patient data inside the image — mount at runtime\n\n\n\n\n\nNetwork\n\n\n\n\n\n\n\nDefinition\nVirtual network allowing containers to communicate\n\n\nAnalogy\nPhone lines between offices in the same building\n\n\nIndustry example\nConnect a Shiny app container to a PostgreSQL container\n\n\nBest practice\nUse custom networks; avoid exposing unnecessary ports"
+  },
+  {
+    "objectID": "docker.html#hands-on-examples",
+    "href": "docker.html#hands-on-examples",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "7. Hands-on Examples",
+    "text": "7. Hands-on Examples\n\nExample 1 — Hello World\nProblem: Confirm Docker is installed and working.\nSolution: Run the official test image.\ndocker run hello-world\nExpected output: Message containing Hello from Docker!\nExplanation: Docker downloaded a tiny image, started a container, printed output, and exited.\n\n\n\nExample 2 — Run R without installing R\nProblem: You need R 4.3 but do not want to install it locally.\nSolution:\ndocker run --rm rocker/r-ver:4.3 R --version\nExpected output: R version 4.3.x ...\nExplanation: The container includes R; your host machine stays unchanged.\n\n\n\nExample 3 — Interactive Python shell\nProblem: Test Python in an isolated environment.\nSolution:\ndocker run -it --rm python:3.11-slim python\nprint(\"Docker Python ready\")\nexit()\nExpected result: Python REPL opens, prints message, exits cleanly.\n\n\n\nExample 4 — Build a clinical summary image\nProblem: Create a reproducible environment for summarizing patient ages.\nSolution:\nCreate summarize.R:\nargs &lt;- commandArgs(trailingOnly = TRUE)\ndat &lt;- read.csv(args[1])\nout &lt;- data.frame(\n  n = nrow(dat),\n  mean_age = round(mean(dat$age, na.rm = TRUE), 1)\n)\nwrite.csv(out, args[2], row.names = FALSE)\ncat(\"Done\\n\")\nCreate patients.csv:\npatient_id,age\n001,54\n002,61\n003,47\nCreate Dockerfile:\nFROM rocker/r-ver:4.3\nWORKDIR /analysis\nCOPY summarize.R patients.csv ./\nCMD [\"Rscript\", \"summarize.R\", \"patients.csv\", \"summary.csv\"]\nBuild and run:\ndocker build -t clinical-summary:1.0 .\ndocker run --rm -v \"$(pwd):/output\" clinical-summary:1.0 \\\n  sh -c \"Rscript summarize.R patients.csv /output/summary.csv\"\ncat summary.csv\nExpected output: CSV with n and mean_age.\nExplanation: Image tag clinical-summary:1.0 documents the exact environment used.\n\n\n\nExample 5 — Pull a bioinformatics tool\nProblem: Run FastQC without manual installation.\nSolution:\ndocker run --rm biocontainers/fastqc:v0.11.9_cv8 fastqc --help\nExpected result: FastQC help text displayed."
+  },
+  {
+    "objectID": "docker.html#real-world-industry-use-cases",
+    "href": "docker.html#real-world-industry-use-cases",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "8. Real-world Industry Use Cases",
+    "text": "8. Real-world Industry Use Cases\n\n\n\n\n\n\n\n\n\n#\nIndustry\nUse case\nHow Docker helps\n\n\n\n\n1\nBioinformatics\nWGS variant calling\nPins BWA, GATK, bcftools versions\n\n\n2\nPharma\nDrug target ML models\nSame model container in dev and prod\n\n\n3\nClinical trials\nTLF regeneration\nLocked R/SAS environment per study\n\n\n4\nHealthcare\nDiagnostic AI deployment\nIsolated, scalable inference containers\n\n\n5\nCRO\nMulti-study platforms\nSeparate containers per sponsor data\n\n\n6\nManufacturing\nBatch QC analytics\nValidated image versions per SOP\n\n\n7\nReal-world evidence\nClaims data pipelines\nReproducible ETL in the cloud\n\n\n8\nGenomics core lab\nHigh-throughput FASTQ QC\nParallel containers per sample\n\n\n9\nRegulatory\nAudit reproduction\nImage digest proves what executed\n\n\n10\nData engineering\nETL to data lake\nPortable Spark/Python worker images\n\n\n11\nAI/ML\nModel serving\nFastAPI/Torch images on Kubernetes\n\n\n12\nClinical programming\nADaM validation\nShared env for independent QC stats"
+  },
+  {
+    "objectID": "docker.html#bioinformatics-workflow",
+    "href": "docker.html#bioinformatics-workflow",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "9. Bioinformatics Workflow",
+    "text": "9. Bioinformatics Workflow\n\n\n\n\n\n\n\n\n\n\n\nRole of Docker: Each pipeline step (FastQC, alignment, calling) runs inside a container with an exact tool version. Nextflow orchestrates which container runs when. This prevents tool-version drift across samples and sites."
+  },
+  {
+    "objectID": "docker.html#clinical-programming-workflow",
+    "href": "docker.html#clinical-programming-workflow",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "10. Clinical Programming Workflow",
+    "text": "10. Clinical Programming Workflow\n\n\n\n\n\n\n\n\n\n\n\nHow Docker helps:\n\nSDTM/ADaM conversion — same R/Python/Pinnacle21 automation environment every lock\nAnalysis — reproducible rocker/tidyverse or SAS-compatible stacks\nTLFs — QC statisticians re-run the identical container to verify outputs\nSubmission — image tags archived alongside analysis documentation\n\n\n\n\n\n\n\nWarning\n\n\n\nDocker supports reproducibility but does not replace formal CSV, SOPs, or 21 CFR Part 11 controls by itself."
+  },
+  {
+    "objectID": "docker.html#best-practices",
+    "href": "docker.html#best-practices",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "11. Best Practices",
+    "text": "11. Best Practices\n\nDO\n\nPin image versions (:1.0, :2024-06-28)\nStore Dockerfiles in Git\nUse multi-stage builds to reduce image size\nScan images for CVEs (Trivy, Snyk)\nMount data with volumes; keep PHI out of images\nDocument image digest in study files\n\n\n\nDON’T\n\nUse :latest in regulated production\nRun containers as root when avoidable\nStore passwords or API keys in Dockerfiles\nCopy patient datasets into image layers\nExpose unnecessary ports to the internet\n\n\n\nPerformance tips\n\nUse -slim or -alpine base images\nLeverage build cache; order Dockerfile layers from least to most frequently changed\nPrune unused images: docker system prune\n\n\n\nSecurity tips\n\nUse private registries for internal images\nEnable Docker Content Trust where required\nApply least-privilege IAM on cloud registries\n\n\n\nOptimization tips\n\nOne process per container when possible\nUse .dockerignore to speed builds\nCompose multi-container apps with Docker Compose for local dev"
+  },
+  {
+    "objectID": "docker.html#common-mistakes",
+    "href": "docker.html#common-mistakes",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "12. Common Mistakes",
+    "text": "12. Common Mistakes\n\n\n\n\n\n\n\n\nMistake\nReason\nSolution\n\n\n\n\nDocker Desktop not running\nService stopped after reboot\nLaunch Docker Desktop; wait for green status\n\n\npermission denied on Linux\nUser not in docker group\nsudo usermod -aG docker $USER\n\n\nHuge images\nInstalling unnecessary packages\nUse slim bases; multi-stage builds\n\n\nData lost after container stops\nWrote inside container filesystem\nUse volumes for persistent output\n\n\nWrong architecture image\nApple Silicon vs x86 mismatch\nSelect arm64 or use --platform linux/amd64\n\n\nPHI in image layers\nCopied data in Dockerfile\nMount volumes at runtime only\n\n\nPort already in use\nAnother service on same port\nChange host port: -p 8081:8080\n\n\nCannot pull image\nNetwork/proxy/firewall\nConfigure proxy; use internal mirror"
+  },
+  {
+    "objectID": "docker.html#troubleshooting-guide",
+    "href": "docker.html#troubleshooting-guide",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "13. Troubleshooting Guide",
+    "text": "13. Troubleshooting Guide\n\n\n\n\n\n\n\n\nError\nCause\nSolution\n\n\n\n\nCannot connect to the Docker daemon\nDocker not running\nStart Docker Desktop / sudo systemctl start docker\n\n\npull access denied\nPrivate image or auth needed\ndocker login to registry\n\n\nno space left on device\nDisk full\ndocker system df then docker system prune -a\n\n\nexec format error\nCPU architecture mismatch\nUse correct platform image\n\n\nport is already allocated\nPort conflict\nStop other service or change mapping\n\n\nBuild fails at COPY\nFile missing from context\nCheck path and .dockerignore\n\n\nContainer exits immediately\nCMD error\nRun interactively: docker run -it image sh\n\n\nSlow performance on Mac\nFile sharing overhead\nUse delegated mounts; limit watched folders\n\n\n\nUseful diagnostic commands:\ndocker ps -a\ndocker logs CONTAINER_ID\ndocker inspect IMAGE_NAME\ndocker system df\ndocker info"
+  },
+  {
+    "objectID": "docker.html#interview-questions",
+    "href": "docker.html#interview-questions",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "14. Interview Questions",
+    "text": "14. Interview Questions\n\nBeginner\nQ1: What is the difference between an image and a container?\nA: An image is a read-only template; a container is a running instance of that image.\nQ2: What is Docker Hub?\nA: A public registry for storing and sharing container images.\nQ3: Why do bioinformatics teams use Docker?\nA: To pin tool versions and reproduce pipeline results across machines.\n\n\nIntermediate\nQ4: What is a volume and when would you use one?\nA: Persistent storage mounted into a container — used for input data and output results without baking them into the image.\nQ5: How do Docker and Kubernetes relate?\nA: Docker builds/runs containers locally; Kubernetes orchestrates many containers across a cluster.\nQ6: How would you make a clinical analysis reproducible with Docker?\nA: Build a versioned image, document the tag/digest, mount study data at runtime, archive the Dockerfile in version control.\n\n\nAdvanced\nQ7: What are multi-stage builds?\nA: Dockerfiles with multiple FROM stages — compile in one stage, copy only artifacts to a smaller final image.\nQ8: How do you reduce attack surface in production containers?\nA: Non-root user, minimal base image, no secrets in layers, regular scanning, read-only filesystem where possible.\nQ9: Explain how Nextflow uses Docker.\nA: Each process specifies a container image; Nextflow pulls and runs it per task, enabling reproducible scalable pipelines."
+  },
+  {
+    "objectID": "docker.html#cheat-sheet",
+    "href": "docker.html#cheat-sheet",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "15. Cheat Sheet",
+    "text": "15. Cheat Sheet\n# Info\ndocker --version\ndocker info\n\n# Images\ndocker pull IMAGE:TAG\ndocker images\ndocker build -t NAME:TAG .\ndocker rmi IMAGE\n\n# Containers\ndocker run --rm IMAGE\ndocker run -it --rm IMAGE sh\ndocker ps\ndocker ps -a\ndocker stop ID\ndocker logs ID\ndocker exec -it ID sh\n\n# Data\ndocker run -v \"$(pwd):/data\" IMAGE\n\n# Cleanup\ndocker system prune\ndocker system prune -a\n\n\n\nTip\nCommand\n\n\n\n\nRemove container after exit\n--rm\n\n\nInteractive terminal\n-it\n\n\nName a container\n--name myjob\n\n\nMap port\n-p 8080:80\n\n\nEnv variable\n-e VAR=value"
+  },
+  {
+    "objectID": "docker.html#summary",
+    "href": "docker.html#summary",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "16. Summary",
+    "text": "16. Summary\n\nDocker packages apps and dependencies into portable containers\nAn image is the template; a container is the running instance\nDocker solves reproducibility, isolation, and deployment consistency\nLife-sciences teams use Docker for genomics pipelines, clinical analysis, and ML\nInstall via Docker Desktop (Windows/Mac) or Docker Engine (Linux)\nBuild custom environments with a Dockerfile\nUse volumes for data — never embed PHI in images\nPin version tags for regulated and scientific work\nCombine Docker with Nextflow for scalable bioinformatics\nCombine Docker with Quarto for reproducible reports\nScan images, prune disk usage, and document image digests\nTroubleshoot with docker logs, docker ps, and docker inspect\nNext recommended topics: Linux → Git → Nextflow → Kubernetes → AWS"
+  },
+  {
+    "objectID": "docker.html#next-topic",
+    "href": "docker.html#next-topic",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "17. Next Topic",
+    "text": "17. Next Topic\n\n\n\n\n\n\n\n\n\n\n\nAfter Docker, learn Nextflow to orchestrate multi-step pipelines, or Linux foundations if you are new to the command line."
+  },
+  {
+    "objectID": "docker.html#learning-path",
+    "href": "docker.html#learning-path",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "18. Learning Path",
+    "text": "18. Learning Path\n\nBioinformatics roadmap\n\n\n\n\n\n\n\n\n\n\n\n\n\nClinical programming roadmap"
+  },
+  {
+    "objectID": "docker.html#further-reading",
+    "href": "docker.html#further-reading",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "19. Further Reading",
+    "text": "19. Further Reading\n\n\n\nResource\nLink\n\n\n\n\nOfficial Docker docs\nhttps://docs.docker.com/\n\n\nDocker GitHub\nhttps://github.com/docker\n\n\nBiocontainers\nhttps://biocontainers.pro/\n\n\nRocker (R images)\nhttps://rocker-project.org/\n\n\nGoogle Cloud Run + containers\nhttps://cloud.google.com/run/docs\n\n\nNF-Core (Nextflow + Docker)\nhttps://nf-co.re/\n\n\nBook\nDocker Deep Dive — Nigel Poulton\n\n\nYouTube\nDocker official channel, TechWorld with Nana"
+  },
+  {
+    "objectID": "docker.html#mini-project-reproducible-study-summary-container",
+    "href": "docker.html#mini-project-reproducible-study-summary-container",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "20. Mini Project — Reproducible Study Summary Container",
+    "text": "20. Mini Project — Reproducible Study Summary Container\n\nProblem statement\nBuild a Dockerized R environment that reads a patient CSV and writes a summary CSV — suitable for QC documentation in a mock clinical study.\n\n\nArchitecture\n\n\n\n\n\n\n\n\n\n\n\n\n\nFolder structure\nclinical-docker-project/\n├── Dockerfile\n├── summarize.R\n├── patients.csv\n└── README.md\n\n\nCommands\nmkdir clinical-docker-project && cd clinical-docker-project\n# Add Dockerfile, summarize.R, patients.csv from Example 4\ndocker build -t study-qc:1.0 .\ndocker run --rm -v \"$(pwd):/output\" study-qc:1.0 \\\n  sh -c \"Rscript summarize.R patients.csv /output/summary.csv\"\n\n\nExpected output\nsummary.csv containing record count and mean age — reproducible when the same study-qc:1.0 image is used.\n\n\n\n\n\n\nTip\n\n\n\nArchive the image tag and Git commit hash in your mock study documentation to practice GxP-style traceability."
+  },
+  {
+    "objectID": "docker.html#exercises",
+    "href": "docker.html#exercises",
+    "title": "Docker — Professional Tutorial for Life Sciences",
+    "section": "21. Exercises",
+    "text": "21. Exercises\n\n10 practice questions\n\nDefine image vs container in your own words.\nWhat command verifies Docker installation?\nWhy should you avoid :latest in production?\nWhat flag removes a container after it exits?\nHow do you mount the current directory into a container?\nName two life-sciences registries or image sources.\nWhere does Docker fit in a FASTQ-to-VCF pipeline?\nWhy should PHI not be copied into a Dockerfile?\nWhat command lists running containers?\nHow does Docker help clinical TLF QC?\n\n\n\n5 assignments\n\nBuild an image with Python 3.11 that prints today’s date.\nRun rocker/tidyverse and execute a dplyr pipeline inside the container.\nCreate a .dockerignore and explain what it excludes.\nPull a Biocontainers image and document its tag.\nWrite a one-page SOP for naming and tagging study images.\n\n\n\n3 mini projects\n\nDockerize a simple FastQC command on a sample FASTQ file.\nBuild a two-stage Dockerfile (build tools → minimal runtime).\nCompose a web app + database with Docker Compose locally.\n\n\n\n1 capstone project\nDesign a reproducible mini pipeline: QC → summary stats → Quarto HTML report — each step in its own versioned container, orchestrated manually or with Nextflow.\n\nBack to home"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "StatiX AI & Data Labs",
     "section": "",
-    "text": "StatiX AI & Data Labs\nWelcome — a curated collection of hands-on tutorials and guides for data, AI and programming.\nClick any tile below to open the corresponding tutorial.\n\n\n  \n    \n      Coming soon\n      \n      Python\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Programming\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Clinical R\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Nextflow\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Docker\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Quarto\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Shiny\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Statistics\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      ML & AI\n       Open guide\n    \n  \n\n\nAbout the collection\nThis site collects independent tutorials for clinical, pharmaceutical, and life-sciences teams. Each tile links to a standalone page with hands-on examples and runnable code."
+    "text": "StatiX AI & Data Labs\nWelcome — a curated collection of hands-on tutorials and guides for data, AI and programming.\nClick any tile below to open the corresponding tutorial. Tiles marked Available include full industry-standard documentation.\n\n\n  \n    \n      Coming soon\n      \n      Linux\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Git\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Python\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Programming\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Clinical R\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Nextflow\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Docker\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Quarto\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Shiny\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Statistics\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Kubernetes\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      AWS\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Pharmaverse\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      ML & AI\n       Open guide\n    \n  \n\n\nAbout the collection\nThis site follows a 25-section professional documentation standard — the same structure used in premium courses and official vendor docs. Each tutorial includes learning objectives, Mermaid diagrams, hands-on labs, industry use cases, interview prep, and capstone exercises.\nSee About for learning paths and full documentation guidelines.\n\n\nQuick start paths\n\n\n\nPath\nStart here\n\n\n\n\nBioinformatics\nLinux → Git → Docker → Nextflow\n\n\nClinical programming\nR → Docker → Pharmaverse\n\n\nNew to publishing\nQuarto"
   },
   {
-    "objectID": "r-shiny.html",
-    "href": "r-shiny.html",
-    "title": "R Shiny — Interactive Apps",
+    "objectID": "pharmaverse.html",
+    "href": "pharmaverse.html",
+    "title": "Pharmaverse — Clinical R & ADaM Ecosystem",
     "section": "",
-    "text": "R Shiny\nPlaceholder page for R Shiny tutorials and example apps.\nBack to home"
+    "text": "Important\n\n\n\nStatus: Coming soon — See Clinical R for related content."
+  },
+  {
+    "objectID": "pharmaverse.html#introduction",
+    "href": "pharmaverse.html#introduction",
+    "title": "Pharmaverse — Clinical R & ADaM Ecosystem",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nPharmaverse is a community of R packages (admiral, metacore, metatools, pharmaRTF, and others) used for clinical dataset development and analysis in pharmaceutical programming.\nBack to home"
+  },
+  {
+    "objectID": "linux.html",
+    "href": "linux.html",
+    "title": "Linux — Foundations for Life Sciences Computing",
+    "section": "",
+    "text": "Important\n\n\n\nStatus: Coming soon — This tutorial will follow the full StatiX documentation standard (25 sections). Docker and Nextflow are available now."
+  },
+  {
+    "objectID": "linux.html#introduction",
+    "href": "linux.html#introduction",
+    "title": "Linux — Foundations for Life Sciences Computing",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nLinux is the operating system that powers most servers, HPC clusters, and cloud instances used in bioinformatics and pharmaceutical computing.\n\nWhy Linux exists in your workflow\nClinical SAS/R environments may run on Windows, but cloud pipelines, sequencing cores, and DevOps tooling overwhelmingly run on Linux.\n\n\nWhat you will learn here (upcoming)\n\nNavigating the filesystem\nPermissions, processes, and shell scripting\nConnecting to remote servers (SSH)\nPreparing for Docker, Git, and Nextflow\n\nBack to home"
   },
   {
     "objectID": "tutorial.html",
@@ -243,6 +516,20 @@
     "title": "Quarto Tutorial for Beginners",
     "section": "",
     "text": "Try these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
+  },
+  {
+    "objectID": "aws.html",
+    "href": "aws.html",
+    "title": "AWS — Cloud Computing for Life Sciences",
+    "section": "",
+    "text": "Important\n\n\n\nStatus: Coming soon — See Nextflow cloud section for AWS Batch integration today."
+  },
+  {
+    "objectID": "aws.html#introduction",
+    "href": "aws.html#introduction",
+    "title": "AWS — Cloud Computing for Life Sciences",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nAmazon Web Services (AWS) provides scalable storage (S3), compute (Batch, EC2), and ML services used by genomics and pharmaceutical data teams.\nBack to home"
   },
   {
     "objectID": "clinical-r.html",
@@ -392,6 +679,13 @@
     "text": "Try this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
   },
   {
+    "objectID": "r-shiny.html",
+    "href": "r-shiny.html",
+    "title": "R Shiny — Interactive Apps",
+    "section": "",
+    "text": "R Shiny\nPlaceholder page for R Shiny tutorials and example apps.\nBack to home"
+  },
+  {
     "objectID": "python.html",
     "href": "python.html",
     "title": "Python — Getting Started",
@@ -399,102 +693,32 @@
     "text": "Python Tutorials\nWelcome to the Python tutorial placeholder. Add notebooks, code examples, and guides here.\nBack to home"
   },
   {
-    "objectID": "docker.html",
-    "href": "docker.html",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "objectID": "kubernetes.html",
+    "href": "kubernetes.html",
+    "title": "Kubernetes — Container Orchestration at Scale",
     "section": "",
-    "text": "Imagine you bake a cake using a recipe. You write down every ingredient, every step, and every oven temperature. If someone else follows the exact same recipe, they should get the exact same cake.\nIn science and medicine, we face a similar problem with software:\n\nOne person runs an analysis on a laptop and gets one result.\nAnother person runs the “same” analysis on a different computer and gets a different result — because their software versions, settings, or operating system are not identical.\n\nDocker solves this by packaging software — and everything it needs to run — into a standard box that works the same way on almost any computer.\n\n\n\n\n\n\nTip\n\n\n\nSimple definition: Docker lets you put an application and all its dependencies into a portable box called a container, so it runs the same way everywhere.\n\n\n\n\nBefore modern shipping, loading a ship was messy — every crate was a different size and shape.\nThen standard shipping containers arrived. Any crane, truck, or ship built for containers could move any container, anywhere in the world.\nDocker does the same for software:\n\n\n\n\n\n\n\nReal world\nDocker world\n\n\n\n\nShipping container\nContainer (running app)\n\n\nBlueprint for the container\nImage (frozen snapshot)\n\n\nFactory that builds containers\nDockerfile (build instructions)\n\n\nWarehouse port\nRegistry (e.g. Docker Hub — where images are stored)\n\n\n\nYou do not need to know Linux, cloud computing, or programming to understand the idea of Docker. You only need to understand: same box → same result, anywhere."
+    "text": "Important\n\n\n\nStatus: Coming soon — Learn Docker and Nextflow first."
   },
   {
-    "objectID": "docker.html#what-is-docker-no-tech-background-needed",
-    "href": "docker.html#what-is-docker-no-tech-background-needed",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "objectID": "kubernetes.html#introduction",
+    "href": "kubernetes.html#introduction",
+    "title": "Kubernetes — Container Orchestration at Scale",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nKubernetes (K8s) orchestrates containers across clusters — used when Docker alone is not enough for large-scale production deployments.\nBack to home"
+  },
+  {
+    "objectID": "git.html",
+    "href": "git.html",
+    "title": "Git — Version Control for Regulated Teams",
     "section": "",
-    "text": "Imagine you bake a cake using a recipe. You write down every ingredient, every step, and every oven temperature. If someone else follows the exact same recipe, they should get the exact same cake.\nIn science and medicine, we face a similar problem with software:\n\nOne person runs an analysis on a laptop and gets one result.\nAnother person runs the “same” analysis on a different computer and gets a different result — because their software versions, settings, or operating system are not identical.\n\nDocker solves this by packaging software — and everything it needs to run — into a standard box that works the same way on almost any computer.\n\n\n\n\n\n\nTip\n\n\n\nSimple definition: Docker lets you put an application and all its dependencies into a portable box called a container, so it runs the same way everywhere.\n\n\n\n\nBefore modern shipping, loading a ship was messy — every crate was a different size and shape.\nThen standard shipping containers arrived. Any crane, truck, or ship built for containers could move any container, anywhere in the world.\nDocker does the same for software:\n\n\n\n\n\n\n\nReal world\nDocker world\n\n\n\n\nShipping container\nContainer (running app)\n\n\nBlueprint for the container\nImage (frozen snapshot)\n\n\nFactory that builds containers\nDockerfile (build instructions)\n\n\nWarehouse port\nRegistry (e.g. Docker Hub — where images are stored)\n\n\n\nYou do not need to know Linux, cloud computing, or programming to understand the idea of Docker. You only need to understand: same box → same result, anywhere."
+    "text": "Important\n\n\n\nStatus: Coming soon — Full tutorial in progress. Start with Docker if you need reproducible environments today."
   },
   {
-    "objectID": "docker.html#why-docker-matters-in-clinical-pharma-bio",
-    "href": "docker.html#why-docker-matters-in-clinical-pharma-bio",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "2. Why Docker matters in clinical, pharma & bio",
-    "text": "2. Why Docker matters in clinical, pharma & bio\nIf you work in clinical research, pharmaceutical companies, or biotechnology / bioinformatics, reproducibility and traceability are not optional — they are often required.\n\nClinical research & biostatistics\nExamples where Docker helps:\n\nClinical trial analysis — TLFs (Tables, Listings, Figures) for a study should be produced with a fixed, documented R or SAS environment.\nCDISC workflows — SDTM/ADaM conversion pipelines that must run identically for every database lock.\nIndependent verification — a statistician or QC reviewer can re-run analysis inside the same container and confirm results match.\n\nWhy it matters: Regulators and sponsors ask: “Can you prove this result was produced with a controlled, repeatable setup?” Docker is one practical way to answer yes.\n\n\nPharmaceutical industry\nExamples:\n\nDrug discovery pipelines — chemistry informatics, molecular docking, ML models for target identification.\nManufacturing & QC — image analysis, batch release calculations, stability study modeling.\nValidated systems (GxP) — in regulated areas, teams document which exact software version was used. Container images can be versioned, tagged, and archived like a batch record.\n\nWhy it matters: In pharma, “it worked on my machine” is not acceptable for submissions, audits, or quality systems.\n\n\nBiotechnology & bioinformatics\nExamples:\n\nGenomics pipelines — FASTQ → alignment → variant calling (same BWA, GATK, or bcftools versions every time).\nSingle-cell RNA-seq, proteomics, metabolomics — complex tool chains that are painful to install manually.\nCloud & HPC — run the same pipeline on a laptop for testing, then on AWS/GCP for production (see the Nextflow guide).\n\nWhy it matters: Bioinformatics tools change quickly. Docker pins the versions so a paper, pipeline, or clinical genomics report can be reproduced months or years later."
-  },
-  {
-    "objectID": "docker.html#key-ideas-explained-in-plain-language",
-    "href": "docker.html#key-ideas-explained-in-plain-language",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "3. Key ideas — explained in plain language",
-    "text": "3. Key ideas — explained in plain language\nYou only need four words to start:\n\nImage\nAn image is a frozen snapshot — like a saved recipe + all ingredients pre-measured and sealed.\n\nIt is read-only (you don’t edit it while it’s stored).\nIt has a name and tag, e.g. python:3.11 or rocker/r-ver:4.3.\n\n\n\nContainer\nA container is a running instance of an image — like actually baking the cake.\n\nYou can start many containers from one image.\nWhen you stop a container, its temporary changes are usually discarded (unless you save them).\n\n\n\nDockerfile\nA Dockerfile is a text file with build instructions — step-by-step directions for creating an image.\nExample (don’t worry if this looks technical — we explain each line below):\nFROM python:3.11-slim\nWORKDIR /app\nCOPY analysis.py .\nCMD [\"python\", \"analysis.py\"]\n\n\n\nLine\nPlain English\n\n\n\n\nFROM python:3.11-slim\nStart from a pre-built Python 3.11 image\n\n\nWORKDIR /app\nUse /app as the working folder inside the box\n\n\nCOPY analysis.py .\nCopy your script into the box\n\n\nCMD [...]\nWhen the container starts, run this command\n\n\n\n\n\nRegistry\nA registry is an online library of images. Docker Hub is the most common public registry. Companies often use private registries for internal or validated images."
-  },
-  {
-    "objectID": "docker.html#what-you-need-before-you-start",
-    "href": "docker.html#what-you-need-before-you-start",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "4. What you need before you start",
-    "text": "4. What you need before you start\n\nOn your computer\n\nA laptop or desktop (Windows, Mac, or Linux)\nDocker Desktop — free for personal/educational use\n\n\n\n\n\n\n\nImportant\n\n\n\nYou do not need to know Python, R, Linux, or cloud platforms to learn Docker basics. You only need to copy and run a few commands.\n\n\n\n\nInstall Docker Desktop\n\nGo to https://www.docker.com/products/docker-desktop/\nDownload Docker Desktop for your operating system\nInstall it and open the Docker Desktop app\nWait until it says Docker is running (whale icon in the menu bar / system tray)\n\n\n\nCheck that Docker works\nOpen a terminal (Terminal on Mac, PowerShell or Command Prompt on Windows) and run:\ndocker --version\nYou should see something like Docker version 24.x.x.\nThen run your first container:\ndocker run hello-world\nIf you see a friendly “Hello from Docker!” message — you succeeded."
-  },
-  {
-    "objectID": "docker.html#your-first-useful-commands",
-    "href": "docker.html#your-first-useful-commands",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "5. Your first useful commands",
-    "text": "5. Your first useful commands\nThink of these as remote control buttons for containers.\n\nSee what is running\ndocker ps\nLists running containers. (Empty list is normal if nothing is running.)\n\n\nSee all containers (including stopped)\ndocker ps -a\n\n\nDownload and run a pre-built image\ndocker run -it rocker/r-ver:4.3 R --version\nThis downloads an R environment and prints the R version — without installing R on your laptop.\nWhy this matters in clinical/bio work: You can test an analysis in R 4.3 today, and a colleague in another country can run the identical R 4.3 environment tomorrow.\n\n\nRun a command and exit\ndocker run --rm python:3.11-slim python -c \"print('Analysis environment ready')\"\n\n--rm = delete the container when it finishes (keeps your machine tidy)\n\n\n\nStop a running container\ndocker stop CONTAINER_ID\n(CONTAINER_ID comes from docker ps.)"
-  },
-  {
-    "objectID": "docker.html#hands-on-example-a-mini-clinical-style-analysis-box",
-    "href": "docker.html#hands-on-example-a-mini-clinical-style-analysis-box",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "6. Hands-on example — a mini clinical-style analysis box",
-    "text": "6. Hands-on example — a mini clinical-style analysis box\nThis example is educational, not submission-ready — but it shows the pattern used in real projects.\n\nStep 1: Create a folder\nmkdir docker-clinical-demo\ncd docker-clinical-demo\n\n\nStep 2: Create a simple R script\nSave this as summarize.R:\n# Demo: summarize patient ages from a CSV\nargs &lt;- commandArgs(trailingOnly = TRUE)\ninput_file &lt;- args[1]\noutput_file &lt;- args[2]\n\ndat &lt;- read.csv(input_file)\nresult &lt;- data.frame(\n  n = nrow(dat),\n  mean_age = mean(dat$age, na.rm = TRUE),\n  min_age = min(dat$age, na.rm = TRUE),\n  max_age = max(dat$age, na.rm = TRUE)\n)\nwrite.csv(result, output_file, row.names = FALSE)\ncat(\"Summary written to\", output_file, \"\\n\")\n\n\nStep 3: Create sample data\nSave as patients.csv:\npatient_id,age\n001,54\n002,61\n003,47\n004,58\n005,52\n\n\nStep 4: Create a Dockerfile\nSave as Dockerfile:\nFROM rocker/r-ver:4.3\nWORKDIR /analysis\nCOPY summarize.R .\nCOPY patients.csv .\nCMD [\"Rscript\", \"summarize.R\", \"patients.csv\", \"summary.csv\"]\n\n\nStep 5: Build the image\ndocker build -t clinical-demo:1.0 .\n\n-t clinical-demo:1.0 = name and version tag (like a batch number)\n. = use the current folder\n\n\n\nStep 6: Run the container\ndocker run --rm clinical-demo:1.0\n\n\nStep 7: Copy the output file out (optional)\ndocker run --rm -v \"$(pwd):/output\" clinical-demo:1.0 \\\n  sh -c \"Rscript summarize.R patients.csv /output/summary.csv\"\nOn Windows PowerShell, use:\ndocker run --rm -v \"${PWD}:/output\" clinical-demo:1.0 sh -c \"Rscript summarize.R patients.csv /output/summary.csv\"\nOpen summary.csv — you should see mean, min, and max age.\n\n\n\n\n\n\nNote\n\n\n\nIndustry pattern: The image tag (clinical-demo:1.0) documents which environment produced the output. In regulated settings, teams keep that tag in the analysis record."
-  },
-  {
-    "objectID": "docker.html#docker-in-pharma-clinical-real-scenarios",
-    "href": "docker.html#docker-in-pharma-clinical-real-scenarios",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "7. Docker in pharma & clinical — real scenarios",
-    "text": "7. Docker in pharma & clinical — real scenarios\n\nScenario A: Reproducible TLF generation (clinical)\nProblem: Two statisticians get slightly different p-values because one has an older R package.\nDocker approach:\n\nBuild an image with fixed R + package versions.\nTag it study-abc-tlf-env:2024-03-15.\nEvery TLF run uses that tag.\nQC re-runs the same tag to verify.\n\n\n\nScenario B: Bioinformatics pipeline (biotech)\nProblem: Installing BWA, samtools, and GATK manually takes days and breaks on updates.\nDocker approach:\n\nUse community images (e.g. from Biocontainers).\nOr build one image with all tools pinned.\nRun the same image locally, on a server, or in the cloud.\n\ndocker run --rm biocontainers/fastqc:v0.11.9_cv8 fastqc --help\n\n\nScenario C: ML model for drug discovery (pharma)\nProblem: A data scientist trains a model in Python; manufacturing wants to run it in a controlled environment.\nDocker approach:\n\nPackage model + Python + libraries in an image.\nValidate the image through your internal QA process.\nDeploy the same image to staging and production.\n\n\n\nScenario D: Keeping sensitive data separate\nProblem: Patient-level data must not leak between studies.\nDocker approach:\n\nRun each study in a separate container with separate mounted folders.\nNever bake patient data into the image — mount it at run time only.\nCombine with encryption, access controls, and audit logs (Docker alone is not enough for HIPAA/GDPR — it is one layer)."
-  },
-  {
-    "objectID": "docker.html#gxp-validation-audit-what-beginners-should-know",
-    "href": "docker.html#gxp-validation-audit-what-beginners-should-know",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "8. GxP, validation & audit — what beginners should know",
-    "text": "8. GxP, validation & audit — what beginners should know\nIf you work in GxP (Good Practice guidelines — GCP, GLP, GMP), Docker is a tool, not a shortcut around validation.\nGood practices:\n\n\n\n\n\n\n\nPractice\nWhy\n\n\n\n\nVersion every image (:1.0, :2024-06-28)\nTraceability — like a batch record\n\n\nDocument the Dockerfile\nShows how the environment was built\n\n\nStore images in a controlled registry\nPrevents unapproved changes\n\n\nTest before production use\nIQ/OQ-style checks on critical containers\n\n\nKeep data out of images\nPatient data belongs in secure storage, not baked into layers\n\n\nLog who ran what\nCombine Docker with workflow tools (Nextflow, Airflow, CI systems)\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nDocker helps with reproducibility and isolation. It does not replace SOPs, data privacy rules, 21 CFR Part 11 controls, or formal computer system validation on its own."
-  },
-  {
-    "objectID": "docker.html#how-docker-connects-to-other-tools-on-this-site",
-    "href": "docker.html#how-docker-connects-to-other-tools-on-this-site",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "9. How Docker connects to other tools on this site",
-    "text": "9. How Docker connects to other tools on this site\n\n\n\nTool\nHow Docker fits\n\n\n\n\nNextflow\nRuns each pipeline step inside a container — same tools everywhere\n\n\nR / Clinical R\nFixed R + package versions for TLFs and CDISC work\n\n\nPython\nData science and ML environments that match production\n\n\nCloud (AWS, GCP)\nSame image on your laptop and in the cloud\n\n\n\nOne sentence: Docker is often the “standard box” that other tools carry your analysis in."
-  },
-  {
-    "objectID": "docker.html#common-beginner-mistakes-and-fixes",
-    "href": "docker.html#common-beginner-mistakes-and-fixes",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "10. Common beginner mistakes (and fixes)",
-    "text": "10. Common beginner mistakes (and fixes)\n\n\n\n\n\n\n\nMistake\nFix\n\n\n\n\n“Docker is installed but commands fail”\nOpen Docker Desktop and wait until it is running\n\n\nPutting secrets or patient data in a Dockerfile\nUse mounted volumes and secret managers — never COPY PHI into an image\n\n\nUsing :latest tag in production\nAlways use specific version tags\n\n\nHuge images (slow downloads)\nStart from -slim base images; only install what you need\n\n\nExpecting Docker to validate itself\nFollow your organization’s QA / CSV process\n\n\nConfusing image and container\nImage = blueprint; container = running copy"
-  },
-  {
-    "objectID": "docker.html#quick-reference-commands-to-remember",
-    "href": "docker.html#quick-reference-commands-to-remember",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "11. Quick reference — commands to remember",
-    "text": "11. Quick reference — commands to remember\n# Check Docker\ndocker --version\n\n# First test\ndocker run hello-world\n\n# List running containers\ndocker ps\n\n# Build an image from a Dockerfile\ndocker build -t my-study-env:1.0 .\n\n# Run an image\ndocker run --rm my-study-env:1.0\n\n# Run with a folder mounted (data in/out)\ndocker run --rm -v \"$(pwd):/data\" my-study-env:1.0"
-  },
-  {
-    "objectID": "docker.html#next-steps",
-    "href": "docker.html#next-steps",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "12. Next steps",
-    "text": "12. Next steps\n\nInstall Docker Desktop and run docker run hello-world.\nTry the clinical demo above.\nExplore Nextflow to see containers in multi-step pipelines.\nAsk your IT team about private registries if you work in a regulated company."
-  },
-  {
-    "objectID": "docker.html#further-reading",
-    "href": "docker.html#further-reading",
-    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
-    "section": "13. Further reading",
-    "text": "13. Further reading\n\nDocker Get Started guide\nDocker Desktop documentation\nBiocontainers — life-sciences tool images\nRocker project — R images for statistics and clinical programming\n\nBack to home"
+    "objectID": "git.html#introduction",
+    "href": "git.html#introduction",
+    "title": "Git — Version Control for Regulated Teams",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nGit tracks changes to code, scripts, Dockerfiles, and Quarto documents — essential for audit trails and team collaboration.\n\nWhy Git matters in pharma and bioinformatics\n\nReproducible analysis scripts under change control\nCode review before production pipeline releases\nLinking commits to validated container tags\n\nBack to home"
   },
   {
     "objectID": "ml-ai.html",

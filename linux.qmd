@@ -1,0 +1,26 @@
+---
+title: "Linux — Foundations for Life Sciences Computing"
+description: "Command-line foundations for bioinformatics, clinical programming, and data science."
+toc-depth: 2
+---
+
+::: {.callout-important}
+**Status: Coming soon** — This tutorial will follow the full StatiX documentation standard (25 sections). [Docker](docker.qmd) and [Nextflow](nextflow.qmd) are available now.
+:::
+
+## 1. Introduction
+
+**Linux** is the operating system that powers most servers, HPC clusters, and cloud instances used in bioinformatics and pharmaceutical computing.
+
+### Why Linux exists in your workflow
+
+Clinical SAS/R environments may run on Windows, but **cloud pipelines**, **sequencing cores**, and **DevOps tooling** overwhelmingly run on Linux.
+
+### What you will learn here (upcoming)
+
+- Navigating the filesystem
+- Permissions, processes, and shell scripting
+- Connecting to remote servers (SSH)
+- Preparing for Docker, Git, and Nextflow
+
+[Back to home](index.qmd)

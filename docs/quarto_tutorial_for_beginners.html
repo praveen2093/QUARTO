@@ -100,6 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -127,50 +128,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./python.html"> <i class="bi bi-filetype-py" role="img">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-layers" role="img">
 </i> 
-<span class="menu-text">Python</span></a>
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="./linux.html"><i class="bi bi-terminal" role="img">
+</i> 
+ <span class="dropdown-text">Linux</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r.html"> <i class="bi bi-r-circle" role="img">
+        <li>
+    <a class="dropdown-item" href="./git.html"><i class="bi bi-git" role="img">
 </i> 
-<span class="menu-text">R</span></a>
+ <span class="dropdown-text">Git</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./clinical-r.html"> <i class="bi bi-heart-pulse" role="img">
+        <li>
+    <a class="dropdown-item" href="./docker.html"><i class="bi bi-box-seam" role="img">
 </i> 
-<span class="menu-text">Clinical R</span></a>
+ <span class="dropdown-text">Docker</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./nextflow.html"> <i class="bi bi-diagram-3" role="img">
+        <li>
+    <a class="dropdown-item" href="./nextflow.html"><i class="bi bi-diagram-3" role="img">
 </i> 
-<span class="menu-text">Nextflow</span></a>
+ <span class="dropdown-text">Nextflow</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./docker.html"> <i class="bi bi-box-seam" role="img">
+        <li>
+    <a class="dropdown-item" href="./kubernetes.html"><i class="bi bi-boxes" role="img">
 </i> 
-<span class="menu-text">Docker</span></a>
+ <span class="dropdown-text">Kubernetes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aws.html"><i class="bi bi-cloud" role="img">
+</i> 
+ <span class="dropdown-text">AWS</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--clinical" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-heart-pulse" role="img">
+</i> 
+ <span class="menu-text">Data &amp; Clinical</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data--clinical">    
+        <li>
+    <a class="dropdown-item" href="./python.html"><i class="bi bi-filetype-py" role="img">
+</i> 
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r.html"><i class="bi bi-r-circle" role="img">
+</i> 
+ <span class="dropdown-text">R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./clinical-r.html"><i class="bi bi-hospital" role="img">
+</i> 
+ <span class="dropdown-text">Clinical R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pharmaverse.html"><i class="bi bi-capsule" role="img">
+</i> 
+ <span class="dropdown-text">Pharmaverse</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./statistics.html"><i class="bi bi-calculator" role="img">
+</i> 
+ <span class="dropdown-text">Statistics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r-shiny.html"><i class="bi bi-window-stack" role="img">
+</i> 
+ <span class="dropdown-text">R Shiny</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
+</i> 
+<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./quarto_tutorial_for_beginners.html" aria-current="page"> <i class="bi bi-journal-bookmark" role="img">
 </i> 
 <span class="menu-text">Quarto</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r-shiny.html"> <i class="bi bi-window-stack" role="img">
-</i> 
-<span class="menu-text">R Shiny</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./statistics.html"> <i class="bi bi-calculator" role="img">
-</i> 
-<span class="menu-text">Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
-</i> 
-<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> <i class="bi bi-info-circle" role="img">
@@ -192,25 +236,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#quarto-tutorial-for-complete-beginners" id="toc-quarto-tutorial-for-complete-beginners" class="nav-link active" data-scroll-target="#quarto-tutorial-for-complete-beginners">Quarto Tutorial for Complete Beginners</a>
   <ul class="collapse">
   <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link" data-scroll-target="#what-is-quarto">1. What is Quarto?</a></li>
-  <li><a href="#why-use-quarto" id="toc-why-use-quarto" class="nav-link" data-scroll-target="#why-use-quarto">2. Why use Quarto?</a></li>
-  <li><a href="#do-i-need-r-to-use-quarto" id="toc-do-i-need-r-to-use-quarto" class="nav-link" data-scroll-target="#do-i-need-r-to-use-quarto">3. Do I need R to use Quarto?</a></li>
-  <li><a href="#what-do-i-need-to-install" id="toc-what-do-i-need-to-install" class="nav-link" data-scroll-target="#what-do-i-need-to-install">4. What do I need to install?</a></li>
-  <li><a href="#what-is-markdown" id="toc-what-is-markdown" class="nav-link" data-scroll-target="#what-is-markdown">5. What is Markdown?</a></li>
-  <li><a href="#your-first-quarto-document" id="toc-your-first-quarto-document" class="nav-link" data-scroll-target="#your-first-quarto-document">6. Your first Quarto document</a></li>
-  <li><a href="#how-to-render-a-quarto-file" id="toc-how-to-render-a-quarto-file" class="nav-link" data-scroll-target="#how-to-render-a-quarto-file">7. How to render a Quarto file</a></li>
-  <li><a href="#understanding-a-quarto-document-structure" id="toc-understanding-a-quarto-document-structure" class="nav-link" data-scroll-target="#understanding-a-quarto-document-structure">8. Understanding a Quarto document structure</a></li>
-  <li><a href="#basic-formatting-in-quarto" id="toc-basic-formatting-in-quarto" class="nav-link" data-scroll-target="#basic-formatting-in-quarto">9. Basic formatting in Quarto</a></li>
+  <li><a href="#why-use-quarto" id="toc-why-use-quarto" class="nav-link" data-scroll-target="#why-use-quarto">2. Why use Quarto?</a>
+  <ul class="collapse">
+  <li><a href="#example-uses" id="toc-example-uses" class="nav-link" data-scroll-target="#example-uses">Example uses</a></li>
+  </ul></li>
+  <li><a href="#do-i-need-r-to-use-quarto" id="toc-do-i-need-r-to-use-quarto" class="nav-link" data-scroll-target="#do-i-need-r-to-use-quarto">3. Do I need R to use Quarto?</a>
+  <ul class="collapse">
+  <li><a href="#option-a-write-only-text" id="toc-option-a-write-only-text" class="nav-link" data-scroll-target="#option-a-write-only-text">Option A: Write only text</a></li>
+  <li><a href="#option-b-write-text-plus-code" id="toc-option-b-write-text-plus-code" class="nav-link" data-scroll-target="#option-b-write-text-plus-code">Option B: Write text plus code</a></li>
+  </ul></li>
+  <li><a href="#what-do-i-need-to-install" id="toc-what-do-i-need-to-install" class="nav-link" data-scroll-target="#what-do-i-need-to-install">4. What do I need to install?</a>
+  <ul class="collapse">
+  <li><a href="#required" id="toc-required" class="nav-link" data-scroll-target="#required">Required</a></li>
+  <li><a href="#recommended-editors" id="toc-recommended-editors" class="nav-link" data-scroll-target="#recommended-editors">Recommended editors</a></li>
+  <li><a href="#optional-tools" id="toc-optional-tools" class="nav-link" data-scroll-target="#optional-tools">Optional tools</a></li>
+  <li><a href="#install-quarto" id="toc-install-quarto" class="nav-link" data-scroll-target="#install-quarto">Install Quarto</a></li>
+  <li><a href="#check-installation" id="toc-check-installation" class="nav-link" data-scroll-target="#check-installation">Check installation</a></li>
+  </ul></li>
+  <li><a href="#what-is-markdown" id="toc-what-is-markdown" class="nav-link" data-scroll-target="#what-is-markdown">5. What is Markdown?</a>
+  <ul class="collapse">
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul></li>
+  <li><a href="#your-first-quarto-document" id="toc-your-first-quarto-document" class="nav-link" data-scroll-target="#your-first-quarto-document">6. Your first Quarto document</a>
+  <ul class="collapse">
+  <li><a href="#what-is-the-part-between-----and----" id="toc-what-is-the-part-between-----and----" class="nav-link" data-scroll-target="#what-is-the-part-between-----and----">What is the part between <code>---</code> and <code>---</code>?</a></li>
+  </ul></li>
+  <li><a href="#how-to-render-a-quarto-file" id="toc-how-to-render-a-quarto-file" class="nav-link" data-scroll-target="#how-to-render-a-quarto-file">7. How to render a Quarto file</a>
+  <ul class="collapse">
+  <li><a href="#render-from-terminal" id="toc-render-from-terminal" class="nav-link" data-scroll-target="#render-from-terminal">Render from terminal</a></li>
+  <li><a href="#render-in-vs-code" id="toc-render-in-vs-code" class="nav-link" data-scroll-target="#render-in-vs-code">Render in VS Code</a></li>
+  </ul></li>
+  <li><a href="#understanding-a-quarto-document-structure" id="toc-understanding-a-quarto-document-structure" class="nav-link" data-scroll-target="#understanding-a-quarto-document-structure">8. Understanding a Quarto document structure</a>
+  <ul class="collapse">
+  <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header">1. YAML header</a></li>
+  <li><a href="#body-content" id="toc-body-content" class="nav-link" data-scroll-target="#body-content">2. Body content</a></li>
+  </ul></li>
+  <li><a href="#basic-formatting-in-quarto" id="toc-basic-formatting-in-quarto" class="nav-link" data-scroll-target="#basic-formatting-in-quarto">9. Basic formatting in Quarto</a>
+  <ul class="collapse">
+  <li><a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings">Headings</a></li>
+  <li><a href="#paragraphs" id="toc-paragraphs" class="nav-link" data-scroll-target="#paragraphs">Paragraphs</a></li>
+  <li><a href="#line-break" id="toc-line-break" class="nav-link" data-scroll-target="#line-break">Line break</a></li>
+  <li><a href="#bold-italic-and-code" id="toc-bold-italic-and-code" class="nav-link" data-scroll-target="#bold-italic-and-code">Bold, italic, and code</a></li>
+  <li><a href="#blockquote" id="toc-blockquote" class="nav-link" data-scroll-target="#blockquote">Blockquote</a></li>
+  <li><a href="#horizontal-line" id="toc-horizontal-line" class="nav-link" data-scroll-target="#horizontal-line">Horizontal line</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  <li><a href="#numbered-lists" id="toc-numbered-lists" class="nav-link" data-scroll-target="#numbered-lists">Numbered lists</a></li>
+  </ul></li>
   <li><a href="#adding-images" id="toc-adding-images" class="nav-link" data-scroll-target="#adding-images">10. Adding images</a></li>
   <li><a href="#adding-links" id="toc-adding-links" class="nav-link" data-scroll-target="#adding-links">11. Adding links</a></li>
   <li><a href="#adding-tables" id="toc-adding-tables" class="nav-link" data-scroll-target="#adding-tables">12. Adding tables</a></li>
-  <li><a href="#code-blocks-in-quarto" id="toc-code-blocks-in-quarto" class="nav-link" data-scroll-target="#code-blocks-in-quarto">13. Code blocks in Quarto</a></li>
+  <li><a href="#code-blocks-in-quarto" id="toc-code-blocks-in-quarto" class="nav-link" data-scroll-target="#code-blocks-in-quarto">13. Code blocks in Quarto</a>
+  <ul class="collapse">
+  <li><a href="#plain-code-block" id="toc-plain-code-block" class="nav-link" data-scroll-target="#plain-code-block">Plain code block</a></li>
+  <li><a href="#r-example" id="toc-r-example" class="nav-link" data-scroll-target="#r-example">R example</a></li>
+  </ul></li>
   <li><a href="#best-practices-for-beginners" id="toc-best-practices-for-beginners" class="nav-link" data-scroll-target="#best-practices-for-beginners">28. Best practices for beginners</a></li>
-  <li><a href="#suggested-learning-path" id="toc-suggested-learning-path" class="nav-link" data-scroll-target="#suggested-learning-path">29. Suggested learning path</a></li>
-  <li><a href="#frequently-asked-questions" id="toc-frequently-asked-questions" class="nav-link" data-scroll-target="#frequently-asked-questions">30. Frequently asked questions</a></li>
+  <li><a href="#suggested-learning-path" id="toc-suggested-learning-path" class="nav-link" data-scroll-target="#suggested-learning-path">29. Suggested learning path</a>
+  <ul class="collapse">
+  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
+  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
+  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
+  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4</a></li>
+  </ul></li>
+  <li><a href="#frequently-asked-questions" id="toc-frequently-asked-questions" class="nav-link" data-scroll-target="#frequently-asked-questions">30. Frequently asked questions</a>
+  <ul class="collapse">
+  <li><a href="#is-quarto-only-for-data-scientists" id="toc-is-quarto-only-for-data-scientists" class="nav-link" data-scroll-target="#is-quarto-only-for-data-scientists">Is Quarto only for data scientists?</a></li>
+  <li><a href="#do-i-need-to-know-programming" id="toc-do-i-need-to-know-programming" class="nav-link" data-scroll-target="#do-i-need-to-know-programming">Do I need to know programming?</a></li>
+  <li><a href="#is-quarto-free" id="toc-is-quarto-free" class="nav-link" data-scroll-target="#is-quarto-free">Is Quarto free?</a></li>
+  <li><a href="#can-i-create-a-website-with-quarto" id="toc-can-i-create-a-website-with-quarto" class="nav-link" data-scroll-target="#can-i-create-a-website-with-quarto">Can I create a website with Quarto?</a></li>
+  <li><a href="#can-i-export-to-pdf-and-word" id="toc-can-i-export-to-pdf-and-word" class="nav-link" data-scroll-target="#can-i-export-to-pdf-and-word">Can I export to PDF and Word?</a></li>
+  <li><a href="#do-i-need-rstudio" id="toc-do-i-need-rstudio" class="nav-link" data-scroll-target="#do-i-need-rstudio">Do I need RStudio?</a></li>
+  </ul></li>
   <li><a href="#final-beginner-checklist" id="toc-final-beginner-checklist" class="nav-link" data-scroll-target="#final-beginner-checklist">31. Final beginner checklist</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">32. Conclusion</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">33. Next steps</a></li>
@@ -1392,4 +1492,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

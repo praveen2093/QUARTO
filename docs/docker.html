@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Industry-standard Docker guide for bioinformatics, clinical programming, pharma, and data science.">
 
-<title>StatiX AI &amp; Data Labs - Docker for Beginners — Clinical, Pharma &amp; Life Sciences</title>
+<title>StatiX AI &amp; Data Labs - Docker — Professional Tutorial for Life Sciences</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,6 +101,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -127,50 +132,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./python.html"> <i class="bi bi-filetype-py" role="img">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-layers" role="img">
 </i> 
-<span class="menu-text">Python</span></a>
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="./linux.html"><i class="bi bi-terminal" role="img">
+</i> 
+ <span class="dropdown-text">Linux</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r.html"> <i class="bi bi-r-circle" role="img">
+        <li>
+    <a class="dropdown-item" href="./git.html"><i class="bi bi-git" role="img">
 </i> 
-<span class="menu-text">R</span></a>
+ <span class="dropdown-text">Git</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./clinical-r.html"> <i class="bi bi-heart-pulse" role="img">
+        <li>
+    <a class="dropdown-item" href="./docker.html"><i class="bi bi-box-seam" role="img">
 </i> 
-<span class="menu-text">Clinical R</span></a>
+ <span class="dropdown-text">Docker</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./nextflow.html"> <i class="bi bi-diagram-3" role="img">
+        <li>
+    <a class="dropdown-item" href="./nextflow.html"><i class="bi bi-diagram-3" role="img">
 </i> 
-<span class="menu-text">Nextflow</span></a>
+ <span class="dropdown-text">Nextflow</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./docker.html" aria-current="page"> <i class="bi bi-box-seam" role="img">
+        <li>
+    <a class="dropdown-item" href="./kubernetes.html"><i class="bi bi-boxes" role="img">
 </i> 
-<span class="menu-text">Docker</span></a>
+ <span class="dropdown-text">Kubernetes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aws.html"><i class="bi bi-cloud" role="img">
+</i> 
+ <span class="dropdown-text">AWS</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--clinical" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-heart-pulse" role="img">
+</i> 
+ <span class="menu-text">Data &amp; Clinical</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data--clinical">    
+        <li>
+    <a class="dropdown-item" href="./python.html"><i class="bi bi-filetype-py" role="img">
+</i> 
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r.html"><i class="bi bi-r-circle" role="img">
+</i> 
+ <span class="dropdown-text">R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./clinical-r.html"><i class="bi bi-hospital" role="img">
+</i> 
+ <span class="dropdown-text">Clinical R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pharmaverse.html"><i class="bi bi-capsule" role="img">
+</i> 
+ <span class="dropdown-text">Pharmaverse</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./statistics.html"><i class="bi bi-calculator" role="img">
+</i> 
+ <span class="dropdown-text">Statistics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r-shiny.html"><i class="bi bi-window-stack" role="img">
+</i> 
+ <span class="dropdown-text">R Shiny</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
+</i> 
+<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./quarto_tutorial_for_beginners.html"> <i class="bi bi-journal-bookmark" role="img">
 </i> 
 <span class="menu-text">Quarto</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r-shiny.html"> <i class="bi bi-window-stack" role="img">
-</i> 
-<span class="menu-text">R Shiny</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./statistics.html"> <i class="bi bi-calculator" role="img">
-</i> 
-<span class="menu-text">Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
-</i> 
-<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> <i class="bi bi-info-circle" role="img">
@@ -192,20 +240,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a>
   <ul class="collapse">
-  <li><a href="#what-is-docker-no-tech-background-needed" id="toc-what-is-docker-no-tech-background-needed" class="nav-link active" data-scroll-target="#what-is-docker-no-tech-background-needed">1. What is Docker? (No tech background needed)</a></li>
-  <li><a href="#why-docker-matters-in-clinical-pharma-bio" id="toc-why-docker-matters-in-clinical-pharma-bio" class="nav-link" data-scroll-target="#why-docker-matters-in-clinical-pharma-bio">2. Why Docker matters in clinical, pharma &amp; bio</a></li>
-  <li><a href="#key-ideas-explained-in-plain-language" id="toc-key-ideas-explained-in-plain-language" class="nav-link" data-scroll-target="#key-ideas-explained-in-plain-language">3. Key ideas — explained in plain language</a></li>
-  <li><a href="#what-you-need-before-you-start" id="toc-what-you-need-before-you-start" class="nav-link" data-scroll-target="#what-you-need-before-you-start">4. What you need before you start</a></li>
-  <li><a href="#your-first-useful-commands" id="toc-your-first-useful-commands" class="nav-link" data-scroll-target="#your-first-useful-commands">5. Your first useful commands</a></li>
-  <li><a href="#hands-on-example-a-mini-clinical-style-analysis-box" id="toc-hands-on-example-a-mini-clinical-style-analysis-box" class="nav-link" data-scroll-target="#hands-on-example-a-mini-clinical-style-analysis-box">6. Hands-on example — a mini clinical-style analysis box</a></li>
-  <li><a href="#docker-in-pharma-clinical-real-scenarios" id="toc-docker-in-pharma-clinical-real-scenarios" class="nav-link" data-scroll-target="#docker-in-pharma-clinical-real-scenarios">7. Docker in pharma &amp; clinical — real scenarios</a></li>
-  <li><a href="#gxp-validation-audit-what-beginners-should-know" id="toc-gxp-validation-audit-what-beginners-should-know" class="nav-link" data-scroll-target="#gxp-validation-audit-what-beginners-should-know">8. GxP, validation &amp; audit — what beginners should know</a></li>
-  <li><a href="#how-docker-connects-to-other-tools-on-this-site" id="toc-how-docker-connects-to-other-tools-on-this-site" class="nav-link" data-scroll-target="#how-docker-connects-to-other-tools-on-this-site">9. How Docker connects to other tools on this site</a></li>
-  <li><a href="#common-beginner-mistakes-and-fixes" id="toc-common-beginner-mistakes-and-fixes" class="nav-link" data-scroll-target="#common-beginner-mistakes-and-fixes">10. Common beginner mistakes (and fixes)</a></li>
-  <li><a href="#quick-reference-commands-to-remember" id="toc-quick-reference-commands-to-remember" class="nav-link" data-scroll-target="#quick-reference-commands-to-remember">11. Quick reference — commands to remember</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">12. Next steps</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">13. Further reading</a></li>
+  <li><a href="#why-docker-exists" id="toc-why-docker-exists" class="nav-link" data-scroll-target="#why-docker-exists">Why Docker exists</a></li>
+  <li><a href="#the-problem-docker-solves" id="toc-the-problem-docker-solves" class="nav-link" data-scroll-target="#the-problem-docker-solves">The problem Docker solves</a></li>
+  <li><a href="#where-docker-is-used-in-industry" id="toc-where-docker-is-used-in-industry" class="nav-link" data-scroll-target="#where-docker-is-used-in-industry">Where Docker is used in industry</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">2. Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#by-the-end-of-this-tutorial-you-will-be-able-to" id="toc-by-the-end-of-this-tutorial-you-will-be-able-to" class="nav-link" data-scroll-target="#by-the-end-of-this-tutorial-you-will-be-able-to">By the end of this tutorial, you will be able to</a></li>
+  </ul></li>
+  <li><a href="#why-is-this-important" id="toc-why-is-this-important" class="nav-link" data-scroll-target="#why-is-this-important">3. Why is this important?</a>
+  <ul class="collapse">
+  <li><a href="#why-should-someone-learn-docker" id="toc-why-should-someone-learn-docker" class="nav-link" data-scroll-target="#why-should-someone-learn-docker">Why should someone learn Docker?</a></li>
+  <li><a href="#why-do-companies-use-it" id="toc-why-do-companies-use-it" class="nav-link" data-scroll-target="#why-do-companies-use-it">Why do companies use it?</a></li>
+  <li><a href="#why-is-it-important-in-bioinformatics" id="toc-why-is-it-important-in-bioinformatics" class="nav-link" data-scroll-target="#why-is-it-important-in-bioinformatics">Why is it important in bioinformatics?</a></li>
+  <li><a href="#why-is-it-important-in-clinical-programming" id="toc-why-is-it-important-in-clinical-programming" class="nav-link" data-scroll-target="#why-is-it-important-in-clinical-programming">Why is it important in clinical programming?</a></li>
+  <li><a href="#why-is-it-useful-in-data-science" id="toc-why-is-it-useful-in-data-science" class="nav-link" data-scroll-target="#why-is-it-useful-in-data-science">Why is it useful in data science?</a></li>
+  </ul></li>
+  <li><a href="#architecture-diagram" id="toc-architecture-diagram" class="nav-link" data-scroll-target="#architecture-diagram">4. Architecture Diagram</a>
+  <ul class="collapse">
+  <li><a href="#docker-core-architecture" id="toc-docker-core-architecture" class="nav-link" data-scroll-target="#docker-core-architecture">Docker core architecture</a></li>
+  <li><a href="#life-sciences-workflow-placement" id="toc-life-sciences-workflow-placement" class="nav-link" data-scroll-target="#life-sciences-workflow-placement">Life-sciences workflow placement</a></li>
+  </ul></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">5. Installation</a>
+  <ul class="collapse">
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">macOS</a></li>
+  <li><a href="#linux-ubuntudebian-example" id="toc-linux-ubuntudebian-example" class="nav-link" data-scroll-target="#linux-ubuntudebian-example">Linux (Ubuntu/Debian example)</a></li>
+  </ul></li>
+  <li><a href="#basic-concepts" id="toc-basic-concepts" class="nav-link" data-scroll-target="#basic-concepts">6. Basic Concepts</a>
+  <ul class="collapse">
+  <li><a href="#image" id="toc-image" class="nav-link" data-scroll-target="#image">Image</a></li>
+  <li><a href="#container" id="toc-container" class="nav-link" data-scroll-target="#container">Container</a></li>
+  <li><a href="#registry" id="toc-registry" class="nav-link" data-scroll-target="#registry">Registry</a></li>
+  <li><a href="#docker-hub" id="toc-docker-hub" class="nav-link" data-scroll-target="#docker-hub">Docker Hub</a></li>
+  <li><a href="#dockerfile" id="toc-dockerfile" class="nav-link" data-scroll-target="#dockerfile">Dockerfile</a></li>
+  <li><a href="#volume" id="toc-volume" class="nav-link" data-scroll-target="#volume">Volume</a></li>
+  <li><a href="#network" id="toc-network" class="nav-link" data-scroll-target="#network">Network</a></li>
+  </ul></li>
+  <li><a href="#hands-on-examples" id="toc-hands-on-examples" class="nav-link" data-scroll-target="#hands-on-examples">7. Hands-on Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-hello-world" id="toc-example-1-hello-world" class="nav-link" data-scroll-target="#example-1-hello-world">Example 1 — Hello World</a></li>
+  <li><a href="#example-2-run-r-without-installing-r" id="toc-example-2-run-r-without-installing-r" class="nav-link" data-scroll-target="#example-2-run-r-without-installing-r">Example 2 — Run R without installing R</a></li>
+  <li><a href="#example-3-interactive-python-shell" id="toc-example-3-interactive-python-shell" class="nav-link" data-scroll-target="#example-3-interactive-python-shell">Example 3 — Interactive Python shell</a></li>
+  <li><a href="#example-4-build-a-clinical-summary-image" id="toc-example-4-build-a-clinical-summary-image" class="nav-link" data-scroll-target="#example-4-build-a-clinical-summary-image">Example 4 — Build a clinical summary image</a></li>
+  <li><a href="#example-5-pull-a-bioinformatics-tool" id="toc-example-5-pull-a-bioinformatics-tool" class="nav-link" data-scroll-target="#example-5-pull-a-bioinformatics-tool">Example 5 — Pull a bioinformatics tool</a></li>
+  </ul></li>
+  <li><a href="#real-world-industry-use-cases" id="toc-real-world-industry-use-cases" class="nav-link" data-scroll-target="#real-world-industry-use-cases">8. Real-world Industry Use Cases</a></li>
+  <li><a href="#bioinformatics-workflow" id="toc-bioinformatics-workflow" class="nav-link" data-scroll-target="#bioinformatics-workflow">9. Bioinformatics Workflow</a></li>
+  <li><a href="#clinical-programming-workflow" id="toc-clinical-programming-workflow" class="nav-link" data-scroll-target="#clinical-programming-workflow">10. Clinical Programming Workflow</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">11. Best Practices</a>
+  <ul class="collapse">
+  <li><a href="#do" id="toc-do" class="nav-link" data-scroll-target="#do">DO</a></li>
+  <li><a href="#dont" id="toc-dont" class="nav-link" data-scroll-target="#dont">DON’T</a></li>
+  <li><a href="#performance-tips" id="toc-performance-tips" class="nav-link" data-scroll-target="#performance-tips">Performance tips</a></li>
+  <li><a href="#security-tips" id="toc-security-tips" class="nav-link" data-scroll-target="#security-tips">Security tips</a></li>
+  <li><a href="#optimization-tips" id="toc-optimization-tips" class="nav-link" data-scroll-target="#optimization-tips">Optimization tips</a></li>
+  </ul></li>
+  <li><a href="#common-mistakes" id="toc-common-mistakes" class="nav-link" data-scroll-target="#common-mistakes">12. Common Mistakes</a></li>
+  <li><a href="#troubleshooting-guide" id="toc-troubleshooting-guide" class="nav-link" data-scroll-target="#troubleshooting-guide">13. Troubleshooting Guide</a></li>
+  <li><a href="#interview-questions" id="toc-interview-questions" class="nav-link" data-scroll-target="#interview-questions">14. Interview Questions</a>
+  <ul class="collapse">
+  <li><a href="#beginner" id="toc-beginner" class="nav-link" data-scroll-target="#beginner">Beginner</a></li>
+  <li><a href="#intermediate" id="toc-intermediate" class="nav-link" data-scroll-target="#intermediate">Intermediate</a></li>
+  <li><a href="#advanced" id="toc-advanced" class="nav-link" data-scroll-target="#advanced">Advanced</a></li>
+  </ul></li>
+  <li><a href="#cheat-sheet" id="toc-cheat-sheet" class="nav-link" data-scroll-target="#cheat-sheet">15. Cheat Sheet</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">16. Summary</a></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">17. Next Topic</a></li>
+  <li><a href="#learning-path" id="toc-learning-path" class="nav-link" data-scroll-target="#learning-path">18. Learning Path</a>
+  <ul class="collapse">
+  <li><a href="#bioinformatics-roadmap" id="toc-bioinformatics-roadmap" class="nav-link" data-scroll-target="#bioinformatics-roadmap">Bioinformatics roadmap</a></li>
+  <li><a href="#clinical-programming-roadmap" id="toc-clinical-programming-roadmap" class="nav-link" data-scroll-target="#clinical-programming-roadmap">Clinical programming roadmap</a></li>
+  </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">19. Further Reading</a></li>
+  <li><a href="#mini-project-reproducible-study-summary-container" id="toc-mini-project-reproducible-study-summary-container" class="nav-link" data-scroll-target="#mini-project-reproducible-study-summary-container">20. Mini Project — Reproducible Study Summary Container</a>
+  <ul class="collapse">
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link" data-scroll-target="#problem-statement">Problem statement</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture">Architecture</a></li>
+  <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder structure</a></li>
+  <li><a href="#commands" id="toc-commands" class="nav-link" data-scroll-target="#commands">Commands</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output">Expected output</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">21. Exercises</a>
+  <ul class="collapse">
+  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions">10 practice questions</a></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">5 assignments</a></li>
+  <li><a href="#mini-projects" id="toc-mini-projects" class="nav-link" data-scroll-target="#mini-projects">3 mini projects</a></li>
+  <li><a href="#capstone-project" id="toc-capstone-project" class="nav-link" data-scroll-target="#capstone-project">1 capstone project</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -214,9 +339,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Docker for Beginners — Clinical, Pharma &amp; Life Sciences</h1>
+<h1 class="title">Docker — Professional Tutorial for Life Sciences</h1>
 </div>
 
+<div>
+  <div class="description">
+    Industry-standard Docker guide for bioinformatics, clinical programming, pharma, and data science.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -231,300 +361,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-is-docker-no-tech-background-needed" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-docker-no-tech-background-needed">1. What is Docker? (No tech background needed)</h2>
-<p>Imagine you bake a cake using a <strong>recipe</strong>. You write down every ingredient, every step, and every oven temperature. If someone else follows the <strong>exact same recipe</strong>, they should get the <strong>exact same cake</strong>.</p>
-<p>In science and medicine, we face a similar problem with <strong>software</strong>:</p>
-<ul>
-<li>One person runs an analysis on a laptop and gets one result.</li>
-<li>Another person runs the “same” analysis on a different computer and gets a <strong>different</strong> result — because their software versions, settings, or operating system are not identical.</li>
-</ul>
-<p><strong>Docker solves this</strong> by packaging software — and everything it needs to run — into a <strong>standard box</strong> that works the same way on almost any computer.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Simple definition:</strong> Docker lets you put an application and all its dependencies into a portable box called a <strong>container</strong>, so it runs the same way everywhere.</p>
-</div>
-</div>
-<section id="a-everyday-analogy-shipping-containers" class="level3">
-<h3 class="anchored" data-anchor-id="a-everyday-analogy-shipping-containers">A everyday analogy: shipping containers</h3>
-<p>Before modern shipping, loading a ship was messy — every crate was a different size and shape.</p>
-<p>Then <strong>standard shipping containers</strong> arrived. Any crane, truck, or ship built for containers could move <strong>any</strong> container, anywhere in the world.</p>
-<p>Docker does the same for software:</p>
-<table class="table">
-<colgroup>
-<col style="width: 46%">
-<col style="width: 53%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Real world</th>
-<th>Docker world</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Shipping container</td>
-<td><strong>Container</strong> (running app)</td>
-</tr>
-<tr class="even">
-<td>Blueprint for the container</td>
-<td><strong>Image</strong> (frozen snapshot)</td>
-</tr>
-<tr class="odd">
-<td>Factory that builds containers</td>
-<td><strong>Dockerfile</strong> (build instructions)</td>
-</tr>
-<tr class="even">
-<td>Warehouse port</td>
-<td><strong>Registry</strong> (e.g.&nbsp;Docker Hub — where images are stored)</td>
-</tr>
-</tbody>
-</table>
-<p>You do <strong>not</strong> need to know Linux, cloud computing, or programming to understand the <em>idea</em> of Docker. You only need to understand: <strong>same box → same result, anywhere</strong>.</p>
-<hr>
-</section>
-</section>
-<section id="why-docker-matters-in-clinical-pharma-bio" class="level2">
-<h2 class="anchored" data-anchor-id="why-docker-matters-in-clinical-pharma-bio">2. Why Docker matters in clinical, pharma &amp; bio</h2>
-<p>If you work in <strong>clinical research</strong>, <strong>pharmaceutical companies</strong>, or <strong>biotechnology / bioinformatics</strong>, reproducibility and traceability are not optional — they are often <strong>required</strong>.</p>
-<section id="clinical-research-biostatistics" class="level3">
-<h3 class="anchored" data-anchor-id="clinical-research-biostatistics">Clinical research &amp; biostatistics</h3>
-<p>Examples where Docker helps:</p>
-<ul>
-<li><strong>Clinical trial analysis</strong> — TLFs (Tables, Listings, Figures) for a study should be produced with a <strong>fixed, documented</strong> R or SAS environment.</li>
-<li><strong>CDISC workflows</strong> — SDTM/ADaM conversion pipelines that must run identically for every database lock.</li>
-<li><strong>Independent verification</strong> — a statistician or QC reviewer can re-run analysis inside the <strong>same container</strong> and confirm results match.</li>
-</ul>
-<p><strong>Why it matters:</strong> Regulators and sponsors ask: <em>“Can you prove this result was produced with a controlled, repeatable setup?”</em> Docker is one practical way to answer <strong>yes</strong>.</p>
-</section>
-<section id="pharmaceutical-industry" class="level3">
-<h3 class="anchored" data-anchor-id="pharmaceutical-industry">Pharmaceutical industry</h3>
-<p>Examples:</p>
-<ul>
-<li><strong>Drug discovery pipelines</strong> — chemistry informatics, molecular docking, ML models for target identification.</li>
-<li><strong>Manufacturing &amp; QC</strong> — image analysis, batch release calculations, stability study modeling.</li>
-<li><strong>Validated systems (GxP)</strong> — in regulated areas, teams document <strong>which exact software version</strong> was used. Container images can be versioned, tagged, and archived like a batch record.</li>
-</ul>
-<p><strong>Why it matters:</strong> In pharma, “it worked on my machine” is not acceptable for submissions, audits, or quality systems.</p>
-</section>
-<section id="biotechnology-bioinformatics" class="level3">
-<h3 class="anchored" data-anchor-id="biotechnology-bioinformatics">Biotechnology &amp; bioinformatics</h3>
-<p>Examples:</p>
-<ul>
-<li><strong>Genomics pipelines</strong> — FASTQ → alignment → variant calling (same BWA, GATK, or bcftools versions every time).</li>
-<li><strong>Single-cell RNA-seq</strong>, <strong>proteomics</strong>, <strong>metabolomics</strong> — complex tool chains that are painful to install manually.</li>
-<li><strong>Cloud &amp; HPC</strong> — run the same pipeline on a laptop for testing, then on AWS/GCP for production (see the <a href="./nextflow.html">Nextflow guide</a>).</li>
-</ul>
-<p><strong>Why it matters:</strong> Bioinformatics tools change quickly. Docker <strong>pins</strong> the versions so a paper, pipeline, or clinical genomics report can be reproduced months or years later.</p>
-<hr>
-</section>
-</section>
-<section id="key-ideas-explained-in-plain-language" class="level2">
-<h2 class="anchored" data-anchor-id="key-ideas-explained-in-plain-language">3. Key ideas — explained in plain language</h2>
-<p>You only need four words to start:</p>
-<section id="image" class="level3">
-<h3 class="anchored" data-anchor-id="image">Image</h3>
-<p>An <strong>image</strong> is a <strong>frozen snapshot</strong> — like a saved recipe + all ingredients pre-measured and sealed.</p>
-<ul>
-<li>It is <strong>read-only</strong> (you don’t edit it while it’s stored).</li>
-<li>It has a <strong>name and tag</strong>, e.g.&nbsp;<code>python:3.11</code> or <code>rocker/r-ver:4.3</code>.</li>
-</ul>
-</section>
-<section id="container" class="level3">
-<h3 class="anchored" data-anchor-id="container">Container</h3>
-<p>A <strong>container</strong> is a <strong>running instance</strong> of an image — like actually baking the cake.</p>
-<ul>
-<li>You can start many containers from one image.</li>
-<li>When you stop a container, its temporary changes are usually discarded (unless you save them).</li>
-</ul>
-</section>
-<section id="dockerfile" class="level3">
-<h3 class="anchored" data-anchor-id="dockerfile">Dockerfile</h3>
-<p>A <strong>Dockerfile</strong> is a <strong>text file with build instructions</strong> — step-by-step directions for creating an image.</p>
-<p>Example (don’t worry if this looks technical — we explain each line below):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.11-slim</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> analysis.py .</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"analysis.py"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Line</th>
-<th>Plain English</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>FROM python:3.11-slim</code></td>
-<td>Start from a pre-built Python 3.11 image</td>
-</tr>
-<tr class="even">
-<td><code>WORKDIR /app</code></td>
-<td>Use <code>/app</code> as the working folder inside the box</td>
-</tr>
-<tr class="odd">
-<td><code>COPY analysis.py .</code></td>
-<td>Copy your script into the box</td>
-</tr>
-<tr class="even">
-<td><code>CMD [...]</code></td>
-<td>When the container starts, run this command</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="registry" class="level3">
-<h3 class="anchored" data-anchor-id="registry">Registry</h3>
-<p>A <strong>registry</strong> is an <strong>online library of images</strong>. <a href="https://hub.docker.com/">Docker Hub</a> is the most common public registry. Companies often use <strong>private registries</strong> for internal or validated images.</p>
-<hr>
-</section>
-</section>
-<section id="what-you-need-before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-need-before-you-start">4. What you need before you start</h2>
-<section id="on-your-computer" class="level3">
-<h3 class="anchored" data-anchor-id="on-your-computer">On your computer</h3>
-<ul>
-<li>A laptop or desktop (Windows, Mac, or Linux)</li>
-<li><a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> — free for personal/educational use</li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>You do not need</strong> to know Python, R, Linux, or cloud platforms to learn Docker basics. You only need to copy and run a few commands.</p>
-</div>
-</div>
-</section>
-<section id="install-docker-desktop" class="level3">
-<h3 class="anchored" data-anchor-id="install-docker-desktop">Install Docker Desktop</h3>
-<ol type="1">
-<li>Go to <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a></li>
-<li>Download Docker Desktop for your operating system</li>
-<li>Install it and open the Docker Desktop app</li>
-<li>Wait until it says Docker is <strong>running</strong> (whale icon in the menu bar / system tray)</li>
-</ol>
-</section>
-<section id="check-that-docker-works" class="level3">
-<h3 class="anchored" data-anchor-id="check-that-docker-works">Check that Docker works</h3>
-<p>Open a terminal (Terminal on Mac, PowerShell or Command Prompt on Windows) and run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You should see something like <code>Docker version 24.x.x</code>.</p>
-<p>Then run your first container:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see a friendly “Hello from Docker!” message — <strong>you succeeded</strong>.</p>
-<hr>
-</section>
-</section>
-<section id="your-first-useful-commands" class="level2">
-<h2 class="anchored" data-anchor-id="your-first-useful-commands">5. Your first useful commands</h2>
-<p>Think of these as <strong>remote control buttons</strong> for containers.</p>
-<section id="see-what-is-running" class="level3">
-<h3 class="anchored" data-anchor-id="see-what-is-running">See what is running</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Lists <strong>running</strong> containers. (Empty list is normal if nothing is running.)</p>
-</section>
-<section id="see-all-containers-including-stopped" class="level3">
-<h3 class="anchored" data-anchor-id="see-all-containers-including-stopped">See all containers (including stopped)</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="download-and-run-a-pre-built-image" class="level3">
-<h3 class="anchored" data-anchor-id="download-and-run-a-pre-built-image">Download and run a pre-built image</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> rocker/r-ver:4.3 R <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This downloads an R environment and prints the R version — <strong>without installing R on your laptop</strong>.</p>
-<p><strong>Why this matters in clinical/bio work:</strong> You can test an analysis in R 4.3 today, and a colleague in another country can run the <strong>identical</strong> R 4.3 environment tomorrow.</p>
-</section>
-<section id="run-a-command-and-exit" class="level3">
-<h3 class="anchored" data-anchor-id="run-a-command-and-exit">Run a command and exit</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> python:3.11-slim python <span class="at">-c</span> <span class="st">"print('Analysis environment ready')"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><code>--rm</code> = delete the container when it finishes (keeps your machine tidy)</li>
-</ul>
-</section>
-<section id="stop-a-running-container" class="level3">
-<h3 class="anchored" data-anchor-id="stop-a-running-container">Stop a running container</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop CONTAINER_ID</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>(<code>CONTAINER_ID</code> comes from <code>docker ps</code>.)</p>
-<hr>
-</section>
-</section>
-<section id="hands-on-example-a-mini-clinical-style-analysis-box" class="level2">
-<h2 class="anchored" data-anchor-id="hands-on-example-a-mini-clinical-style-analysis-box">6. Hands-on example — a mini clinical-style analysis box</h2>
-<p>This example is <strong>educational</strong>, not submission-ready — but it shows the pattern used in real projects.</p>
-<section id="step-1-create-a-folder" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-create-a-folder">Step 1: Create a folder</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> docker-clinical-demo</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> docker-clinical-demo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="step-2-create-a-simple-r-script" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-create-a-simple-r-script">Step 2: Create a simple R script</h3>
-<p>Save this as <code>summarize.R</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo: summarize patient ages from a CSV</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="at">trailingOnly =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>input_file <span class="ot">&lt;-</span> args[<span class="dv">1</span>]</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>output_file <span class="ot">&lt;-</span> args[<span class="dv">2</span>]</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(input_file)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">nrow</span>(dat),</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_age =</span> <span class="fu">mean</span>(dat<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="fu">min</span>(dat<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_age =</span> <span class="fu">max</span>(dat<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(result, output_file, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Summary written to"</span>, output_file, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="step-3-create-sample-data" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-create-sample-data">Step 3: Create sample data</h3>
-<p>Save as <code>patients.csv</code>:</p>
-<pre class="csv"><code>patient_id,age
-001,54
-002,61
-003,47
-004,58
-005,52</code></pre>
-</section>
-<section id="step-4-create-a-dockerfile" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-create-a-dockerfile">Step 4: Create a Dockerfile</h3>
-<p>Save as <code>Dockerfile</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/r-ver:4.3</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /analysis</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> summarize.R .</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> patients.csv .</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"summarize.R"</span>, <span class="st">"patients.csv"</span>, <span class="st">"summary.csv"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="step-5-build-the-image" class="level3">
-<h3 class="anchored" data-anchor-id="step-5-build-the-image">Step 5: Build the image</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> clinical-demo:1.0 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><code>-t clinical-demo:1.0</code> = name and version tag (like a batch number)</li>
-<li><code>.</code> = use the current folder</li>
-</ul>
-</section>
-<section id="step-6-run-the-container" class="level3">
-<h3 class="anchored" data-anchor-id="step-6-run-the-container">Step 6: Run the container</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> clinical-demo:1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="step-7-copy-the-output-file-out-optional" class="level3">
-<h3 class="anchored" data-anchor-id="step-7-copy-the-output-file-out-optional">Step 7: Copy the output file out (optional)</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">:/output"</span> clinical-demo:1.0 <span class="dt">\</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  sh <span class="at">-c</span> <span class="st">"Rscript summarize.R patients.csv /output/summary.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On Windows PowerShell, use:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>v <span class="st">"</span><span class="pp">${</span><span class="va">PWD</span><span class="pp">}</span><span class="st">:/output"</span> clinical-demo<span class="op">:</span><span class="dv">1.0</span> sh <span class="op">-</span>c <span class="st">"Rscript summarize.R patients.csv /output/summary.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Open <code>summary.csv</code> — you should see mean, min, and max age.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -535,100 +371,222 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Industry pattern:</strong> The <strong>image tag</strong> (<code>clinical-demo:1.0</code>) documents which environment produced the output. In regulated settings, teams keep that tag in the analysis record.</p>
+<p><strong>Audience:</strong> Students, bioinformatics researchers, clinical programmers, data scientists, pharmaceutical professionals, and software engineers — including readers with little or no prior experience.</p>
 </div>
 </div>
-<hr>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
+<p><strong>Docker</strong> is a platform that packages an application and everything it needs to run — code, libraries, settings — into a portable unit called a <strong>container</strong>.</p>
+<section id="why-docker-exists" class="level3">
+<h3 class="anchored" data-anchor-id="why-docker-exists">Why Docker exists</h3>
+<p>Before containers, teams struggled with a familiar problem: <em>“It works on my machine.”</em> Different laptops, servers, and cloud environments had different software versions. Results changed. Audits failed. Pipelines broke in production.</p>
+<p>Docker was created to make software <strong>portable</strong>, <strong>repeatable</strong>, and <strong>isolated</strong>.</p>
 </section>
-</section>
-<section id="docker-in-pharma-clinical-real-scenarios" class="level2">
-<h2 class="anchored" data-anchor-id="docker-in-pharma-clinical-real-scenarios">7. Docker in pharma &amp; clinical — real scenarios</h2>
-<section id="scenario-a-reproducible-tlf-generation-clinical" class="level3">
-<h3 class="anchored" data-anchor-id="scenario-a-reproducible-tlf-generation-clinical">Scenario A: Reproducible TLF generation (clinical)</h3>
-<p><strong>Problem:</strong> Two statisticians get slightly different p-values because one has an older R package.</p>
-<p><strong>Docker approach:</strong></p>
-<ol type="1">
-<li>Build an image with fixed R + package versions.</li>
-<li>Tag it <code>study-abc-tlf-env:2024-03-15</code>.</li>
-<li>Every TLF run uses that tag.</li>
-<li>QC re-runs the same tag to verify.</li>
-</ol>
-</section>
-<section id="scenario-b-bioinformatics-pipeline-biotech" class="level3">
-<h3 class="anchored" data-anchor-id="scenario-b-bioinformatics-pipeline-biotech">Scenario B: Bioinformatics pipeline (biotech)</h3>
-<p><strong>Problem:</strong> Installing BWA, samtools, and GATK manually takes days and breaks on updates.</p>
-<p><strong>Docker approach:</strong></p>
-<ul>
-<li>Use community images (e.g.&nbsp;from <a href="https://biocontainers.pro/">Biocontainers</a>).</li>
-<li>Or build one image with all tools pinned.</li>
-<li>Run the same image locally, on a server, or in the cloud.</li>
-</ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> biocontainers/fastqc:v0.11.9_cv8 fastqc <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="scenario-c-ml-model-for-drug-discovery-pharma" class="level3">
-<h3 class="anchored" data-anchor-id="scenario-c-ml-model-for-drug-discovery-pharma">Scenario C: ML model for drug discovery (pharma)</h3>
-<p><strong>Problem:</strong> A data scientist trains a model in Python; manufacturing wants to run it in a controlled environment.</p>
-<p><strong>Docker approach:</strong></p>
-<ul>
-<li>Package model + Python + libraries in an image.</li>
-<li>Validate the image through your internal QA process.</li>
-<li>Deploy the <strong>same image</strong> to staging and production.</li>
-</ul>
-</section>
-<section id="scenario-d-keeping-sensitive-data-separate" class="level3">
-<h3 class="anchored" data-anchor-id="scenario-d-keeping-sensitive-data-separate">Scenario D: Keeping sensitive data separate</h3>
-<p><strong>Problem:</strong> Patient-level data must not leak between studies.</p>
-<p><strong>Docker approach:</strong></p>
-<ul>
-<li>Run each study in a <strong>separate container</strong> with <strong>separate mounted folders</strong>.</li>
-<li>Never bake patient data <em>into</em> the image — mount it at run time only.</li>
-<li>Combine with encryption, access controls, and audit logs (Docker alone is not enough for HIPAA/GDPR — it is one layer).</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="gxp-validation-audit-what-beginners-should-know" class="level2">
-<h2 class="anchored" data-anchor-id="gxp-validation-audit-what-beginners-should-know">8. GxP, validation &amp; audit — what beginners should know</h2>
-<p>If you work in <strong>GxP</strong> (Good Practice guidelines — GCP, GLP, GMP), Docker is a <strong>tool</strong>, not a shortcut around validation.</p>
-<p><strong>Good practices:</strong></p>
+<section id="the-problem-docker-solves" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem-docker-solves">The problem Docker solves</h3>
 <table class="table">
 <colgroup>
-<col style="width: 66%">
-<col style="width: 33%">
+<col style="width: 23%">
+<col style="width: 42%">
+<col style="width: 34%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Practice</th>
-<th>Why</th>
+<th>Problem</th>
+<th>Without Docker</th>
+<th>With Docker</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Version every image</strong> (<code>:1.0</code>, <code>:2024-06-28</code>)</td>
-<td>Traceability — like a batch record</td>
+<td>Environment differences</td>
+<td>Results vary by machine</td>
+<td>Same image → same behavior</td>
 </tr>
 <tr class="even">
-<td><strong>Document the Dockerfile</strong></td>
-<td>Shows how the environment was built</td>
+<td>Complex installs</td>
+<td>Days installing bioinformatics tools</td>
+<td>Pull a pre-built image in minutes</td>
 </tr>
 <tr class="odd">
-<td><strong>Store images in a controlled registry</strong></td>
-<td>Prevents unapproved changes</td>
+<td>Reproducibility</td>
+<td>Hard to prove what ran</td>
+<td>Versioned images document the environment</td>
 </tr>
 <tr class="even">
-<td><strong>Test before production use</strong></td>
-<td>IQ/OQ-style checks on critical containers</td>
-</tr>
-<tr class="odd">
-<td><strong>Keep data out of images</strong></td>
-<td>Patient data belongs in secure storage, not baked into layers</td>
-</tr>
-<tr class="even">
-<td><strong>Log who ran what</strong></td>
-<td>Combine Docker with workflow tools (Nextflow, Airflow, CI systems)</td>
+<td>Isolation</td>
+<td>Tools conflict on one server</td>
+<td>Each container runs independently</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="where-docker-is-used-in-industry" class="level3">
+<h3 class="anchored" data-anchor-id="where-docker-is-used-in-industry">Where Docker is used in industry</h3>
+<ul>
+<li><strong>Pharmaceutical R&amp;D</strong> — reproducible ML and cheminformatics environments</li>
+<li><strong>Clinical programming</strong> — fixed R/SAS/Python stacks for TLF generation</li>
+<li><strong>Bioinformatics</strong> — pipelines for genomics, proteomics, and multi-omics</li>
+<li><strong>Healthcare AI</strong> — deploying models in controlled containers</li>
+<li><strong>Cloud &amp; DevOps</strong> — AWS ECS, Google Cloud Run, Kubernetes workloads</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Beginner takeaway:</strong> Docker is a standardized box for software. Same box, same result — on your laptop, a lab server, or the cloud.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">2. Learning Objectives</h2>
+<section id="by-the-end-of-this-tutorial-you-will-be-able-to" class="level3">
+<h3 class="anchored" data-anchor-id="by-the-end-of-this-tutorial-you-will-be-able-to">By the end of this tutorial, you will be able to</h3>
+<ol type="1">
+<li>Explain what Docker is and why regulated industries use it</li>
+<li>Install Docker Desktop on Windows, macOS, or Linux</li>
+<li>Distinguish images, containers, registries, volumes, and networks</li>
+<li>Build a custom image using a Dockerfile</li>
+<li>Run, stop, and remove containers from the command line</li>
+<li>Mount data safely without baking sensitive files into images</li>
+<li>Describe where Docker fits in bioinformatics and clinical programming workflows</li>
+<li>Apply industry best practices for security, GxP, and reproducibility</li>
+<li>Troubleshoot common Docker errors</li>
+<li>Complete a mini project: a reproducible clinical summary container</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="why-is-this-important" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-this-important">3. Why is this important?</h2>
+<section id="why-should-someone-learn-docker" class="level3">
+<h3 class="anchored" data-anchor-id="why-should-someone-learn-docker">Why should someone learn Docker?</h3>
+<p>Docker is one of the most requested skills in bioinformatics, data engineering, and DevOps job postings. It turns fragile setups into shareable, testable environments.</p>
+</section>
+<section id="why-do-companies-use-it" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-companies-use-it">Why do companies use it?</h3>
+<ul>
+<li><strong>Speed</strong> — onboard new analysts in hours, not weeks</li>
+<li><strong>Compliance</strong> — versioned images support audit trails</li>
+<li><strong>Scale</strong> — same container runs on one laptop or 1,000 cloud nodes</li>
+<li><strong>Cost</strong> — efficient resource use compared to full virtual machines</li>
+</ul>
+</section>
+<section id="why-is-it-important-in-bioinformatics" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-it-important-in-bioinformatics">Why is it important in bioinformatics?</h3>
+<p>Genomics pipelines combine dozens of tools (FastQC, BWA, GATK, bcftools). Docker (and Biocontainers) pins exact versions so published results can be reproduced.</p>
+</section>
+<section id="why-is-it-important-in-clinical-programming" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-it-important-in-clinical-programming">Why is it important in clinical programming?</h3>
+<p>Clinical trial analysis must be <strong>reproducible</strong>. Docker ensures the same R packages, SAS components, or Python libraries are used for every database lock and QC re-run.</p>
+</section>
+<section id="why-is-it-useful-in-data-science" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-it-useful-in-data-science">Why is it useful in data science?</h3>
+<p>Data scientists package models with dependencies so staging and production environments match — reducing “model works locally but fails in deployment” issues.</p>
+<hr>
+</section>
+</section>
+<section id="architecture-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-diagram">4. Architecture Diagram</h2>
+<section id="docker-core-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="docker-core-architecture">Docker core architecture</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="life-sciences-workflow-placement" class="level3">
+<h3 class="anchored" data-anchor-id="life-sciences-workflow-placement">Life-sciences workflow placement</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Screenshot placeholder:</strong> Add a screenshot of Docker Desktop showing a running container after completing Section 5.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">5. Installation</h2>
+<section id="windows" class="level3">
+<h3 class="anchored" data-anchor-id="windows">Windows</h3>
+<ol type="1">
+<li>Download <a href="https://docs.docker.com/desktop/setup/install/windows-install/">Docker Desktop for Windows</a></li>
+<li>Enable WSL 2 if prompted (recommended)</li>
+<li>Install and restart</li>
+<li>Open Docker Desktop and wait until status shows <strong>Running</strong></li>
+</ol>
+<p><strong>Verify:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="macos" class="level3">
+<h3 class="anchored" data-anchor-id="macos">macOS</h3>
+<ol type="1">
+<li>Download <a href="https://docs.docker.com/desktop/setup/install/mac-install/">Docker Desktop for Mac</a> (Apple Silicon or Intel)</li>
+<li>Drag Docker to Applications and launch</li>
+<li>Accept permissions</li>
+</ol>
+<p><strong>Verify:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="linux-ubuntudebian-example" class="level3">
+<h3 class="anchored" data-anchor-id="linux-ubuntudebian-example">Linux (Ubuntu/Debian example)</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Docker Engine</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install <span class="at">-y</span> ca-certificates curl</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> install <span class="at">-m</span> 0755 <span class="at">-d</span> /etc/apt/keyrings</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="at">-o</span> /etc/apt/keyrings/docker.asc</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod a+r /etc/apt/keyrings/docker.asc</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deb [arch=</span><span class="va">$(</span><span class="ex">dpkg</span> <span class="at">--print-architecture</span><span class="va">)</span><span class="st"> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu </span><span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">  </span><span class="va">$(</span><span class="bu">.</span> /etc/os-release <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"</span><span class="va">$VERSION_CODENAME</span><span class="st">"</span><span class="va">)</span><span class="st"> stable"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sudo</span> tee /etc/apt/sources.list.d/docker.list <span class="op">&gt;</span> /dev/null</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install <span class="at">-y</span> docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: run without sudo</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> usermod <span class="at">-aG</span> docker <span class="va">$USER</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="ex">newgrp</span> docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Verify:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -639,125 +597,897 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Docker helps with <strong>reproducibility</strong> and <strong>isolation</strong>. It does <strong>not</strong> replace SOPs, data privacy rules, 21 CFR Part 11 controls, or formal computer system validation on its own.</p>
+<p>Corporate laptops may block Docker. Contact IT before installing in pharmaceutical or hospital environments.</p>
 </div>
 </div>
 <hr>
 </section>
-<section id="how-docker-connects-to-other-tools-on-this-site" class="level2">
-<h2 class="anchored" data-anchor-id="how-docker-connects-to-other-tools-on-this-site">9. How Docker connects to other tools on this site</h2>
+</section>
+<section id="basic-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="basic-concepts">6. Basic Concepts</h2>
+<section id="image" class="level3">
+<h3 class="anchored" data-anchor-id="image">Image</h3>
 <table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Read-only template containing an app and its dependencies</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>A sealed recipe kit with pre-measured ingredients</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td><code>rocker/r-ver:4.3.2</code> for a locked clinical R environment</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Always use specific version tags — never <code>:latest</code> in production</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="container" class="level3">
+<h3 class="anchored" data-anchor-id="container">Container</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>A running instance of an image</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>The actual meal cooked from the recipe kit</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>One container per study analysis run</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Use <code>--rm</code> for temporary jobs; name containers in long-running services</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="registry" class="level3">
+<h3 class="anchored" data-anchor-id="registry">Registry</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Storage and distribution system for images</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>A warehouse catalog of standardized boxes</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>Private AWS ECR registry for validated pharma images</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Use private registries for internal and GxP workloads</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="docker-hub" class="level3">
+<h3 class="anchored" data-anchor-id="docker-hub">Docker Hub</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Public registry maintained by Docker</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>An app store for container images</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>Pulling official <code>python:3.11-slim</code> base images</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Prefer verified publishers; scan images for vulnerabilities</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dockerfile" class="level3">
+<h3 class="anchored" data-anchor-id="dockerfile">Dockerfile</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Text file with step-by-step instructions to build an image</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>The master recipe card</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>Documented build file archived with study deliverables</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Keep Dockerfiles in version control; review changes like code</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="volume" class="level3">
+<h3 class="anchored" data-anchor-id="volume">Volume</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Persistent storage mounted into a container</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>A USB drive plugged into the box</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>Mount clinical CSV input and TLF output folders</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Never store patient data inside the image — mount at runtime</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="network" class="level3">
+<h3 class="anchored" data-anchor-id="network">Network</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Virtual network allowing containers to communicate</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>Phone lines between offices in the same building</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>Connect a Shiny app container to a PostgreSQL container</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Use custom networks; avoid exposing unnecessary ports</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="hands-on-examples" class="level2">
+<h2 class="anchored" data-anchor-id="hands-on-examples">7. Hands-on Examples</h2>
+<section id="example-1-hello-world" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-hello-world">Example 1 — Hello World</h3>
+<p><strong>Problem:</strong> Confirm Docker is installed and working.</p>
+<p><strong>Solution:</strong> Run the official test image.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Expected output:</strong> Message containing <code>Hello from Docker!</code></p>
+<p><strong>Explanation:</strong> Docker downloaded a tiny image, started a container, printed output, and exited.</p>
+<hr>
+</section>
+<section id="example-2-run-r-without-installing-r" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-run-r-without-installing-r">Example 2 — Run R without installing R</h3>
+<p><strong>Problem:</strong> You need R 4.3 but do not want to install it locally.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> rocker/r-ver:4.3 R <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Expected output:</strong> <code>R version 4.3.x ...</code></p>
+<p><strong>Explanation:</strong> The container includes R; your host machine stays unchanged.</p>
+<hr>
+</section>
+<section id="example-3-interactive-python-shell" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-interactive-python-shell">Example 3 — Interactive Python shell</h3>
+<p><strong>Problem:</strong> Test Python in an isolated environment.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> python:3.11-slim python</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Docker Python ready"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>exit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Expected result:</strong> Python REPL opens, prints message, exits cleanly.</p>
+<hr>
+</section>
+<section id="example-4-build-a-clinical-summary-image" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-build-a-clinical-summary-image">Example 4 — Build a clinical summary image</h3>
+<p><strong>Problem:</strong> Create a reproducible environment for summarizing patient ages.</p>
+<p><strong>Solution:</strong></p>
+<p>Create <code>summarize.R</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="at">trailingOnly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(args[<span class="dv">1</span>])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">nrow</span>(dat),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_age =</span> <span class="fu">round</span>(<span class="fu">mean</span>(dat<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(out, args[<span class="dv">2</span>], <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Done</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create <code>patients.csv</code>:</p>
+<pre class="csv"><code>patient_id,age
+001,54
+002,61
+003,47</code></pre>
+<p>Create <code>Dockerfile</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/r-ver:4.3</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /analysis</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> summarize.R patients.csv ./</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"summarize.R"</span>, <span class="st">"patients.csv"</span>, <span class="st">"summary.csv"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Build and run:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> clinical-summary:1.0 .</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">:/output"</span> clinical-summary:1.0 <span class="dt">\</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  sh <span class="at">-c</span> <span class="st">"Rscript summarize.R patients.csv /output/summary.csv"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> summary.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Expected output:</strong> CSV with <code>n</code> and <code>mean_age</code>.</p>
+<p><strong>Explanation:</strong> Image tag <code>clinical-summary:1.0</code> documents the exact environment used.</p>
+<hr>
+</section>
+<section id="example-5-pull-a-bioinformatics-tool" class="level3">
+<h3 class="anchored" data-anchor-id="example-5-pull-a-bioinformatics-tool">Example 5 — Pull a bioinformatics tool</h3>
+<p><strong>Problem:</strong> Run FastQC without manual installation.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> biocontainers/fastqc:v0.11.9_cv8 fastqc <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Expected result:</strong> FastQC help text displayed.</p>
+<hr>
+</section>
+</section>
+<section id="real-world-industry-use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="real-world-industry-use-cases">8. Real-world Industry Use Cases</h2>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 43%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Tool</th>
-<th>How Docker fits</th>
+<th>#</th>
+<th>Industry</th>
+<th>Use case</th>
+<th>How Docker helps</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="./nextflow.html">Nextflow</a></td>
-<td>Runs each pipeline step inside a container — same tools everywhere</td>
+<td>1</td>
+<td>Bioinformatics</td>
+<td>WGS variant calling</td>
+<td>Pins BWA, GATK, bcftools versions</td>
 </tr>
 <tr class="even">
-<td><a href="./clinical-r.html">R / Clinical R</a></td>
-<td>Fixed R + package versions for TLFs and CDISC work</td>
+<td>2</td>
+<td>Pharma</td>
+<td>Drug target ML models</td>
+<td>Same model container in dev and prod</td>
 </tr>
 <tr class="odd">
-<td><a href="./python.html">Python</a></td>
-<td>Data science and ML environments that match production</td>
+<td>3</td>
+<td>Clinical trials</td>
+<td>TLF regeneration</td>
+<td>Locked R/SAS environment per study</td>
 </tr>
 <tr class="even">
-<td>Cloud (AWS, GCP)</td>
-<td>Same image on your laptop and in the cloud</td>
+<td>4</td>
+<td>Healthcare</td>
+<td>Diagnostic AI deployment</td>
+<td>Isolated, scalable inference containers</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>CRO</td>
+<td>Multi-study platforms</td>
+<td>Separate containers per sponsor data</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Manufacturing</td>
+<td>Batch QC analytics</td>
+<td>Validated image versions per SOP</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Real-world evidence</td>
+<td>Claims data pipelines</td>
+<td>Reproducible ETL in the cloud</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Genomics core lab</td>
+<td>High-throughput FASTQ QC</td>
+<td>Parallel containers per sample</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Regulatory</td>
+<td>Audit reproduction</td>
+<td>Image digest proves what executed</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Data engineering</td>
+<td>ETL to data lake</td>
+<td>Portable Spark/Python worker images</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>AI/ML</td>
+<td>Model serving</td>
+<td>FastAPI/Torch images on Kubernetes</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Clinical programming</td>
+<td>ADaM validation</td>
+<td>Shared env for independent QC stats</td>
 </tr>
 </tbody>
 </table>
-<p><strong>One sentence:</strong> Docker is often the <strong>“standard box”</strong> that other tools <strong>carry</strong> your analysis in.</p>
 <hr>
 </section>
-<section id="common-beginner-mistakes-and-fixes" class="level2">
-<h2 class="anchored" data-anchor-id="common-beginner-mistakes-and-fixes">10. Common beginner mistakes (and fixes)</h2>
+<section id="bioinformatics-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="bioinformatics-workflow">9. Bioinformatics Workflow</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Role of Docker:</strong> Each pipeline step (FastQC, alignment, calling) runs inside a container with an exact tool version. Nextflow orchestrates which container runs when. This prevents tool-version drift across samples and sites.</p>
+<hr>
+</section>
+<section id="clinical-programming-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="clinical-programming-workflow">10. Clinical Programming Workflow</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>How Docker helps:</strong></p>
+<ul>
+<li><strong>SDTM/ADaM conversion</strong> — same R/Python/Pinnacle21 automation environment every lock</li>
+<li><strong>Analysis</strong> — reproducible <code>rocker/tidyverse</code> or SAS-compatible stacks</li>
+<li><strong>TLFs</strong> — QC statisticians re-run the identical container to verify outputs</li>
+<li><strong>Submission</strong> — image tags archived alongside analysis documentation</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Docker supports reproducibility but does <strong>not</strong> replace formal CSV, SOPs, or 21 CFR Part 11 controls by itself.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="best-practices" class="level2">
+<h2 class="anchored" data-anchor-id="best-practices">11. Best Practices</h2>
+<section id="do" class="level3">
+<h3 class="anchored" data-anchor-id="do">DO</h3>
+<ul>
+<li>Pin image versions (<code>:1.0</code>, <code>:2024-06-28</code>)</li>
+<li>Store Dockerfiles in Git</li>
+<li>Use multi-stage builds to reduce image size</li>
+<li>Scan images for CVEs (Trivy, Snyk)</li>
+<li>Mount data with volumes; keep PHI out of images</li>
+<li>Document image digest in study files</li>
+</ul>
+</section>
+<section id="dont" class="level3">
+<h3 class="anchored" data-anchor-id="dont">DON’T</h3>
+<ul>
+<li>Use <code>:latest</code> in regulated production</li>
+<li>Run containers as root when avoidable</li>
+<li>Store passwords or API keys in Dockerfiles</li>
+<li>Copy patient datasets into image layers</li>
+<li>Expose unnecessary ports to the internet</li>
+</ul>
+</section>
+<section id="performance-tips" class="level3">
+<h3 class="anchored" data-anchor-id="performance-tips">Performance tips</h3>
+<ul>
+<li>Use <code>-slim</code> or <code>-alpine</code> base images</li>
+<li>Leverage build cache; order Dockerfile layers from least to most frequently changed</li>
+<li>Prune unused images: <code>docker system prune</code></li>
+</ul>
+</section>
+<section id="security-tips" class="level3">
+<h3 class="anchored" data-anchor-id="security-tips">Security tips</h3>
+<ul>
+<li>Use private registries for internal images</li>
+<li>Enable Docker Content Trust where required</li>
+<li>Apply least-privilege IAM on cloud registries</li>
+</ul>
+</section>
+<section id="optimization-tips" class="level3">
+<h3 class="anchored" data-anchor-id="optimization-tips">Optimization tips</h3>
+<ul>
+<li>One process per container when possible</li>
+<li>Use <code>.dockerignore</code> to speed builds</li>
+<li>Compose multi-container apps with Docker Compose for local dev</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="common-mistakes" class="level2">
+<h2 class="anchored" data-anchor-id="common-mistakes">12. Common Mistakes</h2>
 <table class="table">
 <colgroup>
-<col style="width: 64%">
-<col style="width: 35%">
+<col style="width: 33%">
+<col style="width: 29%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Mistake</th>
-<th>Fix</th>
+<th>Reason</th>
+<th>Solution</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>“Docker is installed but commands fail”</td>
-<td>Open <strong>Docker Desktop</strong> and wait until it is running</td>
+<td>Docker Desktop not running</td>
+<td>Service stopped after reboot</td>
+<td>Launch Docker Desktop; wait for green status</td>
 </tr>
 <tr class="even">
-<td>Putting secrets or patient data in a Dockerfile</td>
-<td>Use mounted volumes and secret managers — never <code>COPY</code> PHI into an image</td>
+<td><code>permission denied</code> on Linux</td>
+<td>User not in <code>docker</code> group</td>
+<td><code>sudo usermod -aG docker $USER</code></td>
 </tr>
 <tr class="odd">
-<td>Using <code>:latest</code> tag in production</td>
-<td>Always use <strong>specific version tags</strong></td>
+<td>Huge images</td>
+<td>Installing unnecessary packages</td>
+<td>Use slim bases; multi-stage builds</td>
 </tr>
 <tr class="even">
-<td>Huge images (slow downloads)</td>
-<td>Start from <code>-slim</code> base images; only install what you need</td>
+<td>Data lost after container stops</td>
+<td>Wrote inside container filesystem</td>
+<td>Use volumes for persistent output</td>
 </tr>
 <tr class="odd">
-<td>Expecting Docker to validate itself</td>
-<td>Follow your organization’s QA / CSV process</td>
+<td>Wrong architecture image</td>
+<td>Apple Silicon vs x86 mismatch</td>
+<td>Select <code>arm64</code> or use <code>--platform linux/amd64</code></td>
 </tr>
 <tr class="even">
-<td>Confusing <strong>image</strong> and <strong>container</strong></td>
-<td>Image = blueprint; container = running copy</td>
+<td>PHI in image layers</td>
+<td>Copied data in Dockerfile</td>
+<td>Mount volumes at runtime only</td>
+</tr>
+<tr class="odd">
+<td>Port already in use</td>
+<td>Another service on same port</td>
+<td>Change host port: <code>-p 8081:8080</code></td>
+</tr>
+<tr class="even">
+<td>Cannot pull image</td>
+<td>Network/proxy/firewall</td>
+<td>Configure proxy; use internal mirror</td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
-<section id="quick-reference-commands-to-remember" class="level2">
-<h2 class="anchored" data-anchor-id="quick-reference-commands-to-remember">11. Quick reference — commands to remember</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check Docker</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># First test</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># List running containers</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Build an image from a Dockerfile</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-study-env:1.0 .</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Run an image</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> my-study-env:1.0</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Run with a folder mounted (data in/out)</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">:/data"</span> my-study-env:1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="troubleshooting-guide" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting-guide">13. Troubleshooting Guide</h2>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Error</th>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Cannot connect to the Docker daemon</code></td>
+<td>Docker not running</td>
+<td>Start Docker Desktop / <code>sudo systemctl start docker</code></td>
+</tr>
+<tr class="even">
+<td><code>pull access denied</code></td>
+<td>Private image or auth needed</td>
+<td><code>docker login</code> to registry</td>
+</tr>
+<tr class="odd">
+<td><code>no space left on device</code></td>
+<td>Disk full</td>
+<td><code>docker system df</code> then <code>docker system prune -a</code></td>
+</tr>
+<tr class="even">
+<td><code>exec format error</code></td>
+<td>CPU architecture mismatch</td>
+<td>Use correct platform image</td>
+</tr>
+<tr class="odd">
+<td><code>port is already allocated</code></td>
+<td>Port conflict</td>
+<td>Stop other service or change mapping</td>
+</tr>
+<tr class="even">
+<td>Build fails at <code>COPY</code></td>
+<td>File missing from context</td>
+<td>Check path and <code>.dockerignore</code></td>
+</tr>
+<tr class="odd">
+<td>Container exits immediately</td>
+<td>CMD error</td>
+<td>Run interactively: <code>docker run -it image sh</code></td>
+</tr>
+<tr class="even">
+<td>Slow performance on Mac</td>
+<td>File sharing overhead</td>
+<td>Use delegated mounts; limit watched folders</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Useful diagnostic commands:</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> logs CONTAINER_ID</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect IMAGE_NAME</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system df</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">12. Next steps</h2>
-<ol type="1">
-<li>Install Docker Desktop and run <code>docker run hello-world</code>.</li>
-<li>Try the <a href="#step-1-create-a-folder">clinical demo</a> above.</li>
-<li>Explore <a href="./nextflow.html">Nextflow</a> to see containers in multi-step pipelines.</li>
-<li>Ask your IT team about <strong>private registries</strong> if you work in a regulated company.</li>
-</ol>
+<section id="interview-questions" class="level2">
+<h2 class="anchored" data-anchor-id="interview-questions">14. Interview Questions</h2>
+<section id="beginner" class="level3">
+<h3 class="anchored" data-anchor-id="beginner">Beginner</h3>
+<p><strong>Q1: What is the difference between an image and a container?</strong><br>
+<strong>A:</strong> An image is a read-only template; a container is a running instance of that image.</p>
+<p><strong>Q2: What is Docker Hub?</strong><br>
+<strong>A:</strong> A public registry for storing and sharing container images.</p>
+<p><strong>Q3: Why do bioinformatics teams use Docker?</strong><br>
+<strong>A:</strong> To pin tool versions and reproduce pipeline results across machines.</p>
+</section>
+<section id="intermediate" class="level3">
+<h3 class="anchored" data-anchor-id="intermediate">Intermediate</h3>
+<p><strong>Q4: What is a volume and when would you use one?</strong><br>
+<strong>A:</strong> Persistent storage mounted into a container — used for input data and output results without baking them into the image.</p>
+<p><strong>Q5: How do Docker and Kubernetes relate?</strong><br>
+<strong>A:</strong> Docker builds/runs containers locally; Kubernetes orchestrates many containers across a cluster.</p>
+<p><strong>Q6: How would you make a clinical analysis reproducible with Docker?</strong><br>
+<strong>A:</strong> Build a versioned image, document the tag/digest, mount study data at runtime, archive the Dockerfile in version control.</p>
+</section>
+<section id="advanced" class="level3">
+<h3 class="anchored" data-anchor-id="advanced">Advanced</h3>
+<p><strong>Q7: What are multi-stage builds?</strong><br>
+<strong>A:</strong> Dockerfiles with multiple <code>FROM</code> stages — compile in one stage, copy only artifacts to a smaller final image.</p>
+<p><strong>Q8: How do you reduce attack surface in production containers?</strong><br>
+<strong>A:</strong> Non-root user, minimal base image, no secrets in layers, regular scanning, read-only filesystem where possible.</p>
+<p><strong>Q9: Explain how Nextflow uses Docker.</strong><br>
+<strong>A:</strong> Each process specifies a container image; Nextflow pulls and runs it per task, enabling reproducible scalable pipelines.</p>
+<hr>
+</section>
+</section>
+<section id="cheat-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="cheat-sheet">15. Cheat Sheet</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Info</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> info</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Images</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull IMAGE:TAG</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> NAME:TAG .</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rmi IMAGE</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Containers</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> IMAGE</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> IMAGE sh</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop ID</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> logs ID</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> ID sh</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">:/data"</span> IMAGE</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Cleanup</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Tip</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Remove container after exit</td>
+<td><code>--rm</code></td>
+</tr>
+<tr class="even">
+<td>Interactive terminal</td>
+<td><code>-it</code></td>
+</tr>
+<tr class="odd">
+<td>Name a container</td>
+<td><code>--name myjob</code></td>
+</tr>
+<tr class="even">
+<td>Map port</td>
+<td><code>-p 8080:80</code></td>
+</tr>
+<tr class="odd">
+<td>Env variable</td>
+<td><code>-e VAR=value</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">16. Summary</h2>
+<ul>
+<li>Docker packages apps and dependencies into portable <strong>containers</strong></li>
+<li>An <strong>image</strong> is the template; a <strong>container</strong> is the running instance</li>
+<li>Docker solves reproducibility, isolation, and deployment consistency</li>
+<li>Life-sciences teams use Docker for genomics pipelines, clinical analysis, and ML</li>
+<li>Install via <strong>Docker Desktop</strong> (Windows/Mac) or <strong>Docker Engine</strong> (Linux)</li>
+<li>Build custom environments with a <strong>Dockerfile</strong></li>
+<li>Use <strong>volumes</strong> for data — never embed PHI in images</li>
+<li>Pin <strong>version tags</strong> for regulated and scientific work</li>
+<li>Combine Docker with <strong>Nextflow</strong> for scalable bioinformatics</li>
+<li>Combine Docker with <strong>Quarto</strong> for reproducible reports</li>
+<li>Scan images, prune disk usage, and document image digests</li>
+<li>Troubleshoot with <code>docker logs</code>, <code>docker ps</code>, and <code>docker inspect</code></li>
+<li>Next recommended topics: <strong>Linux → Git → Nextflow → Kubernetes → AWS</strong></li>
+</ul>
+<hr>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">17. Next Topic</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>After Docker, learn <strong><a href="./nextflow.html">Nextflow</a></strong> to orchestrate multi-step pipelines, or <strong><a href="./linux.html">Linux foundations</a></strong> if you are new to the command line.</p>
+<hr>
+</section>
+<section id="learning-path" class="level2">
+<h2 class="anchored" data-anchor-id="learning-path">18. Learning Path</h2>
+<section id="bioinformatics-roadmap" class="level3">
+<h3 class="anchored" data-anchor-id="bioinformatics-roadmap">Bioinformatics roadmap</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="clinical-programming-roadmap" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-programming-roadmap">Clinical programming roadmap</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
 </section>
 <section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">13. Further reading</h2>
-<ul>
-<li><a href="https://docs.docker.com/get-started/">Docker Get Started guide</a></li>
-<li><a href="https://docs.docker.com/desktop/">Docker Desktop documentation</a></li>
-<li><a href="https://biocontainers.pro/">Biocontainers</a> — life-sciences tool images</li>
-<li><a href="https://rocker-project.org/">Rocker project</a> — R images for statistics and clinical programming</li>
-</ul>
+<h2 class="anchored" data-anchor-id="further-reading">19. Further Reading</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Official Docker docs</td>
+<td><a href="https://docs.docker.com/">https://docs.docker.com/</a></td>
+</tr>
+<tr class="even">
+<td>Docker GitHub</td>
+<td><a href="https://github.com/docker">https://github.com/docker</a></td>
+</tr>
+<tr class="odd">
+<td>Biocontainers</td>
+<td><a href="https://biocontainers.pro/">https://biocontainers.pro/</a></td>
+</tr>
+<tr class="even">
+<td>Rocker (R images)</td>
+<td><a href="https://rocker-project.org/">https://rocker-project.org/</a></td>
+</tr>
+<tr class="odd">
+<td>Google Cloud Run + containers</td>
+<td><a href="https://cloud.google.com/run/docs">https://cloud.google.com/run/docs</a></td>
+</tr>
+<tr class="even">
+<td>NF-Core (Nextflow + Docker)</td>
+<td><a href="https://nf-co.re/">https://nf-co.re/</a></td>
+</tr>
+<tr class="odd">
+<td>Book</td>
+<td><em>Docker Deep Dive</em> — Nigel Poulton</td>
+</tr>
+<tr class="even">
+<td>YouTube</td>
+<td>Docker official channel, TechWorld with Nana</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="mini-project-reproducible-study-summary-container" class="level2">
+<h2 class="anchored" data-anchor-id="mini-project-reproducible-study-summary-container">20. Mini Project — Reproducible Study Summary Container</h2>
+<section id="problem-statement" class="level3">
+<h3 class="anchored" data-anchor-id="problem-statement">Problem statement</h3>
+<p>Build a Dockerized R environment that reads a patient CSV and writes a summary CSV — suitable for QC documentation in a mock clinical study.</p>
+</section>
+<section id="architecture" class="level3">
+<h3 class="anchored" data-anchor-id="architecture">Architecture</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="folder-structure" class="level3">
+<h3 class="anchored" data-anchor-id="folder-structure">Folder structure</h3>
+<pre class="text"><code>clinical-docker-project/
+├── Dockerfile
+├── summarize.R
+├── patients.csv
+└── README.md</code></pre>
+</section>
+<section id="commands" class="level3">
+<h3 class="anchored" data-anchor-id="commands">Commands</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> clinical-docker-project <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> clinical-docker-project</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add Dockerfile, summarize.R, patients.csv from Example 4</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> study-qc:1.0 .</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">:/output"</span> study-qc:1.0 <span class="dt">\</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  sh <span class="at">-c</span> <span class="st">"Rscript summarize.R patients.csv /output/summary.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="expected-output" class="level3">
+<h3 class="anchored" data-anchor-id="expected-output">Expected output</h3>
+<p><code>summary.csv</code> containing record count and mean age — reproducible when the same <code>study-qc:1.0</code> image is used.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Archive the image tag and Git commit hash in your mock study documentation to practice GxP-style traceability.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">21. Exercises</h2>
+<section id="practice-questions" class="level3">
+<h3 class="anchored" data-anchor-id="practice-questions">10 practice questions</h3>
+<ol type="1">
+<li>Define image vs container in your own words.</li>
+<li>What command verifies Docker installation?</li>
+<li>Why should you avoid <code>:latest</code> in production?</li>
+<li>What flag removes a container after it exits?</li>
+<li>How do you mount the current directory into a container?</li>
+<li>Name two life-sciences registries or image sources.</li>
+<li>Where does Docker fit in a FASTQ-to-VCF pipeline?</li>
+<li>Why should PHI not be copied into a Dockerfile?</li>
+<li>What command lists running containers?</li>
+<li>How does Docker help clinical TLF QC?</li>
+</ol>
+</section>
+<section id="assignments" class="level3">
+<h3 class="anchored" data-anchor-id="assignments">5 assignments</h3>
+<ol type="1">
+<li>Build an image with Python 3.11 that prints today’s date.</li>
+<li>Run <code>rocker/tidyverse</code> and execute a dplyr pipeline inside the container.</li>
+<li>Create a <code>.dockerignore</code> and explain what it excludes.</li>
+<li>Pull a Biocontainers image and document its tag.</li>
+<li>Write a one-page SOP for naming and tagging study images.</li>
+</ol>
+</section>
+<section id="mini-projects" class="level3">
+<h3 class="anchored" data-anchor-id="mini-projects">3 mini projects</h3>
+<ol type="1">
+<li>Dockerize a simple FastQC command on a sample FASTQ file.</li>
+<li>Build a two-stage Dockerfile (build tools → minimal runtime).</li>
+<li>Compose a web app + database with Docker Compose locally.</li>
+</ol>
+</section>
+<section id="capstone-project" class="level3">
+<h3 class="anchored" data-anchor-id="capstone-project">1 capstone project</h3>
+<p>Design a reproducible mini pipeline: QC → summary stats → Quarto HTML report — each step in its own versioned container, orchestrated manually or with Nextflow.</p>
+<hr>
 <p><a href="./index.html">Back to home</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1153,4 +1883,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

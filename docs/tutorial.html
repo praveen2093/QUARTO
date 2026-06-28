@@ -100,6 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -127,50 +128,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./python.html"> <i class="bi bi-filetype-py" role="img">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-layers" role="img">
 </i> 
-<span class="menu-text">Python</span></a>
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="./linux.html"><i class="bi bi-terminal" role="img">
+</i> 
+ <span class="dropdown-text">Linux</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r.html"> <i class="bi bi-r-circle" role="img">
+        <li>
+    <a class="dropdown-item" href="./git.html"><i class="bi bi-git" role="img">
 </i> 
-<span class="menu-text">R</span></a>
+ <span class="dropdown-text">Git</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./clinical-r.html"> <i class="bi bi-heart-pulse" role="img">
+        <li>
+    <a class="dropdown-item" href="./docker.html"><i class="bi bi-box-seam" role="img">
 </i> 
-<span class="menu-text">Clinical R</span></a>
+ <span class="dropdown-text">Docker</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./nextflow.html"> <i class="bi bi-diagram-3" role="img">
+        <li>
+    <a class="dropdown-item" href="./nextflow.html"><i class="bi bi-diagram-3" role="img">
 </i> 
-<span class="menu-text">Nextflow</span></a>
+ <span class="dropdown-text">Nextflow</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./docker.html"> <i class="bi bi-box-seam" role="img">
+        <li>
+    <a class="dropdown-item" href="./kubernetes.html"><i class="bi bi-boxes" role="img">
 </i> 
-<span class="menu-text">Docker</span></a>
+ <span class="dropdown-text">Kubernetes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aws.html"><i class="bi bi-cloud" role="img">
+</i> 
+ <span class="dropdown-text">AWS</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--clinical" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-heart-pulse" role="img">
+</i> 
+ <span class="menu-text">Data &amp; Clinical</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data--clinical">    
+        <li>
+    <a class="dropdown-item" href="./python.html"><i class="bi bi-filetype-py" role="img">
+</i> 
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r.html"><i class="bi bi-r-circle" role="img">
+</i> 
+ <span class="dropdown-text">R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./clinical-r.html"><i class="bi bi-hospital" role="img">
+</i> 
+ <span class="dropdown-text">Clinical R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pharmaverse.html"><i class="bi bi-capsule" role="img">
+</i> 
+ <span class="dropdown-text">Pharmaverse</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./statistics.html"><i class="bi bi-calculator" role="img">
+</i> 
+ <span class="dropdown-text">Statistics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r-shiny.html"><i class="bi bi-window-stack" role="img">
+</i> 
+ <span class="dropdown-text">R Shiny</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
+</i> 
+<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./quarto_tutorial_for_beginners.html"> <i class="bi bi-journal-bookmark" role="img">
 </i> 
 <span class="menu-text">Quarto</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r-shiny.html"> <i class="bi bi-window-stack" role="img">
-</i> 
-<span class="menu-text">R Shiny</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./statistics.html"> <i class="bi bi-calculator" role="img">
-</i> 
-<span class="menu-text">Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
-</i> 
-<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> <i class="bi bi-info-circle" role="img">
@@ -192,20 +236,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#quarto-tutorial-for-complete-beginners" id="toc-quarto-tutorial-for-complete-beginners" class="nav-link active" data-scroll-target="#quarto-tutorial-for-complete-beginners">Quarto Tutorial for Complete Beginners</a>
   <ul class="collapse">
   <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link" data-scroll-target="#what-is-quarto">1. What is Quarto?</a></li>
   <li><a href="#why-use-quarto" id="toc-why-use-quarto" class="nav-link" data-scroll-target="#why-use-quarto">2. Why use Quarto?</a></li>
   <li><a href="#do-i-need-r" id="toc-do-i-need-r" class="nav-link" data-scroll-target="#do-i-need-r">3. Do I need R?</a></li>
-  <li><a href="#what-do-i-need" id="toc-what-do-i-need" class="nav-link" data-scroll-target="#what-do-i-need">4. What do I need?</a></li>
-  <li><a href="#what-is-markdown" id="toc-what-is-markdown" class="nav-link" data-scroll-target="#what-is-markdown">5. What is Markdown?</a></li>
+  <li><a href="#what-do-i-need" id="toc-what-do-i-need" class="nav-link" data-scroll-target="#what-do-i-need">4. What do I need?</a>
+  <ul class="collapse">
+  <li><a href="#required" id="toc-required" class="nav-link" data-scroll-target="#required">Required</a></li>
+  <li><a href="#optional" id="toc-optional" class="nav-link" data-scroll-target="#optional">Optional</a></li>
+  <li><a href="#check-quarto" id="toc-check-quarto" class="nav-link" data-scroll-target="#check-quarto">Check Quarto</a></li>
+  </ul></li>
+  <li><a href="#what-is-markdown" id="toc-what-is-markdown" class="nav-link" data-scroll-target="#what-is-markdown">5. What is Markdown?</a>
+  <ul class="collapse">
+  <li><a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings">Headings</a></li>
+  <li><a href="#bold-and-italic" id="toc-bold-and-italic" class="nav-link" data-scroll-target="#bold-and-italic">Bold and italic</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">Links</a></li>
+  </ul></li>
   <li><a href="#your-first-quarto-document" id="toc-your-first-quarto-document" class="nav-link" data-scroll-target="#your-first-quarto-document">6. Your first Quarto document</a></li>
   <li><a href="#what-is-yaml" id="toc-what-is-yaml" class="nav-link" data-scroll-target="#what-is-yaml">7. What is YAML?</a></li>
   <li><a href="#render-your-document" id="toc-render-your-document" class="nav-link" data-scroll-target="#render-your-document">8. Render your document</a></li>
   <li><a href="#create-a-website-page" id="toc-create-a-website-page" class="nav-link" data-scroll-target="#create-a-website-page">9. Create a website page</a></li>
-  <li><a href="#use-images-and-tables" id="toc-use-images-and-tables" class="nav-link" data-scroll-target="#use-images-and-tables">10. Use images and tables</a></li>
-  <li><a href="#add-code-blocks" id="toc-add-code-blocks" class="nav-link" data-scroll-target="#add-code-blocks">11. Add code blocks</a></li>
+  <li><a href="#use-images-and-tables" id="toc-use-images-and-tables" class="nav-link" data-scroll-target="#use-images-and-tables">10. Use images and tables</a>
+  <ul class="collapse">
+  <li><a href="#image" id="toc-image" class="nav-link" data-scroll-target="#image">Image</a></li>
+  <li><a href="#table" id="toc-table" class="nav-link" data-scroll-target="#table">Table</a></li>
+  </ul></li>
+  <li><a href="#add-code-blocks" id="toc-add-code-blocks" class="nav-link" data-scroll-target="#add-code-blocks">11. Add code blocks</a>
+  <ul class="collapse">
+  <li><a href="#python-example" id="toc-python-example" class="nav-link" data-scroll-target="#python-example">Python example</a></li>
+  </ul></li>
   <li><a href="#generate-multiple-outputs" id="toc-generate-multiple-outputs" class="nav-link" data-scroll-target="#generate-multiple-outputs">12. Generate multiple outputs</a></li>
   <li><a href="#common-beginner-mistakes" id="toc-common-beginner-mistakes" class="nav-link" data-scroll-target="#common-beginner-mistakes">13. Common beginner mistakes</a></li>
   <li><a href="#beginner-workflow" id="toc-beginner-workflow" class="nav-link" data-scroll-target="#beginner-workflow">14. Beginner workflow</a></li>
@@ -411,7 +473,7 @@ Important
 <p>If you install Python or R, Quarto can also run code and show results.</p>
 <section id="python-example" class="level3">
 <h3 class="anchored" data-anchor-id="python-example">Python example</h3>
-<div id="d3a3f41a" class="cell" data-execution_count="1">
+<div id="20f5d1b3" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello from Python"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -860,4 +922,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

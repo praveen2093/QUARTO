@@ -67,6 +67,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -94,50 +95,93 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./python.html"> <i class="bi bi-filetype-py" role="img">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-layers" role="img">
 </i> 
-<span class="menu-text">Python</span></a>
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="./linux.html"><i class="bi bi-terminal" role="img">
+</i> 
+ <span class="dropdown-text">Linux</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r.html"> <i class="bi bi-r-circle" role="img">
+        <li>
+    <a class="dropdown-item" href="./git.html"><i class="bi bi-git" role="img">
 </i> 
-<span class="menu-text">R</span></a>
+ <span class="dropdown-text">Git</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./clinical-r.html"> <i class="bi bi-heart-pulse" role="img">
+        <li>
+    <a class="dropdown-item" href="./docker.html"><i class="bi bi-box-seam" role="img">
 </i> 
-<span class="menu-text">Clinical R</span></a>
+ <span class="dropdown-text">Docker</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./nextflow.html"> <i class="bi bi-diagram-3" role="img">
+        <li>
+    <a class="dropdown-item" href="./nextflow.html"><i class="bi bi-diagram-3" role="img">
 </i> 
-<span class="menu-text">Nextflow</span></a>
+ <span class="dropdown-text">Nextflow</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./docker.html"> <i class="bi bi-box-seam" role="img">
+        <li>
+    <a class="dropdown-item" href="./kubernetes.html"><i class="bi bi-boxes" role="img">
 </i> 
-<span class="menu-text">Docker</span></a>
+ <span class="dropdown-text">Kubernetes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aws.html"><i class="bi bi-cloud" role="img">
+</i> 
+ <span class="dropdown-text">AWS</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--clinical" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-heart-pulse" role="img">
+</i> 
+ <span class="menu-text">Data &amp; Clinical</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data--clinical">    
+        <li>
+    <a class="dropdown-item" href="./python.html"><i class="bi bi-filetype-py" role="img">
+</i> 
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r.html"><i class="bi bi-r-circle" role="img">
+</i> 
+ <span class="dropdown-text">R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./clinical-r.html"><i class="bi bi-hospital" role="img">
+</i> 
+ <span class="dropdown-text">Clinical R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pharmaverse.html"><i class="bi bi-capsule" role="img">
+</i> 
+ <span class="dropdown-text">Pharmaverse</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./statistics.html"><i class="bi bi-calculator" role="img">
+</i> 
+ <span class="dropdown-text">Statistics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r-shiny.html"><i class="bi bi-window-stack" role="img">
+</i> 
+ <span class="dropdown-text">R Shiny</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
+</i> 
+<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./quarto_tutorial_for_beginners.html"> <i class="bi bi-journal-bookmark" role="img">
 </i> 
 <span class="menu-text">Quarto</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r-shiny.html"> <i class="bi bi-window-stack" role="img">
-</i> 
-<span class="menu-text">R Shiny</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./statistics.html"> <i class="bi bi-calculator" role="img">
-</i> 
-<span class="menu-text">Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
-</i> 
-<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> <i class="bi bi-info-circle" role="img">
@@ -186,9 +230,25 @@ ul.task-list li input[type="checkbox"] {
 <section id="statix-ai-data-labs" class="level1 hero">
 <h1>StatiX AI &amp; Data Labs</h1>
 <p>Welcome — a curated collection of hands-on tutorials and guides for data, AI and programming.</p>
-<p>Click any tile below to open the corresponding tutorial.</p>
+<p>Click any tile below to open the corresponding tutorial. Tiles marked <strong>Available</strong> include full industry-standard documentation.</p>
 </section>
 <div class="tech-grid">
+  <div class="tech-card">
+    <a href="linux.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-terminal" aria-hidden="true"></i></div>
+      <div class="tech-name">Linux</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
+  <div class="tech-card">
+    <a href="git.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-git" aria-hidden="true"></i></div>
+      <div class="tech-name">Git</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
   <div class="tech-card">
     <a href="python.html">
       <span class="tech-status tech-status--soon">Coming soon</span>
@@ -254,6 +314,30 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
   <div class="tech-card">
+    <a href="kubernetes.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-boxes" aria-hidden="true"></i></div>
+      <div class="tech-name">Kubernetes</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
+  <div class="tech-card">
+    <a href="aws.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-cloud" aria-hidden="true"></i></div>
+      <div class="tech-name">AWS</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
+  <div class="tech-card">
+    <a href="pharmaverse.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-capsule" aria-hidden="true"></i></div>
+      <div class="tech-name">Pharmaverse</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
+  <div class="tech-card">
     <a href="ml-ai.html">
       <span class="tech-status tech-status--soon">Coming soon</span>
       <div class="tech-logo"><i class="bi bi-cpu" aria-hidden="true"></i></div>
@@ -264,7 +348,33 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="about-the-collection" class="level3">
 <h3 class="anchored" data-anchor-id="about-the-collection">About the collection</h3>
-<p>This site collects independent tutorials for clinical, pharmaceutical, and life-sciences teams. Each tile links to a standalone page with hands-on examples and runnable code.</p>
+<p>This site follows a <strong>25-section professional documentation standard</strong> — the same structure used in premium courses and official vendor docs. Each tutorial includes learning objectives, Mermaid diagrams, hands-on labs, industry use cases, interview prep, and capstone exercises.</p>
+<p>See <a href="./about.html">About</a> for learning paths and full documentation guidelines.</p>
+</section>
+<section id="quick-start-paths" class="level3">
+<h3 class="anchored" data-anchor-id="quick-start-paths">Quick start paths</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Path</th>
+<th>Start here</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Bioinformatics</strong></td>
+<td><a href="./linux.html">Linux</a> → <a href="./git.html">Git</a> → <a href="./docker.html">Docker</a> → <a href="./nextflow.html">Nextflow</a></td>
+</tr>
+<tr class="even">
+<td><strong>Clinical programming</strong></td>
+<td><a href="./r.html">R</a> → <a href="./docker.html">Docker</a> → <a href="./pharmaverse.html">Pharmaverse</a></td>
+</tr>
+<tr class="odd">
+<td><strong>New to publishing</strong></td>
+<td><a href="./quarto_tutorial_for_beginners.html">Quarto</a></td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -662,4 +772,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

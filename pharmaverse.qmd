@@ -1,0 +1,15 @@
+---
+title: "Pharmaverse — Clinical R & ADaM Ecosystem"
+description: "Open-source R packages for clinical programming, ADaM, and submission-ready workflows."
+toc-depth: 2
+---
+
+::: {.callout-important}
+**Status: Coming soon** — See [Clinical R](clinical-r.qmd) for related content.
+:::
+
+## 1. Introduction
+
+**Pharmaverse** is a community of R packages (admiral, metacore, metatools, pharmaRTF, and others) used for clinical dataset development and analysis in pharmaceutical programming.
+
+[Back to home](index.qmd)

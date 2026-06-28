@@ -1,0 +1,21 @@
+---
+title: "Git — Version Control for Regulated Teams"
+description: "Version control for reproducible analysis, pipelines, and collaborative clinical programming."
+toc-depth: 2
+---
+
+::: {.callout-important}
+**Status: Coming soon** — Full tutorial in progress. Start with [Docker](docker.qmd) if you need reproducible environments today.
+:::
+
+## 1. Introduction
+
+**Git** tracks changes to code, scripts, Dockerfiles, and Quarto documents — essential for audit trails and team collaboration.
+
+### Why Git matters in pharma and bioinformatics
+
+- Reproducible analysis scripts under change control
+- Code review before production pipeline releases
+- Linking commits to validated container tags
+
+[Back to home](index.qmd)

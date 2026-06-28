@@ -1,34 +1,113 @@
 ---
-title: "About This Tutorial"
+title: "About StatiX AI & Data Labs"
+description: "Professional learning resources for bioinformatics, clinical programming, and data science."
 ---
 
-# About This Quarto Website
+## Our mission
 
-This website is built using Quarto and designed for beginners.
+**StatiX AI & Data Labs** is a curated learning platform for students and professionals in life sciences, pharmaceuticals, and data-driven healthcare.
 
-## What you will learn
+We publish tutorials that read like **official documentation** — practical, reproducible, and aligned with how industry teams actually work.
 
-- How Quarto converts Markdown into a website
-- How to configure navigation
-- How to use themes and custom CSS
-- How to render your site locally
+---
 
-## Why this is useful
+## Who this site is for
 
-Quarto websites are ideal for:
+| Audience | What you will find |
+|----------|-------------------|
+| **Students** | Step-by-step guides from zero prior knowledge |
+| **Bioinformatics researchers** | Docker, Nextflow, cloud pipelines |
+| **Clinical programmers** | Reproducible R environments, ADaM workflows (expanding) |
+| **Data scientists** | Containers, orchestration, ML deployment paths |
+| **Pharmaceutical professionals** | GxP-aware practices, reproducibility, audit-friendly patterns |
+| **Software engineers** | DevOps foundations for regulated data platforms |
 
-- tutorials
-- documentation
-- project portfolios
-- learning notes
+---
 
-## Next steps
+## Documentation standard
 
-- Add a new page such as `projects.qmd`
-- Create a blog using Quarto website features
-- Experiment with `format: html` options like `theme: darkly`
+Every StatiX tutorial follows a **25-section professional template**:
 
-## More resources
+1. Introduction  
+2. Learning objectives  
+3. Why it matters (industry context)  
+4. Architecture diagrams (Mermaid)  
+5. Installation (Windows, macOS, Linux)  
+6. Basic concepts  
+7. Hands-on examples  
+8. Real-world use cases  
+9. Bioinformatics workflow placement  
+10. Clinical programming workflow placement  
+11. Best practices  
+12. Common mistakes  
+13. Troubleshooting  
+14. Interview questions  
+15. Cheat sheet  
+16. Summary  
+17. Next topic  
+18. Learning paths  
+19. Further reading  
+20. Mini project  
+21. Exercises  
 
-- [Quarto Documentation](https://quarto.org/docs/)
-- [Quarto Website Guide](https://quarto.org/docs/websites/)
+::: {.callout-tip}
+**Available now:** [Docker](docker.qmd) and [Nextflow](nextflow.qmd) use the full template. Other topics are rolling out on the same standard.
+:::
+
+---
+
+## Recommended learning paths
+
+### Bioinformatics
+
+```{mermaid}
+flowchart LR
+  A[Linux] --> B[Git]
+  B --> C[Docker]
+  C --> D[Nextflow]
+  D --> E[Cloud / AWS]
+  E --> F[ML & AI]
+```
+
+### Clinical programming
+
+```{mermaid}
+flowchart LR
+  A[R / SAS] --> B[Linux & Git]
+  B --> C[Docker]
+  C --> D[Pharmaverse]
+  D --> E[Reproducible TLFs]
+  E --> F[Submission]
+```
+
+### Data science & engineering
+
+```{mermaid}
+flowchart LR
+  A[Python / R] --> B[SQL]
+  B --> C[Linux & Git]
+  C --> D[Docker]
+  D --> E[Kubernetes]
+  E --> F[AWS]
+```
+
+---
+
+## How to use this site
+
+1. Start on the [home page](index.qmd) — check **Available** vs **Coming soon** badges  
+2. Follow tutorials in order if you are new to a path  
+3. Complete **hands-on examples** and **mini projects** on your machine  
+4. Use **cheat sheets** and **troubleshooting** sections as job aids  
+
+---
+
+## Contribute & feedback
+
+This site is built with [Quarto](https://quarto.org/) and published via GitHub Pages.
+
+Repository: [https://github.com/praveen2093/QUARTO](https://github.com/praveen2093/QUARTO)
+
+Live site: [https://praveen2093.github.io/QUARTO/](https://praveen2093.github.io/QUARTO/)
+
+[Back to home](index.qmd)

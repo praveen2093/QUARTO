@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Industry-standard Nextflow guide for scalable, reproducible pipelines in bioinformatics, pharma, and cloud.">
 
-<title>StatiX AI &amp; Data Labs - Nextflow: Quick Guide for Bioinformatics &amp; Cloud</title>
+<title>StatiX AI &amp; Data Labs - Nextflow — Professional Tutorial for Bioinformatics &amp; Cloud</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,6 +101,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -127,50 +132,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./python.html"> <i class="bi bi-filetype-py" role="img">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-layers" role="img">
 </i> 
-<span class="menu-text">Python</span></a>
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="./linux.html"><i class="bi bi-terminal" role="img">
+</i> 
+ <span class="dropdown-text">Linux</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r.html"> <i class="bi bi-r-circle" role="img">
+        <li>
+    <a class="dropdown-item" href="./git.html"><i class="bi bi-git" role="img">
 </i> 
-<span class="menu-text">R</span></a>
+ <span class="dropdown-text">Git</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./clinical-r.html"> <i class="bi bi-heart-pulse" role="img">
+        <li>
+    <a class="dropdown-item" href="./docker.html"><i class="bi bi-box-seam" role="img">
 </i> 
-<span class="menu-text">Clinical R</span></a>
+ <span class="dropdown-text">Docker</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./nextflow.html" aria-current="page"> <i class="bi bi-diagram-3" role="img">
+        <li>
+    <a class="dropdown-item" href="./nextflow.html"><i class="bi bi-diagram-3" role="img">
 </i> 
-<span class="menu-text">Nextflow</span></a>
+ <span class="dropdown-text">Nextflow</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./docker.html"> <i class="bi bi-box-seam" role="img">
+        <li>
+    <a class="dropdown-item" href="./kubernetes.html"><i class="bi bi-boxes" role="img">
 </i> 
-<span class="menu-text">Docker</span></a>
+ <span class="dropdown-text">Kubernetes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aws.html"><i class="bi bi-cloud" role="img">
+</i> 
+ <span class="dropdown-text">AWS</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--clinical" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-heart-pulse" role="img">
+</i> 
+ <span class="menu-text">Data &amp; Clinical</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data--clinical">    
+        <li>
+    <a class="dropdown-item" href="./python.html"><i class="bi bi-filetype-py" role="img">
+</i> 
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r.html"><i class="bi bi-r-circle" role="img">
+</i> 
+ <span class="dropdown-text">R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./clinical-r.html"><i class="bi bi-hospital" role="img">
+</i> 
+ <span class="dropdown-text">Clinical R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pharmaverse.html"><i class="bi bi-capsule" role="img">
+</i> 
+ <span class="dropdown-text">Pharmaverse</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./statistics.html"><i class="bi bi-calculator" role="img">
+</i> 
+ <span class="dropdown-text">Statistics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r-shiny.html"><i class="bi bi-window-stack" role="img">
+</i> 
+ <span class="dropdown-text">R Shiny</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
+</i> 
+<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./quarto_tutorial_for_beginners.html"> <i class="bi bi-journal-bookmark" role="img">
 </i> 
 <span class="menu-text">Quarto</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r-shiny.html"> <i class="bi bi-window-stack" role="img">
-</i> 
-<span class="menu-text">R Shiny</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./statistics.html"> <i class="bi bi-calculator" role="img">
-</i> 
-<span class="menu-text">Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
-</i> 
-<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> <i class="bi bi-info-circle" role="img">
@@ -192,17 +240,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a>
   <ul class="collapse">
-  <li><a href="#why-nextflow" id="toc-why-nextflow" class="nav-link active" data-scroll-target="#why-nextflow">1. Why Nextflow?</a></li>
-  <li><a href="#quick-start-install-and-run-locally" id="toc-quick-start-install-and-run-locally" class="nav-link" data-scroll-target="#quick-start-install-and-run-locally">2. Quick Start — install and run locally</a></li>
-  <li><a href="#core-concepts-brief" id="toc-core-concepts-brief" class="nav-link" data-scroll-target="#core-concepts-brief">3. Core Concepts (brief)</a></li>
-  <li><a href="#running-nextflow-on-google-cloud-platform-gcp" id="toc-running-nextflow-on-google-cloud-platform-gcp" class="nav-link" data-scroll-target="#running-nextflow-on-google-cloud-platform-gcp">4. Running Nextflow on Google Cloud Platform (GCP)</a></li>
-  <li><a href="#running-nextflow-on-aws" id="toc-running-nextflow-on-aws" class="nav-link" data-scroll-target="#running-nextflow-on-aws">5. Running Nextflow on AWS</a></li>
-  <li><a href="#integrating-r-and-python" id="toc-integrating-r-and-python" class="nav-link" data-scroll-target="#integrating-r-and-python">6. Integrating R and Python</a></li>
-  <li><a href="#practical-bioinformatics-example-fastq-qc-alignment" id="toc-practical-bioinformatics-example-fastq-qc-alignment" class="nav-link" data-scroll-target="#practical-bioinformatics-example-fastq-qc-alignment">7. Practical Bioinformatics Example (FASTQ QC &amp; alignment)</a></li>
-  <li><a href="#clinical-trials-regulatory-considerations" id="toc-clinical-trials-regulatory-considerations" class="nav-link" data-scroll-target="#clinical-trials-regulatory-considerations">8. Clinical Trials / Regulatory Considerations</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">9. Best Practices</a></li>
-  <li><a href="#references-next-steps" id="toc-references-next-steps" class="nav-link" data-scroll-target="#references-next-steps">10. References &amp; Next Steps</a></li>
+  <li><a href="#why-nextflow-exists" id="toc-why-nextflow-exists" class="nav-link" data-scroll-target="#why-nextflow-exists">Why Nextflow exists</a></li>
+  <li><a href="#the-problem-nextflow-solves" id="toc-the-problem-nextflow-solves" class="nav-link" data-scroll-target="#the-problem-nextflow-solves">The problem Nextflow solves</a></li>
+  <li><a href="#where-nextflow-is-used-in-industry" id="toc-where-nextflow-is-used-in-industry" class="nav-link" data-scroll-target="#where-nextflow-is-used-in-industry">Where Nextflow is used in industry</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">2. Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#by-the-end-of-this-tutorial-you-will-be-able-to" id="toc-by-the-end-of-this-tutorial-you-will-be-able-to" class="nav-link" data-scroll-target="#by-the-end-of-this-tutorial-you-will-be-able-to">By the end of this tutorial, you will be able to</a></li>
+  </ul></li>
+  <li><a href="#why-is-this-important" id="toc-why-is-this-important" class="nav-link" data-scroll-target="#why-is-this-important">3. Why is this important?</a>
+  <ul class="collapse">
+  <li><a href="#why-should-someone-learn-nextflow" id="toc-why-should-someone-learn-nextflow" class="nav-link" data-scroll-target="#why-should-someone-learn-nextflow">Why should someone learn Nextflow?</a></li>
+  <li><a href="#why-do-companies-use-it" id="toc-why-do-companies-use-it" class="nav-link" data-scroll-target="#why-do-companies-use-it">Why do companies use it?</a></li>
+  <li><a href="#why-is-it-important-in-bioinformatics" id="toc-why-is-it-important-in-bioinformatics" class="nav-link" data-scroll-target="#why-is-it-important-in-bioinformatics">Why is it important in bioinformatics?</a></li>
+  <li><a href="#why-is-it-important-in-clinical-programming" id="toc-why-is-it-important-in-clinical-programming" class="nav-link" data-scroll-target="#why-is-it-important-in-clinical-programming">Why is it important in clinical programming?</a></li>
+  <li><a href="#why-is-it-useful-in-data-science" id="toc-why-is-it-useful-in-data-science" class="nav-link" data-scroll-target="#why-is-it-useful-in-data-science">Why is it useful in data science?</a></li>
+  </ul></li>
+  <li><a href="#architecture-diagram" id="toc-architecture-diagram" class="nav-link" data-scroll-target="#architecture-diagram">4. Architecture Diagram</a>
+  <ul class="collapse">
+  <li><a href="#nextflow-core-architecture" id="toc-nextflow-core-architecture" class="nav-link" data-scroll-target="#nextflow-core-architecture">Nextflow core architecture</a></li>
+  <li><a href="#pipeline-data-flow" id="toc-pipeline-data-flow" class="nav-link" data-scroll-target="#pipeline-data-flow">Pipeline data flow</a></li>
+  </ul></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">5. Installation</a>
+  <ul class="collapse">
+  <li><a href="#windows-wsl2-recommended" id="toc-windows-wsl2-recommended" class="nav-link" data-scroll-target="#windows-wsl2-recommended">Windows (WSL2 recommended)</a></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">macOS</a></li>
+  <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux">Linux</a></li>
+  </ul></li>
+  <li><a href="#basic-concepts" id="toc-basic-concepts" class="nav-link" data-scroll-target="#basic-concepts">6. Basic Concepts</a>
+  <ul class="collapse">
+  <li><a href="#process" id="toc-process" class="nav-link" data-scroll-target="#process">Process</a></li>
+  <li><a href="#channel" id="toc-channel" class="nav-link" data-scroll-target="#channel">Channel</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
+  <li><a href="#executor" id="toc-executor" class="nav-link" data-scroll-target="#executor">Executor</a></li>
+  <li><a href="#profile" id="toc-profile" class="nav-link" data-scroll-target="#profile">Profile</a></li>
+  <li><a href="#container-directive" id="toc-container-directive" class="nav-link" data-scroll-target="#container-directive">Container directive</a></li>
+  <li><a href="#work-directory" id="toc-work-directory" class="nav-link" data-scroll-target="#work-directory">work/ directory</a></li>
+  </ul></li>
+  <li><a href="#hands-on-examples" id="toc-hands-on-examples" class="nav-link" data-scroll-target="#hands-on-examples">7. Hands-on Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-hello-world" id="toc-example-1-hello-world" class="nav-link" data-scroll-target="#example-1-hello-world">Example 1 — Hello World</a></li>
+  <li><a href="#example-2-parallel-sample-processing" id="toc-example-2-parallel-sample-processing" class="nav-link" data-scroll-target="#example-2-parallel-sample-processing">Example 2 — Parallel sample processing</a></li>
+  <li><a href="#example-3-dockerized-fastqc" id="toc-example-3-dockerized-fastqc" class="nav-link" data-scroll-target="#example-3-dockerized-fastqc">Example 3 — Dockerized FastQC</a></li>
+  <li><a href="#example-4-python-in-nextflow" id="toc-example-4-python-in-nextflow" class="nav-link" data-scroll-target="#example-4-python-in-nextflow">Example 4 — Python in Nextflow</a></li>
+  <li><a href="#example-5-r-analysis-step" id="toc-example-5-r-analysis-step" class="nav-link" data-scroll-target="#example-5-r-analysis-step">Example 5 — R analysis step</a></li>
+  </ul></li>
+  <li><a href="#real-world-industry-use-cases" id="toc-real-world-industry-use-cases" class="nav-link" data-scroll-target="#real-world-industry-use-cases">8. Real-world Industry Use Cases</a></li>
+  <li><a href="#bioinformatics-workflow" id="toc-bioinformatics-workflow" class="nav-link" data-scroll-target="#bioinformatics-workflow">9. Bioinformatics Workflow</a></li>
+  <li><a href="#clinical-programming-workflow" id="toc-clinical-programming-workflow" class="nav-link" data-scroll-target="#clinical-programming-workflow">10. Clinical Programming Workflow</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">11. Best Practices</a>
+  <ul class="collapse">
+  <li><a href="#do" id="toc-do" class="nav-link" data-scroll-target="#do">DO</a></li>
+  <li><a href="#dont" id="toc-dont" class="nav-link" data-scroll-target="#dont">DON’T</a></li>
+  <li><a href="#performance-tips" id="toc-performance-tips" class="nav-link" data-scroll-target="#performance-tips">Performance tips</a></li>
+  <li><a href="#security-tips" id="toc-security-tips" class="nav-link" data-scroll-target="#security-tips">Security tips</a></li>
+  <li><a href="#optimization-tips" id="toc-optimization-tips" class="nav-link" data-scroll-target="#optimization-tips">Optimization tips</a></li>
+  </ul></li>
+  <li><a href="#common-mistakes" id="toc-common-mistakes" class="nav-link" data-scroll-target="#common-mistakes">12. Common Mistakes</a></li>
+  <li><a href="#troubleshooting-guide" id="toc-troubleshooting-guide" class="nav-link" data-scroll-target="#troubleshooting-guide">13. Troubleshooting Guide</a></li>
+  <li><a href="#interview-questions" id="toc-interview-questions" class="nav-link" data-scroll-target="#interview-questions">14. Interview Questions</a>
+  <ul class="collapse">
+  <li><a href="#beginner" id="toc-beginner" class="nav-link" data-scroll-target="#beginner">Beginner</a></li>
+  <li><a href="#intermediate" id="toc-intermediate" class="nav-link" data-scroll-target="#intermediate">Intermediate</a></li>
+  <li><a href="#advanced" id="toc-advanced" class="nav-link" data-scroll-target="#advanced">Advanced</a></li>
+  </ul></li>
+  <li><a href="#cheat-sheet" id="toc-cheat-sheet" class="nav-link" data-scroll-target="#cheat-sheet">15. Cheat Sheet</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">16. Summary</a></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">17. Next Topic</a></li>
+  <li><a href="#learning-path" id="toc-learning-path" class="nav-link" data-scroll-target="#learning-path">18. Learning Path</a>
+  <ul class="collapse">
+  <li><a href="#bioinformatics-roadmap" id="toc-bioinformatics-roadmap" class="nav-link" data-scroll-target="#bioinformatics-roadmap">Bioinformatics roadmap</a></li>
+  <li><a href="#software-data-engineering-roadmap" id="toc-software-data-engineering-roadmap" class="nav-link" data-scroll-target="#software-data-engineering-roadmap">Software / data engineering roadmap</a></li>
+  </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">19. Further Reading</a></li>
+  <li><a href="#mini-project-two-step-qc-pipeline" id="toc-mini-project-two-step-qc-pipeline" class="nav-link" data-scroll-target="#mini-project-two-step-qc-pipeline">20. Mini Project — Two-Step QC Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link" data-scroll-target="#problem-statement">Problem statement</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture">Architecture</a></li>
+  <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder structure</a></li>
+  <li><a href="#implementation-main.nf" id="toc-implementation-main.nf" class="nav-link" data-scroll-target="#implementation-main.nf">Implementation (<code>main.nf</code>)</a></li>
+  <li><a href="#commands" id="toc-commands" class="nav-link" data-scroll-target="#commands">Commands</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output">Expected output</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">21. Exercises</a>
+  <ul class="collapse">
+  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions">10 practice questions</a></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">5 assignments</a></li>
+  <li><a href="#mini-projects" id="toc-mini-projects" class="nav-link" data-scroll-target="#mini-projects">3 mini projects</a></li>
+  <li><a href="#capstone-project" id="toc-capstone-project" class="nav-link" data-scroll-target="#capstone-project">1 capstone project</a></li>
+  </ul></li>
+  <li><a href="#cloud-execution-reference" id="toc-cloud-execution-reference" class="nav-link" data-scroll-target="#cloud-execution-reference">Cloud execution (reference)</a>
+  <ul class="collapse">
+  <li><a href="#google-cloud-platform" id="toc-google-cloud-platform" class="nav-link" data-scroll-target="#google-cloud-platform">Google Cloud Platform</a></li>
+  <li><a href="#aws-batch" id="toc-aws-batch" class="nav-link" data-scroll-target="#aws-batch">AWS Batch</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -211,9 +345,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Nextflow: Quick Guide for Bioinformatics &amp; Cloud</h1>
+<h1 class="title">Nextflow — Professional Tutorial for Bioinformatics &amp; Cloud</h1>
 </div>
 
+<div>
+  <div class="description">
+    Industry-standard Nextflow guide for scalable, reproducible pipelines in bioinformatics, pharma, and cloud.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -228,47 +367,402 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="why-nextflow" class="level2">
-<h2 class="anchored" data-anchor-id="why-nextflow">1. Why Nextflow?</h2>
-<p>Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values.</p>
+<p><strong>Audience:</strong> Students, bioinformatics researchers, clinical programmers, data scientists, pharmaceutical professionals, and software engineers.</p>
 </div>
 </div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
+<p><strong>Nextflow</strong> is a workflow management system for running computational pipelines. It connects analysis steps, runs them in parallel, and scales from a laptop to the cloud.</p>
+<section id="why-nextflow-exists" class="level3">
+<h3 class="anchored" data-anchor-id="why-nextflow-exists">Why Nextflow exists</h3>
+<p>Bioinformatics and data pipelines often involve <strong>many steps</strong>, <strong>large datasets</strong>, and <strong>many samples</strong>. Shell scripts become hard to maintain, restart, and scale. Nextflow was built to solve reproducible, portable, parallel workflow execution.</p>
 </section>
-<section id="quick-start-install-and-run-locally" class="level2">
-<h2 class="anchored" data-anchor-id="quick-start-install-and-run-locally">2. Quick Start — install and run locally</h2>
-<section id="requirements" class="level3">
-<h3 class="anchored" data-anchor-id="requirements">Requirements</h3>
+<section id="the-problem-nextflow-solves" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem-nextflow-solves">The problem Nextflow solves</h3>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 42%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problem</th>
+<th>Without Nextflow</th>
+<th>With Nextflow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Parallelism</td>
+<td>Manual job arrays</td>
+<td>Automatic parallel tasks</td>
+</tr>
+<tr class="even">
+<td>Failures</td>
+<td>Restart from scratch</td>
+<td>Resume from last successful step</td>
+</tr>
+<tr class="odd">
+<td>Portability</td>
+<td>Scripts tied to one cluster</td>
+<td>Profiles for local, AWS, GCP</td>
+</tr>
+<tr class="even">
+<td>Reproducibility</td>
+<td>Ad-hoc environments</td>
+<td>Docker/Singularity/Conda per step</td>
+</tr>
+<tr class="odd">
+<td>Complexity</td>
+<td>Spaghetti bash scripts</td>
+<td>Structured processes and channels</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="where-nextflow-is-used-in-industry" class="level3">
+<h3 class="anchored" data-anchor-id="where-nextflow-is-used-in-industry">Where Nextflow is used in industry</h3>
 <ul>
-<li>Java 11+ (Nextflow runs on the JVM)</li>
-<li><code>nextflow</code> CLI (install via curl)</li>
-<li>Optional: Docker or Conda for reproducible software environments</li>
+<li><strong>Academic genomics cores</strong> — RNA-seq, WGS, single-cell pipelines</li>
+<li><strong>Pharma bioinformatics</strong> — target discovery, biomarker pipelines</li>
+<li><strong>CROs &amp; sequencing vendors</strong> — standardized nf-core pipelines</li>
+<li><strong>Public health</strong> — pathogen surveillance (e.g., EPI2ME, viral pipelines)</li>
+<li><strong>Cloud-native labs</strong> — AWS Batch, Google Life Sciences, Kubernetes</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Nextflow (Linux/macOS)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://get.nextflow.io <span class="kw">|</span> <span class="fu">bash</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Move to PATH (example)</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv nextflow /usr/local/bin/</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 </section>
-<section id="hello-world-workflow-main.nf" class="level3">
-<h3 class="anchored" data-anchor-id="hello-world-workflow-main.nf">Hello-world workflow (<code>main.nf</code>)</h3>
+</section>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">2. Learning Objectives</h2>
+<section id="by-the-end-of-this-tutorial-you-will-be-able-to" class="level3">
+<h3 class="anchored" data-anchor-id="by-the-end-of-this-tutorial-you-will-be-able-to">By the end of this tutorial, you will be able to</h3>
+<ol type="1">
+<li>Explain what Nextflow is and why bioinformatics teams adopt it</li>
+<li>Install Nextflow and run a hello-world workflow locally</li>
+<li>Define processes, channels, and workflows</li>
+<li>Configure Docker containers for reproducible tool execution</li>
+<li>Run pipelines on AWS and GCP using profiles</li>
+<li>Integrate R and Python scripts into Nextflow processes</li>
+<li>Map Nextflow to FASTQ-to-report bioinformatics workflows</li>
+<li>Apply best practices for clinical and regulated environments</li>
+<li>Troubleshoot common Nextflow errors</li>
+<li>Design a simple QC pipeline as a mini project</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="why-is-this-important" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-this-important">3. Why is this important?</h2>
+<section id="why-should-someone-learn-nextflow" class="level3">
+<h3 class="anchored" data-anchor-id="why-should-someone-learn-nextflow">Why should someone learn Nextflow?</h3>
+<p>Nextflow is the <strong>de facto standard</strong> for portable bioinformatics pipelines. nf-core alone has 100+ community pipelines used worldwide.</p>
+</section>
+<section id="why-do-companies-use-it" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-companies-use-it">Why do companies use it?</h3>
+<ul>
+<li><strong>Scale</strong> — process hundreds of samples in parallel</li>
+<li><strong>Resume</strong> — <code>-resume</code> saves time and cloud cost after failures</li>
+<li><strong>Portability</strong> — same pipeline on laptop, HPC, or cloud via profiles</li>
+<li><strong>Community</strong> — nf-core, Seqera Tower ecosystem</li>
+</ul>
+</section>
+<section id="why-is-it-important-in-bioinformatics" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-it-important-in-bioinformatics">Why is it important in bioinformatics?</h3>
+<p>Genomics workflows are multi-step and data-heavy. Nextflow manages dependencies, parallelization, and containerized tools automatically.</p>
+</section>
+<section id="why-is-it-important-in-clinical-programming" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-it-important-in-clinical-programming">Why is it important in clinical programming?</h3>
+<p>While SAS/R dominate TLFs, Nextflow supports <strong>omics sub-studies</strong>, <strong>biomarker pipelines</strong>, and <strong>reproducible secondary analyses</strong> linked to trials.</p>
+</section>
+<section id="why-is-it-useful-in-data-science" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-it-useful-in-data-science">Why is it useful in data science?</h3>
+<p>Nextflow orchestrates feature engineering, model training, and batch scoring at scale — especially when combined with Docker and cloud executors.</p>
+<hr>
+</section>
+</section>
+<section id="architecture-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-diagram">4. Architecture Diagram</h2>
+<section id="nextflow-core-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="nextflow-core-architecture">Nextflow core architecture</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="pipeline-data-flow" class="level3">
+<h3 class="anchored" data-anchor-id="pipeline-data-flow">Pipeline data flow</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">5. Installation</h2>
+<section id="windows-wsl2-recommended" class="level3">
+<h3 class="anchored" data-anchor-id="windows-wsl2-recommended">Windows (WSL2 recommended)</h3>
+<p>Nextflow runs best on Linux/macOS. On Windows, use <strong>WSL2</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inside WSL Ubuntu</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://get.nextflow.io <span class="kw">|</span> <span class="fu">bash</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv nextflow /usr/local/bin/</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Install Java 11+:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install <span class="at">-y</span> openjdk-17-jre</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="macos" class="level3">
+<h3 class="anchored" data-anchor-id="macos">macOS</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://get.nextflow.io <span class="kw">|</span> <span class="fu">bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv nextflow /usr/local/bin/</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install openjdk@17</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="linux" class="level3">
+<h3 class="anchored" data-anchor-id="linux">Linux</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://get.nextflow.io <span class="kw">|</span> <span class="fu">bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv nextflow /usr/local/bin/</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install <span class="at">-y</span> openjdk-17-jre</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Verify:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run hello</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Optional: Install <a href="./docker.html">Docker</a> for containerized processes.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="basic-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="basic-concepts">6. Basic Concepts</h2>
+<section id="process" class="level3">
+<h3 class="anchored" data-anchor-id="process">Process</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>A single computational step with inputs, outputs, and a script</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>One station on a factory assembly line</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>FastQC on each FASTQ file in parallel</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>One logical task per process; pin container versions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="channel" class="level3">
+<h3 class="anchored" data-anchor-id="channel">Channel</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>An asynchronous queue connecting processes with data</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>A conveyor belt carrying work items</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>One channel item per patient sample</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Use tuple channels for paired-end reads</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="workflow" class="level3">
+<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>The DAG (graph) linking processes</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>The master floor plan of the factory</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>QC → align → call variants → annotate</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Keep <code>main.nf</code> readable; modularize with <code>include</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="executor" class="level3">
+<h3 class="anchored" data-anchor-id="executor">Executor</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Backend that runs tasks (local, slurm, awsbatch, etc.)</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>The HR department assigning workers to stations</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td><code>awsbatch</code> for cloud scale</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Use profiles in <code>nextflow.config</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="profile" class="level3">
+<h3 class="anchored" data-anchor-id="profile">Profile</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Named configuration bundle (executor, containers, paths)</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>A preset mode: “laptop” vs “cloud”</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td><code>-profile docker,aws</code></td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Never hardcode credentials in profiles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="container-directive" class="level3">
+<h3 class="anchored" data-anchor-id="container-directive">Container directive</h3>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Docker/Singularity image used by a process</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>The standardized toolbox for that station</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td><code>biocontainers/fastqc:v0.11.9_cv8</code></td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Always specify full image tags</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="work-directory" class="level3">
+<h3 class="anchored" data-anchor-id="work-directory">work/ directory</h3>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Cached task directories for resume and debugging</td>
+</tr>
+<tr class="even">
+<td><strong>Analogy</strong></td>
+<td>The workshop floor where in-progress jobs live</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry example</strong></td>
+<td>Inspected when a variant-calling step fails</td>
+</tr>
+<tr class="even">
+<td><strong>Best practice</strong></td>
+<td>Use shared workDir on cloud; enable <code>-resume</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="hands-on-examples" class="level2">
+<h2 class="anchored" data-anchor-id="hands-on-examples">7. Hands-on Examples</h2>
+<section id="example-1-hello-world" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-hello-world">Example 1 — Hello World</h3>
+<p><strong>Problem:</strong> Verify Nextflow runs locally.</p>
+<p><strong>Solution:</strong> Create <code>main.nf</code>:</p>
 <pre class="nextflow"><code>#!/usr/bin/env nextflow
 
 process sayHello {
   output:
-    file 'hello.txt'
+    path 'hello.txt'
 
   script:
   """
@@ -279,218 +773,742 @@ process sayHello {
 workflow {
   sayHello()
 }</code></pre>
-<p>Run locally:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-profile</span> standard</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> work/</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> work/<span class="pp">*</span>/hello.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Run:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> work/<span class="pp">*</span>/hello.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Expected output:</strong> <code>Hello from Nextflow</code></p>
+<hr>
 </section>
+<section id="example-2-parallel-sample-processing" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-parallel-sample-processing">Example 2 — Parallel sample processing</h3>
+<p><strong>Problem:</strong> Process multiple samples in parallel.</p>
+<p><strong>Solution:</strong></p>
+<pre class="nextflow"><code>params.samples = ['S1', 'S2', 'S3']
+
+process greetSample {
+  input:
+    val sample
+
+  output:
+    stdout
+
+  script:
+  """
+  echo "Processing sample ${sample}"
+  """
+}
+
+workflow {
+  Channel.fromList(params.samples) | greetSample | view
+}</code></pre>
+<p><strong>Expected result:</strong> Three lines, order may vary (parallel execution).</p>
+<hr>
 </section>
-<section id="core-concepts-brief" class="level2">
-<h2 class="anchored" data-anchor-id="core-concepts-brief">3. Core Concepts (brief)</h2>
-<ul>
-<li><code>process</code>: computational step (command/script) with input/output.</li>
-<li><code>channel</code>: stream of data connecting processes.</li>
-<li><code>workflow</code>: organizes processes and channels.</li>
-</ul>
+<section id="example-3-dockerized-fastqc" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-dockerized-fastqc">Example 3 — Dockerized FastQC</h3>
+<p><strong>Problem:</strong> Run FastQC in a reproducible container.</p>
+<p><strong>Solution:</strong></p>
+<pre class="nextflow"><code>process runFastqc {
+  container 'biocontainers/fastqc:v0.11.9_cv8'
+
+  input:
+    path fastq
+
+  output:
+    path "*.html"
+
+  script:
+  """
+  fastqc ${fastq}
+  """
+}
+
+workflow {
+  Channel.fromPath('*.fastq.gz') | runFastqc
+}</code></pre>
+<p><strong>Expected result:</strong> HTML QC reports per FASTQ file.</p>
+<hr>
 </section>
-<section id="running-nextflow-on-google-cloud-platform-gcp" class="level2">
-<h2 class="anchored" data-anchor-id="running-nextflow-on-google-cloud-platform-gcp">4. Running Nextflow on Google Cloud Platform (GCP)</h2>
-<section id="overview" class="level3">
-<h3 class="anchored" data-anchor-id="overview">Overview</h3>
-<p>We demonstrate using GCP Compute + Cloud Storage. For larger work, you can use Nextflow Tower, Google Genomics Pipelines, or compute clusters (GKE).</p>
-</section>
-<section id="prerequisites" class="level3">
-<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
-<ul>
-<li><code>gcloud</code> installed and authenticated</li>
-<li>A GCP project and billing enabled</li>
-<li>A GCS bucket for workspace/storage</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set project and region</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> config set project YOUR_PROJECT_ID</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> config set compute/region us-central1</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bucket (example)</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">gsutil</span> mb <span class="at">-l</span> us-central1 gs://your-nextflow-bucket</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="nextflow-config-for-gcp-example-nextflow.config" class="level3">
-<h3 class="anchored" data-anchor-id="nextflow-config-for-gcp-example-nextflow.config">Nextflow config for GCP (example <code>nextflow.config</code>)</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">{</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  gcp <span class="op">{</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    process<span class="op">.</span>executor <span class="op">=</span> <span class="st">'google-lifesciences'</span>  <span class="co">// uses Google Life Sciences API</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    google <span class="op">{</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      project <span class="op">=</span> <span class="st">'YOUR_PROJECT_ID'</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      region  <span class="op">=</span> <span class="st">'us-central1'</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      auth <span class="op">=</span> <span class="st">'/path/to/google-credentials.json'</span>   <span class="co">// or use ADC</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      bucket <span class="op">=</span> <span class="st">'gs://your-nextflow-bucket'</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    workDir <span class="op">=</span> <span class="st">'gs://your-nextflow-bucket/work'</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote class="blockquote">
-<p>Authentication: prefer Application Default Credentials (ADC). To create a service account and key:</p>
-</blockquote>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> iam service-accounts create nf-runner <span class="at">--display-name</span> <span class="st">"Nextflow runner"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding YOUR_PROJECT_ID <span class="dt">\</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--member</span><span class="op">=</span><span class="st">"serviceAccount:nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com"</span> <span class="dt">\</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--role</span><span class="op">=</span><span class="st">"roles/storage.admin"</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> iam service-accounts keys create key.json <span class="dt">\</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--iam-account</span> nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GOOGLE_APPLICATION_CREDENTIALS</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">/key.json"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="run-on-gcp" class="level3">
-<h3 class="anchored" data-anchor-id="run-on-gcp">Run on GCP</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-profile</span> gcp <span class="at">-with-report</span> report.html <span class="at">-with-trace</span> trace.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="cost-monitoring" class="level3">
-<h3 class="anchored" data-anchor-id="cost-monitoring">Cost &amp; monitoring</h3>
-<ul>
-<li>Store intermediate files in GCS to avoid expensive disk.</li>
-<li>Use small VM images for lightweight tasks.</li>
-<li>Monitor via Cloud Console and check <code>gcloud billing</code> reports.</li>
-</ul>
-</section>
-</section>
-<section id="running-nextflow-on-aws" class="level2">
-<h2 class="anchored" data-anchor-id="running-nextflow-on-aws">5. Running Nextflow on AWS</h2>
-<section id="overview-1" class="level3">
-<h3 class="anchored" data-anchor-id="overview-1">Overview</h3>
-<p>Common backends: S3 for storage, AWS Batch or EC2/ECS as executors.</p>
-</section>
-<section id="prerequisites-1" class="level3">
-<h3 class="anchored" data-anchor-id="prerequisites-1">Prerequisites</h3>
-<ul>
-<li><code>aws</code> CLI configured (<code>aws configure</code>)</li>
-<li>An S3 bucket and IAM role/user with permissions</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bucket</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 mb s3://your-nextflow-bucket <span class="at">--region</span> us-east-1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="example-nextflow.config-for-aws-s3-batch" class="level3">
-<h3 class="anchored" data-anchor-id="example-nextflow.config-for-aws-s3-batch">Example <code>nextflow.config</code> for AWS S3 + Batch</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">{</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  aws <span class="op">{</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    process<span class="op">.</span>executor <span class="op">=</span> <span class="st">'awsbatch'</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    aws <span class="op">{</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      region <span class="op">=</span> <span class="st">'us-east-1'</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      client <span class="op">{</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        registry <span class="op">=</span> <span class="st">'public.ecr.aws'</span>  <span class="co">// if using ECR images</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    workDir <span class="op">=</span> <span class="st">'s3://your-nextflow-bucket/work'</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="create-iam-role-and-policy-high-level" class="level3">
-<h3 class="anchored" data-anchor-id="create-iam-role-and-policy-high-level">Create IAM role and policy (high level)</h3>
-<ul>
-<li>Create an IAM role for AWS Batch with S3 read/write.</li>
-<li>Attach policies: <code>AmazonS3FullAccess</code> (or scoped) and Batch execution roles.</li>
-</ul>
-</section>
-<section id="run-on-aws" class="level3">
-<h3 class="anchored" data-anchor-id="run-on-aws">Run on AWS</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-profile</span> aws <span class="at">-with-report</span> report.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="integrating-r-and-python" class="level2">
-<h2 class="anchored" data-anchor-id="integrating-r-and-python">6. Integrating R and Python</h2>
-<section id="containerization-recommended" class="level3">
-<h3 class="anchored" data-anchor-id="containerization-recommended">Containerization (recommended)</h3>
-<ul>
-<li>Use Docker images with R and Python environments, or use Conda with Nextflow’s <code>conda</code> support.</li>
-</ul>
-<p>Example process using Python:</p>
+<section id="example-4-python-in-nextflow" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-python-in-nextflow">Example 4 — Python in Nextflow</h3>
+<p><strong>Problem:</strong> Run a Python script inside a pipeline.</p>
+<p><strong>Solution:</strong></p>
 <pre class="nextflow"><code>process runPython {
   container 'python:3.11-slim'
+
   input:
-    path x
+    path csv
+
   output:
     path 'out.txt'
 
   script:
   """
-  python -c 'print("Processing", "$x")' &gt; out.txt
+  python -c "import pandas as pd; df=pd.read_csv('${csv}'); print(df.shape)" &gt; out.txt
   """
 }</code></pre>
-<p>Example <code>conda</code> usage:</p>
-<pre class="nextflow"><code>process analysis {
-  conda 'envs/env.yml'
+<hr>
+</section>
+<section id="example-5-r-analysis-step" class="level3">
+<h3 class="anchored" data-anchor-id="example-5-r-analysis-step">Example 5 — R analysis step</h3>
+<p><strong>Problem:</strong> Execute <code>analysis.R</code> with Dockerized R.</p>
+<p><strong>Solution:</strong></p>
+<pre class="nextflow"><code>process runR {
+  container 'rocker/r-ver:4.3'
+
+  input:
+    path input_csv
+
+  output:
+    path 'output.csv'
+
   script:
   """
-  Rscript analysis.R input.csv output.csv
+  Rscript analysis.R ${input_csv} output.csv
   """
 }</code></pre>
-<p><code>envs/env.yml</code> (example)</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> nf-env</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> r-base=4.2</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> r-essentials</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="r-script-example-analysis.r" class="level3">
-<h3 class="anchored" data-anchor-id="r-script-example-analysis.r">R script example (<code>analysis.R</code>)</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="at">trailingOnly =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(args[<span class="dv">1</span>])</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(dat)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="fu">as.data.frame</span>(summary), args[<span class="dv">2</span>], <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="passing-data-between-r-and-python" class="level3">
-<h3 class="anchored" data-anchor-id="passing-data-between-r-and-python">Passing data between R and Python</h3>
-<ul>
-<li>Use files in <code>workDir</code> and channels to pass file paths.</li>
-<li>Keep intermediate files in object storage (S3/GCS) when running in cloud.</li>
-</ul>
+<p><code>analysis.R</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="at">trailingOnly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(args[<span class="dv">1</span>])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="fu">summary</span>(dat), args[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 </section>
 </section>
-<section id="practical-bioinformatics-example-fastq-qc-alignment" class="level2">
-<h2 class="anchored" data-anchor-id="practical-bioinformatics-example-fastq-qc-alignment">7. Practical Bioinformatics Example (FASTQ QC &amp; alignment)</h2>
-<ul>
-<li>Process 1: split/validate FASTQ</li>
-<li>Process 2: run <code>fastp</code> or <code>fastqc</code></li>
-<li>Process 3: align with <code>bwa</code> or <code>minimap2</code></li>
-<li>Use containers for exact tool versions and pin references.</li>
-</ul>
-<p>Small example process:</p>
-<pre class="nextflow"><code>process fastqc {
-  container 'biocontainers/fastqc:v0.11.9_cv8'
-  input:
-    path fastq
-  output:
-    path "*.html"
-  """
-  fastqc $fastq -o .
-  """
-}</code></pre>
+<section id="real-world-industry-use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="real-world-industry-use-cases">8. Real-world Industry Use Cases</h2>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Industry</th>
+<th>Use case</th>
+<th>How Nextflow helps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Bioinformatics core</td>
+<td>RNA-seq (nf-core/rnaseq)</td>
+<td>End-to-end reproducible pipeline</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Pharma</td>
+<td>WGS somatic variant calling</td>
+<td>Scales across cloud batch</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Clinical omics</td>
+<td>Trial sub-study biomarkers</td>
+<td>Containerized secondary analysis</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Public health</td>
+<td>Viral genome surveillance</td>
+<td>Rapid parallel sample processing</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Agriculture genomics</td>
+<td>Variant discovery</td>
+<td>HPC/cloud portability</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Microbiome</td>
+<td>16S / metagenomics</td>
+<td>nf-core/mag and related pipelines</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Proteomics</td>
+<td>Mass spec pipelines</td>
+<td>Custom Nextflow workflows</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>AI/ML</td>
+<td>Batch model scoring</td>
+<td>Parallel inference processes</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Data engineering</td>
+<td>ETL orchestration</td>
+<td>Scheduled cloud runs via Tower</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>CRO</td>
+<td>Standardized deliverables</td>
+<td>Same pipeline per sponsor SOP</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Single-cell</td>
+<td>scRNA-seq at scale</td>
+<td>Partition by sample/library</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Regulatory</td>
+<td>Reproducible omics reports</td>
+<td>Versioned containers + reports</td>
+</tr>
+</tbody>
+</table>
+<hr>
 </section>
-<section id="clinical-trials-regulatory-considerations" class="level2">
-<h2 class="anchored" data-anchor-id="clinical-trials-regulatory-considerations">8. Clinical Trials / Regulatory Considerations</h2>
-<ul>
-<li>Enforce data access controls: use private buckets and VPCs.</li>
-<li>Log and version workflows: enable reports and execution metadata.</li>
-<li>Separate PHI/PII and use encryption at rest/in transit.</li>
-</ul>
+<section id="bioinformatics-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="bioinformatics-workflow">9. Bioinformatics Workflow</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Role of Nextflow:</strong> Orchestrates each step, runs samples in parallel, manages retries/resume, and invokes Docker containers per process.</p>
+<hr>
+</section>
+<section id="clinical-programming-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="clinical-programming-workflow">10. Clinical Programming Workflow</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>How Nextflow helps:</strong> Primary TLFs often use SAS/R, but <strong>omics</strong>, <strong>digital endpoints</strong>, and <strong>RWE pipelines</strong> increasingly use Nextflow for reproducible secondary analyses linked to trials.</p>
+<hr>
 </section>
 <section id="best-practices" class="level2">
-<h2 class="anchored" data-anchor-id="best-practices">9. Best Practices</h2>
+<h2 class="anchored" data-anchor-id="best-practices">11. Best Practices</h2>
+<section id="do" class="level3">
+<h3 class="anchored" data-anchor-id="do">DO</h3>
 <ul>
-<li>Containerize reproducible environments (Docker/Conda).</li>
-<li>Test workflows locally before the cloud.</li>
-<li>Use small sample datasets for CI tests.</li>
-<li>Keep credentials out of repo; use secret managers or ADC.</li>
+<li>Use <code>-resume</code> during development</li>
+<li>Pin container tags on every process</li>
+<li>Store configs in <code>nextflow.config</code> with profiles</li>
+<li>Test on small datasets first</li>
+<li>Publish reports: <code>-with-report</code>, <code>-with-trace</code>, <code>-with-timeline</code></li>
+<li>Use nf-core pipelines when applicable</li>
+<li>Keep secrets in environment variables or secret managers</li>
 </ul>
 </section>
-<section id="references-next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="references-next-steps">10. References &amp; Next Steps</h2>
+<section id="dont" class="level3">
+<h3 class="anchored" data-anchor-id="dont">DON’T</h3>
 <ul>
-<li>Nextflow docs: https://www.nextflow.io/docs/</li>
-<li>Nextflow + Google: https://www.nextflow.io/docs/latest/GoogleCloud.html</li>
-<li>Nextflow + AWS: https://www.nextflow.io/docs/latest/aws/index.html</li>
+<li>Hardcode cloud credentials in Git</li>
+<li>Run production on <code>:latest</code> containers</li>
+<li>Ignore failed tasks in <code>work/</code> without logs</li>
+<li>Mix dev and prod buckets/workDirs</li>
+<li>Process PHI without access controls on cloud storage</li>
 </ul>
+</section>
+<section id="performance-tips" class="level3">
+<h3 class="anchored" data-anchor-id="performance-tips">Performance tips</h3>
+<ul>
+<li>Maximize parallelism with channels</li>
+<li>Use appropriate cloud instance types per process</li>
+<li>Store references genomes on shared fast storage</li>
+</ul>
+</section>
+<section id="security-tips" class="level3">
+<h3 class="anchored" data-anchor-id="security-tips">Security tips</h3>
+<ul>
+<li>Private buckets, VPC endpoints, IAM least privilege</li>
+<li>Encrypt data at rest and in transit</li>
+<li>Audit Tower/Nextflow run metadata</li>
+</ul>
+</section>
+<section id="optimization-tips" class="level3">
+<h3 class="anchored" data-anchor-id="optimization-tips">Optimization tips</h3>
+<ul>
+<li>Cache aggressively with <code>-resume</code></li>
+<li>Use <code>errorStrategy</code> and <code>maxRetries</code> wisely</li>
+<li>Profile with <code>-with-trace</code> before scaling</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="common-mistakes" class="level2">
+<h2 class="anchored" data-anchor-id="common-mistakes">12. Common Mistakes</h2>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 29%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mistake</th>
+<th>Reason</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Java not installed</td>
+<td>Nextflow requires JVM</td>
+<td>Install Java 11+</td>
+</tr>
+<tr class="even">
+<td>Docker not available</td>
+<td>Container engine missing</td>
+<td>Install Docker; enable in config</td>
+</tr>
+<tr class="odd">
+<td>Empty channel</td>
+<td>Wrong glob or path</td>
+<td>Check <code>Channel.fromPath</code> patterns</td>
+</tr>
+<tr class="even">
+<td>Permission denied on cloud</td>
+<td>IAM misconfiguration</td>
+<td>Fix roles for S3/Batch/GCP</td>
+</tr>
+<tr class="odd">
+<td>Out of memory</td>
+<td>Instance too small</td>
+<td>Increase memory in process or instance</td>
+</tr>
+<tr class="even">
+<td>Stale resume cache</td>
+<td>Changed script but same hash confusion</td>
+<td>Use <code>-resume</code> carefully; delete work dir if needed</td>
+</tr>
+<tr class="odd">
+<td>Missing input files</td>
+<td>Relative path issues</td>
+<td>Use absolute paths or <code>params.input</code></td>
+</tr>
+<tr class="even">
+<td>Slow local runs</td>
+<td>Too much parallelism on laptop</td>
+<td>Limit <code>maxForks</code> in config</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="troubleshooting-guide" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting-guide">13. Troubleshooting Guide</h2>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Error</th>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Unable to acquire lock</code></td>
+<td>Another Nextflow run active</td>
+<td>Wait or remove <code>.nextflow.lock</code> safely</td>
+</tr>
+<tr class="even">
+<td><code>Process exceeded memory</code></td>
+<td>OOM kill</td>
+<td>Increase memory directive</td>
+</tr>
+<tr class="odd">
+<td><code>Cannot find Java</code></td>
+<td>JAVA_HOME unset</td>
+<td>Install JRE; export JAVA_HOME</td>
+</tr>
+<tr class="even">
+<td><code>Docker not found</code></td>
+<td>Docker daemon down</td>
+<td>Start Docker Desktop</td>
+</tr>
+<tr class="odd">
+<td><code>Access Denied</code> (S3/GCS)</td>
+<td>Credentials/permissions</td>
+<td>Fix IAM; verify bucket</td>
+</tr>
+<tr class="even">
+<td>Task hangs</td>
+<td>Network/storage issue</td>
+<td>Check <code>.command.log</code> in work dir</td>
+</tr>
+<tr class="odd">
+<td>Container pull fails</td>
+<td>Wrong tag or no network</td>
+<td>Verify image name; login to registry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Diagnostic commands:</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> log</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-resume</span> <span class="at">-with-trace</span> trace.txt</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect task folder:</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> work/ab/cd1234<span class="pp">*</span>/.command.err</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> work/ab/cd1234<span class="pp">*</span>/.command.log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="interview-questions" class="level2">
+<h2 class="anchored" data-anchor-id="interview-questions">14. Interview Questions</h2>
+<section id="beginner" class="level3">
+<h3 class="anchored" data-anchor-id="beginner">Beginner</h3>
+<p><strong>Q1: What is Nextflow?</strong><br>
+<strong>A:</strong> A workflow manager for parallel, reproducible data and bioinformatics pipelines.</p>
+<p><strong>Q2: What is a process?</strong><br>
+<strong>A:</strong> A pipeline step with defined inputs, outputs, and execution script.</p>
+<p><strong>Q3: Why use containers with Nextflow?</strong><br>
+<strong>A:</strong> To pin software versions and ensure reproducibility across environments.</p>
+</section>
+<section id="intermediate" class="level3">
+<h3 class="anchored" data-anchor-id="intermediate">Intermediate</h3>
+<p><strong>Q4: What does <code>-resume</code> do?</strong><br>
+<strong>A:</strong> Reuses cached successful tasks from previous runs, rerunning only failed or changed steps.</p>
+<p><strong>Q5: Explain channels.</strong><br>
+<strong>A:</strong> Queues that pass data between processes asynchronously.</p>
+<p><strong>Q6: How do profiles work?</strong><br>
+<strong>A:</strong> Named configuration sets selected via <code>-profile</code> for different executors and settings.</p>
+</section>
+<section id="advanced" class="level3">
+<h3 class="anchored" data-anchor-id="advanced">Advanced</h3>
+<p><strong>Q7: Compare Nextflow with Snakemake.</strong><br>
+<strong>A:</strong> Both orchestrate workflows; Nextflow emphasizes dataflow channels and cloud-native executors; Snakemake uses rule graphs — choice depends on team and ecosystem.</p>
+<p><strong>Q8: How would you run Nextflow on AWS Batch?</strong><br>
+<strong>A:</strong> Configure <code>process.executor = 'awsbatch'</code>, S3 workDir, IAM roles, and container registry access in <code>nextflow.config</code>.</p>
+<p><strong>Q9: How do you handle secrets?</strong><br>
+<strong>A:</strong> Environment variables, AWS Secrets Manager, Vault — never commit keys to Git.</p>
+<hr>
+</section>
+</section>
+<section id="cheat-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="cheat-sheet">15. Cheat Sheet</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install / update</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://get.nextflow.io <span class="kw">|</span> <span class="fu">bash</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> <span class="at">-v</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-profile</span> docker</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-resume</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-with-report</span> report.html</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Params</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">--input</span> data/ <span class="at">--outdir</span> results/</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Info</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> log</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> info</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> pull nf-core/rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Process input</td>
+<td><code>input: path file</code></td>
+</tr>
+<tr class="even">
+<td>Process output</td>
+<td><code>output: path "*.bam"</code></td>
+</tr>
+<tr class="odd">
+<td>Container</td>
+<td><code>container 'image:tag'</code></td>
+</tr>
+<tr class="even">
+<td>Channel from list</td>
+<td><code>Channel.fromList([...])</code></td>
+</tr>
+<tr class="odd">
+<td>View channel</td>
+<td><code>\| view</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">16. Summary</h2>
+<ul>
+<li>Nextflow orchestrates multi-step computational pipelines</li>
+<li><strong>Processes</strong> run tasks; <strong>channels</strong> pass data; <strong>workflows</strong> connect steps</li>
+<li>It enables parallelism, resume, and cloud scaling</li>
+<li><strong>Docker</strong> integration ensures reproducible tool environments</li>
+<li>Profiles switch between local, AWS, GCP, and HPC execution</li>
+<li>nf-core provides production-grade community pipelines</li>
+<li>Bioinformatics workflows from FASTQ to report map naturally to Nextflow</li>
+<li>Clinical omics sub-studies benefit from reproducible Nextflow pipelines</li>
+<li>Use reports, pinned containers, and secure cloud configuration</li>
+<li>Troubleshoot via <code>work/</code> logs and <code>-with-trace</code></li>
+<li>Learn <strong>Docker</strong> first, then <strong>Nextflow</strong>, then <strong>Kubernetes/AWS</strong> for deployment at scale</li>
+</ul>
+<hr>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">17. Next Topic</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Recommended next: <strong><a href="./kubernetes.html">Kubernetes</a></strong> for cluster orchestration, <strong><a href="./aws.html">AWS</a></strong> for cloud execution, or <strong><a href="./quarto_tutorial_for_beginners.html">Quarto</a></strong> for publishing pipeline reports.</p>
+<hr>
+</section>
+<section id="learning-path" class="level2">
+<h2 class="anchored" data-anchor-id="learning-path">18. Learning Path</h2>
+<section id="bioinformatics-roadmap" class="level3">
+<h3 class="anchored" data-anchor-id="bioinformatics-roadmap">Bioinformatics roadmap</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="software-data-engineering-roadmap" class="level3">
+<h3 class="anchored" data-anchor-id="software-data-engineering-roadmap">Software / data engineering roadmap</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">19. Further Reading</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nextflow docs</td>
+<td><a href="https://www.nextflow.io/docs/">https://www.nextflow.io/docs/</a></td>
+</tr>
+<tr class="even">
+<td>Nextflow GitHub</td>
+<td><a href="https://github.com/nextflow-io/nextflow">https://github.com/nextflow-io/nextflow</a></td>
+</tr>
+<tr class="odd">
+<td>nf-core</td>
+<td><a href="https://nf-co.re/">https://nf-co.re/</a></td>
+</tr>
+<tr class="even">
+<td>Seqera Tower</td>
+<td><a href="https://seqera.io/">https://seqera.io/</a></td>
+</tr>
+<tr class="odd">
+<td>AWS Batch + Nextflow</td>
+<td><a href="https://www.nextflow.io/docs/latest/aws.html">https://www.nextflow.io/docs/latest/aws.html</a></td>
+</tr>
+<tr class="even">
+<td>Google Cloud</td>
+<td><a href="https://www.nextflow.io/docs/latest/google.html">https://www.nextflow.io/docs/latest/google.html</a></td>
+</tr>
+<tr class="odd">
+<td>Training</td>
+<td><a href="https://training.nextflow.io/">https://training.nextflow.io/</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="mini-project-two-step-qc-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="mini-project-two-step-qc-pipeline">20. Mini Project — Two-Step QC Pipeline</h2>
+<section id="problem-statement" class="level3">
+<h3 class="anchored" data-anchor-id="problem-statement">Problem statement</h3>
+<p>Build a Nextflow pipeline that greets each sample ID and simulates a QC pass — foundation for real FastQC integration.</p>
+</section>
+<section id="architecture" class="level3">
+<h3 class="anchored" data-anchor-id="architecture">Architecture</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="folder-structure" class="level3">
+<h3 class="anchored" data-anchor-id="folder-structure">Folder structure</h3>
+<pre class="text"><code>nf-qc-demo/
+├── main.nf
+├── nextflow.config
+└── data/
+    └── samples.txt</code></pre>
+</section>
+<section id="implementation-main.nf" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-main.nf">Implementation (<code>main.nf</code>)</h3>
+<pre class="nextflow"><code>params.samples = file('data/samples.txt').readLines()
+
+process greet {
+  input:
+    val sample
+  output:
+    tuple val(sample), path("${sample}.txt")
+
+  script:
+  """
+  echo "QC passed for ${sample}" &gt; ${sample}.txt
+  """
+}
+
+workflow {
+  Channel.fromList(params.samples) | greet | view
+}</code></pre>
+<p><code>data/samples.txt</code>:</p>
+<pre class="text"><code>SAMPLE001
+SAMPLE002
+SAMPLE003</code></pre>
+</section>
+<section id="commands" class="level3">
+<h3 class="anchored" data-anchor-id="commands">Commands</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-with-report</span> report.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="expected-output" class="level3">
+<h3 class="anchored" data-anchor-id="expected-output">Expected output</h3>
+<p>Three <code>.txt</code> files in <code>work/</code> and a timeline/report HTML.</p>
+<hr>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">21. Exercises</h2>
+<section id="practice-questions" class="level3">
+<h3 class="anchored" data-anchor-id="practice-questions">10 practice questions</h3>
+<ol type="1">
+<li>What three core concepts define a Nextflow pipeline?</li>
+<li>What flag resumes a failed pipeline efficiently?</li>
+<li>How do you specify a Docker image for a process?</li>
+<li>What is the purpose of the <code>work/</code> directory?</li>
+<li>Name one nf-core pipeline and its use case.</li>
+<li>How does Nextflow achieve parallelism?</li>
+<li>What is a profile?</li>
+<li>Where are task stderr logs stored?</li>
+<li>Why pin container versions?</li>
+<li>How does Nextflow relate to Docker?</li>
+</ol>
+</section>
+<section id="assignments" class="level3">
+<h3 class="anchored" data-anchor-id="assignments">5 assignments</h3>
+<ol type="1">
+<li>Add a third process to the mini project that aggregates QC results.</li>
+<li>Run hello-world with <code>-with-timeline timeline.html</code>.</li>
+<li>Configure a <code>docker</code> profile in <code>nextflow.config</code>.</li>
+<li>Pull and inspect nf-core/rnaseq parameters (do not run full pipeline).</li>
+<li>Document an AWS profile skeleton (no credentials).</li>
+</ol>
+</section>
+<section id="mini-projects" class="level3">
+<h3 class="anchored" data-anchor-id="mini-projects">3 mini projects</h3>
+<ol type="1">
+<li>Wrap FastQC in Nextflow for all <code>*.fastq.gz</code> in a folder.</li>
+<li>Add a Python pandas summary process after QC.</li>
+<li>Generate a Quarto report from pipeline outputs.</li>
+</ol>
+</section>
+<section id="capstone-project" class="level3">
+<h3 class="anchored" data-anchor-id="capstone-project">1 capstone project</h3>
+<p>Design a 4-step genomics pipeline (QC → align → stats → report) with Docker containers, <code>-resume</code>, and HTML reports — use mock scripts if data is unavailable.</p>
+<hr>
+</section>
+</section>
+<section id="cloud-execution-reference" class="level2">
+<h2 class="anchored" data-anchor-id="cloud-execution-reference">Cloud execution (reference)</h2>
+<section id="google-cloud-platform" class="level3">
+<h3 class="anchored" data-anchor-id="google-cloud-platform">Google Cloud Platform</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">// nextflow.config excerpt</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">{</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  gcp <span class="op">{</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    process<span class="op">.</span>executor <span class="op">=</span> <span class="st">'google-lifesciences'</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    google <span class="op">{</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      project <span class="op">=</span> <span class="st">'YOUR_PROJECT_ID'</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      region  <span class="op">=</span> <span class="st">'us-central1'</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>      bucket <span class="op">=</span> <span class="st">'gs://your-nextflow-bucket'</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    workDir <span class="op">=</span> <span class="st">'gs://your-nextflow-bucket/work'</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-profile</span> gcp <span class="at">-with-report</span> report.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="aws-batch" class="level3">
+<h3 class="anchored" data-anchor-id="aws-batch">AWS Batch</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode groovy code-with-copy"><code class="sourceCode groovy"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  aws <span class="op">{</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    process<span class="op">.</span>executor <span class="op">=</span> <span class="st">'awsbatch'</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    aws<span class="op">.</span>region <span class="op">=</span> <span class="st">'us-east-1'</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    workDir <span class="op">=</span> <span class="st">'s3://your-nextflow-bucket/work'</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run main.nf <span class="at">-profile</span> aws <span class="at">-with-report</span> report.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Replace placeholder project IDs, buckets, and IAM roles with your organization’s approved cloud resources.</p>
+</div>
+</div>
+<hr>
+<p><a href="./index.html">Back to home</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -886,4 +1904,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

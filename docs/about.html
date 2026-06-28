@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Professional learning resources for bioinformatics, clinical programming, and data science.">
 
-<title>StatiX AI &amp; Data Labs - About This Tutorial</title>
+<title>StatiX AI &amp; Data Labs - About StatiX AI &amp; Data Labs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +67,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -93,50 +98,93 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./python.html"> <i class="bi bi-filetype-py" role="img">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-layers" role="img">
 </i> 
-<span class="menu-text">Python</span></a>
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="./linux.html"><i class="bi bi-terminal" role="img">
+</i> 
+ <span class="dropdown-text">Linux</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r.html"> <i class="bi bi-r-circle" role="img">
+        <li>
+    <a class="dropdown-item" href="./git.html"><i class="bi bi-git" role="img">
 </i> 
-<span class="menu-text">R</span></a>
+ <span class="dropdown-text">Git</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./clinical-r.html"> <i class="bi bi-heart-pulse" role="img">
+        <li>
+    <a class="dropdown-item" href="./docker.html"><i class="bi bi-box-seam" role="img">
 </i> 
-<span class="menu-text">Clinical R</span></a>
+ <span class="dropdown-text">Docker</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./nextflow.html"> <i class="bi bi-diagram-3" role="img">
+        <li>
+    <a class="dropdown-item" href="./nextflow.html"><i class="bi bi-diagram-3" role="img">
 </i> 
-<span class="menu-text">Nextflow</span></a>
+ <span class="dropdown-text">Nextflow</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./docker.html"> <i class="bi bi-box-seam" role="img">
+        <li>
+    <a class="dropdown-item" href="./kubernetes.html"><i class="bi bi-boxes" role="img">
 </i> 
-<span class="menu-text">Docker</span></a>
+ <span class="dropdown-text">Kubernetes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aws.html"><i class="bi bi-cloud" role="img">
+</i> 
+ <span class="dropdown-text">AWS</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--clinical" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-heart-pulse" role="img">
+</i> 
+ <span class="menu-text">Data &amp; Clinical</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data--clinical">    
+        <li>
+    <a class="dropdown-item" href="./python.html"><i class="bi bi-filetype-py" role="img">
+</i> 
+ <span class="dropdown-text">Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r.html"><i class="bi bi-r-circle" role="img">
+</i> 
+ <span class="dropdown-text">R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./clinical-r.html"><i class="bi bi-hospital" role="img">
+</i> 
+ <span class="dropdown-text">Clinical R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pharmaverse.html"><i class="bi bi-capsule" role="img">
+</i> 
+ <span class="dropdown-text">Pharmaverse</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./statistics.html"><i class="bi bi-calculator" role="img">
+</i> 
+ <span class="dropdown-text">Statistics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r-shiny.html"><i class="bi bi-window-stack" role="img">
+</i> 
+ <span class="dropdown-text">R Shiny</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
+</i> 
+<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./quarto_tutorial_for_beginners.html"> <i class="bi bi-journal-bookmark" role="img">
 </i> 
 <span class="menu-text">Quarto</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./r-shiny.html"> <i class="bi bi-window-stack" role="img">
-</i> 
-<span class="menu-text">R Shiny</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./statistics.html"> <i class="bi bi-calculator" role="img">
-</i> 
-<span class="menu-text">Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
-</i> 
-<span class="menu-text">ML &amp; AI</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./about.html" aria-current="page"> <i class="bi bi-info-circle" role="img">
@@ -158,14 +206,18 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#our-mission" id="toc-our-mission" class="nav-link active" data-scroll-target="#our-mission">Our mission</a></li>
+  <li><a href="#who-this-site-is-for" id="toc-who-this-site-is-for" class="nav-link" data-scroll-target="#who-this-site-is-for">Who this site is for</a></li>
+  <li><a href="#documentation-standard" id="toc-documentation-standard" class="nav-link" data-scroll-target="#documentation-standard">Documentation standard</a></li>
+  <li><a href="#recommended-learning-paths" id="toc-recommended-learning-paths" class="nav-link" data-scroll-target="#recommended-learning-paths">Recommended learning paths</a>
   <ul class="collapse">
-  <li><a href="#about-this-quarto-website" id="toc-about-this-quarto-website" class="nav-link active" data-scroll-target="#about-this-quarto-website">About This Quarto Website</a>
-  <ul class="collapse">
-  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
-  <li><a href="#why-this-is-useful" id="toc-why-this-is-useful" class="nav-link" data-scroll-target="#why-this-is-useful">Why this is useful</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
-  <li><a href="#more-resources" id="toc-more-resources" class="nav-link" data-scroll-target="#more-resources">More resources</a></li>
+  <li><a href="#bioinformatics" id="toc-bioinformatics" class="nav-link" data-scroll-target="#bioinformatics">Bioinformatics</a></li>
+  <li><a href="#clinical-programming" id="toc-clinical-programming" class="nav-link" data-scroll-target="#clinical-programming">Clinical programming</a></li>
+  <li><a href="#data-science-engineering" id="toc-data-science-engineering" class="nav-link" data-scroll-target="#data-science-engineering">Data science &amp; engineering</a></li>
   </ul></li>
+  <li><a href="#how-to-use-this-site" id="toc-how-to-use-this-site" class="nav-link" data-scroll-target="#how-to-use-this-site">How to use this site</a></li>
+  <li><a href="#contribute-feedback" id="toc-contribute-feedback" class="nav-link" data-scroll-target="#contribute-feedback">Contribute &amp; feedback</a></li>
   </ul>
 </nav>
     </div>
@@ -174,9 +226,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About This Tutorial</h1>
+<h1 class="title">About StatiX AI &amp; Data Labs</h1>
 </div>
 
+<div>
+  <div class="description">
+    Professional learning resources for bioinformatics, clinical programming, and data science.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -191,45 +248,200 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="about-this-quarto-website" class="level1">
-<h1>About This Quarto Website</h1>
-<p>This website is built using Quarto and designed for beginners.</p>
-<section id="what-you-will-learn" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
-<ul>
-<li>How Quarto converts Markdown into a website</li>
-<li>How to configure navigation</li>
-<li>How to use themes and custom CSS</li>
-<li>How to render your site locally</li>
-</ul>
+<section id="our-mission" class="level2">
+<h2 class="anchored" data-anchor-id="our-mission">Our mission</h2>
+<p><strong>StatiX AI &amp; Data Labs</strong> is a curated learning platform for students and professionals in life sciences, pharmaceuticals, and data-driven healthcare.</p>
+<p>We publish tutorials that read like <strong>official documentation</strong> — practical, reproducible, and aligned with how industry teams actually work.</p>
+<hr>
 </section>
-<section id="why-this-is-useful" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-is-useful">Why this is useful</h2>
-<p>Quarto websites are ideal for:</p>
-<ul>
-<li>tutorials</li>
-<li>documentation</li>
-<li>project portfolios</li>
-<li>learning notes</li>
-</ul>
+<section id="who-this-site-is-for" class="level2">
+<h2 class="anchored" data-anchor-id="who-this-site-is-for">Who this site is for</h2>
+<table class="table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Audience</th>
+<th>What you will find</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Students</strong></td>
+<td>Step-by-step guides from zero prior knowledge</td>
+</tr>
+<tr class="even">
+<td><strong>Bioinformatics researchers</strong></td>
+<td>Docker, Nextflow, cloud pipelines</td>
+</tr>
+<tr class="odd">
+<td><strong>Clinical programmers</strong></td>
+<td>Reproducible R environments, ADaM workflows (expanding)</td>
+</tr>
+<tr class="even">
+<td><strong>Data scientists</strong></td>
+<td>Containers, orchestration, ML deployment paths</td>
+</tr>
+<tr class="odd">
+<td><strong>Pharmaceutical professionals</strong></td>
+<td>GxP-aware practices, reproducibility, audit-friendly patterns</td>
+</tr>
+<tr class="even">
+<td><strong>Software engineers</strong></td>
+<td>DevOps foundations for regulated data platforms</td>
+</tr>
+</tbody>
+</table>
+<hr>
 </section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
-<ul>
-<li>Add a new page such as <code>projects.qmd</code></li>
-<li>Create a blog using Quarto website features</li>
-<li>Experiment with <code>format: html</code> options like <code>theme: darkly</code></li>
-</ul>
+<section id="documentation-standard" class="level2">
+<h2 class="anchored" data-anchor-id="documentation-standard">Documentation standard</h2>
+<p>Every StatiX tutorial follows a <strong>25-section professional template</strong>:</p>
+<ol type="1">
+<li>Introduction<br>
+</li>
+<li>Learning objectives<br>
+</li>
+<li>Why it matters (industry context)<br>
+</li>
+<li>Architecture diagrams (Mermaid)<br>
+</li>
+<li>Installation (Windows, macOS, Linux)<br>
+</li>
+<li>Basic concepts<br>
+</li>
+<li>Hands-on examples<br>
+</li>
+<li>Real-world use cases<br>
+</li>
+<li>Bioinformatics workflow placement<br>
+</li>
+<li>Clinical programming workflow placement<br>
+</li>
+<li>Best practices<br>
+</li>
+<li>Common mistakes<br>
+</li>
+<li>Troubleshooting<br>
+</li>
+<li>Interview questions<br>
+</li>
+<li>Cheat sheet<br>
+</li>
+<li>Summary<br>
+</li>
+<li>Next topic<br>
+</li>
+<li>Learning paths<br>
+</li>
+<li>Further reading<br>
+</li>
+<li>Mini project<br>
+</li>
+<li>Exercises</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Available now:</strong> <a href="./docker.html">Docker</a> and <a href="./nextflow.html">Nextflow</a> use the full template. Other topics are rolling out on the same standard.</p>
+</div>
+</div>
+<hr>
 </section>
-<section id="more-resources" class="level2">
-<h2 class="anchored" data-anchor-id="more-resources">More resources</h2>
-<ul>
-<li><a href="https://quarto.org/docs/">Quarto Documentation</a></li>
-<li><a href="https://quarto.org/docs/websites/">Quarto Website Guide</a></li>
-</ul>
+<section id="recommended-learning-paths" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-learning-paths">Recommended learning paths</h2>
+<section id="bioinformatics" class="level3">
+<h3 class="anchored" data-anchor-id="bioinformatics">Bioinformatics</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Linux] --&gt; B[Git]
+  B --&gt; C[Docker]
+  C --&gt; D[Nextflow]
+  D --&gt; E[Cloud / AWS]
+  E --&gt; F[ML &amp; AI]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="clinical-programming" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-programming">Clinical programming</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[R / SAS] --&gt; B[Linux &amp; Git]
+  B --&gt; C[Docker]
+  C --&gt; D[Pharmaverse]
+  D --&gt; E[Reproducible TLFs]
+  E --&gt; F[Submission]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-science-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="data-science-engineering">Data science &amp; engineering</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Python / R] --&gt; B[SQL]
+  B --&gt; C[Linux &amp; Git]
+  C --&gt; D[Docker]
+  D --&gt; E[Kubernetes]
+  E --&gt; F[AWS]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="how-to-use-this-site" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use-this-site">How to use this site</h2>
+<ol type="1">
+<li>Start on the <a href="./index.html">home page</a> — check <strong>Available</strong> vs <strong>Coming soon</strong> badges<br>
+</li>
+<li>Follow tutorials in order if you are new to a path<br>
+</li>
+<li>Complete <strong>hands-on examples</strong> and <strong>mini projects</strong> on your machine<br>
+</li>
+<li>Use <strong>cheat sheets</strong> and <strong>troubleshooting</strong> sections as job aids</li>
+</ol>
+<hr>
+</section>
+<section id="contribute-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="contribute-feedback">Contribute &amp; feedback</h2>
+<p>This site is built with <a href="https://quarto.org/">Quarto</a> and published via GitHub Pages.</p>
+<p>Repository: <a href="https://github.com/praveen2093/QUARTO">https://github.com/praveen2093/QUARTO</a></p>
+<p>Live site: <a href="https://praveen2093.github.io/QUARTO/">https://praveen2093.github.io/QUARTO/</a></p>
+<p><a href="./index.html">Back to home</a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -625,4 +837,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

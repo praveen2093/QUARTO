@@ -1,0 +1,15 @@
+---
+title: "AWS — Cloud Computing for Life Sciences"
+description: "AWS services for bioinformatics pipelines, data lakes, and ML in pharma."
+toc-depth: 2
+---
+
+::: {.callout-important}
+**Status: Coming soon** — See [Nextflow cloud section](nextflow.qmd#cloud-execution-reference) for AWS Batch integration today.
+:::
+
+## 1. Introduction
+
+**Amazon Web Services (AWS)** provides scalable storage (S3), compute (Batch, EC2), and ML services used by genomics and pharmaceutical data teams.
+
+[Back to home](index.qmd)

@@ -1,0 +1,15 @@
+---
+title: "Kubernetes — Container Orchestration at Scale"
+description: "Orchestrating Docker containers for production bioinformatics and ML platforms."
+toc-depth: 2
+---
+
+::: {.callout-important}
+**Status: Coming soon** — Learn [Docker](docker.qmd) and [Nextflow](nextflow.qmd) first.
+:::
+
+## 1. Introduction
+
+**Kubernetes (K8s)** orchestrates containers across clusters — used when Docker alone is not enough for large-scale production deployments.
+
+[Back to home](index.qmd)

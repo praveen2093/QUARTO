@@ -1,39 +1,250 @@
 ---
-title: "Nextflow: Quick Guide for Bioinformatics & Cloud"
+title: "Nextflow — Professional Tutorial for Bioinformatics & Cloud"
+description: "Industry-standard Nextflow guide for scalable, reproducible pipelines in bioinformatics, pharma, and cloud."
+toc-depth: 3
+execute:
+  eval: false
 ---
 
-## 1. Why Nextflow?
-
-Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.
-
-::: callout-important
-This guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values.
+::: {.callout-note}
+**Audience:** Students, bioinformatics researchers, clinical programmers, data scientists, pharmaceutical professionals, and software engineers.
 :::
 
-## 2. Quick Start — install and run locally
+## 1. Introduction
 
-### Requirements
-- Java 11+ (Nextflow runs on the JVM)
-- `nextflow` CLI (install via curl)
-- Optional: Docker or Conda for reproducible software environments
+**Nextflow** is a workflow management system for running computational pipelines. It connects analysis steps, runs them in parallel, and scales from a laptop to the cloud.
+
+### Why Nextflow exists
+
+Bioinformatics and data pipelines often involve **many steps**, **large datasets**, and **many samples**. Shell scripts become hard to maintain, restart, and scale. Nextflow was built to solve reproducible, portable, parallel workflow execution.
+
+### The problem Nextflow solves
+
+| Problem | Without Nextflow | With Nextflow |
+|---------|------------------|---------------|
+| Parallelism | Manual job arrays | Automatic parallel tasks |
+| Failures | Restart from scratch | Resume from last successful step |
+| Portability | Scripts tied to one cluster | Profiles for local, AWS, GCP |
+| Reproducibility | Ad-hoc environments | Docker/Singularity/Conda per step |
+| Complexity | Spaghetti bash scripts | Structured processes and channels |
+
+### Where Nextflow is used in industry
+
+- **Academic genomics cores** — RNA-seq, WGS, single-cell pipelines
+- **Pharma bioinformatics** — target discovery, biomarker pipelines
+- **CROs & sequencing vendors** — standardized nf-core pipelines
+- **Public health** — pathogen surveillance (e.g., EPI2ME, viral pipelines)
+- **Cloud-native labs** — AWS Batch, Google Life Sciences, Kubernetes
+
+---
+
+## 2. Learning Objectives
+
+### By the end of this tutorial, you will be able to
+
+1. Explain what Nextflow is and why bioinformatics teams adopt it
+2. Install Nextflow and run a hello-world workflow locally
+3. Define processes, channels, and workflows
+4. Configure Docker containers for reproducible tool execution
+5. Run pipelines on AWS and GCP using profiles
+6. Integrate R and Python scripts into Nextflow processes
+7. Map Nextflow to FASTQ-to-report bioinformatics workflows
+8. Apply best practices for clinical and regulated environments
+9. Troubleshoot common Nextflow errors
+10. Design a simple QC pipeline as a mini project
+
+---
+
+## 3. Why is this important?
+
+### Why should someone learn Nextflow?
+
+Nextflow is the **de facto standard** for portable bioinformatics pipelines. nf-core alone has 100+ community pipelines used worldwide.
+
+### Why do companies use it?
+
+- **Scale** — process hundreds of samples in parallel
+- **Resume** — `-resume` saves time and cloud cost after failures
+- **Portability** — same pipeline on laptop, HPC, or cloud via profiles
+- **Community** — nf-core, Seqera Tower ecosystem
+
+### Why is it important in bioinformatics?
+
+Genomics workflows are multi-step and data-heavy. Nextflow manages dependencies, parallelization, and containerized tools automatically.
+
+### Why is it important in clinical programming?
+
+While SAS/R dominate TLFs, Nextflow supports **omics sub-studies**, **biomarker pipelines**, and **reproducible secondary analyses** linked to trials.
+
+### Why is it useful in data science?
+
+Nextflow orchestrates feature engineering, model training, and batch scoring at scale — especially when combined with Docker and cloud executors.
+
+---
+
+## 4. Architecture Diagram
+
+### Nextflow core architecture
+
+```{mermaid}
+flowchart LR
+  A[Developer] --> B[main.nf]
+  B --> C[Workflow Engine]
+  C --> D[Process 1]
+  C --> E[Process 2]
+  C --> F[Process 3]
+  D --> G[Docker / Conda]
+  E --> G
+  F --> G
+  C --> H[Executor]
+  H --> I[Local / AWS / GCP / HPC]
+  C --> J[work/ Directory]
+```
+
+### Pipeline data flow
+
+```{mermaid}
+flowchart TB
+  A[Input Channel] --> B[Process: QC]
+  B --> C[Process: Align]
+  C --> D[Process: Call Variants]
+  D --> E[Output Channel]
+  E --> F[Reports]
+```
+
+---
+
+## 5. Installation
+
+### Windows (WSL2 recommended)
+
+Nextflow runs best on Linux/macOS. On Windows, use **WSL2**:
 
 ```bash
-# Install Nextflow (Linux/macOS)
+# Inside WSL Ubuntu
 curl -s https://get.nextflow.io | bash
-# Move to PATH (example)
 sudo mv nextflow /usr/local/bin/
-
-# Verify
 nextflow -v
 ```
 
-### Hello-world workflow (`main.nf`)
+Install Java 11+:
+
+```bash
+sudo apt-get install -y openjdk-17-jre
+java -version
+```
+
+### macOS
+
+```bash
+curl -s https://get.nextflow.io | bash
+sudo mv nextflow /usr/local/bin/
+brew install openjdk@17
+nextflow -v
+```
+
+### Linux
+
+```bash
+curl -s https://get.nextflow.io | bash
+sudo mv nextflow /usr/local/bin/
+sudo apt-get install -y openjdk-17-jre
+nextflow -v
+```
+
+**Verify:**
+
+```bash
+nextflow run hello
+```
+
+::: {.callout-tip}
+Optional: Install [Docker](docker.qmd) for containerized processes.
+:::
+
+---
+
+## 6. Basic Concepts
+
+### Process
+
+| | |
+|---|---|
+| **Definition** | A single computational step with inputs, outputs, and a script |
+| **Analogy** | One station on a factory assembly line |
+| **Industry example** | FastQC on each FASTQ file in parallel |
+| **Best practice** | One logical task per process; pin container versions |
+
+### Channel
+
+| | |
+|---|---|
+| **Definition** | An asynchronous queue connecting processes with data |
+| **Analogy** | A conveyor belt carrying work items |
+| **Industry example** | One channel item per patient sample |
+| **Best practice** | Use tuple channels for paired-end reads |
+
+### Workflow
+
+| | |
+|---|---|
+| **Definition** | The DAG (graph) linking processes |
+| **Analogy** | The master floor plan of the factory |
+| **Industry example** | QC → align → call variants → annotate |
+| **Best practice** | Keep `main.nf` readable; modularize with `include` |
+
+### Executor
+
+| | |
+|---|---|
+| **Definition** | Backend that runs tasks (local, slurm, awsbatch, etc.) |
+| **Analogy** | The HR department assigning workers to stations |
+| **Industry example** | `awsbatch` for cloud scale |
+| **Best practice** | Use profiles in `nextflow.config` |
+
+### Profile
+
+| | |
+|---|---|
+| **Definition** | Named configuration bundle (executor, containers, paths) |
+| **Analogy** | A preset mode: "laptop" vs "cloud" |
+| **Industry example** | `-profile docker,aws` |
+| **Best practice** | Never hardcode credentials in profiles |
+
+### Container directive
+
+| | |
+|---|---|
+| **Definition** | Docker/Singularity image used by a process |
+| **Analogy** | The standardized toolbox for that station |
+| **Industry example** | `biocontainers/fastqc:v0.11.9_cv8` |
+| **Best practice** | Always specify full image tags |
+
+### work/ directory
+
+| | |
+|---|---|
+| **Definition** | Cached task directories for resume and debugging |
+| **Analogy** | The workshop floor where in-progress jobs live |
+| **Industry example** | Inspected when a variant-calling step fails |
+| **Best practice** | Use shared workDir on cloud; enable `-resume` |
+
+---
+
+## 7. Hands-on Examples
+
+### Example 1 — Hello World
+
+**Problem:** Verify Nextflow runs locally.
+
+**Solution:** Create `main.nf`:
+
 ```nextflow
 #!/usr/bin/env nextflow
 
 process sayHello {
   output:
-    file 'hello.txt'
+    path 'hello.txt'
 
   script:
   """
@@ -46,45 +257,531 @@ workflow {
 }
 ```
 
-Run locally:
+**Run:**
+
 ```bash
-nextflow run main.nf -profile standard
-ls -l work/
+nextflow run main.nf
 cat work/*/hello.txt
 ```
 
-## 3. Core Concepts (brief)
-- `process`: computational step (command/script) with input/output.
-- `channel`: stream of data connecting processes.
-- `workflow`: organizes processes and channels.
+**Expected output:** `Hello from Nextflow`
 
-## 4. Running Nextflow on Google Cloud Platform (GCP)
+---
 
-### Overview
-We demonstrate using GCP Compute + Cloud Storage. For larger work, you can use Nextflow Tower, Google Genomics Pipelines, or compute clusters (GKE).
+### Example 2 — Parallel sample processing
 
-### Prerequisites
-- `gcloud` installed and authenticated
-- A GCP project and billing enabled
-- A GCS bucket for workspace/storage
+**Problem:** Process multiple samples in parallel.
 
-```bash
-# Set project and region
-gcloud config set project YOUR_PROJECT_ID
-gcloud config set compute/region us-central1
-# Create bucket (example)
-gsutil mb -l us-central1 gs://your-nextflow-bucket
+**Solution:**
+
+```nextflow
+params.samples = ['S1', 'S2', 'S3']
+
+process greetSample {
+  input:
+    val sample
+
+  output:
+    stdout
+
+  script:
+  """
+  echo "Processing sample ${sample}"
+  """
+}
+
+workflow {
+  Channel.fromList(params.samples) | greetSample | view
+}
 ```
 
-### Nextflow config for GCP (example `nextflow.config`)
+**Expected result:** Three lines, order may vary (parallel execution).
+
+---
+
+### Example 3 — Dockerized FastQC
+
+**Problem:** Run FastQC in a reproducible container.
+
+**Solution:**
+
+```nextflow
+process runFastqc {
+  container 'biocontainers/fastqc:v0.11.9_cv8'
+
+  input:
+    path fastq
+
+  output:
+    path "*.html"
+
+  script:
+  """
+  fastqc ${fastq}
+  """
+}
+
+workflow {
+  Channel.fromPath('*.fastq.gz') | runFastqc
+}
+```
+
+**Expected result:** HTML QC reports per FASTQ file.
+
+---
+
+### Example 4 — Python in Nextflow
+
+**Problem:** Run a Python script inside a pipeline.
+
+**Solution:**
+
+```nextflow
+process runPython {
+  container 'python:3.11-slim'
+
+  input:
+    path csv
+
+  output:
+    path 'out.txt'
+
+  script:
+  """
+  python -c "import pandas as pd; df=pd.read_csv('${csv}'); print(df.shape)" > out.txt
+  """
+}
+```
+
+---
+
+### Example 5 — R analysis step
+
+**Problem:** Execute `analysis.R` with Dockerized R.
+
+**Solution:**
+
+```nextflow
+process runR {
+  container 'rocker/r-ver:4.3'
+
+  input:
+    path input_csv
+
+  output:
+    path 'output.csv'
+
+  script:
+  """
+  Rscript analysis.R ${input_csv} output.csv
+  """
+}
+```
+
+`analysis.R`:
+
+```r
+args <- commandArgs(trailingOnly = TRUE)
+dat <- read.csv(args[1])
+write.csv(summary(dat), args[2])
+```
+
+---
+
+## 8. Real-world Industry Use Cases
+
+| # | Industry | Use case | How Nextflow helps |
+|---|----------|----------|-------------------|
+| 1 | Bioinformatics core | RNA-seq (nf-core/rnaseq) | End-to-end reproducible pipeline |
+| 2 | Pharma | WGS somatic variant calling | Scales across cloud batch |
+| 3 | Clinical omics | Trial sub-study biomarkers | Containerized secondary analysis |
+| 4 | Public health | Viral genome surveillance | Rapid parallel sample processing |
+| 5 | Agriculture genomics | Variant discovery | HPC/cloud portability |
+| 6 | Microbiome | 16S / metagenomics | nf-core/mag and related pipelines |
+| 7 | Proteomics | Mass spec pipelines | Custom Nextflow workflows |
+| 8 | AI/ML | Batch model scoring | Parallel inference processes |
+| 9 | Data engineering | ETL orchestration | Scheduled cloud runs via Tower |
+| 10 | CRO | Standardized deliverables | Same pipeline per sponsor SOP |
+| 11 | Single-cell | scRNA-seq at scale | Partition by sample/library |
+| 12 | Regulatory | Reproducible omics reports | Versioned containers + reports |
+
+---
+
+## 9. Bioinformatics Workflow
+
+```{mermaid}
+flowchart TB
+  A[FASTQ] --> B[Quality Control]
+  B --> C[Alignment]
+  C --> D[Variant Calling]
+  D --> E[Annotation]
+  E --> F[Nextflow Orchestration]
+  F --> G[Docker per Step]
+  G --> H[MultiQC / Quarto Report]
+  H --> I[Clinical / Research Output]
+```
+
+**Role of Nextflow:** Orchestrates each step, runs samples in parallel, manages retries/resume, and invokes Docker containers per process.
+
+---
+
+## 10. Clinical Programming Workflow
+
+```{mermaid}
+flowchart TB
+  A[SDTM] --> B[ADaM]
+  B --> C[Analysis]
+  C --> D[Tables]
+  C --> E[Listings]
+  C --> F[Figures]
+  D --> G[Submission]
+  E --> G
+  F --> G
+  H[Omics Sub-study] --> I[Nextflow Pipeline]
+  I --> J[Biomarker Integration]
+  J --> C
+```
+
+**How Nextflow helps:** Primary TLFs often use SAS/R, but **omics**, **digital endpoints**, and **RWE pipelines** increasingly use Nextflow for reproducible secondary analyses linked to trials.
+
+---
+
+## 11. Best Practices
+
+### DO
+
+- Use `-resume` during development
+- Pin container tags on every process
+- Store configs in `nextflow.config` with profiles
+- Test on small datasets first
+- Publish reports: `-with-report`, `-with-trace`, `-with-timeline`
+- Use nf-core pipelines when applicable
+- Keep secrets in environment variables or secret managers
+
+### DON'T
+
+- Hardcode cloud credentials in Git
+- Run production on `:latest` containers
+- Ignore failed tasks in `work/` without logs
+- Mix dev and prod buckets/workDirs
+- Process PHI without access controls on cloud storage
+
+### Performance tips
+
+- Maximize parallelism with channels
+- Use appropriate cloud instance types per process
+- Store references genomes on shared fast storage
+
+### Security tips
+
+- Private buckets, VPC endpoints, IAM least privilege
+- Encrypt data at rest and in transit
+- Audit Tower/Nextflow run metadata
+
+### Optimization tips
+
+- Cache aggressively with `-resume`
+- Use `errorStrategy` and `maxRetries` wisely
+- Profile with `-with-trace` before scaling
+
+---
+
+## 12. Common Mistakes
+
+| Mistake | Reason | Solution |
+|---------|--------|----------|
+| Java not installed | Nextflow requires JVM | Install Java 11+ |
+| Docker not available | Container engine missing | Install Docker; enable in config |
+| Empty channel | Wrong glob or path | Check `Channel.fromPath` patterns |
+| Permission denied on cloud | IAM misconfiguration | Fix roles for S3/Batch/GCP |
+| Out of memory | Instance too small | Increase memory in process or instance |
+| Stale resume cache | Changed script but same hash confusion | Use `-resume` carefully; delete work dir if needed |
+| Missing input files | Relative path issues | Use absolute paths or `params.input` |
+| Slow local runs | Too much parallelism on laptop | Limit `maxForks` in config |
+
+---
+
+## 13. Troubleshooting Guide
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `Unable to acquire lock` | Another Nextflow run active | Wait or remove `.nextflow.lock` safely |
+| `Process exceeded memory` | OOM kill | Increase memory directive |
+| `Cannot find Java` | JAVA_HOME unset | Install JRE; export JAVA_HOME |
+| `Docker not found` | Docker daemon down | Start Docker Desktop |
+| `Access Denied` (S3/GCS) | Credentials/permissions | Fix IAM; verify bucket |
+| Task hangs | Network/storage issue | Check `.command.log` in work dir |
+| Container pull fails | Wrong tag or no network | Verify image name; login to registry |
+
+**Diagnostic commands:**
+
+```bash
+nextflow log
+nextflow run main.nf -resume -with-trace trace.txt
+# Inspect task folder:
+cat work/ab/cd1234*/.command.err
+cat work/ab/cd1234*/.command.log
+```
+
+---
+
+## 14. Interview Questions
+
+### Beginner
+
+**Q1: What is Nextflow?**  
+**A:** A workflow manager for parallel, reproducible data and bioinformatics pipelines.
+
+**Q2: What is a process?**  
+**A:** A pipeline step with defined inputs, outputs, and execution script.
+
+**Q3: Why use containers with Nextflow?**  
+**A:** To pin software versions and ensure reproducibility across environments.
+
+### Intermediate
+
+**Q4: What does `-resume` do?**  
+**A:** Reuses cached successful tasks from previous runs, rerunning only failed or changed steps.
+
+**Q5: Explain channels.**  
+**A:** Queues that pass data between processes asynchronously.
+
+**Q6: How do profiles work?**  
+**A:** Named configuration sets selected via `-profile` for different executors and settings.
+
+### Advanced
+
+**Q7: Compare Nextflow with Snakemake.**  
+**A:** Both orchestrate workflows; Nextflow emphasizes dataflow channels and cloud-native executors; Snakemake uses rule graphs — choice depends on team and ecosystem.
+
+**Q8: How would you run Nextflow on AWS Batch?**  
+**A:** Configure `process.executor = 'awsbatch'`, S3 workDir, IAM roles, and container registry access in `nextflow.config`.
+
+**Q9: How do you handle secrets?**  
+**A:** Environment variables, AWS Secrets Manager, Vault — never commit keys to Git.
+
+---
+
+## 15. Cheat Sheet
+
+```bash
+# Install / update
+curl -s https://get.nextflow.io | bash
+nextflow -v
+
+# Run
+nextflow run main.nf
+nextflow run main.nf -profile docker
+nextflow run main.nf -resume
+nextflow run main.nf -with-report report.html
+
+# Params
+nextflow run main.nf --input data/ --outdir results/
+
+# Info
+nextflow log
+nextflow info
+nextflow pull nf-core/rnaseq
+```
+
+| Concept | Syntax |
+|---------|--------|
+| Process input | `input: path file` |
+| Process output | `output: path "*.bam"` |
+| Container | `container 'image:tag'` |
+| Channel from list | `Channel.fromList([...])` |
+| View channel | `\| view` |
+
+---
+
+## 16. Summary
+
+- Nextflow orchestrates multi-step computational pipelines
+- **Processes** run tasks; **channels** pass data; **workflows** connect steps
+- It enables parallelism, resume, and cloud scaling
+- **Docker** integration ensures reproducible tool environments
+- Profiles switch between local, AWS, GCP, and HPC execution
+- nf-core provides production-grade community pipelines
+- Bioinformatics workflows from FASTQ to report map naturally to Nextflow
+- Clinical omics sub-studies benefit from reproducible Nextflow pipelines
+- Use reports, pinned containers, and secure cloud configuration
+- Troubleshoot via `work/` logs and `-with-trace`
+- Learn **Docker** first, then **Nextflow**, then **Kubernetes/AWS** for deployment at scale
+
+---
+
+## 17. Next Topic
+
+```{mermaid}
+flowchart LR
+  A[Linux] --> B[Git]
+  B --> C[Docker]
+  C --> D[Nextflow]
+  D --> E[Kubernetes]
+  E --> F[AWS]
+```
+
+Recommended next: **[Kubernetes](kubernetes.qmd)** for cluster orchestration, **[AWS](aws.qmd)** for cloud execution, or **[Quarto](quarto_tutorial_for_beginners.qmd)** for publishing pipeline reports.
+
+---
+
+## 18. Learning Path
+
+### Bioinformatics roadmap
+
+```{mermaid}
+flowchart TB
+  A[Linux] --> B[Git]
+  B --> C[Docker]
+  C --> D[Nextflow]
+  D --> E[RNA-seq]
+  E --> F[Variant Calling]
+  F --> G[Cloud]
+  G --> H[AI / ML]
+```
+
+### Software / data engineering roadmap
+
+```{mermaid}
+flowchart TB
+  A[Linux] --> B[Git]
+  B --> C[Docker]
+  C --> D[Nextflow]
+  D --> E[Kubernetes]
+  E --> F[AWS]
+  F --> G[Data Engineering]
+```
+
+---
+
+## 19. Further Reading
+
+| Resource | Link |
+|----------|------|
+| Nextflow docs | [https://www.nextflow.io/docs/](https://www.nextflow.io/docs/) |
+| Nextflow GitHub | [https://github.com/nextflow-io/nextflow](https://github.com/nextflow-io/nextflow) |
+| nf-core | [https://nf-co.re/](https://nf-co.re/) |
+| Seqera Tower | [https://seqera.io/](https://seqera.io/) |
+| AWS Batch + Nextflow | [https://www.nextflow.io/docs/latest/aws.html](https://www.nextflow.io/docs/latest/aws.html) |
+| Google Cloud | [https://www.nextflow.io/docs/latest/google.html](https://www.nextflow.io/docs/latest/google.html) |
+| Training | [https://training.nextflow.io/](https://training.nextflow.io/) |
+
+---
+
+## 20. Mini Project — Two-Step QC Pipeline
+
+### Problem statement
+
+Build a Nextflow pipeline that greets each sample ID and simulates a QC pass — foundation for real FastQC integration.
+
+### Architecture
+
+```{mermaid}
+flowchart LR
+  A[Sample IDs] --> B[Process: greet]
+  B --> C[Process: qcPass]
+  C --> D[Summary Files]
+```
+
+### Folder structure
+
+```text
+nf-qc-demo/
+├── main.nf
+├── nextflow.config
+└── data/
+    └── samples.txt
+```
+
+### Implementation (`main.nf`)
+
+```nextflow
+params.samples = file('data/samples.txt').readLines()
+
+process greet {
+  input:
+    val sample
+  output:
+    tuple val(sample), path("${sample}.txt")
+
+  script:
+  """
+  echo "QC passed for ${sample}" > ${sample}.txt
+  """
+}
+
+workflow {
+  Channel.fromList(params.samples) | greet | view
+}
+```
+
+`data/samples.txt`:
+
+```text
+SAMPLE001
+SAMPLE002
+SAMPLE003
+```
+
+### Commands
+
+```bash
+nextflow run main.nf -with-report report.html
+```
+
+### Expected output
+
+Three `.txt` files in `work/` and a timeline/report HTML.
+
+---
+
+## 21. Exercises
+
+### 10 practice questions
+
+1. What three core concepts define a Nextflow pipeline?
+2. What flag resumes a failed pipeline efficiently?
+3. How do you specify a Docker image for a process?
+4. What is the purpose of the `work/` directory?
+5. Name one nf-core pipeline and its use case.
+6. How does Nextflow achieve parallelism?
+7. What is a profile?
+8. Where are task stderr logs stored?
+9. Why pin container versions?
+10. How does Nextflow relate to Docker?
+
+### 5 assignments
+
+1. Add a third process to the mini project that aggregates QC results.
+2. Run hello-world with `-with-timeline timeline.html`.
+3. Configure a `docker` profile in `nextflow.config`.
+4. Pull and inspect nf-core/rnaseq parameters (do not run full pipeline).
+5. Document an AWS profile skeleton (no credentials).
+
+### 3 mini projects
+
+1. Wrap FastQC in Nextflow for all `*.fastq.gz` in a folder.
+2. Add a Python pandas summary process after QC.
+3. Generate a Quarto report from pipeline outputs.
+
+### 1 capstone project
+
+Design a 4-step genomics pipeline (QC → align → stats → report) with Docker containers, `-resume`, and HTML reports — use mock scripts if data is unavailable.
+
+---
+
+## Cloud execution (reference)
+
+### Google Cloud Platform
+
 ```groovy
+// nextflow.config excerpt
 profiles {
   gcp {
-    process.executor = 'google-lifesciences'  // uses Google Life Sciences API
+    process.executor = 'google-lifesciences'
     google {
       project = 'YOUR_PROJECT_ID'
       region  = 'us-central1'
-      auth = '/path/to/google-credentials.json'   // or use ADC
       bucket = 'gs://your-nextflow-bucket'
     }
     workDir = 'gs://your-nextflow-bucket/work'
@@ -92,154 +789,30 @@ profiles {
 }
 ```
 
-> Authentication: prefer Application Default Credentials (ADC). To create a service account and key:
 ```bash
-gcloud iam service-accounts create nf-runner --display-name "Nextflow runner"
-gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
-  --member="serviceAccount:nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com" \
-  --role="roles/storage.admin"
-gcloud iam service-accounts keys create key.json \
-  --iam-account nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com
-export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/key.json"
+nextflow run main.nf -profile gcp -with-report report.html
 ```
 
-### Run on GCP
-```bash
-nextflow run main.nf -profile gcp -with-report report.html -with-trace trace.txt
-```
+### AWS Batch
 
-### Cost & monitoring
-- Store intermediate files in GCS to avoid expensive disk.
-- Use small VM images for lightweight tasks.
-- Monitor via Cloud Console and check `gcloud billing` reports.
-
-## 5. Running Nextflow on AWS
-
-### Overview
-Common backends: S3 for storage, AWS Batch or EC2/ECS as executors.
-
-### Prerequisites
-- `aws` CLI configured (`aws configure`)
-- An S3 bucket and IAM role/user with permissions
-
-```bash
-# Create bucket
-aws s3 mb s3://your-nextflow-bucket --region us-east-1
-```
-
-### Example `nextflow.config` for AWS S3 + Batch
 ```groovy
 profiles {
   aws {
     process.executor = 'awsbatch'
-    aws {
-      region = 'us-east-1'
-      client {
-        registry = 'public.ecr.aws'  // if using ECR images
-      }
-    }
+    aws.region = 'us-east-1'
     workDir = 's3://your-nextflow-bucket/work'
   }
 }
 ```
 
-### Create IAM role and policy (high level)
-- Create an IAM role for AWS Batch with S3 read/write.
-- Attach policies: `AmazonS3FullAccess` (or scoped) and Batch execution roles.
-
-### Run on AWS
 ```bash
 nextflow run main.nf -profile aws -with-report report.html
 ```
 
-## 6. Integrating R and Python
+::: {.callout-warning}
+Replace placeholder project IDs, buckets, and IAM roles with your organization's approved cloud resources.
+:::
 
-### Containerization (recommended)
-- Use Docker images with R and Python environments, or use Conda with Nextflow's `conda` support.
+---
 
-Example process using Python:
-```nextflow
-process runPython {
-  container 'python:3.11-slim'
-  input:
-    path x
-  output:
-    path 'out.txt'
-
-  script:
-  """
-  python -c 'print("Processing", "$x")' > out.txt
-  """
-}
-```
-
-Example `conda` usage:
-```nextflow
-process analysis {
-  conda 'envs/env.yml'
-  script:
-  """
-  Rscript analysis.R input.csv output.csv
-  """
-}
-```
-
-`envs/env.yml` (example)
-```yaml
-name: nf-env
-channels:
-  - conda-forge
-dependencies:
-  - r-base=4.2
-  - r-essentials
-  - python=3.11
-  - pandas
-```
-
-### R script example (`analysis.R`)
-```r
-args <- commandArgs(trailingOnly = TRUE)
-dat <- read.csv(args[1])
-summary <- summary(dat)
-write.csv(as.data.frame(summary), args[2], row.names=FALSE)
-```
-
-### Passing data between R and Python
-- Use files in `workDir` and channels to pass file paths.
-- Keep intermediate files in object storage (S3/GCS) when running in cloud.
-
-## 7. Practical Bioinformatics Example (FASTQ QC & alignment)
-- Process 1: split/validate FASTQ
-- Process 2: run `fastp` or `fastqc`
-- Process 3: align with `bwa` or `minimap2`
-- Use containers for exact tool versions and pin references.
-
-Small example process:
-```nextflow
-process fastqc {
-  container 'biocontainers/fastqc:v0.11.9_cv8'
-  input:
-    path fastq
-  output:
-    path "*.html"
-  """
-  fastqc $fastq -o .
-  """
-}
-```
-
-## 8. Clinical Trials / Regulatory Considerations
-- Enforce data access controls: use private buckets and VPCs.
-- Log and version workflows: enable reports and execution metadata.
-- Separate PHI/PII and use encryption at rest/in transit.
-
-## 9. Best Practices
-- Containerize reproducible environments (Docker/Conda).
-- Test workflows locally before the cloud.
-- Use small sample datasets for CI tests.
-- Keep credentials out of repo; use secret managers or ADC.
-
-## 10. References & Next Steps
-- Nextflow docs: https://www.nextflow.io/docs/
-- Nextflow + Google: https://www.nextflow.io/docs/latest/GoogleCloud.html
-- Nextflow + AWS: https://www.nextflow.io/docs/latest/aws/index.html
+[Back to home](index.qmd)

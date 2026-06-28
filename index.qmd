@@ -12,11 +12,27 @@ title-block: false
 
 Welcome — a curated collection of hands-on tutorials and guides for data, AI and programming.
 
-Click any tile below to open the corresponding tutorial.
+Click any tile below to open the corresponding tutorial. Tiles marked **Available** include full industry-standard documentation.
 :::
 
 ```{=html}
 <div class="tech-grid">
+  <div class="tech-card">
+    <a href="linux.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-terminal" aria-hidden="true"></i></div>
+      <div class="tech-name">Linux</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
+  <div class="tech-card">
+    <a href="git.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-git" aria-hidden="true"></i></div>
+      <div class="tech-name">Git</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
   <div class="tech-card">
     <a href="python.html">
       <span class="tech-status tech-status--soon">Coming soon</span>
@@ -82,6 +98,30 @@ Click any tile below to open the corresponding tutorial.
     </a>
   </div>
   <div class="tech-card">
+    <a href="kubernetes.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-boxes" aria-hidden="true"></i></div>
+      <div class="tech-name">Kubernetes</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
+  <div class="tech-card">
+    <a href="aws.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-cloud" aria-hidden="true"></i></div>
+      <div class="tech-name">AWS</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
+  <div class="tech-card">
+    <a href="pharmaverse.html">
+      <span class="tech-status tech-status--soon">Coming soon</span>
+      <div class="tech-logo"><i class="bi bi-capsule" aria-hidden="true"></i></div>
+      <div class="tech-name">Pharmaverse</div>
+      <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>
+    </a>
+  </div>
+  <div class="tech-card">
     <a href="ml-ai.html">
       <span class="tech-status tech-status--soon">Coming soon</span>
       <div class="tech-logo"><i class="bi bi-cpu" aria-hidden="true"></i></div>
@@ -94,4 +134,14 @@ Click any tile below to open the corresponding tutorial.
 
 ### About the collection
 
-This site collects independent tutorials for clinical, pharmaceutical, and life-sciences teams. Each tile links to a standalone page with hands-on examples and runnable code.
+This site follows a **25-section professional documentation standard** — the same structure used in premium courses and official vendor docs. Each tutorial includes learning objectives, Mermaid diagrams, hands-on labs, industry use cases, interview prep, and capstone exercises.
+
+See [About](about.qmd) for learning paths and full documentation guidelines.
+
+### Quick start paths
+
+| Path | Start here |
+|------|------------|
+| **Bioinformatics** | [Linux](linux.qmd) → [Git](git.qmd) → [Docker](docker.qmd) → [Nextflow](nextflow.qmd) |
+| **Clinical programming** | [R](r.qmd) → [Docker](docker.qmd) → [Pharmaverse](pharmaverse.qmd) |
+| **New to publishing** | [Quarto](quarto_tutorial_for_beginners.qmd) |
