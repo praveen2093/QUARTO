@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "statistics.html",
+    "href": "statistics.html",
+    "title": "Statistics — Fundamentals",
+    "section": "",
+    "text": "Statistics\nPlaceholder for statistics tutorials (probability, inference, regression).\nBack to home"
+  },
+  {
+    "objectID": "r.html",
+    "href": "r.html",
+    "title": "R — Getting Started",
+    "section": "",
+    "text": "R Programming Tutorials\nPlaceholder for R tutorials and examples. Add exercises and datasets here.\nBack to home"
+  },
+  {
     "objectID": "nextflow.html",
     "href": "nextflow.html",
     "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
@@ -161,60 +175,158 @@
     "text": "Cloud execution (reference)\n\nGoogle Cloud Platform\n// nextflow.config excerpt\nprofiles {\n  gcp {\n    process.executor = 'google-lifesciences'\n    google {\n      project = 'YOUR_PROJECT_ID'\n      region  = 'us-central1'\n      bucket = 'gs://your-nextflow-bucket'\n    }\n    workDir = 'gs://your-nextflow-bucket/work'\n  }\n}\nnextflow run main.nf -profile gcp -with-report report.html\n\n\nAWS Batch\nprofiles {\n  aws {\n    process.executor = 'awsbatch'\n    aws.region = 'us-east-1'\n    workDir = 's3://your-nextflow-bucket/work'\n  }\n}\nnextflow run main.nf -profile aws -with-report report.html\n\n\n\n\n\n\nWarning\n\n\n\nReplace placeholder project IDs, buckets, and IAM roles with your organization’s approved cloud resources.\n\n\n\nBack to home"
   },
   {
-    "objectID": "r.html",
-    "href": "r.html",
-    "title": "R — Getting Started",
+    "objectID": "quarto_tutorial_for_beginners.html",
+    "href": "quarto_tutorial_for_beginners.html",
+    "title": "Full Quarto Tutorial",
     "section": "",
-    "text": "R Programming Tutorials\nPlaceholder for R tutorials and examples. Add exercises and datasets here.\nBack to home"
+    "text": "Welcome! This tutorial is written for people who are completely new to Quarto and may also have no background in R.\nQuarto is a tool for creating: - reports - blogs - websites - books - presentations - PDFs and Word documents\nYou write content in simple plain text using Markdown, and Quarto turns it into polished output.\n\n\n\nQuarto is an open-source publishing system.\nIn simple words: - You write text in a file - You can add headings, lists, images, tables, and code - Quarto converts that file into HTML, PDF, Word, slides, and more\nYou do not need to know R to start using Quarto.\nQuarto can work with: - plain Markdown only - Python - R - Julia - Observable JavaScript\nIf you are a beginner, you can first learn Quarto as a document writing tool without writing any code.\n\n\n\n\nQuarto is useful because it helps you: - write once and create multiple output formats - keep text, code, and results in one place - create professional-looking documents - make reproducible reports - build personal websites, course notes, and books\n\n\nYou can use Quarto to create: - class notes - project reports - resumes - research papers - tutorials - data analysis reports - technical blogs - slide presentations\n\n\n\n\n\nNo.\nThis is very important.\nYou can use Quarto without knowing R.\nThere are two common ways to use Quarto:\n\n\nYou write Markdown and create a document. No programming needed.\n\n\n\nLater, if you want, you can add Python or R code blocks.\nSo if you are a complete beginner, start with text-only documents.\n\n\n\n\n\nTo use Quarto comfortably, install the following:\n\n\n\nQuarto\nA text editor or IDE\n\n\n\n\n\nVS Code (great for beginners)\nRStudio / Positron (optional, even if you do not use R)\n\n\n\n\n\nPython if you want to run Python code later\nR if you want to run R code later\nTinyTeX or TeX Live if you want to create PDFs\n\n\n\n\nGo to the official site: - https://quarto.org/docs/get-started/\nDownload and install Quarto for your operating system.\n\n\n\nOpen your terminal and run:\nquarto --version\nIf Quarto is installed correctly, you will see a version number.\n\n\n\n\n\nMarkdown is a very simple way to format text.\nInstead of clicking buttons for bold headings or lists, you type small symbols.\n\n\n\n\n# Main Title\n## Section Title\n### Smaller Section\n\n\n\n**bold text**\n*italic text*\n\n\n\n- item one\n- item two\n- item three\n\n\n\n1. First step\n2. Second step\n3. Third step\n\n\n\n[Quarto Website](https://quarto.org)\nThis is one reason Quarto is beginner-friendly.\n\n\n\n\n\n\nQuarto documents usually use the .qmd extension.\nCreate a file called:\nhello.qmd\nAdd this content:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n## About Me\n\nI am learning Quarto.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\nThat section is called YAML.\nIt stores document settings like: - title - author - date - output format\nIn this example: - title sets the title of the document - format: html tells Quarto to create an HTML page\n\n\n\n\n\nTo convert a .qmd file into output, Quarto uses the word render.\n\n\nRun:\nquarto render hello.qmd\nQuarto will create an HTML file, usually:\nhello.html\nOpen that file in your browser.\n\n\n\nIf you use VS Code with Quarto installed, you can often preview or render directly from the editor.\n\n\n\n\n\nA simple Quarto document has two main parts:\n\n\nThis controls document settings.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nauthor: \"Your Name\"\ndate: \"2026-06-12\"\nformat: html\n---\n\n\n\nThis is where you write: - headings - paragraphs - lists - images - tables - code blocks\n\n\n\n\n\n\n\n# Heading 1\n## Heading 2\n### Heading 3\n\n\n\nJust write normal text.\n\n\n\nLeave a blank line between paragraphs.\n\n\n\n**bold**\n*italic*\n`code`\n\n\n\n&gt; This is an important note.\n\n\n\n---\n\n\n\n- apple\n- banana\n- orange\n\n\n\n1. Install Quarto\n2. Create a file\n3. Render the file\n\n\n\n\n\nYou can add an image like this:\n![A sample image](images/example.png)\nExplanation: - text inside [] is alternate text - text inside () is the image path\nIf your image is in a folder called images, the file path might be: - images/photo.jpg - images/chart.png\n\n\n\n\n[Visit Quarto](https://quarto.org)\nThis creates a clickable link.\n\n\n\n\nSimple Markdown table:\n| Tool   | Purpose            |\n|--------|--------------------|\n| Quarto | Create documents   |\n| VS Code| Edit files         |\n| Python | Run code optional  |\nThis becomes a formatted table in the output.\n\n\n\n\nEven if you do not know programming yet, it is helpful to understand the idea.\nA code block is a section where you write code.\n\n\n```bash\nquarto render hello.qmd\n\nThis only displays code.\n\n### Executable code block\nIf you have Python or R installed, Quarto can run code blocks and show results.\n\nExample with Python:\n\n````markdown\n```python\nprint(\"Hello from Python\")\n\nIf Python is available, Quarto can run it and include the output.\n\nAgain: **this is optional** for beginners.\n\n---\n\n## 14. A text-only beginner example\n\nCreate a file named `intro.qmd`:\n\n```markdown\n---\ntitle: \"Introduction to Quarto\"\nformat: html\n---\n\n# Welcome\n\nQuarto helps you create beautiful documents.\n\n## What I learned\n\n- Quarto uses `.qmd` files\n- Markdown is easy to write\n- I can create HTML pages\n- I do not need R to begin\n\n## My Next Step\n\nI will learn how to add images and tables.\n```\n\nRender it:\n\n```bash\nquarto render intro.qmd\n```\n\n---\n\n## 15. Creating different output formats\n\nOne powerful feature of Quarto is that you can generate different types of output.\n\n### HTML\n```yaml\nformat: html\n```\n\n### PDF\n```yaml\nformat: pdf\n```\n\n### Word\n```yaml\nformat: docx\n```\n\n### Multiple formats\n```yaml\nformat:\n  html: default\n  pdf: default\n  docx: default\n```\n\nThen run:\n\n```bash\nquarto render yourfile.qmd\n```\n\n### Important note about PDF\nCreating PDFs usually requires a LaTeX installation such as TinyTeX.\n\nIf PDF rendering fails, start with HTML first.\n\n---\n\n## 16. Working with sections\n\nA bigger document can be organized into sections.\n\nExample:\n\n```markdown\n# Chapter 1\n## Topic 1.1\n## Topic 1.2\n\n# Chapter 2\n## Topic 2.1\n```\n\nThis structure helps readers navigate your content.\n\nIn HTML output, Quarto may also generate a table of contents.\n\n---\n\n## 17. Adding a table of contents\n\nYou can enable it in YAML:\n\n```yaml\n---\ntitle: \"My Tutorial\"\nformat:\n  html:\n    toc: true\n---\n```\n\nThis adds a table of contents automatically.\n\n---\n\n## 18. Changing theme and appearance\n\nFor HTML documents, you can choose themes.\n\nExample:\n\n```yaml\n---\ntitle: \"Styled Document\"\nformat:\n  html:\n    theme: cosmo\n---\n```\n\nSome common themes:\n- cosmo\n- litera\n- flatly\n- darkly\n- minty\n\nYou can experiment and see which one you like.\n\n---\n\n## 19. Creating a presentation\n\nQuarto can create slides too.\n\nExample:\n\n```markdown\n---\ntitle: \"My First Presentation\"\nformat: revealjs\n---\n\n# Slide 1\nWelcome to my presentation.\n\n# Slide 2\n- Point one\n- Point two\n```\n\nRender it and Quarto will create a slide deck.\n\n---\n\n## 20. Creating a website\n\nQuarto can also build websites.\n\nA basic website project often includes:\n- `_quarto.yml`\n- `index.qmd`\n- other `.qmd` pages\n\nExample `_quarto.yml`:\n\n```yaml\nproject:\n  type: website\n\nwebsite:\n  title: \"My Website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: about.qmd\n        text: About\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\n```\n\nExample `index.qmd`:\n\n```markdown\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n```\n\nThis is more advanced, but it shows how powerful Quarto is.\n\n---\n\n## 21. What is `_quarto.yml`?\n\nWhen you work on a Quarto project with multiple files, `_quarto.yml` is the main configuration file.\n\nIt can define:\n- project type\n- website settings\n- book settings\n- output format defaults\n- themes\n- navigation\n\nThink of it as the project control file.\n\n---\n\n## 22. How Quarto is different from Word\n\nIn Word, you usually format things visually.\n\nIn Quarto, you write simple plain text with lightweight formatting.\n\n### Benefits of Quarto\n- easier version control with Git and GitHub\n- reusable documents\n- cleaner structure\n- can combine writing and code\n- easier to publish online\n\nAt first it may feel unfamiliar, but many people find it easier over time.\n\n---\n\n## 23. Beginner workflow\n\nHere is a simple beginner workflow:\n\n1. Install Quarto\n2. Create a `.qmd` file\n3. Write Markdown content\n4. Add YAML at the top\n5. Render the file to HTML\n6. Open the output in a browser\n7. Edit and render again\n\nThis is enough to get started.\n\n---\n\n## 24. Common beginner mistakes\n\n### Mistake 1: Forgetting the YAML lines\nYAML must start and end with `---`.\n\n### Mistake 2: Wrong file extension\nUse `.qmd`, not `.txt`.\n\n### Mistake 3: PDF not rendering\nThis often happens because LaTeX is not installed.\n\n### Mistake 4: Broken image path\nMake sure the image file path is correct.\n\n### Mistake 5: Expecting code to run without installing Python or R\nIf you want executable code blocks, you need the related language installed.\n\n---\n\n## 25. Example: A small personal profile page\n\nCreate `profile.qmd`:\n\n```markdown\n---\ntitle: \"My Profile\"\nformat:\n  html:\n    toc: true\n---\n\n# About Me\n\nMy name is Praveen.\n\nI am learning Quarto to create documents and websites.\n\n## Skills I Want to Learn\n\n- Quarto\n- Markdown\n- GitHub\n- Python\n\n## Favorite Resources\n\n- [Quarto](https://quarto.org)\n- [Markdown Guide](https://www.markdownguide.org)\n```\n\nRender it:\n\n```bash\nquarto render profile.qmd\n```\n\n---\n\n## 26. Example: A study notes document\n\n```markdown\n---\ntitle: \"Study Notes\"\nformat: html\n---\n\n# Chapter 1\n\nThis chapter explains the basics.\n\n## Key Points\n\n- Point A\n- Point B\n- Point C\n\n## Summary\n\nThis chapter introduced the main ideas.\n```\n\nThis is useful for students and self-learners.\n\n---\n\n## 27. If you later want to learn code in Quarto\n\nOnce you are comfortable with text and Markdown, you can gradually add code.\n\n### Python example\n\n````markdown\n```python\nname = \"Praveen\"\nprint(\"Hello\", name)\n```\n\n\n\n```r\nx &lt;- 10\nx + 5\n```\nBut remember: learning Quarto does not require learning R first.\n\n\n\n\n\n\nStart with HTML output\nWrite short documents first\nFocus on Markdown before advanced features\nKeep files organized in folders\nUse meaningful file names\nRender often to check your output\nLearn one feature at a time\n\n\n\n\n\nHere is a beginner-friendly order:\n\n\nLearn: - headings - paragraphs - bold and italic - lists - links\n\n\n\nLearn: - YAML title and format - rendering to HTML - adding images - adding tables\n\n\n\nLearn: - themes - table of contents - multiple pages - websites\n\n\n\nOptional: - Python code blocks - R code blocks - PDFs - presentations - books\n\n\n\n\n\n\n\nNo. Anyone can use it for writing and publishing.\n\n\n\nNo. You can start with plain text and Markdown.\n\n\n\nYes, Quarto is open source and free to use.\n\n\n\nYes.\n\n\n\nYes.\n\n\n\nNo. VS Code works very well too.\n\n\n\n\n\nBefore starting, make sure you can do these:\n\ninstall Quarto\ncreate a .qmd file\nwrite a title in YAML\nadd headings and lists\nrender to HTML\nopen the output file\n\nIf you can do these, you are already using Quarto successfully.\n\n\n\n\nQuarto is a beginner-friendly publishing tool.\nEven if you: - do not know R - do not know programming - have never written Markdown before\nYou can still start learning Quarto today.\nThe best way to learn is: - create a small .qmd file - write simple content - render it - improve it step by step\nStart simple, and build confidence gradually.\n\n\n\n\nTry this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About StatiX AI & Data Labs",
+    "objectID": "quarto_tutorial_for_beginners.html#what-is-quarto",
+    "href": "quarto_tutorial_for_beginners.html#what-is-quarto",
+    "title": "Full Quarto Tutorial",
     "section": "",
-    "text": "StatiX AI & Data Labs is a curated learning platform for students and professionals in life sciences, pharmaceuticals, and data-driven healthcare.\nWe publish tutorials that read like official documentation — practical, reproducible, and aligned with how industry teams actually work."
+    "text": "Quarto is an open-source publishing system.\nIn simple words: - You write text in a file - You can add headings, lists, images, tables, and code - Quarto converts that file into HTML, PDF, Word, slides, and more\nYou do not need to know R to start using Quarto.\nQuarto can work with: - plain Markdown only - Python - R - Julia - Observable JavaScript\nIf you are a beginner, you can first learn Quarto as a document writing tool without writing any code."
   },
   {
-    "objectID": "about.html#our-mission",
-    "href": "about.html#our-mission",
-    "title": "About StatiX AI & Data Labs",
+    "objectID": "quarto_tutorial_for_beginners.html#why-use-quarto",
+    "href": "quarto_tutorial_for_beginners.html#why-use-quarto",
+    "title": "Full Quarto Tutorial",
     "section": "",
-    "text": "StatiX AI & Data Labs is a curated learning platform for students and professionals in life sciences, pharmaceuticals, and data-driven healthcare.\nWe publish tutorials that read like official documentation — practical, reproducible, and aligned with how industry teams actually work."
+    "text": "Quarto is useful because it helps you: - write once and create multiple output formats - keep text, code, and results in one place - create professional-looking documents - make reproducible reports - build personal websites, course notes, and books\n\n\nYou can use Quarto to create: - class notes - project reports - resumes - research papers - tutorials - data analysis reports - technical blogs - slide presentations"
   },
   {
-    "objectID": "about.html#who-this-site-is-for",
-    "href": "about.html#who-this-site-is-for",
-    "title": "About StatiX AI & Data Labs",
-    "section": "Who this site is for",
-    "text": "Who this site is for\n\n\n\n\n\n\n\nAudience\nWhat you will find\n\n\n\n\nStudents\nStep-by-step guides from zero prior knowledge\n\n\nBioinformatics researchers\nDocker, Nextflow, cloud pipelines\n\n\nClinical programmers\nReproducible R environments, ADaM workflows (expanding)\n\n\nData scientists\nContainers, orchestration, ML deployment paths\n\n\nPharmaceutical professionals\nGxP-aware practices, reproducibility, audit-friendly patterns\n\n\nSoftware engineers\nDevOps foundations for regulated data platforms"
+    "objectID": "quarto_tutorial_for_beginners.html#do-i-need-r-to-use-quarto",
+    "href": "quarto_tutorial_for_beginners.html#do-i-need-r-to-use-quarto",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "No.\nThis is very important.\nYou can use Quarto without knowing R.\nThere are two common ways to use Quarto:\n\n\nYou write Markdown and create a document. No programming needed.\n\n\n\nLater, if you want, you can add Python or R code blocks.\nSo if you are a complete beginner, start with text-only documents."
   },
   {
-    "objectID": "about.html#documentation-standard",
-    "href": "about.html#documentation-standard",
-    "title": "About StatiX AI & Data Labs",
-    "section": "Documentation standard",
-    "text": "Documentation standard\nEvery StatiX tutorial follows a 25-section professional template:\n\nIntroduction\n\nLearning objectives\n\nWhy it matters (industry context)\n\nArchitecture diagrams (Mermaid)\n\nInstallation (Windows, macOS, Linux)\n\nBasic concepts\n\nHands-on examples\n\nReal-world use cases\n\nBioinformatics workflow placement\n\nClinical programming workflow placement\n\nBest practices\n\nCommon mistakes\n\nTroubleshooting\n\nInterview questions\n\nCheat sheet\n\nSummary\n\nNext topic\n\nLearning paths\n\nFurther reading\n\nMini project\n\nExercises\n\n\n\n\n\n\n\nTip\n\n\n\nAvailable now: Docker and Nextflow use the full template. Other topics are rolling out on the same standard."
+    "objectID": "quarto_tutorial_for_beginners.html#what-do-i-need-to-install",
+    "href": "quarto_tutorial_for_beginners.html#what-do-i-need-to-install",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "To use Quarto comfortably, install the following:\n\n\n\nQuarto\nA text editor or IDE\n\n\n\n\n\nVS Code (great for beginners)\nRStudio / Positron (optional, even if you do not use R)\n\n\n\n\n\nPython if you want to run Python code later\nR if you want to run R code later\nTinyTeX or TeX Live if you want to create PDFs\n\n\n\n\nGo to the official site: - https://quarto.org/docs/get-started/\nDownload and install Quarto for your operating system.\n\n\n\nOpen your terminal and run:\nquarto --version\nIf Quarto is installed correctly, you will see a version number."
   },
   {
-    "objectID": "about.html#recommended-learning-paths",
-    "href": "about.html#recommended-learning-paths",
-    "title": "About StatiX AI & Data Labs",
-    "section": "Recommended learning paths",
-    "text": "Recommended learning paths\n\nBioinformatics\n\n\n\n\n\nflowchart LR\n  A[Linux] --&gt; B[Git]\n  B --&gt; C[Docker]\n  C --&gt; D[Nextflow]\n  D --&gt; E[Cloud / AWS]\n  E --&gt; F[ML & AI]\n\n\n\n\n\n\n\n\nClinical programming\n\n\n\n\n\nflowchart LR\n  A[R / SAS] --&gt; B[Linux & Git]\n  B --&gt; C[Docker]\n  C --&gt; D[Pharmaverse]\n  D --&gt; E[Reproducible TLFs]\n  E --&gt; F[Submission]\n\n\n\n\n\n\n\n\nData science & engineering\n\n\n\n\n\nflowchart LR\n  A[Python / R] --&gt; B[SQL]\n  B --&gt; C[Linux & Git]\n  C --&gt; D[Docker]\n  D --&gt; E[Kubernetes]\n  E --&gt; F[AWS]"
+    "objectID": "quarto_tutorial_for_beginners.html#what-is-markdown",
+    "href": "quarto_tutorial_for_beginners.html#what-is-markdown",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Markdown is a very simple way to format text.\nInstead of clicking buttons for bold headings or lists, you type small symbols.\n\n\n\n\n# Main Title\n## Section Title\n### Smaller Section\n\n\n\n**bold text**\n*italic text*\n\n\n\n- item one\n- item two\n- item three\n\n\n\n1. First step\n2. Second step\n3. Third step\n\n\n\n[Quarto Website](https://quarto.org)\nThis is one reason Quarto is beginner-friendly."
   },
   {
-    "objectID": "about.html#how-to-use-this-site",
-    "href": "about.html#how-to-use-this-site",
-    "title": "About StatiX AI & Data Labs",
-    "section": "How to use this site",
-    "text": "How to use this site\n\nStart on the home page — check Available vs Coming soon badges\n\nFollow tutorials in order if you are new to a path\n\nComplete hands-on examples and mini projects on your machine\n\nUse cheat sheets and troubleshooting sections as job aids"
+    "objectID": "quarto_tutorial_for_beginners.html#your-first-quarto-document",
+    "href": "quarto_tutorial_for_beginners.html#your-first-quarto-document",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Quarto documents usually use the .qmd extension.\nCreate a file called:\nhello.qmd\nAdd this content:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n## About Me\n\nI am learning Quarto.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\nThat section is called YAML.\nIt stores document settings like: - title - author - date - output format\nIn this example: - title sets the title of the document - format: html tells Quarto to create an HTML page"
   },
   {
-    "objectID": "about.html#contribute-feedback",
-    "href": "about.html#contribute-feedback",
-    "title": "About StatiX AI & Data Labs",
-    "section": "Contribute & feedback",
-    "text": "Contribute & feedback\nThis site is built with Quarto and published via GitHub Pages.\nRepository: https://github.com/praveen2093/QUARTO\nLive site: https://praveen2093.github.io/QUARTO/\nBack to home"
+    "objectID": "quarto_tutorial_for_beginners.html#how-to-render-a-quarto-file",
+    "href": "quarto_tutorial_for_beginners.html#how-to-render-a-quarto-file",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "To convert a .qmd file into output, Quarto uses the word render.\n\n\nRun:\nquarto render hello.qmd\nQuarto will create an HTML file, usually:\nhello.html\nOpen that file in your browser.\n\n\n\nIf you use VS Code with Quarto installed, you can often preview or render directly from the editor."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#understanding-a-quarto-document-structure",
+    "href": "quarto_tutorial_for_beginners.html#understanding-a-quarto-document-structure",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "A simple Quarto document has two main parts:\n\n\nThis controls document settings.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nauthor: \"Your Name\"\ndate: \"2026-06-12\"\nformat: html\n---\n\n\n\nThis is where you write: - headings - paragraphs - lists - images - tables - code blocks"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#basic-formatting-in-quarto",
+    "href": "quarto_tutorial_for_beginners.html#basic-formatting-in-quarto",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "# Heading 1\n## Heading 2\n### Heading 3\n\n\n\nJust write normal text.\n\n\n\nLeave a blank line between paragraphs.\n\n\n\n**bold**\n*italic*\n`code`\n\n\n\n&gt; This is an important note.\n\n\n\n---\n\n\n\n- apple\n- banana\n- orange\n\n\n\n1. Install Quarto\n2. Create a file\n3. Render the file"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#adding-images",
+    "href": "quarto_tutorial_for_beginners.html#adding-images",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "You can add an image like this:\n![A sample image](images/example.png)\nExplanation: - text inside [] is alternate text - text inside () is the image path\nIf your image is in a folder called images, the file path might be: - images/photo.jpg - images/chart.png"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#adding-links",
+    "href": "quarto_tutorial_for_beginners.html#adding-links",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "[Visit Quarto](https://quarto.org)\nThis creates a clickable link."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#adding-tables",
+    "href": "quarto_tutorial_for_beginners.html#adding-tables",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Simple Markdown table:\n| Tool   | Purpose            |\n|--------|--------------------|\n| Quarto | Create documents   |\n| VS Code| Edit files         |\n| Python | Run code optional  |\nThis becomes a formatted table in the output."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#code-blocks-in-quarto",
+    "href": "quarto_tutorial_for_beginners.html#code-blocks-in-quarto",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Even if you do not know programming yet, it is helpful to understand the idea.\nA code block is a section where you write code.\n\n\n```bash\nquarto render hello.qmd\n\nThis only displays code.\n\n### Executable code block\nIf you have Python or R installed, Quarto can run code blocks and show results.\n\nExample with Python:\n\n````markdown\n```python\nprint(\"Hello from Python\")\n\nIf Python is available, Quarto can run it and include the output.\n\nAgain: **this is optional** for beginners.\n\n---\n\n## 14. A text-only beginner example\n\nCreate a file named `intro.qmd`:\n\n```markdown\n---\ntitle: \"Introduction to Quarto\"\nformat: html\n---\n\n# Welcome\n\nQuarto helps you create beautiful documents.\n\n## What I learned\n\n- Quarto uses `.qmd` files\n- Markdown is easy to write\n- I can create HTML pages\n- I do not need R to begin\n\n## My Next Step\n\nI will learn how to add images and tables.\n```\n\nRender it:\n\n```bash\nquarto render intro.qmd\n```\n\n---\n\n## 15. Creating different output formats\n\nOne powerful feature of Quarto is that you can generate different types of output.\n\n### HTML\n```yaml\nformat: html\n```\n\n### PDF\n```yaml\nformat: pdf\n```\n\n### Word\n```yaml\nformat: docx\n```\n\n### Multiple formats\n```yaml\nformat:\n  html: default\n  pdf: default\n  docx: default\n```\n\nThen run:\n\n```bash\nquarto render yourfile.qmd\n```\n\n### Important note about PDF\nCreating PDFs usually requires a LaTeX installation such as TinyTeX.\n\nIf PDF rendering fails, start with HTML first.\n\n---\n\n## 16. Working with sections\n\nA bigger document can be organized into sections.\n\nExample:\n\n```markdown\n# Chapter 1\n## Topic 1.1\n## Topic 1.2\n\n# Chapter 2\n## Topic 2.1\n```\n\nThis structure helps readers navigate your content.\n\nIn HTML output, Quarto may also generate a table of contents.\n\n---\n\n## 17. Adding a table of contents\n\nYou can enable it in YAML:\n\n```yaml\n---\ntitle: \"My Tutorial\"\nformat:\n  html:\n    toc: true\n---\n```\n\nThis adds a table of contents automatically.\n\n---\n\n## 18. Changing theme and appearance\n\nFor HTML documents, you can choose themes.\n\nExample:\n\n```yaml\n---\ntitle: \"Styled Document\"\nformat:\n  html:\n    theme: cosmo\n---\n```\n\nSome common themes:\n- cosmo\n- litera\n- flatly\n- darkly\n- minty\n\nYou can experiment and see which one you like.\n\n---\n\n## 19. Creating a presentation\n\nQuarto can create slides too.\n\nExample:\n\n```markdown\n---\ntitle: \"My First Presentation\"\nformat: revealjs\n---\n\n# Slide 1\nWelcome to my presentation.\n\n# Slide 2\n- Point one\n- Point two\n```\n\nRender it and Quarto will create a slide deck.\n\n---\n\n## 20. Creating a website\n\nQuarto can also build websites.\n\nA basic website project often includes:\n- `_quarto.yml`\n- `index.qmd`\n- other `.qmd` pages\n\nExample `_quarto.yml`:\n\n```yaml\nproject:\n  type: website\n\nwebsite:\n  title: \"My Website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: about.qmd\n        text: About\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\n```\n\nExample `index.qmd`:\n\n```markdown\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n```\n\nThis is more advanced, but it shows how powerful Quarto is.\n\n---\n\n## 21. What is `_quarto.yml`?\n\nWhen you work on a Quarto project with multiple files, `_quarto.yml` is the main configuration file.\n\nIt can define:\n- project type\n- website settings\n- book settings\n- output format defaults\n- themes\n- navigation\n\nThink of it as the project control file.\n\n---\n\n## 22. How Quarto is different from Word\n\nIn Word, you usually format things visually.\n\nIn Quarto, you write simple plain text with lightweight formatting.\n\n### Benefits of Quarto\n- easier version control with Git and GitHub\n- reusable documents\n- cleaner structure\n- can combine writing and code\n- easier to publish online\n\nAt first it may feel unfamiliar, but many people find it easier over time.\n\n---\n\n## 23. Beginner workflow\n\nHere is a simple beginner workflow:\n\n1. Install Quarto\n2. Create a `.qmd` file\n3. Write Markdown content\n4. Add YAML at the top\n5. Render the file to HTML\n6. Open the output in a browser\n7. Edit and render again\n\nThis is enough to get started.\n\n---\n\n## 24. Common beginner mistakes\n\n### Mistake 1: Forgetting the YAML lines\nYAML must start and end with `---`.\n\n### Mistake 2: Wrong file extension\nUse `.qmd`, not `.txt`.\n\n### Mistake 3: PDF not rendering\nThis often happens because LaTeX is not installed.\n\n### Mistake 4: Broken image path\nMake sure the image file path is correct.\n\n### Mistake 5: Expecting code to run without installing Python or R\nIf you want executable code blocks, you need the related language installed.\n\n---\n\n## 25. Example: A small personal profile page\n\nCreate `profile.qmd`:\n\n```markdown\n---\ntitle: \"My Profile\"\nformat:\n  html:\n    toc: true\n---\n\n# About Me\n\nMy name is Praveen.\n\nI am learning Quarto to create documents and websites.\n\n## Skills I Want to Learn\n\n- Quarto\n- Markdown\n- GitHub\n- Python\n\n## Favorite Resources\n\n- [Quarto](https://quarto.org)\n- [Markdown Guide](https://www.markdownguide.org)\n```\n\nRender it:\n\n```bash\nquarto render profile.qmd\n```\n\n---\n\n## 26. Example: A study notes document\n\n```markdown\n---\ntitle: \"Study Notes\"\nformat: html\n---\n\n# Chapter 1\n\nThis chapter explains the basics.\n\n## Key Points\n\n- Point A\n- Point B\n- Point C\n\n## Summary\n\nThis chapter introduced the main ideas.\n```\n\nThis is useful for students and self-learners.\n\n---\n\n## 27. If you later want to learn code in Quarto\n\nOnce you are comfortable with text and Markdown, you can gradually add code.\n\n### Python example\n\n````markdown\n```python\nname = \"Praveen\"\nprint(\"Hello\", name)\n```\n\n\n\n```r\nx &lt;- 10\nx + 5\n```\nBut remember: learning Quarto does not require learning R first."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#best-practices-for-beginners",
+    "href": "quarto_tutorial_for_beginners.html#best-practices-for-beginners",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Start with HTML output\nWrite short documents first\nFocus on Markdown before advanced features\nKeep files organized in folders\nUse meaningful file names\nRender often to check your output\nLearn one feature at a time"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#suggested-learning-path",
+    "href": "quarto_tutorial_for_beginners.html#suggested-learning-path",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Here is a beginner-friendly order:\n\n\nLearn: - headings - paragraphs - bold and italic - lists - links\n\n\n\nLearn: - YAML title and format - rendering to HTML - adding images - adding tables\n\n\n\nLearn: - themes - table of contents - multiple pages - websites\n\n\n\nOptional: - Python code blocks - R code blocks - PDFs - presentations - books"
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#frequently-asked-questions",
+    "href": "quarto_tutorial_for_beginners.html#frequently-asked-questions",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "No. Anyone can use it for writing and publishing.\n\n\n\nNo. You can start with plain text and Markdown.\n\n\n\nYes, Quarto is open source and free to use.\n\n\n\nYes.\n\n\n\nYes.\n\n\n\nNo. VS Code works very well too."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#final-beginner-checklist",
+    "href": "quarto_tutorial_for_beginners.html#final-beginner-checklist",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Before starting, make sure you can do these:\n\ninstall Quarto\ncreate a .qmd file\nwrite a title in YAML\nadd headings and lists\nrender to HTML\nopen the output file\n\nIf you can do these, you are already using Quarto successfully."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#conclusion",
+    "href": "quarto_tutorial_for_beginners.html#conclusion",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Quarto is a beginner-friendly publishing tool.\nEven if you: - do not know R - do not know programming - have never written Markdown before\nYou can still start learning Quarto today.\nThe best way to learn is: - create a small .qmd file - write simple content - render it - improve it step by step\nStart simple, and build confidence gradually."
+  },
+  {
+    "objectID": "quarto_tutorial_for_beginners.html#next-steps",
+    "href": "quarto_tutorial_for_beginners.html#next-steps",
+    "title": "Full Quarto Tutorial",
+    "section": "",
+    "text": "Try this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
+  },
+  {
+    "objectID": "pharmaverse.html",
+    "href": "pharmaverse.html",
+    "title": "Pharmaverse — Clinical R & ADaM Ecosystem",
+    "section": "",
+    "text": "Important\n\n\n\nStatus: Coming soon — See Clinical R for related content."
+  },
+  {
+    "objectID": "pharmaverse.html#introduction",
+    "href": "pharmaverse.html#introduction",
+    "title": "Pharmaverse — Clinical R & ADaM Ecosystem",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nPharmaverse is a community of R packages (admiral, metacore, metatools, pharmaRTF, and others) used for clinical dataset development and analysis in pharmaceutical programming.\nBack to home"
   },
   {
     "objectID": "docker.html",
@@ -371,39 +483,11 @@
     "text": "21. Exercises\n\n10 practice questions\n\nDefine image vs container in your own words.\nWhat command verifies Docker installation?\nWhy should you avoid :latest in production?\nWhat flag removes a container after it exits?\nHow do you mount the current directory into a container?\nName two life-sciences registries or image sources.\nWhere does Docker fit in a FASTQ-to-VCF pipeline?\nWhy should PHI not be copied into a Dockerfile?\nWhat command lists running containers?\nHow does Docker help clinical TLF QC?\n\n\n\n5 assignments\n\nBuild an image with Python 3.11 that prints today’s date.\nRun rocker/tidyverse and execute a dplyr pipeline inside the container.\nCreate a .dockerignore and explain what it excludes.\nPull a Biocontainers image and document its tag.\nWrite a one-page SOP for naming and tagging study images.\n\n\n\n3 mini projects\n\nDockerize a simple FastQC command on a sample FASTQ file.\nBuild a two-stage Dockerfile (build tools → minimal runtime).\nCompose a web app + database with Docker Compose locally.\n\n\n\n1 capstone project\nDesign a reproducible mini pipeline: QC → summary stats → Quarto HTML report — each step in its own versioned container, orchestrated manually or with Nextflow.\n\nBack to home"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "StatiX AI & Data Labs",
+    "objectID": "python.html",
+    "href": "python.html",
+    "title": "Python — Getting Started",
     "section": "",
-    "text": "StatiX AI & Data Labs\nWelcome — a curated collection of hands-on tutorials and guides for data, AI and programming.\nClick any tile below to open the corresponding tutorial. Tiles marked Available include full industry-standard documentation.\n\n\n  \n    \n      Coming soon\n      \n      Linux\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Git\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Python\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Programming\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Clinical R\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Nextflow\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Docker\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Quarto\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Shiny\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Statistics\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Kubernetes\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      AWS\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Pharmaverse\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      ML & AI\n       Open guide\n    \n  \n\n\nAbout the collection\nThis site follows a 25-section professional documentation standard — the same structure used in premium courses and official vendor docs. Each tutorial includes learning objectives, Mermaid diagrams, hands-on labs, industry use cases, interview prep, and capstone exercises.\nSee About for learning paths and full documentation guidelines.\n\n\nQuick start paths\n\n\n\nPath\nStart here\n\n\n\n\nBioinformatics\nLinux → Git → Docker → Nextflow\n\n\nClinical programming\nR → Docker → Pharmaverse\n\n\nNew to publishing\nQuarto"
-  },
-  {
-    "objectID": "pharmaverse.html",
-    "href": "pharmaverse.html",
-    "title": "Pharmaverse — Clinical R & ADaM Ecosystem",
-    "section": "",
-    "text": "Important\n\n\n\nStatus: Coming soon — See Clinical R for related content."
-  },
-  {
-    "objectID": "pharmaverse.html#introduction",
-    "href": "pharmaverse.html#introduction",
-    "title": "Pharmaverse — Clinical R & ADaM Ecosystem",
-    "section": "1. Introduction",
-    "text": "1. Introduction\nPharmaverse is a community of R packages (admiral, metacore, metatools, pharmaRTF, and others) used for clinical dataset development and analysis in pharmaceutical programming.\nBack to home"
-  },
-  {
-    "objectID": "linux.html",
-    "href": "linux.html",
-    "title": "Linux — Foundations for Life Sciences Computing",
-    "section": "",
-    "text": "Important\n\n\n\nStatus: Coming soon — This tutorial will follow the full StatiX documentation standard (25 sections). Docker and Nextflow are available now."
-  },
-  {
-    "objectID": "linux.html#introduction",
-    "href": "linux.html#introduction",
-    "title": "Linux — Foundations for Life Sciences Computing",
-    "section": "1. Introduction",
-    "text": "1. Introduction\nLinux is the operating system that powers most servers, HPC clusters, and cloud instances used in bioinformatics and pharmaceutical computing.\n\nWhy Linux exists in your workflow\nClinical SAS/R environments may run on Windows, but cloud pipelines, sequencing cores, and DevOps tooling overwhelmingly run on Linux.\n\n\nWhat you will learn here (upcoming)\n\nNavigating the filesystem\nPermissions, processes, and shell scripting\nConnecting to remote servers (SSH)\nPreparing for Docker, Git, and Nextflow\n\nBack to home"
+    "text": "Python Tutorials\nWelcome to the Python tutorial placeholder. Add notebooks, code examples, and guides here.\nBack to home"
   },
   {
     "objectID": "tutorial.html",
@@ -518,193 +602,11 @@
     "text": "Try these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
   },
   {
-    "objectID": "aws.html",
-    "href": "aws.html",
-    "title": "AWS — Cloud Computing for Life Sciences",
-    "section": "",
-    "text": "Important\n\n\n\nStatus: Coming soon — See Nextflow cloud section for AWS Batch integration today."
-  },
-  {
-    "objectID": "aws.html#introduction",
-    "href": "aws.html#introduction",
-    "title": "AWS — Cloud Computing for Life Sciences",
-    "section": "1. Introduction",
-    "text": "1. Introduction\nAmazon Web Services (AWS) provides scalable storage (S3), compute (Batch, EC2), and ML services used by genomics and pharmaceutical data teams.\nBack to home"
-  },
-  {
-    "objectID": "clinical-r.html",
-    "href": "clinical-r.html",
-    "title": "Clinical R — Biostatistics & Reporting",
-    "section": "",
-    "text": "Clinical R\nClinical-focused R tutorials (biostatistics, regulatory reporting) placeholder.\nBack to home"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html",
-    "href": "quarto_tutorial_for_beginners.html",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Welcome! This tutorial is written for people who are completely new to Quarto and may also have no background in R.\nQuarto is a tool for creating: - reports - blogs - websites - books - presentations - PDFs and Word documents\nYou write content in simple plain text using Markdown, and Quarto turns it into polished output.\n\n\n\nQuarto is an open-source publishing system.\nIn simple words: - You write text in a file - You can add headings, lists, images, tables, and code - Quarto converts that file into HTML, PDF, Word, slides, and more\nYou do not need to know R to start using Quarto.\nQuarto can work with: - plain Markdown only - Python - R - Julia - Observable JavaScript\nIf you are a beginner, you can first learn Quarto as a document writing tool without writing any code.\n\n\n\n\nQuarto is useful because it helps you: - write once and create multiple output formats - keep text, code, and results in one place - create professional-looking documents - make reproducible reports - build personal websites, course notes, and books\n\n\nYou can use Quarto to create: - class notes - project reports - resumes - research papers - tutorials - data analysis reports - technical blogs - slide presentations\n\n\n\n\n\nNo.\nThis is very important.\nYou can use Quarto without knowing R.\nThere are two common ways to use Quarto:\n\n\nYou write Markdown and create a document. No programming needed.\n\n\n\nLater, if you want, you can add Python or R code blocks.\nSo if you are a complete beginner, start with text-only documents.\n\n\n\n\n\nTo use Quarto comfortably, install the following:\n\n\n\nQuarto\nA text editor or IDE\n\n\n\n\n\nVS Code (great for beginners)\nRStudio / Positron (optional, even if you do not use R)\n\n\n\n\n\nPython if you want to run Python code later\nR if you want to run R code later\nTinyTeX or TeX Live if you want to create PDFs\n\n\n\n\nGo to the official site: - https://quarto.org/docs/get-started/\nDownload and install Quarto for your operating system.\n\n\n\nOpen your terminal and run:\nquarto --version\nIf Quarto is installed correctly, you will see a version number.\n\n\n\n\n\nMarkdown is a very simple way to format text.\nInstead of clicking buttons for bold headings or lists, you type small symbols.\n\n\n\n\n# Main Title\n## Section Title\n### Smaller Section\n\n\n\n**bold text**\n*italic text*\n\n\n\n- item one\n- item two\n- item three\n\n\n\n1. First step\n2. Second step\n3. Third step\n\n\n\n[Quarto Website](https://quarto.org)\nThis is one reason Quarto is beginner-friendly.\n\n\n\n\n\n\nQuarto documents usually use the .qmd extension.\nCreate a file called:\nhello.qmd\nAdd this content:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n## About Me\n\nI am learning Quarto.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\nThat section is called YAML.\nIt stores document settings like: - title - author - date - output format\nIn this example: - title sets the title of the document - format: html tells Quarto to create an HTML page\n\n\n\n\n\nTo convert a .qmd file into output, Quarto uses the word render.\n\n\nRun:\nquarto render hello.qmd\nQuarto will create an HTML file, usually:\nhello.html\nOpen that file in your browser.\n\n\n\nIf you use VS Code with Quarto installed, you can often preview or render directly from the editor.\n\n\n\n\n\nA simple Quarto document has two main parts:\n\n\nThis controls document settings.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nauthor: \"Your Name\"\ndate: \"2026-06-12\"\nformat: html\n---\n\n\n\nThis is where you write: - headings - paragraphs - lists - images - tables - code blocks\n\n\n\n\n\n\n\n# Heading 1\n## Heading 2\n### Heading 3\n\n\n\nJust write normal text.\n\n\n\nLeave a blank line between paragraphs.\n\n\n\n**bold**\n*italic*\n`code`\n\n\n\n&gt; This is an important note.\n\n\n\n---\n\n\n\n- apple\n- banana\n- orange\n\n\n\n1. Install Quarto\n2. Create a file\n3. Render the file\n\n\n\n\n\nYou can add an image like this:\n![A sample image](images/example.png)\nExplanation: - text inside [] is alternate text - text inside () is the image path\nIf your image is in a folder called images, the file path might be: - images/photo.jpg - images/chart.png\n\n\n\n\n[Visit Quarto](https://quarto.org)\nThis creates a clickable link.\n\n\n\n\nSimple Markdown table:\n| Tool   | Purpose            |\n|--------|--------------------|\n| Quarto | Create documents   |\n| VS Code| Edit files         |\n| Python | Run code optional  |\nThis becomes a formatted table in the output.\n\n\n\n\nEven if you do not know programming yet, it is helpful to understand the idea.\nA code block is a section where you write code.\n\n\n```bash\nquarto render hello.qmd\n\nThis only displays code.\n\n### Executable code block\nIf you have Python or R installed, Quarto can run code blocks and show results.\n\nExample with Python:\n\n````markdown\n```python\nprint(\"Hello from Python\")\n\nIf Python is available, Quarto can run it and include the output.\n\nAgain: **this is optional** for beginners.\n\n---\n\n## 14. A text-only beginner example\n\nCreate a file named `intro.qmd`:\n\n```markdown\n---\ntitle: \"Introduction to Quarto\"\nformat: html\n---\n\n# Welcome\n\nQuarto helps you create beautiful documents.\n\n## What I learned\n\n- Quarto uses `.qmd` files\n- Markdown is easy to write\n- I can create HTML pages\n- I do not need R to begin\n\n## My Next Step\n\nI will learn how to add images and tables.\n```\n\nRender it:\n\n```bash\nquarto render intro.qmd\n```\n\n---\n\n## 15. Creating different output formats\n\nOne powerful feature of Quarto is that you can generate different types of output.\n\n### HTML\n```yaml\nformat: html\n```\n\n### PDF\n```yaml\nformat: pdf\n```\n\n### Word\n```yaml\nformat: docx\n```\n\n### Multiple formats\n```yaml\nformat:\n  html: default\n  pdf: default\n  docx: default\n```\n\nThen run:\n\n```bash\nquarto render yourfile.qmd\n```\n\n### Important note about PDF\nCreating PDFs usually requires a LaTeX installation such as TinyTeX.\n\nIf PDF rendering fails, start with HTML first.\n\n---\n\n## 16. Working with sections\n\nA bigger document can be organized into sections.\n\nExample:\n\n```markdown\n# Chapter 1\n## Topic 1.1\n## Topic 1.2\n\n# Chapter 2\n## Topic 2.1\n```\n\nThis structure helps readers navigate your content.\n\nIn HTML output, Quarto may also generate a table of contents.\n\n---\n\n## 17. Adding a table of contents\n\nYou can enable it in YAML:\n\n```yaml\n---\ntitle: \"My Tutorial\"\nformat:\n  html:\n    toc: true\n---\n```\n\nThis adds a table of contents automatically.\n\n---\n\n## 18. Changing theme and appearance\n\nFor HTML documents, you can choose themes.\n\nExample:\n\n```yaml\n---\ntitle: \"Styled Document\"\nformat:\n  html:\n    theme: cosmo\n---\n```\n\nSome common themes:\n- cosmo\n- litera\n- flatly\n- darkly\n- minty\n\nYou can experiment and see which one you like.\n\n---\n\n## 19. Creating a presentation\n\nQuarto can create slides too.\n\nExample:\n\n```markdown\n---\ntitle: \"My First Presentation\"\nformat: revealjs\n---\n\n# Slide 1\nWelcome to my presentation.\n\n# Slide 2\n- Point one\n- Point two\n```\n\nRender it and Quarto will create a slide deck.\n\n---\n\n## 20. Creating a website\n\nQuarto can also build websites.\n\nA basic website project often includes:\n- `_quarto.yml`\n- `index.qmd`\n- other `.qmd` pages\n\nExample `_quarto.yml`:\n\n```yaml\nproject:\n  type: website\n\nwebsite:\n  title: \"My Website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: about.qmd\n        text: About\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\n```\n\nExample `index.qmd`:\n\n```markdown\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n```\n\nThis is more advanced, but it shows how powerful Quarto is.\n\n---\n\n## 21. What is `_quarto.yml`?\n\nWhen you work on a Quarto project with multiple files, `_quarto.yml` is the main configuration file.\n\nIt can define:\n- project type\n- website settings\n- book settings\n- output format defaults\n- themes\n- navigation\n\nThink of it as the project control file.\n\n---\n\n## 22. How Quarto is different from Word\n\nIn Word, you usually format things visually.\n\nIn Quarto, you write simple plain text with lightweight formatting.\n\n### Benefits of Quarto\n- easier version control with Git and GitHub\n- reusable documents\n- cleaner structure\n- can combine writing and code\n- easier to publish online\n\nAt first it may feel unfamiliar, but many people find it easier over time.\n\n---\n\n## 23. Beginner workflow\n\nHere is a simple beginner workflow:\n\n1. Install Quarto\n2. Create a `.qmd` file\n3. Write Markdown content\n4. Add YAML at the top\n5. Render the file to HTML\n6. Open the output in a browser\n7. Edit and render again\n\nThis is enough to get started.\n\n---\n\n## 24. Common beginner mistakes\n\n### Mistake 1: Forgetting the YAML lines\nYAML must start and end with `---`.\n\n### Mistake 2: Wrong file extension\nUse `.qmd`, not `.txt`.\n\n### Mistake 3: PDF not rendering\nThis often happens because LaTeX is not installed.\n\n### Mistake 4: Broken image path\nMake sure the image file path is correct.\n\n### Mistake 5: Expecting code to run without installing Python or R\nIf you want executable code blocks, you need the related language installed.\n\n---\n\n## 25. Example: A small personal profile page\n\nCreate `profile.qmd`:\n\n```markdown\n---\ntitle: \"My Profile\"\nformat:\n  html:\n    toc: true\n---\n\n# About Me\n\nMy name is Praveen.\n\nI am learning Quarto to create documents and websites.\n\n## Skills I Want to Learn\n\n- Quarto\n- Markdown\n- GitHub\n- Python\n\n## Favorite Resources\n\n- [Quarto](https://quarto.org)\n- [Markdown Guide](https://www.markdownguide.org)\n```\n\nRender it:\n\n```bash\nquarto render profile.qmd\n```\n\n---\n\n## 26. Example: A study notes document\n\n```markdown\n---\ntitle: \"Study Notes\"\nformat: html\n---\n\n# Chapter 1\n\nThis chapter explains the basics.\n\n## Key Points\n\n- Point A\n- Point B\n- Point C\n\n## Summary\n\nThis chapter introduced the main ideas.\n```\n\nThis is useful for students and self-learners.\n\n---\n\n## 27. If you later want to learn code in Quarto\n\nOnce you are comfortable with text and Markdown, you can gradually add code.\n\n### Python example\n\n````markdown\n```python\nname = \"Praveen\"\nprint(\"Hello\", name)\n```\n\n\n\n```r\nx &lt;- 10\nx + 5\n```\nBut remember: learning Quarto does not require learning R first.\n\n\n\n\n\n\nStart with HTML output\nWrite short documents first\nFocus on Markdown before advanced features\nKeep files organized in folders\nUse meaningful file names\nRender often to check your output\nLearn one feature at a time\n\n\n\n\n\nHere is a beginner-friendly order:\n\n\nLearn: - headings - paragraphs - bold and italic - lists - links\n\n\n\nLearn: - YAML title and format - rendering to HTML - adding images - adding tables\n\n\n\nLearn: - themes - table of contents - multiple pages - websites\n\n\n\nOptional: - Python code blocks - R code blocks - PDFs - presentations - books\n\n\n\n\n\n\n\nNo. Anyone can use it for writing and publishing.\n\n\n\nNo. You can start with plain text and Markdown.\n\n\n\nYes, Quarto is open source and free to use.\n\n\n\nYes.\n\n\n\nYes.\n\n\n\nNo. VS Code works very well too.\n\n\n\n\n\nBefore starting, make sure you can do these:\n\ninstall Quarto\ncreate a .qmd file\nwrite a title in YAML\nadd headings and lists\nrender to HTML\nopen the output file\n\nIf you can do these, you are already using Quarto successfully.\n\n\n\n\nQuarto is a beginner-friendly publishing tool.\nEven if you: - do not know R - do not know programming - have never written Markdown before\nYou can still start learning Quarto today.\nThe best way to learn is: - create a small .qmd file - write simple content - render it - improve it step by step\nStart simple, and build confidence gradually.\n\n\n\n\nTry this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#what-is-quarto",
-    "href": "quarto_tutorial_for_beginners.html#what-is-quarto",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Quarto is an open-source publishing system.\nIn simple words: - You write text in a file - You can add headings, lists, images, tables, and code - Quarto converts that file into HTML, PDF, Word, slides, and more\nYou do not need to know R to start using Quarto.\nQuarto can work with: - plain Markdown only - Python - R - Julia - Observable JavaScript\nIf you are a beginner, you can first learn Quarto as a document writing tool without writing any code."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#why-use-quarto",
-    "href": "quarto_tutorial_for_beginners.html#why-use-quarto",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Quarto is useful because it helps you: - write once and create multiple output formats - keep text, code, and results in one place - create professional-looking documents - make reproducible reports - build personal websites, course notes, and books\n\n\nYou can use Quarto to create: - class notes - project reports - resumes - research papers - tutorials - data analysis reports - technical blogs - slide presentations"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#do-i-need-r-to-use-quarto",
-    "href": "quarto_tutorial_for_beginners.html#do-i-need-r-to-use-quarto",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "No.\nThis is very important.\nYou can use Quarto without knowing R.\nThere are two common ways to use Quarto:\n\n\nYou write Markdown and create a document. No programming needed.\n\n\n\nLater, if you want, you can add Python or R code blocks.\nSo if you are a complete beginner, start with text-only documents."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#what-do-i-need-to-install",
-    "href": "quarto_tutorial_for_beginners.html#what-do-i-need-to-install",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "To use Quarto comfortably, install the following:\n\n\n\nQuarto\nA text editor or IDE\n\n\n\n\n\nVS Code (great for beginners)\nRStudio / Positron (optional, even if you do not use R)\n\n\n\n\n\nPython if you want to run Python code later\nR if you want to run R code later\nTinyTeX or TeX Live if you want to create PDFs\n\n\n\n\nGo to the official site: - https://quarto.org/docs/get-started/\nDownload and install Quarto for your operating system.\n\n\n\nOpen your terminal and run:\nquarto --version\nIf Quarto is installed correctly, you will see a version number."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#what-is-markdown",
-    "href": "quarto_tutorial_for_beginners.html#what-is-markdown",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Markdown is a very simple way to format text.\nInstead of clicking buttons for bold headings or lists, you type small symbols.\n\n\n\n\n# Main Title\n## Section Title\n### Smaller Section\n\n\n\n**bold text**\n*italic text*\n\n\n\n- item one\n- item two\n- item three\n\n\n\n1. First step\n2. Second step\n3. Third step\n\n\n\n[Quarto Website](https://quarto.org)\nThis is one reason Quarto is beginner-friendly."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#your-first-quarto-document",
-    "href": "quarto_tutorial_for_beginners.html#your-first-quarto-document",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Quarto documents usually use the .qmd extension.\nCreate a file called:\nhello.qmd\nAdd this content:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n## About Me\n\nI am learning Quarto.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\nThat section is called YAML.\nIt stores document settings like: - title - author - date - output format\nIn this example: - title sets the title of the document - format: html tells Quarto to create an HTML page"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#how-to-render-a-quarto-file",
-    "href": "quarto_tutorial_for_beginners.html#how-to-render-a-quarto-file",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "To convert a .qmd file into output, Quarto uses the word render.\n\n\nRun:\nquarto render hello.qmd\nQuarto will create an HTML file, usually:\nhello.html\nOpen that file in your browser.\n\n\n\nIf you use VS Code with Quarto installed, you can often preview or render directly from the editor."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#understanding-a-quarto-document-structure",
-    "href": "quarto_tutorial_for_beginners.html#understanding-a-quarto-document-structure",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "A simple Quarto document has two main parts:\n\n\nThis controls document settings.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nauthor: \"Your Name\"\ndate: \"2026-06-12\"\nformat: html\n---\n\n\n\nThis is where you write: - headings - paragraphs - lists - images - tables - code blocks"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#basic-formatting-in-quarto",
-    "href": "quarto_tutorial_for_beginners.html#basic-formatting-in-quarto",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "# Heading 1\n## Heading 2\n### Heading 3\n\n\n\nJust write normal text.\n\n\n\nLeave a blank line between paragraphs.\n\n\n\n**bold**\n*italic*\n`code`\n\n\n\n&gt; This is an important note.\n\n\n\n---\n\n\n\n- apple\n- banana\n- orange\n\n\n\n1. Install Quarto\n2. Create a file\n3. Render the file"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#adding-images",
-    "href": "quarto_tutorial_for_beginners.html#adding-images",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "You can add an image like this:\n![A sample image](images/example.png)\nExplanation: - text inside [] is alternate text - text inside () is the image path\nIf your image is in a folder called images, the file path might be: - images/photo.jpg - images/chart.png"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#adding-links",
-    "href": "quarto_tutorial_for_beginners.html#adding-links",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "[Visit Quarto](https://quarto.org)\nThis creates a clickable link."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#adding-tables",
-    "href": "quarto_tutorial_for_beginners.html#adding-tables",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Simple Markdown table:\n| Tool   | Purpose            |\n|--------|--------------------|\n| Quarto | Create documents   |\n| VS Code| Edit files         |\n| Python | Run code optional  |\nThis becomes a formatted table in the output."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#code-blocks-in-quarto",
-    "href": "quarto_tutorial_for_beginners.html#code-blocks-in-quarto",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Even if you do not know programming yet, it is helpful to understand the idea.\nA code block is a section where you write code.\n\n\n```bash\nquarto render hello.qmd\n\nThis only displays code.\n\n### Executable code block\nIf you have Python or R installed, Quarto can run code blocks and show results.\n\nExample with Python:\n\n````markdown\n```python\nprint(\"Hello from Python\")\n\nIf Python is available, Quarto can run it and include the output.\n\nAgain: **this is optional** for beginners.\n\n---\n\n## 14. A text-only beginner example\n\nCreate a file named `intro.qmd`:\n\n```markdown\n---\ntitle: \"Introduction to Quarto\"\nformat: html\n---\n\n# Welcome\n\nQuarto helps you create beautiful documents.\n\n## What I learned\n\n- Quarto uses `.qmd` files\n- Markdown is easy to write\n- I can create HTML pages\n- I do not need R to begin\n\n## My Next Step\n\nI will learn how to add images and tables.\n```\n\nRender it:\n\n```bash\nquarto render intro.qmd\n```\n\n---\n\n## 15. Creating different output formats\n\nOne powerful feature of Quarto is that you can generate different types of output.\n\n### HTML\n```yaml\nformat: html\n```\n\n### PDF\n```yaml\nformat: pdf\n```\n\n### Word\n```yaml\nformat: docx\n```\n\n### Multiple formats\n```yaml\nformat:\n  html: default\n  pdf: default\n  docx: default\n```\n\nThen run:\n\n```bash\nquarto render yourfile.qmd\n```\n\n### Important note about PDF\nCreating PDFs usually requires a LaTeX installation such as TinyTeX.\n\nIf PDF rendering fails, start with HTML first.\n\n---\n\n## 16. Working with sections\n\nA bigger document can be organized into sections.\n\nExample:\n\n```markdown\n# Chapter 1\n## Topic 1.1\n## Topic 1.2\n\n# Chapter 2\n## Topic 2.1\n```\n\nThis structure helps readers navigate your content.\n\nIn HTML output, Quarto may also generate a table of contents.\n\n---\n\n## 17. Adding a table of contents\n\nYou can enable it in YAML:\n\n```yaml\n---\ntitle: \"My Tutorial\"\nformat:\n  html:\n    toc: true\n---\n```\n\nThis adds a table of contents automatically.\n\n---\n\n## 18. Changing theme and appearance\n\nFor HTML documents, you can choose themes.\n\nExample:\n\n```yaml\n---\ntitle: \"Styled Document\"\nformat:\n  html:\n    theme: cosmo\n---\n```\n\nSome common themes:\n- cosmo\n- litera\n- flatly\n- darkly\n- minty\n\nYou can experiment and see which one you like.\n\n---\n\n## 19. Creating a presentation\n\nQuarto can create slides too.\n\nExample:\n\n```markdown\n---\ntitle: \"My First Presentation\"\nformat: revealjs\n---\n\n# Slide 1\nWelcome to my presentation.\n\n# Slide 2\n- Point one\n- Point two\n```\n\nRender it and Quarto will create a slide deck.\n\n---\n\n## 20. Creating a website\n\nQuarto can also build websites.\n\nA basic website project often includes:\n- `_quarto.yml`\n- `index.qmd`\n- other `.qmd` pages\n\nExample `_quarto.yml`:\n\n```yaml\nproject:\n  type: website\n\nwebsite:\n  title: \"My Website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: about.qmd\n        text: About\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\n```\n\nExample `index.qmd`:\n\n```markdown\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n```\n\nThis is more advanced, but it shows how powerful Quarto is.\n\n---\n\n## 21. What is `_quarto.yml`?\n\nWhen you work on a Quarto project with multiple files, `_quarto.yml` is the main configuration file.\n\nIt can define:\n- project type\n- website settings\n- book settings\n- output format defaults\n- themes\n- navigation\n\nThink of it as the project control file.\n\n---\n\n## 22. How Quarto is different from Word\n\nIn Word, you usually format things visually.\n\nIn Quarto, you write simple plain text with lightweight formatting.\n\n### Benefits of Quarto\n- easier version control with Git and GitHub\n- reusable documents\n- cleaner structure\n- can combine writing and code\n- easier to publish online\n\nAt first it may feel unfamiliar, but many people find it easier over time.\n\n---\n\n## 23. Beginner workflow\n\nHere is a simple beginner workflow:\n\n1. Install Quarto\n2. Create a `.qmd` file\n3. Write Markdown content\n4. Add YAML at the top\n5. Render the file to HTML\n6. Open the output in a browser\n7. Edit and render again\n\nThis is enough to get started.\n\n---\n\n## 24. Common beginner mistakes\n\n### Mistake 1: Forgetting the YAML lines\nYAML must start and end with `---`.\n\n### Mistake 2: Wrong file extension\nUse `.qmd`, not `.txt`.\n\n### Mistake 3: PDF not rendering\nThis often happens because LaTeX is not installed.\n\n### Mistake 4: Broken image path\nMake sure the image file path is correct.\n\n### Mistake 5: Expecting code to run without installing Python or R\nIf you want executable code blocks, you need the related language installed.\n\n---\n\n## 25. Example: A small personal profile page\n\nCreate `profile.qmd`:\n\n```markdown\n---\ntitle: \"My Profile\"\nformat:\n  html:\n    toc: true\n---\n\n# About Me\n\nMy name is Praveen.\n\nI am learning Quarto to create documents and websites.\n\n## Skills I Want to Learn\n\n- Quarto\n- Markdown\n- GitHub\n- Python\n\n## Favorite Resources\n\n- [Quarto](https://quarto.org)\n- [Markdown Guide](https://www.markdownguide.org)\n```\n\nRender it:\n\n```bash\nquarto render profile.qmd\n```\n\n---\n\n## 26. Example: A study notes document\n\n```markdown\n---\ntitle: \"Study Notes\"\nformat: html\n---\n\n# Chapter 1\n\nThis chapter explains the basics.\n\n## Key Points\n\n- Point A\n- Point B\n- Point C\n\n## Summary\n\nThis chapter introduced the main ideas.\n```\n\nThis is useful for students and self-learners.\n\n---\n\n## 27. If you later want to learn code in Quarto\n\nOnce you are comfortable with text and Markdown, you can gradually add code.\n\n### Python example\n\n````markdown\n```python\nname = \"Praveen\"\nprint(\"Hello\", name)\n```\n\n\n\n```r\nx &lt;- 10\nx + 5\n```\nBut remember: learning Quarto does not require learning R first."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#best-practices-for-beginners",
-    "href": "quarto_tutorial_for_beginners.html#best-practices-for-beginners",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Start with HTML output\nWrite short documents first\nFocus on Markdown before advanced features\nKeep files organized in folders\nUse meaningful file names\nRender often to check your output\nLearn one feature at a time"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#suggested-learning-path",
-    "href": "quarto_tutorial_for_beginners.html#suggested-learning-path",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Here is a beginner-friendly order:\n\n\nLearn: - headings - paragraphs - bold and italic - lists - links\n\n\n\nLearn: - YAML title and format - rendering to HTML - adding images - adding tables\n\n\n\nLearn: - themes - table of contents - multiple pages - websites\n\n\n\nOptional: - Python code blocks - R code blocks - PDFs - presentations - books"
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#frequently-asked-questions",
-    "href": "quarto_tutorial_for_beginners.html#frequently-asked-questions",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "No. Anyone can use it for writing and publishing.\n\n\n\nNo. You can start with plain text and Markdown.\n\n\n\nYes, Quarto is open source and free to use.\n\n\n\nYes.\n\n\n\nYes.\n\n\n\nNo. VS Code works very well too."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#final-beginner-checklist",
-    "href": "quarto_tutorial_for_beginners.html#final-beginner-checklist",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Before starting, make sure you can do these:\n\ninstall Quarto\ncreate a .qmd file\nwrite a title in YAML\nadd headings and lists\nrender to HTML\nopen the output file\n\nIf you can do these, you are already using Quarto successfully."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#conclusion",
-    "href": "quarto_tutorial_for_beginners.html#conclusion",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Quarto is a beginner-friendly publishing tool.\nEven if you: - do not know R - do not know programming - have never written Markdown before\nYou can still start learning Quarto today.\nThe best way to learn is: - create a small .qmd file - write simple content - render it - improve it step by step\nStart simple, and build confidence gradually."
-  },
-  {
-    "objectID": "quarto_tutorial_for_beginners.html#next-steps",
-    "href": "quarto_tutorial_for_beginners.html#next-steps",
-    "title": "Full Quarto Tutorial",
-    "section": "",
-    "text": "Try this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
-  },
-  {
     "objectID": "r-shiny.html",
     "href": "r-shiny.html",
     "title": "R Shiny — Interactive Apps",
     "section": "",
     "text": "R Shiny\nPlaceholder page for R Shiny tutorials and example apps.\nBack to home"
-  },
-  {
-    "objectID": "python.html",
-    "href": "python.html",
-    "title": "Python — Getting Started",
-    "section": "",
-    "text": "Python Tutorials\nWelcome to the Python tutorial placeholder. Add notebooks, code examples, and guides here.\nBack to home"
-  },
-  {
-    "objectID": "kubernetes.html",
-    "href": "kubernetes.html",
-    "title": "Kubernetes — Container Orchestration at Scale",
-    "section": "",
-    "text": "Important\n\n\n\nStatus: Coming soon — Learn Docker and Nextflow first."
-  },
-  {
-    "objectID": "kubernetes.html#introduction",
-    "href": "kubernetes.html#introduction",
-    "title": "Kubernetes — Container Orchestration at Scale",
-    "section": "1. Introduction",
-    "text": "1. Introduction\nKubernetes (K8s) orchestrates containers across clusters — used when Docker alone is not enough for large-scale production deployments.\nBack to home"
   },
   {
     "objectID": "git.html",
@@ -721,6 +623,20 @@
     "text": "1. Introduction\nGit tracks changes to code, scripts, Dockerfiles, and Quarto documents — essential for audit trails and team collaboration.\n\nWhy Git matters in pharma and bioinformatics\n\nReproducible analysis scripts under change control\nCode review before production pipeline releases\nLinking commits to validated container tags\n\nBack to home"
   },
   {
+    "objectID": "aws.html",
+    "href": "aws.html",
+    "title": "AWS — Cloud Computing for Life Sciences",
+    "section": "",
+    "text": "Important\n\n\n\nStatus: Coming soon — See Nextflow cloud section for AWS Batch integration today."
+  },
+  {
+    "objectID": "aws.html#introduction",
+    "href": "aws.html#introduction",
+    "title": "AWS — Cloud Computing for Life Sciences",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nAmazon Web Services (AWS) provides scalable storage (S3), compute (Batch, EC2), and ML services used by genomics and pharmaceutical data teams.\nBack to home"
+  },
+  {
     "objectID": "ml-ai.html",
     "href": "ml-ai.html",
     "title": "Machine Learning & AI",
@@ -728,10 +644,94 @@
     "text": "ML & AI\nPlaceholder for ML and AI tutorials (scikit-learn, TensorFlow, PyTorch, etc.).\nBack to home"
   },
   {
-    "objectID": "statistics.html",
-    "href": "statistics.html",
-    "title": "Statistics — Fundamentals",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About StatiX AI & Data Labs",
     "section": "",
-    "text": "Statistics\nPlaceholder for statistics tutorials (probability, inference, regression).\nBack to home"
+    "text": "StatiX AI & Data Labs is a curated learning platform for students and professionals in life sciences, pharmaceuticals, and data-driven healthcare.\nWe publish tutorials that read like official documentation — practical, reproducible, and aligned with how industry teams actually work."
+  },
+  {
+    "objectID": "about.html#our-mission",
+    "href": "about.html#our-mission",
+    "title": "About StatiX AI & Data Labs",
+    "section": "",
+    "text": "StatiX AI & Data Labs is a curated learning platform for students and professionals in life sciences, pharmaceuticals, and data-driven healthcare.\nWe publish tutorials that read like official documentation — practical, reproducible, and aligned with how industry teams actually work."
+  },
+  {
+    "objectID": "about.html#who-this-site-is-for",
+    "href": "about.html#who-this-site-is-for",
+    "title": "About StatiX AI & Data Labs",
+    "section": "Who this site is for",
+    "text": "Who this site is for\n\n\n\n\n\n\n\nAudience\nWhat you will find\n\n\n\n\nStudents\nStep-by-step guides from zero prior knowledge\n\n\nBioinformatics researchers\nDocker, Nextflow, cloud pipelines\n\n\nClinical programmers\nReproducible R environments, ADaM workflows (expanding)\n\n\nData scientists\nContainers, orchestration, ML deployment paths\n\n\nPharmaceutical professionals\nGxP-aware practices, reproducibility, audit-friendly patterns\n\n\nSoftware engineers\nDevOps foundations for regulated data platforms"
+  },
+  {
+    "objectID": "about.html#documentation-standard",
+    "href": "about.html#documentation-standard",
+    "title": "About StatiX AI & Data Labs",
+    "section": "Documentation standard",
+    "text": "Documentation standard\nEvery StatiX tutorial follows a 25-section professional template:\n\nIntroduction\n\nLearning objectives\n\nWhy it matters (industry context)\n\nArchitecture diagrams (Mermaid)\n\nInstallation (Windows, macOS, Linux)\n\nBasic concepts\n\nHands-on examples\n\nReal-world use cases\n\nBioinformatics workflow placement\n\nClinical programming workflow placement\n\nBest practices\n\nCommon mistakes\n\nTroubleshooting\n\nInterview questions\n\nCheat sheet\n\nSummary\n\nNext topic\n\nLearning paths\n\nFurther reading\n\nMini project\n\nExercises\n\n\n\n\n\n\n\nTip\n\n\n\nAvailable now: Docker and Nextflow use the full template. Other topics are rolling out on the same standard."
+  },
+  {
+    "objectID": "about.html#recommended-learning-paths",
+    "href": "about.html#recommended-learning-paths",
+    "title": "About StatiX AI & Data Labs",
+    "section": "Recommended learning paths",
+    "text": "Recommended learning paths\n\nBioinformatics\n\n\n\n\n\nflowchart LR\n  A[Linux] --&gt; B[Git]\n  B --&gt; C[Docker]\n  C --&gt; D[Nextflow]\n  D --&gt; E[Cloud / AWS]\n  E --&gt; F[ML & AI]\n\n\n\n\n\n\n\n\nClinical programming\n\n\n\n\n\nflowchart LR\n  A[R / SAS] --&gt; B[Linux & Git]\n  B --&gt; C[Docker]\n  C --&gt; D[Pharmaverse]\n  D --&gt; E[Reproducible TLFs]\n  E --&gt; F[Submission]\n\n\n\n\n\n\n\n\nData science & engineering\n\n\n\n\n\nflowchart LR\n  A[Python / R] --&gt; B[SQL]\n  B --&gt; C[Linux & Git]\n  C --&gt; D[Docker]\n  D --&gt; E[Kubernetes]\n  E --&gt; F[AWS]"
+  },
+  {
+    "objectID": "about.html#how-to-use-this-site",
+    "href": "about.html#how-to-use-this-site",
+    "title": "About StatiX AI & Data Labs",
+    "section": "How to use this site",
+    "text": "How to use this site\n\nStart on the home page — check Available vs Coming soon badges\n\nFollow tutorials in order if you are new to a path\n\nComplete hands-on examples and mini projects on your machine\n\nUse cheat sheets and troubleshooting sections as job aids"
+  },
+  {
+    "objectID": "about.html#contribute-feedback",
+    "href": "about.html#contribute-feedback",
+    "title": "About StatiX AI & Data Labs",
+    "section": "Contribute & feedback",
+    "text": "Contribute & feedback\nThis site is built with Quarto and published via GitHub Pages.\nRepository: https://github.com/praveen2093/QUARTO\nLive site: https://praveen2093.github.io/QUARTO/\nBack to home"
+  },
+  {
+    "objectID": "clinical-r.html",
+    "href": "clinical-r.html",
+    "title": "Clinical R — Biostatistics & Reporting",
+    "section": "",
+    "text": "Clinical R\nClinical-focused R tutorials (biostatistics, regulatory reporting) placeholder.\nBack to home"
+  },
+  {
+    "objectID": "linux.html",
+    "href": "linux.html",
+    "title": "Linux — Foundations for Life Sciences Computing",
+    "section": "",
+    "text": "Important\n\n\n\nStatus: Coming soon — This tutorial will follow the full StatiX documentation standard (25 sections). Docker and Nextflow are available now."
+  },
+  {
+    "objectID": "linux.html#introduction",
+    "href": "linux.html#introduction",
+    "title": "Linux — Foundations for Life Sciences Computing",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nLinux is the operating system that powers most servers, HPC clusters, and cloud instances used in bioinformatics and pharmaceutical computing.\n\nWhy Linux exists in your workflow\nClinical SAS/R environments may run on Windows, but cloud pipelines, sequencing cores, and DevOps tooling overwhelmingly run on Linux.\n\n\nWhat you will learn here (upcoming)\n\nNavigating the filesystem\nPermissions, processes, and shell scripting\nConnecting to remote servers (SSH)\nPreparing for Docker, Git, and Nextflow\n\nBack to home"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "StatiX AI & Data Labs",
+    "section": "",
+    "text": "StatiX AI & Data Labs\nWelcome — a curated collection of hands-on tutorials and guides for data, AI and programming.\nClick any tile below to open the corresponding tutorial. Tiles marked Available include full industry-standard documentation.\n\n\n  \n    \n      Coming soon\n      \n      Linux\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Git\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Python\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Programming\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Clinical R\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Nextflow\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Docker\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Quarto\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Shiny\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Statistics\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Kubernetes\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      AWS\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Pharmaverse\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      ML & AI\n       Open guide\n    \n  \n\n\nAbout the collection\nThis site follows a 25-section professional documentation standard — the same structure used in premium courses and official vendor docs. Each tutorial includes learning objectives, Mermaid diagrams, hands-on labs, industry use cases, interview prep, and capstone exercises.\nSee About for learning paths and full documentation guidelines.\n\n\nQuick start paths\n\n\n\nPath\nStart here\n\n\n\n\nBioinformatics\nLinux → Git → Docker → Nextflow\n\n\nClinical programming\nR → Docker → Pharmaverse\n\n\nNew to publishing\nQuarto"
+  },
+  {
+    "objectID": "kubernetes.html",
+    "href": "kubernetes.html",
+    "title": "Kubernetes — Container Orchestration at Scale",
+    "section": "",
+    "text": "Important\n\n\n\nStatus: Coming soon — Learn Docker and Nextflow first."
+  },
+  {
+    "objectID": "kubernetes.html#introduction",
+    "href": "kubernetes.html#introduction",
+    "title": "Kubernetes — Container Orchestration at Scale",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nKubernetes (K8s) orchestrates containers across clusters — used when Docker alone is not enough for large-scale production deployments.\nBack to home"
   }
 ]
