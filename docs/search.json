@@ -1,24 +1,255 @@
 [
   {
-    "objectID": "statistics.html",
-    "href": "statistics.html",
-    "title": "Statistics — Fundamentals",
+    "objectID": "nextflow.html",
+    "href": "nextflow.html",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
     "section": "",
-    "text": "Statistics\nPlaceholder for statistics tutorials (probability, inference, regression).\nBack to home"
+    "text": "Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.\n\n\n\n\n\n\nImportant\n\n\n\nThis guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values."
+  },
+  {
+    "objectID": "nextflow.html#why-nextflow",
+    "href": "nextflow.html#why-nextflow",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "",
+    "text": "Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.\n\n\n\n\n\n\nImportant\n\n\n\nThis guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values."
+  },
+  {
+    "objectID": "nextflow.html#quick-start-install-and-run-locally",
+    "href": "nextflow.html#quick-start-install-and-run-locally",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "2. Quick Start — install and run locally",
+    "text": "2. Quick Start — install and run locally\n\nRequirements\n\nJava 11+ (Nextflow runs on the JVM)\nnextflow CLI (install via curl)\nOptional: Docker or Conda for reproducible software environments\n\n# Install Nextflow (Linux/macOS)\ncurl -s https://get.nextflow.io | bash\n# Move to PATH (example)\nsudo mv nextflow /usr/local/bin/\n\n# Verify\nnextflow -v\n\n\nHello-world workflow (main.nf)\n#!/usr/bin/env nextflow\n\nprocess sayHello {\n  output:\n    file 'hello.txt'\n\n  script:\n  \"\"\"\n  echo \"Hello from Nextflow\" &gt; hello.txt\n  \"\"\"\n}\n\nworkflow {\n  sayHello()\n}\nRun locally:\nnextflow run main.nf -profile standard\nls -l work/\ncat work/*/hello.txt"
+  },
+  {
+    "objectID": "nextflow.html#core-concepts-brief",
+    "href": "nextflow.html#core-concepts-brief",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "3. Core Concepts (brief)",
+    "text": "3. Core Concepts (brief)\n\nprocess: computational step (command/script) with input/output.\nchannel: stream of data connecting processes.\nworkflow: organizes processes and channels."
+  },
+  {
+    "objectID": "nextflow.html#running-nextflow-on-google-cloud-platform-gcp",
+    "href": "nextflow.html#running-nextflow-on-google-cloud-platform-gcp",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "4. Running Nextflow on Google Cloud Platform (GCP)",
+    "text": "4. Running Nextflow on Google Cloud Platform (GCP)\n\nOverview\nWe demonstrate using GCP Compute + Cloud Storage. For larger work, you can use Nextflow Tower, Google Genomics Pipelines, or compute clusters (GKE).\n\n\nPrerequisites\n\ngcloud installed and authenticated\nA GCP project and billing enabled\nA GCS bucket for workspace/storage\n\n# Set project and region\ngcloud config set project YOUR_PROJECT_ID\ngcloud config set compute/region us-central1\n# Create bucket (example)\ngsutil mb -l us-central1 gs://your-nextflow-bucket\n\n\nNextflow config for GCP (example nextflow.config)\nprofiles {\n  gcp {\n    process.executor = 'google-lifesciences'  // uses Google Life Sciences API\n    google {\n      project = 'YOUR_PROJECT_ID'\n      region  = 'us-central1'\n      auth = '/path/to/google-credentials.json'   // or use ADC\n      bucket = 'gs://your-nextflow-bucket'\n    }\n    workDir = 'gs://your-nextflow-bucket/work'\n  }\n}\n\nAuthentication: prefer Application Default Credentials (ADC). To create a service account and key:\n\ngcloud iam service-accounts create nf-runner --display-name \"Nextflow runner\"\ngcloud projects add-iam-policy-binding YOUR_PROJECT_ID \\\n  --member=\"serviceAccount:nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com\" \\\n  --role=\"roles/storage.admin\"\ngcloud iam service-accounts keys create key.json \\\n  --iam-account nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com\nexport GOOGLE_APPLICATION_CREDENTIALS=\"$(pwd)/key.json\"\n\n\nRun on GCP\nnextflow run main.nf -profile gcp -with-report report.html -with-trace trace.txt\n\n\nCost & monitoring\n\nStore intermediate files in GCS to avoid expensive disk.\nUse small VM images for lightweight tasks.\nMonitor via Cloud Console and check gcloud billing reports."
+  },
+  {
+    "objectID": "nextflow.html#running-nextflow-on-aws",
+    "href": "nextflow.html#running-nextflow-on-aws",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "5. Running Nextflow on AWS",
+    "text": "5. Running Nextflow on AWS\n\nOverview\nCommon backends: S3 for storage, AWS Batch or EC2/ECS as executors.\n\n\nPrerequisites\n\naws CLI configured (aws configure)\nAn S3 bucket and IAM role/user with permissions\n\n# Create bucket\naws s3 mb s3://your-nextflow-bucket --region us-east-1\n\n\nExample nextflow.config for AWS S3 + Batch\nprofiles {\n  aws {\n    process.executor = 'awsbatch'\n    aws {\n      region = 'us-east-1'\n      client {\n        registry = 'public.ecr.aws'  // if using ECR images\n      }\n    }\n    workDir = 's3://your-nextflow-bucket/work'\n  }\n}\n\n\nCreate IAM role and policy (high level)\n\nCreate an IAM role for AWS Batch with S3 read/write.\nAttach policies: AmazonS3FullAccess (or scoped) and Batch execution roles.\n\n\n\nRun on AWS\nnextflow run main.nf -profile aws -with-report report.html"
+  },
+  {
+    "objectID": "nextflow.html#integrating-r-and-python",
+    "href": "nextflow.html#integrating-r-and-python",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "6. Integrating R and Python",
+    "text": "6. Integrating R and Python\n\nContainerization (recommended)\n\nUse Docker images with R and Python environments, or use Conda with Nextflow’s conda support.\n\nExample process using Python:\nprocess runPython {\n  container 'python:3.11-slim'\n  input:\n    path x\n  output:\n    path 'out.txt'\n\n  script:\n  \"\"\"\n  python -c 'print(\"Processing\", \"$x\")' &gt; out.txt\n  \"\"\"\n}\nExample conda usage:\nprocess analysis {\n  conda 'envs/env.yml'\n  script:\n  \"\"\"\n  Rscript analysis.R input.csv output.csv\n  \"\"\"\n}\nenvs/env.yml (example)\nname: nf-env\nchannels:\n  - conda-forge\ndependencies:\n  - r-base=4.2\n  - r-essentials\n  - python=3.11\n  - pandas\n\n\nR script example (analysis.R)\nargs &lt;- commandArgs(trailingOnly = TRUE)\ndat &lt;- read.csv(args[1])\nsummary &lt;- summary(dat)\nwrite.csv(as.data.frame(summary), args[2], row.names=FALSE)\n\n\nPassing data between R and Python\n\nUse files in workDir and channels to pass file paths.\nKeep intermediate files in object storage (S3/GCS) when running in cloud."
+  },
+  {
+    "objectID": "nextflow.html#practical-bioinformatics-example-fastq-qc-alignment",
+    "href": "nextflow.html#practical-bioinformatics-example-fastq-qc-alignment",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "7. Practical Bioinformatics Example (FASTQ QC & alignment)",
+    "text": "7. Practical Bioinformatics Example (FASTQ QC & alignment)\n\nProcess 1: split/validate FASTQ\nProcess 2: run fastp or fastqc\nProcess 3: align with bwa or minimap2\nUse containers for exact tool versions and pin references.\n\nSmall example process:\nprocess fastqc {\n  container 'biocontainers/fastqc:v0.11.9_cv8'\n  input:\n    path fastq\n  output:\n    path \"*.html\"\n  \"\"\"\n  fastqc $fastq -o .\n  \"\"\"\n}"
+  },
+  {
+    "objectID": "nextflow.html#clinical-trials-regulatory-considerations",
+    "href": "nextflow.html#clinical-trials-regulatory-considerations",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "8. Clinical Trials / Regulatory Considerations",
+    "text": "8. Clinical Trials / Regulatory Considerations\n\nEnforce data access controls: use private buckets and VPCs.\nLog and version workflows: enable reports and execution metadata.\nSeparate PHI/PII and use encryption at rest/in transit."
+  },
+  {
+    "objectID": "nextflow.html#best-practices",
+    "href": "nextflow.html#best-practices",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "9. Best Practices",
+    "text": "9. Best Practices\n\nContainerize reproducible environments (Docker/Conda).\nTest workflows locally before the cloud.\nUse small sample datasets for CI tests.\nKeep credentials out of repo; use secret managers or ADC."
+  },
+  {
+    "objectID": "nextflow.html#references-next-steps",
+    "href": "nextflow.html#references-next-steps",
+    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
+    "section": "10. References & Next Steps",
+    "text": "10. References & Next Steps\n\nNextflow docs: https://www.nextflow.io/docs/\nNextflow + Google: https://www.nextflow.io/docs/latest/GoogleCloud.html\nNextflow + AWS: https://www.nextflow.io/docs/latest/aws/index.html"
+  },
+  {
+    "objectID": "r.html",
+    "href": "r.html",
+    "title": "R — Getting Started",
+    "section": "",
+    "text": "R Programming Tutorials\nPlaceholder for R tutorials and examples. Add exercises and datasets here.\nBack to home"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "This website is built using Quarto and designed for beginners.\n\n\n\nHow Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally\n\n\n\n\nQuarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes\n\n\n\n\n\nAdd a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly\n\n\n\n\n\nQuarto Documentation\nQuarto Website Guide"
+  },
+  {
+    "objectID": "about.html#what-you-will-learn",
+    "href": "about.html#what-you-will-learn",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "How Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally"
+  },
+  {
+    "objectID": "about.html#why-this-is-useful",
+    "href": "about.html#why-this-is-useful",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Quarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes"
+  },
+  {
+    "objectID": "about.html#next-steps",
+    "href": "about.html#next-steps",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Add a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly"
+  },
+  {
+    "objectID": "about.html#more-resources",
+    "href": "about.html#more-resources",
+    "title": "About This Tutorial",
+    "section": "",
+    "text": "Quarto Documentation\nQuarto Website Guide"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "StatiX AI & Data Labs",
     "section": "",
-    "text": "title: “StatiX AI & Data Labs” description: “Learn practical, industry-aligned technical skills.” —"
+    "text": "StatiX AI & Data Labs\nWelcome — a curated collection of hands-on tutorials and guides for data, AI and programming.\nClick any tile below to open the corresponding tutorial.\n\n\n  \n    \n      Coming soon\n      \n      Python\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Programming\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Clinical R\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Nextflow\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Docker\n       Open guide\n    \n  \n  \n    \n      Available\n      \n      Quarto\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      R Shiny\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      Statistics\n       Open guide\n    \n  \n  \n    \n      Coming soon\n      \n      ML & AI\n       Open guide\n    \n  \n\n\nAbout the collection\nThis site collects independent tutorials for clinical, pharmaceutical, and life-sciences teams. Each tile links to a standalone page with hands-on examples and runnable code."
   },
   {
-    "objectID": "index.html#title-welcome-to-your-quarto-website",
-    "href": "index.html#title-welcome-to-your-quarto-website",
-    "title": "StatiX AI & Data Labs",
+    "objectID": "r-shiny.html",
+    "href": "r-shiny.html",
+    "title": "R Shiny — Interactive Apps",
     "section": "",
-    "text": "title: “StatiX AI & Data Labs” description: “Learn practical, industry-aligned technical skills.” —"
+    "text": "R Shiny\nPlaceholder page for R Shiny tutorials and example apps.\nBack to home"
+  },
+  {
+    "objectID": "tutorial.html",
+    "href": "tutorial.html",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "This page teaches you Quarto step-by-step. It is built for people who are new to Quarto and may not have any background in R.\n\n\n\n\n\n\nImportant\n\n\n\nYou do not need R to use Quarto. Start with plain Markdown and HTML output, then add code later if you want.\n\n\n\n\nQuarto is an open-source publishing system that turns plain text into polished documents and websites.\n\nWrite content in Markdown\nAdd headings, lists, links, images, and tables\nRender to HTML, PDF, Word, slides, and more\n\n\n\n\nQuarto helps you:\n\ncreate one document and output it in multiple formats\nkeep text and code together in one file\nbuild websites, tutorials, and reports\npublish clean content with version control\n\n\n\n\nNo.\nQuarto works with:\n\nplain Markdown only\nPython\nR\nJulia\nObservable JavaScript\n\nFor beginners, start with text-only documents.\n\n\n\n\n\n\nQuarto\nA text editor such as VS Code\n\n\n\n\n\nPython or R if you want executable code blocks\nA TeX engine like TinyTeX or TeX Live for PDF output\n\n\n\n\nquarto --version\nIf Quarto is installed, this prints a version number.\n\n\n\n\nMarkdown is a simple text format that makes writing easy.\n\n\n# Main title\n## Section title\n### Smaller section\n\n\n\n**bold**\n*italic*\n\n\n\n- item one\n- item two\n\n\n\n[Quarto website](https://quarto.org)\n\n\n\n\nCreate a file named hello.qmd and add:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\n\nThe section between --- lines is YAML. It sets the document title, format, and other options.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nformat: html\n---\n\n\n\nRun this command:\nquarto render hello.qmd\nQuarto generates hello.html.\n\n\n\nQuarto websites use multiple .qmd files and a _quarto.yml project file.\nExample _quarto.yml:\nproject:\n  type: website\n\nwebsite:\n  title: \"My Quarto Website\"\n  navbar:\n    right:\n      - href: index.qmd\n        text: Home\n      - href: tutorial.qmd\n        text: Tutorial\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\nExample index.qmd:\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n\n\n\n\n\n![A sample image](images/example.png)\n\n\n\n| Tool   | Purpose          |\n|--------|------------------|\n| Quarto | Create documents |\n| VS Code| Edit files       |\n\n\n\n\nYou can add code blocks that only show code:\nquarto render hello.qmd\nIf you install Python or R, Quarto can also run code and show results.\n\n\n\n\nCode\nprint(\"Hello from Python\")\n\n\nHello from Python\n\n\n\n\n\n\nYou can render HTML, PDF, and Word from one file.\nformat:\n  html: default\n  pdf: default\n  docx: default\n\n\n\n\nForgetting the --- lines in YAML\nUsing the wrong file extension (.qmd instead of .txt)\nBroken image paths\nTrying to run code without installing Python or R\n\n\n\n\n\nInstall Quarto\nCreate a .qmd file\nAdd YAML and Markdown\nRender to HTML\nView the output\nEdit and render again\n\n\n\n\nTry these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
+  },
+  {
+    "objectID": "tutorial.html#what-is-quarto",
+    "href": "tutorial.html#what-is-quarto",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Quarto is an open-source publishing system that turns plain text into polished documents and websites.\n\nWrite content in Markdown\nAdd headings, lists, links, images, and tables\nRender to HTML, PDF, Word, slides, and more"
+  },
+  {
+    "objectID": "tutorial.html#why-use-quarto",
+    "href": "tutorial.html#why-use-quarto",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Quarto helps you:\n\ncreate one document and output it in multiple formats\nkeep text and code together in one file\nbuild websites, tutorials, and reports\npublish clean content with version control"
+  },
+  {
+    "objectID": "tutorial.html#do-i-need-r",
+    "href": "tutorial.html#do-i-need-r",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "No.\nQuarto works with:\n\nplain Markdown only\nPython\nR\nJulia\nObservable JavaScript\n\nFor beginners, start with text-only documents."
+  },
+  {
+    "objectID": "tutorial.html#what-do-i-need",
+    "href": "tutorial.html#what-do-i-need",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Quarto\nA text editor such as VS Code\n\n\n\n\n\nPython or R if you want executable code blocks\nA TeX engine like TinyTeX or TeX Live for PDF output\n\n\n\n\nquarto --version\nIf Quarto is installed, this prints a version number."
+  },
+  {
+    "objectID": "tutorial.html#what-is-markdown",
+    "href": "tutorial.html#what-is-markdown",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Markdown is a simple text format that makes writing easy.\n\n\n# Main title\n## Section title\n### Smaller section\n\n\n\n**bold**\n*italic*\n\n\n\n- item one\n- item two\n\n\n\n[Quarto website](https://quarto.org)"
+  },
+  {
+    "objectID": "tutorial.html#your-first-quarto-document",
+    "href": "tutorial.html#your-first-quarto-document",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Create a file named hello.qmd and add:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start"
+  },
+  {
+    "objectID": "tutorial.html#what-is-yaml",
+    "href": "tutorial.html#what-is-yaml",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "The section between --- lines is YAML. It sets the document title, format, and other options.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nformat: html\n---"
+  },
+  {
+    "objectID": "tutorial.html#render-your-document",
+    "href": "tutorial.html#render-your-document",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Run this command:\nquarto render hello.qmd\nQuarto generates hello.html."
+  },
+  {
+    "objectID": "tutorial.html#create-a-website-page",
+    "href": "tutorial.html#create-a-website-page",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Quarto websites use multiple .qmd files and a _quarto.yml project file.\nExample _quarto.yml:\nproject:\n  type: website\n\nwebsite:\n  title: \"My Quarto Website\"\n  navbar:\n    right:\n      - href: index.qmd\n        text: Home\n      - href: tutorial.qmd\n        text: Tutorial\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\nExample index.qmd:\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website."
+  },
+  {
+    "objectID": "tutorial.html#use-images-and-tables",
+    "href": "tutorial.html#use-images-and-tables",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "![A sample image](images/example.png)\n\n\n\n| Tool   | Purpose          |\n|--------|------------------|\n| Quarto | Create documents |\n| VS Code| Edit files       |"
+  },
+  {
+    "objectID": "tutorial.html#add-code-blocks",
+    "href": "tutorial.html#add-code-blocks",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "You can add code blocks that only show code:\nquarto render hello.qmd\nIf you install Python or R, Quarto can also run code and show results.\n\n\n\n\nCode\nprint(\"Hello from Python\")\n\n\nHello from Python"
+  },
+  {
+    "objectID": "tutorial.html#generate-multiple-outputs",
+    "href": "tutorial.html#generate-multiple-outputs",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "You can render HTML, PDF, and Word from one file.\nformat:\n  html: default\n  pdf: default\n  docx: default"
+  },
+  {
+    "objectID": "tutorial.html#common-beginner-mistakes",
+    "href": "tutorial.html#common-beginner-mistakes",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Forgetting the --- lines in YAML\nUsing the wrong file extension (.qmd instead of .txt)\nBroken image paths\nTrying to run code without installing Python or R"
+  },
+  {
+    "objectID": "tutorial.html#beginner-workflow",
+    "href": "tutorial.html#beginner-workflow",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Install Quarto\nCreate a .qmd file\nAdd YAML and Markdown\nRender to HTML\nView the output\nEdit and render again"
+  },
+  {
+    "objectID": "tutorial.html#next-steps",
+    "href": "tutorial.html#next-steps",
+    "title": "Quarto Tutorial for Beginners",
+    "section": "",
+    "text": "Try these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
+  },
+  {
+    "objectID": "clinical-r.html",
+    "href": "clinical-r.html",
+    "title": "Clinical R — Biostatistics & Reporting",
+    "section": "",
+    "text": "Clinical R\nClinical-focused R tutorials (biostatistics, regulatory reporting) placeholder.\nBack to home"
   },
   {
     "objectID": "quarto_tutorial_for_beginners.html",
@@ -161,41 +392,6 @@
     "text": "Try this today:\n\nInstall Quarto\nCreate hello.qmd\nPaste this content:\n\n---\ntitle: \"Hello Quarto\"\nformat: html\n---\n\n# My First Page\n\nI am learning Quarto.\n\n- I can write text\n- I can create headings\n- I can render HTML\n\nRun:\n\nquarto render hello.qmd\nThat is your first Quarto success.\n\nIf you want, the next tutorial can be about: - Quarto for complete beginners using VS Code - How to create a Quarto website step by step - Markdown for absolute beginners - Quarto with Python for beginners"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "This website is built using Quarto and designed for beginners.\n\n\n\nHow Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally\n\n\n\n\nQuarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes\n\n\n\n\n\nAdd a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly\n\n\n\n\n\nQuarto Documentation\nQuarto Website Guide"
-  },
-  {
-    "objectID": "about.html#what-you-will-learn",
-    "href": "about.html#what-you-will-learn",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "How Quarto converts Markdown into a website\nHow to configure navigation\nHow to use themes and custom CSS\nHow to render your site locally"
-  },
-  {
-    "objectID": "about.html#why-this-is-useful",
-    "href": "about.html#why-this-is-useful",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "Quarto websites are ideal for:\n\ntutorials\ndocumentation\nproject portfolios\nlearning notes"
-  },
-  {
-    "objectID": "about.html#next-steps",
-    "href": "about.html#next-steps",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "Add a new page such as projects.qmd\nCreate a blog using Quarto website features\nExperiment with format: html options like theme: darkly"
-  },
-  {
-    "objectID": "about.html#more-resources",
-    "href": "about.html#more-resources",
-    "title": "About This Tutorial",
-    "section": "",
-    "text": "Quarto Documentation\nQuarto Website Guide"
-  },
-  {
     "objectID": "python.html",
     "href": "python.html",
     "title": "Python — Getting Started",
@@ -203,123 +399,102 @@
     "text": "Python Tutorials\nWelcome to the Python tutorial placeholder. Add notebooks, code examples, and guides here.\nBack to home"
   },
   {
-    "objectID": "r-shiny.html",
-    "href": "r-shiny.html",
-    "title": "R Shiny — Interactive Apps",
+    "objectID": "docker.html",
+    "href": "docker.html",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
     "section": "",
-    "text": "R Shiny\nPlaceholder page for R Shiny tutorials and example apps.\nBack to home"
+    "text": "Imagine you bake a cake using a recipe. You write down every ingredient, every step, and every oven temperature. If someone else follows the exact same recipe, they should get the exact same cake.\nIn science and medicine, we face a similar problem with software:\n\nOne person runs an analysis on a laptop and gets one result.\nAnother person runs the “same” analysis on a different computer and gets a different result — because their software versions, settings, or operating system are not identical.\n\nDocker solves this by packaging software — and everything it needs to run — into a standard box that works the same way on almost any computer.\n\n\n\n\n\n\nTip\n\n\n\nSimple definition: Docker lets you put an application and all its dependencies into a portable box called a container, so it runs the same way everywhere.\n\n\n\n\nBefore modern shipping, loading a ship was messy — every crate was a different size and shape.\nThen standard shipping containers arrived. Any crane, truck, or ship built for containers could move any container, anywhere in the world.\nDocker does the same for software:\n\n\n\n\n\n\n\nReal world\nDocker world\n\n\n\n\nShipping container\nContainer (running app)\n\n\nBlueprint for the container\nImage (frozen snapshot)\n\n\nFactory that builds containers\nDockerfile (build instructions)\n\n\nWarehouse port\nRegistry (e.g. Docker Hub — where images are stored)\n\n\n\nYou do not need to know Linux, cloud computing, or programming to understand the idea of Docker. You only need to understand: same box → same result, anywhere."
   },
   {
-    "objectID": "tutorial.html",
-    "href": "tutorial.html",
-    "title": "Quarto Tutorial for Beginners",
+    "objectID": "docker.html#what-is-docker-no-tech-background-needed",
+    "href": "docker.html#what-is-docker-no-tech-background-needed",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
     "section": "",
-    "text": "This page teaches you Quarto step-by-step. It is built for people who are new to Quarto and may not have any background in R.\n\n\n\n\n\n\nImportant\n\n\n\nYou do not need R to use Quarto. Start with plain Markdown and HTML output, then add code later if you want.\n\n\n\n\nQuarto is an open-source publishing system that turns plain text into polished documents and websites.\n\nWrite content in Markdown\nAdd headings, lists, links, images, and tables\nRender to HTML, PDF, Word, slides, and more\n\n\n\n\nQuarto helps you:\n\ncreate one document and output it in multiple formats\nkeep text and code together in one file\nbuild websites, tutorials, and reports\npublish clean content with version control\n\n\n\n\nNo.\nQuarto works with:\n\nplain Markdown only\nPython\nR\nJulia\nObservable JavaScript\n\nFor beginners, start with text-only documents.\n\n\n\n\n\n\nQuarto\nA text editor such as VS Code\n\n\n\n\n\nPython or R if you want executable code blocks\nA TeX engine like TinyTeX or TeX Live for PDF output\n\n\n\n\nquarto --version\nIf Quarto is installed, this prints a version number.\n\n\n\n\nMarkdown is a simple text format that makes writing easy.\n\n\n# Main title\n## Section title\n### Smaller section\n\n\n\n**bold**\n*italic*\n\n\n\n- item one\n- item two\n\n\n\n[Quarto website](https://quarto.org)\n\n\n\n\nCreate a file named hello.qmd and add:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start\n\n\n\nThe section between --- lines is YAML. It sets the document title, format, and other options.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nformat: html\n---\n\n\n\nRun this command:\nquarto render hello.qmd\nQuarto generates hello.html.\n\n\n\nQuarto websites use multiple .qmd files and a _quarto.yml project file.\nExample _quarto.yml:\nproject:\n  type: website\n\nwebsite:\n  title: \"My Quarto Website\"\n  navbar:\n    right:\n      - href: index.qmd\n        text: Home\n      - href: tutorial.qmd\n        text: Tutorial\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\nExample index.qmd:\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website.\n\n\n\n\n\n![A sample image](images/example.png)\n\n\n\n| Tool   | Purpose          |\n|--------|------------------|\n| Quarto | Create documents |\n| VS Code| Edit files       |\n\n\n\n\nYou can add code blocks that only show code:\nquarto render hello.qmd\nIf you install Python or R, Quarto can also run code and show results.\n\n\n\n\nCode\nprint(\"Hello from Python\")\n\n\nHello from Python\n\n\n\n\n\n\nYou can render HTML, PDF, and Word from one file.\nformat:\n  html: default\n  pdf: default\n  docx: default\n\n\n\n\nForgetting the --- lines in YAML\nUsing the wrong file extension (.qmd instead of .txt)\nBroken image paths\nTrying to run code without installing Python or R\n\n\n\n\n\nInstall Quarto\nCreate a .qmd file\nAdd YAML and Markdown\nRender to HTML\nView the output\nEdit and render again\n\n\n\n\nTry these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
+    "text": "Imagine you bake a cake using a recipe. You write down every ingredient, every step, and every oven temperature. If someone else follows the exact same recipe, they should get the exact same cake.\nIn science and medicine, we face a similar problem with software:\n\nOne person runs an analysis on a laptop and gets one result.\nAnother person runs the “same” analysis on a different computer and gets a different result — because their software versions, settings, or operating system are not identical.\n\nDocker solves this by packaging software — and everything it needs to run — into a standard box that works the same way on almost any computer.\n\n\n\n\n\n\nTip\n\n\n\nSimple definition: Docker lets you put an application and all its dependencies into a portable box called a container, so it runs the same way everywhere.\n\n\n\n\nBefore modern shipping, loading a ship was messy — every crate was a different size and shape.\nThen standard shipping containers arrived. Any crane, truck, or ship built for containers could move any container, anywhere in the world.\nDocker does the same for software:\n\n\n\n\n\n\n\nReal world\nDocker world\n\n\n\n\nShipping container\nContainer (running app)\n\n\nBlueprint for the container\nImage (frozen snapshot)\n\n\nFactory that builds containers\nDockerfile (build instructions)\n\n\nWarehouse port\nRegistry (e.g. Docker Hub — where images are stored)\n\n\n\nYou do not need to know Linux, cloud computing, or programming to understand the idea of Docker. You only need to understand: same box → same result, anywhere."
   },
   {
-    "objectID": "tutorial.html#what-is-quarto",
-    "href": "tutorial.html#what-is-quarto",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Quarto is an open-source publishing system that turns plain text into polished documents and websites.\n\nWrite content in Markdown\nAdd headings, lists, links, images, and tables\nRender to HTML, PDF, Word, slides, and more"
+    "objectID": "docker.html#why-docker-matters-in-clinical-pharma-bio",
+    "href": "docker.html#why-docker-matters-in-clinical-pharma-bio",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "2. Why Docker matters in clinical, pharma & bio",
+    "text": "2. Why Docker matters in clinical, pharma & bio\nIf you work in clinical research, pharmaceutical companies, or biotechnology / bioinformatics, reproducibility and traceability are not optional — they are often required.\n\nClinical research & biostatistics\nExamples where Docker helps:\n\nClinical trial analysis — TLFs (Tables, Listings, Figures) for a study should be produced with a fixed, documented R or SAS environment.\nCDISC workflows — SDTM/ADaM conversion pipelines that must run identically for every database lock.\nIndependent verification — a statistician or QC reviewer can re-run analysis inside the same container and confirm results match.\n\nWhy it matters: Regulators and sponsors ask: “Can you prove this result was produced with a controlled, repeatable setup?” Docker is one practical way to answer yes.\n\n\nPharmaceutical industry\nExamples:\n\nDrug discovery pipelines — chemistry informatics, molecular docking, ML models for target identification.\nManufacturing & QC — image analysis, batch release calculations, stability study modeling.\nValidated systems (GxP) — in regulated areas, teams document which exact software version was used. Container images can be versioned, tagged, and archived like a batch record.\n\nWhy it matters: In pharma, “it worked on my machine” is not acceptable for submissions, audits, or quality systems.\n\n\nBiotechnology & bioinformatics\nExamples:\n\nGenomics pipelines — FASTQ → alignment → variant calling (same BWA, GATK, or bcftools versions every time).\nSingle-cell RNA-seq, proteomics, metabolomics — complex tool chains that are painful to install manually.\nCloud & HPC — run the same pipeline on a laptop for testing, then on AWS/GCP for production (see the Nextflow guide).\n\nWhy it matters: Bioinformatics tools change quickly. Docker pins the versions so a paper, pipeline, or clinical genomics report can be reproduced months or years later."
   },
   {
-    "objectID": "tutorial.html#why-use-quarto",
-    "href": "tutorial.html#why-use-quarto",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Quarto helps you:\n\ncreate one document and output it in multiple formats\nkeep text and code together in one file\nbuild websites, tutorials, and reports\npublish clean content with version control"
+    "objectID": "docker.html#key-ideas-explained-in-plain-language",
+    "href": "docker.html#key-ideas-explained-in-plain-language",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "3. Key ideas — explained in plain language",
+    "text": "3. Key ideas — explained in plain language\nYou only need four words to start:\n\nImage\nAn image is a frozen snapshot — like a saved recipe + all ingredients pre-measured and sealed.\n\nIt is read-only (you don’t edit it while it’s stored).\nIt has a name and tag, e.g. python:3.11 or rocker/r-ver:4.3.\n\n\n\nContainer\nA container is a running instance of an image — like actually baking the cake.\n\nYou can start many containers from one image.\nWhen you stop a container, its temporary changes are usually discarded (unless you save them).\n\n\n\nDockerfile\nA Dockerfile is a text file with build instructions — step-by-step directions for creating an image.\nExample (don’t worry if this looks technical — we explain each line below):\nFROM python:3.11-slim\nWORKDIR /app\nCOPY analysis.py .\nCMD [\"python\", \"analysis.py\"]\n\n\n\nLine\nPlain English\n\n\n\n\nFROM python:3.11-slim\nStart from a pre-built Python 3.11 image\n\n\nWORKDIR /app\nUse /app as the working folder inside the box\n\n\nCOPY analysis.py .\nCopy your script into the box\n\n\nCMD [...]\nWhen the container starts, run this command\n\n\n\n\n\nRegistry\nA registry is an online library of images. Docker Hub is the most common public registry. Companies often use private registries for internal or validated images."
   },
   {
-    "objectID": "tutorial.html#do-i-need-r",
-    "href": "tutorial.html#do-i-need-r",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "No.\nQuarto works with:\n\nplain Markdown only\nPython\nR\nJulia\nObservable JavaScript\n\nFor beginners, start with text-only documents."
+    "objectID": "docker.html#what-you-need-before-you-start",
+    "href": "docker.html#what-you-need-before-you-start",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "4. What you need before you start",
+    "text": "4. What you need before you start\n\nOn your computer\n\nA laptop or desktop (Windows, Mac, or Linux)\nDocker Desktop — free for personal/educational use\n\n\n\n\n\n\n\nImportant\n\n\n\nYou do not need to know Python, R, Linux, or cloud platforms to learn Docker basics. You only need to copy and run a few commands.\n\n\n\n\nInstall Docker Desktop\n\nGo to https://www.docker.com/products/docker-desktop/\nDownload Docker Desktop for your operating system\nInstall it and open the Docker Desktop app\nWait until it says Docker is running (whale icon in the menu bar / system tray)\n\n\n\nCheck that Docker works\nOpen a terminal (Terminal on Mac, PowerShell or Command Prompt on Windows) and run:\ndocker --version\nYou should see something like Docker version 24.x.x.\nThen run your first container:\ndocker run hello-world\nIf you see a friendly “Hello from Docker!” message — you succeeded."
   },
   {
-    "objectID": "tutorial.html#what-do-i-need",
-    "href": "tutorial.html#what-do-i-need",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Quarto\nA text editor such as VS Code\n\n\n\n\n\nPython or R if you want executable code blocks\nA TeX engine like TinyTeX or TeX Live for PDF output\n\n\n\n\nquarto --version\nIf Quarto is installed, this prints a version number."
+    "objectID": "docker.html#your-first-useful-commands",
+    "href": "docker.html#your-first-useful-commands",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "5. Your first useful commands",
+    "text": "5. Your first useful commands\nThink of these as remote control buttons for containers.\n\nSee what is running\ndocker ps\nLists running containers. (Empty list is normal if nothing is running.)\n\n\nSee all containers (including stopped)\ndocker ps -a\n\n\nDownload and run a pre-built image\ndocker run -it rocker/r-ver:4.3 R --version\nThis downloads an R environment and prints the R version — without installing R on your laptop.\nWhy this matters in clinical/bio work: You can test an analysis in R 4.3 today, and a colleague in another country can run the identical R 4.3 environment tomorrow.\n\n\nRun a command and exit\ndocker run --rm python:3.11-slim python -c \"print('Analysis environment ready')\"\n\n--rm = delete the container when it finishes (keeps your machine tidy)\n\n\n\nStop a running container\ndocker stop CONTAINER_ID\n(CONTAINER_ID comes from docker ps.)"
   },
   {
-    "objectID": "tutorial.html#what-is-markdown",
-    "href": "tutorial.html#what-is-markdown",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Markdown is a simple text format that makes writing easy.\n\n\n# Main title\n## Section title\n### Smaller section\n\n\n\n**bold**\n*italic*\n\n\n\n- item one\n- item two\n\n\n\n[Quarto website](https://quarto.org)"
+    "objectID": "docker.html#hands-on-example-a-mini-clinical-style-analysis-box",
+    "href": "docker.html#hands-on-example-a-mini-clinical-style-analysis-box",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "6. Hands-on example — a mini clinical-style analysis box",
+    "text": "6. Hands-on example — a mini clinical-style analysis box\nThis example is educational, not submission-ready — but it shows the pattern used in real projects.\n\nStep 1: Create a folder\nmkdir docker-clinical-demo\ncd docker-clinical-demo\n\n\nStep 2: Create a simple R script\nSave this as summarize.R:\n# Demo: summarize patient ages from a CSV\nargs &lt;- commandArgs(trailingOnly = TRUE)\ninput_file &lt;- args[1]\noutput_file &lt;- args[2]\n\ndat &lt;- read.csv(input_file)\nresult &lt;- data.frame(\n  n = nrow(dat),\n  mean_age = mean(dat$age, na.rm = TRUE),\n  min_age = min(dat$age, na.rm = TRUE),\n  max_age = max(dat$age, na.rm = TRUE)\n)\nwrite.csv(result, output_file, row.names = FALSE)\ncat(\"Summary written to\", output_file, \"\\n\")\n\n\nStep 3: Create sample data\nSave as patients.csv:\npatient_id,age\n001,54\n002,61\n003,47\n004,58\n005,52\n\n\nStep 4: Create a Dockerfile\nSave as Dockerfile:\nFROM rocker/r-ver:4.3\nWORKDIR /analysis\nCOPY summarize.R .\nCOPY patients.csv .\nCMD [\"Rscript\", \"summarize.R\", \"patients.csv\", \"summary.csv\"]\n\n\nStep 5: Build the image\ndocker build -t clinical-demo:1.0 .\n\n-t clinical-demo:1.0 = name and version tag (like a batch number)\n. = use the current folder\n\n\n\nStep 6: Run the container\ndocker run --rm clinical-demo:1.0\n\n\nStep 7: Copy the output file out (optional)\ndocker run --rm -v \"$(pwd):/output\" clinical-demo:1.0 \\\n  sh -c \"Rscript summarize.R patients.csv /output/summary.csv\"\nOn Windows PowerShell, use:\ndocker run --rm -v \"${PWD}:/output\" clinical-demo:1.0 sh -c \"Rscript summarize.R patients.csv /output/summary.csv\"\nOpen summary.csv — you should see mean, min, and max age.\n\n\n\n\n\n\nNote\n\n\n\nIndustry pattern: The image tag (clinical-demo:1.0) documents which environment produced the output. In regulated settings, teams keep that tag in the analysis record."
   },
   {
-    "objectID": "tutorial.html#your-first-quarto-document",
-    "href": "tutorial.html#your-first-quarto-document",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Create a file named hello.qmd and add:\n---\ntitle: \"My First Quarto Document\"\nformat: html\n---\n\n# Hello\n\nThis is my first Quarto document.\n\n- It is simple\n- It is beginner-friendly\n- I do not need to know R to start"
+    "objectID": "docker.html#docker-in-pharma-clinical-real-scenarios",
+    "href": "docker.html#docker-in-pharma-clinical-real-scenarios",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "7. Docker in pharma & clinical — real scenarios",
+    "text": "7. Docker in pharma & clinical — real scenarios\n\nScenario A: Reproducible TLF generation (clinical)\nProblem: Two statisticians get slightly different p-values because one has an older R package.\nDocker approach:\n\nBuild an image with fixed R + package versions.\nTag it study-abc-tlf-env:2024-03-15.\nEvery TLF run uses that tag.\nQC re-runs the same tag to verify.\n\n\n\nScenario B: Bioinformatics pipeline (biotech)\nProblem: Installing BWA, samtools, and GATK manually takes days and breaks on updates.\nDocker approach:\n\nUse community images (e.g. from Biocontainers).\nOr build one image with all tools pinned.\nRun the same image locally, on a server, or in the cloud.\n\ndocker run --rm biocontainers/fastqc:v0.11.9_cv8 fastqc --help\n\n\nScenario C: ML model for drug discovery (pharma)\nProblem: A data scientist trains a model in Python; manufacturing wants to run it in a controlled environment.\nDocker approach:\n\nPackage model + Python + libraries in an image.\nValidate the image through your internal QA process.\nDeploy the same image to staging and production.\n\n\n\nScenario D: Keeping sensitive data separate\nProblem: Patient-level data must not leak between studies.\nDocker approach:\n\nRun each study in a separate container with separate mounted folders.\nNever bake patient data into the image — mount it at run time only.\nCombine with encryption, access controls, and audit logs (Docker alone is not enough for HIPAA/GDPR — it is one layer)."
   },
   {
-    "objectID": "tutorial.html#what-is-yaml",
-    "href": "tutorial.html#what-is-yaml",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "The section between --- lines is YAML. It sets the document title, format, and other options.\nExample:\n---\ntitle: \"Beginner Tutorial\"\nformat: html\n---"
+    "objectID": "docker.html#gxp-validation-audit-what-beginners-should-know",
+    "href": "docker.html#gxp-validation-audit-what-beginners-should-know",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "8. GxP, validation & audit — what beginners should know",
+    "text": "8. GxP, validation & audit — what beginners should know\nIf you work in GxP (Good Practice guidelines — GCP, GLP, GMP), Docker is a tool, not a shortcut around validation.\nGood practices:\n\n\n\n\n\n\n\nPractice\nWhy\n\n\n\n\nVersion every image (:1.0, :2024-06-28)\nTraceability — like a batch record\n\n\nDocument the Dockerfile\nShows how the environment was built\n\n\nStore images in a controlled registry\nPrevents unapproved changes\n\n\nTest before production use\nIQ/OQ-style checks on critical containers\n\n\nKeep data out of images\nPatient data belongs in secure storage, not baked into layers\n\n\nLog who ran what\nCombine Docker with workflow tools (Nextflow, Airflow, CI systems)\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nDocker helps with reproducibility and isolation. It does not replace SOPs, data privacy rules, 21 CFR Part 11 controls, or formal computer system validation on its own."
   },
   {
-    "objectID": "tutorial.html#render-your-document",
-    "href": "tutorial.html#render-your-document",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Run this command:\nquarto render hello.qmd\nQuarto generates hello.html."
+    "objectID": "docker.html#how-docker-connects-to-other-tools-on-this-site",
+    "href": "docker.html#how-docker-connects-to-other-tools-on-this-site",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "9. How Docker connects to other tools on this site",
+    "text": "9. How Docker connects to other tools on this site\n\n\n\nTool\nHow Docker fits\n\n\n\n\nNextflow\nRuns each pipeline step inside a container — same tools everywhere\n\n\nR / Clinical R\nFixed R + package versions for TLFs and CDISC work\n\n\nPython\nData science and ML environments that match production\n\n\nCloud (AWS, GCP)\nSame image on your laptop and in the cloud\n\n\n\nOne sentence: Docker is often the “standard box” that other tools carry your analysis in."
   },
   {
-    "objectID": "tutorial.html#create-a-website-page",
-    "href": "tutorial.html#create-a-website-page",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Quarto websites use multiple .qmd files and a _quarto.yml project file.\nExample _quarto.yml:\nproject:\n  type: website\n\nwebsite:\n  title: \"My Quarto Website\"\n  navbar:\n    right:\n      - href: index.qmd\n        text: Home\n      - href: tutorial.qmd\n        text: Tutorial\n\nformat:\n  html:\n    theme: cosmo\n    toc: true\nExample index.qmd:\n---\ntitle: \"Home\"\n---\n\n# Welcome\n\nThis is my Quarto website."
+    "objectID": "docker.html#common-beginner-mistakes-and-fixes",
+    "href": "docker.html#common-beginner-mistakes-and-fixes",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "10. Common beginner mistakes (and fixes)",
+    "text": "10. Common beginner mistakes (and fixes)\n\n\n\n\n\n\n\nMistake\nFix\n\n\n\n\n“Docker is installed but commands fail”\nOpen Docker Desktop and wait until it is running\n\n\nPutting secrets or patient data in a Dockerfile\nUse mounted volumes and secret managers — never COPY PHI into an image\n\n\nUsing :latest tag in production\nAlways use specific version tags\n\n\nHuge images (slow downloads)\nStart from -slim base images; only install what you need\n\n\nExpecting Docker to validate itself\nFollow your organization’s QA / CSV process\n\n\nConfusing image and container\nImage = blueprint; container = running copy"
   },
   {
-    "objectID": "tutorial.html#use-images-and-tables",
-    "href": "tutorial.html#use-images-and-tables",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "![A sample image](images/example.png)\n\n\n\n| Tool   | Purpose          |\n|--------|------------------|\n| Quarto | Create documents |\n| VS Code| Edit files       |"
+    "objectID": "docker.html#quick-reference-commands-to-remember",
+    "href": "docker.html#quick-reference-commands-to-remember",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "11. Quick reference — commands to remember",
+    "text": "11. Quick reference — commands to remember\n# Check Docker\ndocker --version\n\n# First test\ndocker run hello-world\n\n# List running containers\ndocker ps\n\n# Build an image from a Dockerfile\ndocker build -t my-study-env:1.0 .\n\n# Run an image\ndocker run --rm my-study-env:1.0\n\n# Run with a folder mounted (data in/out)\ndocker run --rm -v \"$(pwd):/data\" my-study-env:1.0"
   },
   {
-    "objectID": "tutorial.html#add-code-blocks",
-    "href": "tutorial.html#add-code-blocks",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "You can add code blocks that only show code:\nquarto render hello.qmd\nIf you install Python or R, Quarto can also run code and show results.\n\n\n\n\nCode\nprint(\"Hello from Python\")\n\n\nHello from Python"
+    "objectID": "docker.html#next-steps",
+    "href": "docker.html#next-steps",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "12. Next steps",
+    "text": "12. Next steps\n\nInstall Docker Desktop and run docker run hello-world.\nTry the clinical demo above.\nExplore Nextflow to see containers in multi-step pipelines.\nAsk your IT team about private registries if you work in a regulated company."
   },
   {
-    "objectID": "tutorial.html#generate-multiple-outputs",
-    "href": "tutorial.html#generate-multiple-outputs",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "You can render HTML, PDF, and Word from one file.\nformat:\n  html: default\n  pdf: default\n  docx: default"
-  },
-  {
-    "objectID": "tutorial.html#common-beginner-mistakes",
-    "href": "tutorial.html#common-beginner-mistakes",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Forgetting the --- lines in YAML\nUsing the wrong file extension (.qmd instead of .txt)\nBroken image paths\nTrying to run code without installing Python or R"
-  },
-  {
-    "objectID": "tutorial.html#beginner-workflow",
-    "href": "tutorial.html#beginner-workflow",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Install Quarto\nCreate a .qmd file\nAdd YAML and Markdown\nRender to HTML\nView the output\nEdit and render again"
-  },
-  {
-    "objectID": "tutorial.html#next-steps",
-    "href": "tutorial.html#next-steps",
-    "title": "Quarto Tutorial for Beginners",
-    "section": "",
-    "text": "Try these next steps:\n\nAdd another page like about.qmd\nUse a custom theme or CSS\nAdd images, tables, and links\nExperiment with format: docx or format: pdf\n\n\nGreat! Your Quarto website now contains a full beginner tutorial with examples and step-by-step guidance."
+    "objectID": "docker.html#further-reading",
+    "href": "docker.html#further-reading",
+    "title": "Docker for Beginners — Clinical, Pharma & Life Sciences",
+    "section": "13. Further reading",
+    "text": "13. Further reading\n\nDocker Get Started guide\nDocker Desktop documentation\nBiocontainers — life-sciences tool images\nRocker project — R images for statistics and clinical programming\n\nBack to home"
   },
   {
     "objectID": "ml-ai.html",
@@ -329,94 +504,10 @@
     "text": "ML & AI\nPlaceholder for ML and AI tutorials (scikit-learn, TensorFlow, PyTorch, etc.).\nBack to home"
   },
   {
-    "objectID": "clinical-r.html",
-    "href": "clinical-r.html",
-    "title": "Clinical R — Biostatistics & Reporting",
+    "objectID": "statistics.html",
+    "href": "statistics.html",
+    "title": "Statistics — Fundamentals",
     "section": "",
-    "text": "Clinical R\nClinical-focused R tutorials (biostatistics, regulatory reporting) placeholder.\nBack to home"
-  },
-  {
-    "objectID": "nextflow.html",
-    "href": "nextflow.html",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "",
-    "text": "Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.\n\n\n\n\n\n\nImportant\n\n\n\nThis guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values."
-  },
-  {
-    "objectID": "nextflow.html#why-nextflow",
-    "href": "nextflow.html#why-nextflow",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "",
-    "text": "Nextflow is a workflow DSL that makes it easy to write scalable and reproducible pipelines that run locally or on cloud providers (GCP, AWS). It integrates well with containers, Conda, R and Python tools, and supports parallel execution out of the box.\n\n\n\n\n\n\nImportant\n\n\n\nThis guide focuses on practical, runnable examples: local testing, GCP and AWS execution, and integrating R/Python code. Replace example placeholders (project IDs, bucket names, IAM ARNs) with your values."
-  },
-  {
-    "objectID": "nextflow.html#quick-start-install-and-run-locally",
-    "href": "nextflow.html#quick-start-install-and-run-locally",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "2. Quick Start — install and run locally",
-    "text": "2. Quick Start — install and run locally\n\nRequirements\n\nJava 11+ (Nextflow runs on the JVM)\nnextflow CLI (install via curl)\nOptional: Docker or Conda for reproducible software environments\n\n# Install Nextflow (Linux/macOS)\ncurl -s https://get.nextflow.io | bash\n# Move to PATH (example)\nsudo mv nextflow /usr/local/bin/\n\n# Verify\nnextflow -v\n\n\nHello-world workflow (main.nf)\n#!/usr/bin/env nextflow\n\nprocess sayHello {\n  output:\n    file 'hello.txt'\n\n  script:\n  \"\"\"\n  echo \"Hello from Nextflow\" &gt; hello.txt\n  \"\"\"\n}\n\nworkflow {\n  sayHello()\n}\nRun locally:\nnextflow run main.nf -profile standard\nls -l work/\ncat work/*/hello.txt"
-  },
-  {
-    "objectID": "nextflow.html#core-concepts-brief",
-    "href": "nextflow.html#core-concepts-brief",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "3. Core Concepts (brief)",
-    "text": "3. Core Concepts (brief)\n\nprocess: computational step (command/script) with input/output.\nchannel: stream of data connecting processes.\nworkflow: organizes processes and channels."
-  },
-  {
-    "objectID": "nextflow.html#running-nextflow-on-google-cloud-platform-gcp",
-    "href": "nextflow.html#running-nextflow-on-google-cloud-platform-gcp",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "4. Running Nextflow on Google Cloud Platform (GCP)",
-    "text": "4. Running Nextflow on Google Cloud Platform (GCP)\n\nOverview\nWe demonstrate using GCP Compute + Cloud Storage. For larger work, you can use Nextflow Tower, Google Genomics Pipelines, or compute clusters (GKE).\n\n\nPrerequisites\n\ngcloud installed and authenticated\nA GCP project and billing enabled\nA GCS bucket for workspace/storage\n\n# Set project and region\ngcloud config set project YOUR_PROJECT_ID\ngcloud config set compute/region us-central1\n# Create bucket (example)\ngsutil mb -l us-central1 gs://your-nextflow-bucket\n\n\nNextflow config for GCP (example nextflow.config)\nprofiles {\n  gcp {\n    process.executor = 'google-lifesciences'  // uses Google Life Sciences API\n    google {\n      project = 'YOUR_PROJECT_ID'\n      region  = 'us-central1'\n      auth = '/path/to/google-credentials.json'   // or use ADC\n      bucket = 'gs://your-nextflow-bucket'\n    }\n    workDir = 'gs://your-nextflow-bucket/work'\n  }\n}\n\nAuthentication: prefer Application Default Credentials (ADC). To create a service account and key:\n\ngcloud iam service-accounts create nf-runner --display-name \"Nextflow runner\"\ngcloud projects add-iam-policy-binding YOUR_PROJECT_ID \\\n  --member=\"serviceAccount:nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com\" \\\n  --role=\"roles/storage.admin\"\ngcloud iam service-accounts keys create key.json \\\n  --iam-account nf-runner@YOUR_PROJECT_ID.iam.gserviceaccount.com\nexport GOOGLE_APPLICATION_CREDENTIALS=\"$(pwd)/key.json\"\n\n\nRun on GCP\nnextflow run main.nf -profile gcp -with-report report.html -with-trace trace.txt\n\n\nCost & monitoring\n\nStore intermediate files in GCS to avoid expensive disk.\nUse small VM images for lightweight tasks.\nMonitor via Cloud Console and check gcloud billing reports."
-  },
-  {
-    "objectID": "nextflow.html#running-nextflow-on-aws",
-    "href": "nextflow.html#running-nextflow-on-aws",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "5. Running Nextflow on AWS",
-    "text": "5. Running Nextflow on AWS\n\nOverview\nCommon backends: S3 for storage, AWS Batch or EC2/ECS as executors.\n\n\nPrerequisites\n\naws CLI configured (aws configure)\nAn S3 bucket and IAM role/user with permissions\n\n# Create bucket\naws s3 mb s3://your-nextflow-bucket --region us-east-1\n\n\nExample nextflow.config for AWS S3 + Batch\nprofiles {\n  aws {\n    process.executor = 'awsbatch'\n    aws {\n      region = 'us-east-1'\n      client {\n        registry = 'public.ecr.aws'  // if using ECR images\n      }\n    }\n    workDir = 's3://your-nextflow-bucket/work'\n  }\n}\n\n\nCreate IAM role and policy (high level)\n\nCreate an IAM role for AWS Batch with S3 read/write.\nAttach policies: AmazonS3FullAccess (or scoped) and Batch execution roles.\n\n\n\nRun on AWS\nnextflow run main.nf -profile aws -with-report report.html"
-  },
-  {
-    "objectID": "nextflow.html#integrating-r-and-python",
-    "href": "nextflow.html#integrating-r-and-python",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "6. Integrating R and Python",
-    "text": "6. Integrating R and Python\n\nContainerization (recommended)\n\nUse Docker images with R and Python environments, or use Conda with Nextflow’s conda support.\n\nExample process using Python:\nprocess runPython {\n  container 'python:3.11-slim'\n  input:\n    path x\n  output:\n    path 'out.txt'\n\n  script:\n  \"\"\"\n  python -c 'print(\"Processing\", \"$x\")' &gt; out.txt\n  \"\"\"\n}\nExample conda usage:\nprocess analysis {\n  conda 'envs/env.yml'\n  script:\n  \"\"\"\n  Rscript analysis.R input.csv output.csv\n  \"\"\"\n}\nenvs/env.yml (example)\nname: nf-env\nchannels:\n  - conda-forge\ndependencies:\n  - r-base=4.2\n  - r-essentials\n  - python=3.11\n  - pandas\n\n\nR script example (analysis.R)\nargs &lt;- commandArgs(trailingOnly = TRUE)\ndat &lt;- read.csv(args[1])\nsummary &lt;- summary(dat)\nwrite.csv(as.data.frame(summary), args[2], row.names=FALSE)\n\n\nPassing data between R and Python\n\nUse files in workDir and channels to pass file paths.\nKeep intermediate files in object storage (S3/GCS) when running in cloud."
-  },
-  {
-    "objectID": "nextflow.html#practical-bioinformatics-example-fastq-qc-alignment",
-    "href": "nextflow.html#practical-bioinformatics-example-fastq-qc-alignment",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "7. Practical Bioinformatics Example (FASTQ QC & alignment)",
-    "text": "7. Practical Bioinformatics Example (FASTQ QC & alignment)\n\nProcess 1: split/validate FASTQ\nProcess 2: run fastp or fastqc\nProcess 3: align with bwa or minimap2\nUse containers for exact tool versions and pin references.\n\nSmall example process:\nprocess fastqc {\n  container 'biocontainers/fastqc:v0.11.9_cv8'\n  input:\n    path fastq\n  output:\n    path \"*.html\"\n  \"\"\"\n  fastqc $fastq -o .\n  \"\"\"\n}"
-  },
-  {
-    "objectID": "nextflow.html#clinical-trials-regulatory-considerations",
-    "href": "nextflow.html#clinical-trials-regulatory-considerations",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "8. Clinical Trials / Regulatory Considerations",
-    "text": "8. Clinical Trials / Regulatory Considerations\n\nEnforce data access controls: use private buckets and VPCs.\nLog and version workflows: enable reports and execution metadata.\nSeparate PHI/PII and use encryption at rest/in transit."
-  },
-  {
-    "objectID": "nextflow.html#best-practices",
-    "href": "nextflow.html#best-practices",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "9. Best Practices",
-    "text": "9. Best Practices\n\nContainerize reproducible environments (Docker/Conda).\nTest workflows locally before the cloud.\nUse small sample datasets for CI tests.\nKeep credentials out of repo; use secret managers or ADC."
-  },
-  {
-    "objectID": "nextflow.html#references-next-steps",
-    "href": "nextflow.html#references-next-steps",
-    "title": "Nextflow: Quick Guide for Bioinformatics & Cloud",
-    "section": "10. References & Next Steps",
-    "text": "10. References & Next Steps\n\nNextflow docs: https://www.nextflow.io/docs/\nNextflow + Google: https://www.nextflow.io/docs/latest/GoogleCloud.html\nNextflow + AWS: https://www.nextflow.io/docs/latest/aws/index.html"
-  },
-  {
-    "objectID": "r.html",
-    "href": "r.html",
-    "title": "R — Getting Started",
-    "section": "",
-    "text": "R Programming Tutorials\nPlaceholder for R tutorials and examples. Add exercises and datasets here.\nBack to home"
+    "text": "Statistics\nPlaceholder for statistics tutorials (probability, inference, regression).\nBack to home"
   }
 ]

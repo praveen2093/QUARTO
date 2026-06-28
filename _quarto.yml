@@ -9,24 +9,37 @@ website:
     right:
       - href: index.qmd
         text: Home
+        icon: house-door
       - href: python.qmd
         text: Python
+        icon: filetype-py
       - href: r.qmd
         text: R
+        icon: r-circle
       - href: clinical-r.qmd
         text: Clinical R
+        icon: heart-pulse
       - href: nextflow.qmd
         text: Nextflow
+        icon: diagram-3
+      - href: docker.qmd
+        text: Docker
+        icon: box-seam
       - href: quarto_tutorial_for_beginners.qmd
         text: Quarto
+        icon: journal-bookmark
       - href: r-shiny.qmd
         text: R Shiny
+        icon: window-stack
       - href: statistics.qmd
         text: Statistics
+        icon: calculator
       - href: ml-ai.qmd
         text: ML & AI
+        icon: cpu
       - href: about.qmd
         text: About
+        icon: info-circle
 
 format:
   html:
@@ -40,5 +53,10 @@ format:
       sidebar:
         - text: Nextflow
           href: nextflow.qmd
+          icon: diagram-3
+        - text: Docker
+          href: docker.qmd
+          icon: box-seam
         - text: QUARTO
           href: tutorial.qmd
+          icon: journal-bookmark

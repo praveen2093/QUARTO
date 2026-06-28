@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>StatiX AI &amp; Data Labs - Docker for Beginners — Clinical, Pharma &amp; Life Sciences</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">StatiX AI &amp; Data Labs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> <i class="bi bi-house-door" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./python.html"> <i class="bi bi-filetype-py" role="img">
+</i> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./r.html"> <i class="bi bi-r-circle" role="img">
+</i> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./clinical-r.html"> <i class="bi bi-heart-pulse" role="img">
+</i> 
+<span class="menu-text">Clinical R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./nextflow.html"> <i class="bi bi-diagram-3" role="img">
+</i> 
+<span class="menu-text">Nextflow</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./docker.html" aria-current="page"> <i class="bi bi-box-seam" role="img">
+</i> 
+<span class="menu-text">Docker</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./quarto_tutorial_for_beginners.html"> <i class="bi bi-journal-bookmark" role="img">
+</i> 
+<span class="menu-text">Quarto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./r-shiny.html"> <i class="bi bi-window-stack" role="img">
+</i> 
+<span class="menu-text">R Shiny</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./statistics.html"> <i class="bi bi-calculator" role="img">
+</i> 
+<span class="menu-text">Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ml-ai.html"> <i class="bi bi-cpu" role="img">
+</i> 
+<span class="menu-text">ML &amp; AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> <i class="bi bi-info-circle" role="img">
+</i> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-is-docker-no-tech-background-needed" id="toc-what-is-docker-no-tech-background-needed" class="nav-link active" data-scroll-target="#what-is-docker-no-tech-background-needed">1. What is Docker? (No tech background needed)</a></li>
+  <li><a href="#why-docker-matters-in-clinical-pharma-bio" id="toc-why-docker-matters-in-clinical-pharma-bio" class="nav-link" data-scroll-target="#why-docker-matters-in-clinical-pharma-bio">2. Why Docker matters in clinical, pharma &amp; bio</a></li>
+  <li><a href="#key-ideas-explained-in-plain-language" id="toc-key-ideas-explained-in-plain-language" class="nav-link" data-scroll-target="#key-ideas-explained-in-plain-language">3. Key ideas — explained in plain language</a></li>
+  <li><a href="#what-you-need-before-you-start" id="toc-what-you-need-before-you-start" class="nav-link" data-scroll-target="#what-you-need-before-you-start">4. What you need before you start</a></li>
+  <li><a href="#your-first-useful-commands" id="toc-your-first-useful-commands" class="nav-link" data-scroll-target="#your-first-useful-commands">5. Your first useful commands</a></li>
+  <li><a href="#hands-on-example-a-mini-clinical-style-analysis-box" id="toc-hands-on-example-a-mini-clinical-style-analysis-box" class="nav-link" data-scroll-target="#hands-on-example-a-mini-clinical-style-analysis-box">6. Hands-on example — a mini clinical-style analysis box</a></li>
+  <li><a href="#docker-in-pharma-clinical-real-scenarios" id="toc-docker-in-pharma-clinical-real-scenarios" class="nav-link" data-scroll-target="#docker-in-pharma-clinical-real-scenarios">7. Docker in pharma &amp; clinical — real scenarios</a></li>
+  <li><a href="#gxp-validation-audit-what-beginners-should-know" id="toc-gxp-validation-audit-what-beginners-should-know" class="nav-link" data-scroll-target="#gxp-validation-audit-what-beginners-should-know">8. GxP, validation &amp; audit — what beginners should know</a></li>
+  <li><a href="#how-docker-connects-to-other-tools-on-this-site" id="toc-how-docker-connects-to-other-tools-on-this-site" class="nav-link" data-scroll-target="#how-docker-connects-to-other-tools-on-this-site">9. How Docker connects to other tools on this site</a></li>
+  <li><a href="#common-beginner-mistakes-and-fixes" id="toc-common-beginner-mistakes-and-fixes" class="nav-link" data-scroll-target="#common-beginner-mistakes-and-fixes">10. Common beginner mistakes (and fixes)</a></li>
+  <li><a href="#quick-reference-commands-to-remember" id="toc-quick-reference-commands-to-remember" class="nav-link" data-scroll-target="#quick-reference-commands-to-remember">11. Quick reference — commands to remember</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">12. Next steps</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">13. Further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Docker for Beginners — Clinical, Pharma &amp; Life Sciences</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="what-is-docker-no-tech-background-needed" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-docker-no-tech-background-needed">1. What is Docker? (No tech background needed)</h2>
+<p>Imagine you bake a cake using a <strong>recipe</strong>. You write down every ingredient, every step, and every oven temperature. If someone else follows the <strong>exact same recipe</strong>, they should get the <strong>exact same cake</strong>.</p>
+<p>In science and medicine, we face a similar problem with <strong>software</strong>:</p>
+<ul>
+<li>One person runs an analysis on a laptop and gets one result.</li>
+<li>Another person runs the “same” analysis on a different computer and gets a <strong>different</strong> result — because their software versions, settings, or operating system are not identical.</li>
+</ul>
+<p><strong>Docker solves this</strong> by packaging software — and everything it needs to run — into a <strong>standard box</strong> that works the same way on almost any computer.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Simple definition:</strong> Docker lets you put an application and all its dependencies into a portable box called a <strong>container</strong>, so it runs the same way everywhere.</p>
+</div>
+</div>
+<section id="a-everyday-analogy-shipping-containers" class="level3">
+<h3 class="anchored" data-anchor-id="a-everyday-analogy-shipping-containers">A everyday analogy: shipping containers</h3>
+<p>Before modern shipping, loading a ship was messy — every crate was a different size and shape.</p>
+<p>Then <strong>standard shipping containers</strong> arrived. Any crane, truck, or ship built for containers could move <strong>any</strong> container, anywhere in the world.</p>
+<p>Docker does the same for software:</p>
+<table class="table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Real world</th>
+<th>Docker world</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Shipping container</td>
+<td><strong>Container</strong> (running app)</td>
+</tr>
+<tr class="even">
+<td>Blueprint for the container</td>
+<td><strong>Image</strong> (frozen snapshot)</td>
+</tr>
+<tr class="odd">
+<td>Factory that builds containers</td>
+<td><strong>Dockerfile</strong> (build instructions)</td>
+</tr>
+<tr class="even">
+<td>Warehouse port</td>
+<td><strong>Registry</strong> (e.g.&nbsp;Docker Hub — where images are stored)</td>
+</tr>
+</tbody>
+</table>
+<p>You do <strong>not</strong> need to know Linux, cloud computing, or programming to understand the <em>idea</em> of Docker. You only need to understand: <strong>same box → same result, anywhere</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="why-docker-matters-in-clinical-pharma-bio" class="level2">
+<h2 class="anchored" data-anchor-id="why-docker-matters-in-clinical-pharma-bio">2. Why Docker matters in clinical, pharma &amp; bio</h2>
+<p>If you work in <strong>clinical research</strong>, <strong>pharmaceutical companies</strong>, or <strong>biotechnology / bioinformatics</strong>, reproducibility and traceability are not optional — they are often <strong>required</strong>.</p>
+<section id="clinical-research-biostatistics" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-research-biostatistics">Clinical research &amp; biostatistics</h3>
+<p>Examples where Docker helps:</p>
+<ul>
+<li><strong>Clinical trial analysis</strong> — TLFs (Tables, Listings, Figures) for a study should be produced with a <strong>fixed, documented</strong> R or SAS environment.</li>
+<li><strong>CDISC workflows</strong> — SDTM/ADaM conversion pipelines that must run identically for every database lock.</li>
+<li><strong>Independent verification</strong> — a statistician or QC reviewer can re-run analysis inside the <strong>same container</strong> and confirm results match.</li>
+</ul>
+<p><strong>Why it matters:</strong> Regulators and sponsors ask: <em>“Can you prove this result was produced with a controlled, repeatable setup?”</em> Docker is one practical way to answer <strong>yes</strong>.</p>
+</section>
+<section id="pharmaceutical-industry" class="level3">
+<h3 class="anchored" data-anchor-id="pharmaceutical-industry">Pharmaceutical industry</h3>
+<p>Examples:</p>
+<ul>
+<li><strong>Drug discovery pipelines</strong> — chemistry informatics, molecular docking, ML models for target identification.</li>
+<li><strong>Manufacturing &amp; QC</strong> — image analysis, batch release calculations, stability study modeling.</li>
+<li><strong>Validated systems (GxP)</strong> — in regulated areas, teams document <strong>which exact software version</strong> was used. Container images can be versioned, tagged, and archived like a batch record.</li>
+</ul>
+<p><strong>Why it matters:</strong> In pharma, “it worked on my machine” is not acceptable for submissions, audits, or quality systems.</p>
+</section>
+<section id="biotechnology-bioinformatics" class="level3">
+<h3 class="anchored" data-anchor-id="biotechnology-bioinformatics">Biotechnology &amp; bioinformatics</h3>
+<p>Examples:</p>
+<ul>
+<li><strong>Genomics pipelines</strong> — FASTQ → alignment → variant calling (same BWA, GATK, or bcftools versions every time).</li>
+<li><strong>Single-cell RNA-seq</strong>, <strong>proteomics</strong>, <strong>metabolomics</strong> — complex tool chains that are painful to install manually.</li>
+<li><strong>Cloud &amp; HPC</strong> — run the same pipeline on a laptop for testing, then on AWS/GCP for production (see the <a href="./nextflow.html">Nextflow guide</a>).</li>
+</ul>
+<p><strong>Why it matters:</strong> Bioinformatics tools change quickly. Docker <strong>pins</strong> the versions so a paper, pipeline, or clinical genomics report can be reproduced months or years later.</p>
+<hr>
+</section>
+</section>
+<section id="key-ideas-explained-in-plain-language" class="level2">
+<h2 class="anchored" data-anchor-id="key-ideas-explained-in-plain-language">3. Key ideas — explained in plain language</h2>
+<p>You only need four words to start:</p>
+<section id="image" class="level3">
+<h3 class="anchored" data-anchor-id="image">Image</h3>
+<p>An <strong>image</strong> is a <strong>frozen snapshot</strong> — like a saved recipe + all ingredients pre-measured and sealed.</p>
+<ul>
+<li>It is <strong>read-only</strong> (you don’t edit it while it’s stored).</li>
+<li>It has a <strong>name and tag</strong>, e.g.&nbsp;<code>python:3.11</code> or <code>rocker/r-ver:4.3</code>.</li>
+</ul>
+</section>
+<section id="container" class="level3">
+<h3 class="anchored" data-anchor-id="container">Container</h3>
+<p>A <strong>container</strong> is a <strong>running instance</strong> of an image — like actually baking the cake.</p>
+<ul>
+<li>You can start many containers from one image.</li>
+<li>When you stop a container, its temporary changes are usually discarded (unless you save them).</li>
+</ul>
+</section>
+<section id="dockerfile" class="level3">
+<h3 class="anchored" data-anchor-id="dockerfile">Dockerfile</h3>
+<p>A <strong>Dockerfile</strong> is a <strong>text file with build instructions</strong> — step-by-step directions for creating an image.</p>
+<p>Example (don’t worry if this looks technical — we explain each line below):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.11-slim</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> analysis.py .</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"analysis.py"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Line</th>
+<th>Plain English</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FROM python:3.11-slim</code></td>
+<td>Start from a pre-built Python 3.11 image</td>
+</tr>
+<tr class="even">
+<td><code>WORKDIR /app</code></td>
+<td>Use <code>/app</code> as the working folder inside the box</td>
+</tr>
+<tr class="odd">
+<td><code>COPY analysis.py .</code></td>
+<td>Copy your script into the box</td>
+</tr>
+<tr class="even">
+<td><code>CMD [...]</code></td>
+<td>When the container starts, run this command</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="registry" class="level3">
+<h3 class="anchored" data-anchor-id="registry">Registry</h3>
+<p>A <strong>registry</strong> is an <strong>online library of images</strong>. <a href="https://hub.docker.com/">Docker Hub</a> is the most common public registry. Companies often use <strong>private registries</strong> for internal or validated images.</p>
+<hr>
+</section>
+</section>
+<section id="what-you-need-before-you-start" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-need-before-you-start">4. What you need before you start</h2>
+<section id="on-your-computer" class="level3">
+<h3 class="anchored" data-anchor-id="on-your-computer">On your computer</h3>
+<ul>
+<li>A laptop or desktop (Windows, Mac, or Linux)</li>
+<li><a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> — free for personal/educational use</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>You do not need</strong> to know Python, R, Linux, or cloud platforms to learn Docker basics. You only need to copy and run a few commands.</p>
+</div>
+</div>
+</section>
+<section id="install-docker-desktop" class="level3">
+<h3 class="anchored" data-anchor-id="install-docker-desktop">Install Docker Desktop</h3>
+<ol type="1">
+<li>Go to <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a></li>
+<li>Download Docker Desktop for your operating system</li>
+<li>Install it and open the Docker Desktop app</li>
+<li>Wait until it says Docker is <strong>running</strong> (whale icon in the menu bar / system tray)</li>
+</ol>
+</section>
+<section id="check-that-docker-works" class="level3">
+<h3 class="anchored" data-anchor-id="check-that-docker-works">Check that Docker works</h3>
+<p>Open a terminal (Terminal on Mac, PowerShell or Command Prompt on Windows) and run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should see something like <code>Docker version 24.x.x</code>.</p>
+<p>Then run your first container:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you see a friendly “Hello from Docker!” message — <strong>you succeeded</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="your-first-useful-commands" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-useful-commands">5. Your first useful commands</h2>
+<p>Think of these as <strong>remote control buttons</strong> for containers.</p>
+<section id="see-what-is-running" class="level3">
+<h3 class="anchored" data-anchor-id="see-what-is-running">See what is running</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lists <strong>running</strong> containers. (Empty list is normal if nothing is running.)</p>
+</section>
+<section id="see-all-containers-including-stopped" class="level3">
+<h3 class="anchored" data-anchor-id="see-all-containers-including-stopped">See all containers (including stopped)</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="download-and-run-a-pre-built-image" class="level3">
+<h3 class="anchored" data-anchor-id="download-and-run-a-pre-built-image">Download and run a pre-built image</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> rocker/r-ver:4.3 R <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This downloads an R environment and prints the R version — <strong>without installing R on your laptop</strong>.</p>
+<p><strong>Why this matters in clinical/bio work:</strong> You can test an analysis in R 4.3 today, and a colleague in another country can run the <strong>identical</strong> R 4.3 environment tomorrow.</p>
+</section>
+<section id="run-a-command-and-exit" class="level3">
+<h3 class="anchored" data-anchor-id="run-a-command-and-exit">Run a command and exit</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> python:3.11-slim python <span class="at">-c</span> <span class="st">"print('Analysis environment ready')"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>--rm</code> = delete the container when it finishes (keeps your machine tidy)</li>
+</ul>
+</section>
+<section id="stop-a-running-container" class="level3">
+<h3 class="anchored" data-anchor-id="stop-a-running-container">Stop a running container</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop CONTAINER_ID</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(<code>CONTAINER_ID</code> comes from <code>docker ps</code>.)</p>
+<hr>
+</section>
+</section>
+<section id="hands-on-example-a-mini-clinical-style-analysis-box" class="level2">
+<h2 class="anchored" data-anchor-id="hands-on-example-a-mini-clinical-style-analysis-box">6. Hands-on example — a mini clinical-style analysis box</h2>
+<p>This example is <strong>educational</strong>, not submission-ready — but it shows the pattern used in real projects.</p>
+<section id="step-1-create-a-folder" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-create-a-folder">Step 1: Create a folder</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> docker-clinical-demo</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> docker-clinical-demo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-2-create-a-simple-r-script" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-create-a-simple-r-script">Step 2: Create a simple R script</h3>
+<p>Save this as <code>summarize.R</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo: summarize patient ages from a CSV</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="at">trailingOnly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>input_file <span class="ot">&lt;-</span> args[<span class="dv">1</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>output_file <span class="ot">&lt;-</span> args[<span class="dv">2</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(input_file)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">nrow</span>(dat),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_age =</span> <span class="fu">mean</span>(dat<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="fu">min</span>(dat<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_age =</span> <span class="fu">max</span>(dat<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(result, output_file, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Summary written to"</span>, output_file, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-3-create-sample-data" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-create-sample-data">Step 3: Create sample data</h3>
+<p>Save as <code>patients.csv</code>:</p>
+<pre class="csv"><code>patient_id,age
+001,54
+002,61
+003,47
+004,58
+005,52</code></pre>
+</section>
+<section id="step-4-create-a-dockerfile" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-create-a-dockerfile">Step 4: Create a Dockerfile</h3>
+<p>Save as <code>Dockerfile</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/r-ver:4.3</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /analysis</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> summarize.R .</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> patients.csv .</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"summarize.R"</span>, <span class="st">"patients.csv"</span>, <span class="st">"summary.csv"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-5-build-the-image" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-build-the-image">Step 5: Build the image</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> clinical-demo:1.0 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>-t clinical-demo:1.0</code> = name and version tag (like a batch number)</li>
+<li><code>.</code> = use the current folder</li>
+</ul>
+</section>
+<section id="step-6-run-the-container" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-run-the-container">Step 6: Run the container</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> clinical-demo:1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-7-copy-the-output-file-out-optional" class="level3">
+<h3 class="anchored" data-anchor-id="step-7-copy-the-output-file-out-optional">Step 7: Copy the output file out (optional)</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">:/output"</span> clinical-demo:1.0 <span class="dt">\</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  sh <span class="at">-c</span> <span class="st">"Rscript summarize.R patients.csv /output/summary.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On Windows PowerShell, use:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>v <span class="st">"</span><span class="pp">${</span><span class="va">PWD</span><span class="pp">}</span><span class="st">:/output"</span> clinical-demo<span class="op">:</span><span class="dv">1.0</span> sh <span class="op">-</span>c <span class="st">"Rscript summarize.R patients.csv /output/summary.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Open <code>summary.csv</code> — you should see mean, min, and max age.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Industry pattern:</strong> The <strong>image tag</strong> (<code>clinical-demo:1.0</code>) documents which environment produced the output. In regulated settings, teams keep that tag in the analysis record.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="docker-in-pharma-clinical-real-scenarios" class="level2">
+<h2 class="anchored" data-anchor-id="docker-in-pharma-clinical-real-scenarios">7. Docker in pharma &amp; clinical — real scenarios</h2>
+<section id="scenario-a-reproducible-tlf-generation-clinical" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a-reproducible-tlf-generation-clinical">Scenario A: Reproducible TLF generation (clinical)</h3>
+<p><strong>Problem:</strong> Two statisticians get slightly different p-values because one has an older R package.</p>
+<p><strong>Docker approach:</strong></p>
+<ol type="1">
+<li>Build an image with fixed R + package versions.</li>
+<li>Tag it <code>study-abc-tlf-env:2024-03-15</code>.</li>
+<li>Every TLF run uses that tag.</li>
+<li>QC re-runs the same tag to verify.</li>
+</ol>
+</section>
+<section id="scenario-b-bioinformatics-pipeline-biotech" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b-bioinformatics-pipeline-biotech">Scenario B: Bioinformatics pipeline (biotech)</h3>
+<p><strong>Problem:</strong> Installing BWA, samtools, and GATK manually takes days and breaks on updates.</p>
+<p><strong>Docker approach:</strong></p>
+<ul>
+<li>Use community images (e.g.&nbsp;from <a href="https://biocontainers.pro/">Biocontainers</a>).</li>
+<li>Or build one image with all tools pinned.</li>
+<li>Run the same image locally, on a server, or in the cloud.</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> biocontainers/fastqc:v0.11.9_cv8 fastqc <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="scenario-c-ml-model-for-drug-discovery-pharma" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-c-ml-model-for-drug-discovery-pharma">Scenario C: ML model for drug discovery (pharma)</h3>
+<p><strong>Problem:</strong> A data scientist trains a model in Python; manufacturing wants to run it in a controlled environment.</p>
+<p><strong>Docker approach:</strong></p>
+<ul>
+<li>Package model + Python + libraries in an image.</li>
+<li>Validate the image through your internal QA process.</li>
+<li>Deploy the <strong>same image</strong> to staging and production.</li>
+</ul>
+</section>
+<section id="scenario-d-keeping-sensitive-data-separate" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-d-keeping-sensitive-data-separate">Scenario D: Keeping sensitive data separate</h3>
+<p><strong>Problem:</strong> Patient-level data must not leak between studies.</p>
+<p><strong>Docker approach:</strong></p>
+<ul>
+<li>Run each study in a <strong>separate container</strong> with <strong>separate mounted folders</strong>.</li>
+<li>Never bake patient data <em>into</em> the image — mount it at run time only.</li>
+<li>Combine with encryption, access controls, and audit logs (Docker alone is not enough for HIPAA/GDPR — it is one layer).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="gxp-validation-audit-what-beginners-should-know" class="level2">
+<h2 class="anchored" data-anchor-id="gxp-validation-audit-what-beginners-should-know">8. GxP, validation &amp; audit — what beginners should know</h2>
+<p>If you work in <strong>GxP</strong> (Good Practice guidelines — GCP, GLP, GMP), Docker is a <strong>tool</strong>, not a shortcut around validation.</p>
+<p><strong>Good practices:</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 66%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Version every image</strong> (<code>:1.0</code>, <code>:2024-06-28</code>)</td>
+<td>Traceability — like a batch record</td>
+</tr>
+<tr class="even">
+<td><strong>Document the Dockerfile</strong></td>
+<td>Shows how the environment was built</td>
+</tr>
+<tr class="odd">
+<td><strong>Store images in a controlled registry</strong></td>
+<td>Prevents unapproved changes</td>
+</tr>
+<tr class="even">
+<td><strong>Test before production use</strong></td>
+<td>IQ/OQ-style checks on critical containers</td>
+</tr>
+<tr class="odd">
+<td><strong>Keep data out of images</strong></td>
+<td>Patient data belongs in secure storage, not baked into layers</td>
+</tr>
+<tr class="even">
+<td><strong>Log who ran what</strong></td>
+<td>Combine Docker with workflow tools (Nextflow, Airflow, CI systems)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Docker helps with <strong>reproducibility</strong> and <strong>isolation</strong>. It does <strong>not</strong> replace SOPs, data privacy rules, 21 CFR Part 11 controls, or formal computer system validation on its own.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="how-docker-connects-to-other-tools-on-this-site" class="level2">
+<h2 class="anchored" data-anchor-id="how-docker-connects-to-other-tools-on-this-site">9. How Docker connects to other tools on this site</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>How Docker fits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="./nextflow.html">Nextflow</a></td>
+<td>Runs each pipeline step inside a container — same tools everywhere</td>
+</tr>
+<tr class="even">
+<td><a href="./clinical-r.html">R / Clinical R</a></td>
+<td>Fixed R + package versions for TLFs and CDISC work</td>
+</tr>
+<tr class="odd">
+<td><a href="./python.html">Python</a></td>
+<td>Data science and ML environments that match production</td>
+</tr>
+<tr class="even">
+<td>Cloud (AWS, GCP)</td>
+<td>Same image on your laptop and in the cloud</td>
+</tr>
+</tbody>
+</table>
+<p><strong>One sentence:</strong> Docker is often the <strong>“standard box”</strong> that other tools <strong>carry</strong> your analysis in.</p>
+<hr>
+</section>
+<section id="common-beginner-mistakes-and-fixes" class="level2">
+<h2 class="anchored" data-anchor-id="common-beginner-mistakes-and-fixes">10. Common beginner mistakes (and fixes)</h2>
+<table class="table">
+<colgroup>
+<col style="width: 64%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mistake</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Docker is installed but commands fail”</td>
+<td>Open <strong>Docker Desktop</strong> and wait until it is running</td>
+</tr>
+<tr class="even">
+<td>Putting secrets or patient data in a Dockerfile</td>
+<td>Use mounted volumes and secret managers — never <code>COPY</code> PHI into an image</td>
+</tr>
+<tr class="odd">
+<td>Using <code>:latest</code> tag in production</td>
+<td>Always use <strong>specific version tags</strong></td>
+</tr>
+<tr class="even">
+<td>Huge images (slow downloads)</td>
+<td>Start from <code>-slim</code> base images; only install what you need</td>
+</tr>
+<tr class="odd">
+<td>Expecting Docker to validate itself</td>
+<td>Follow your organization’s QA / CSV process</td>
+</tr>
+<tr class="even">
+<td>Confusing <strong>image</strong> and <strong>container</strong></td>
+<td>Image = blueprint; container = running copy</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="quick-reference-commands-to-remember" class="level2">
+<h2 class="anchored" data-anchor-id="quick-reference-commands-to-remember">11. Quick reference — commands to remember</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check Docker</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># First test</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># List running containers</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Build an image from a Dockerfile</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-study-env:1.0 .</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Run an image</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> my-study-env:1.0</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Run with a folder mounted (data in/out)</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">:/data"</span> my-study-env:1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">12. Next steps</h2>
+<ol type="1">
+<li>Install Docker Desktop and run <code>docker run hello-world</code>.</li>
+<li>Try the <a href="#step-1-create-a-folder">clinical demo</a> above.</li>
+<li>Explore <a href="./nextflow.html">Nextflow</a> to see containers in multi-step pipelines.</li>
+<li>Ask your IT team about <strong>private registries</strong> if you work in a regulated company.</li>
+</ol>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">13. Further reading</h2>
+<ul>
+<li><a href="https://docs.docker.com/get-started/">Docker Get Started guide</a></li>
+<li><a href="https://docs.docker.com/desktop/">Docker Desktop documentation</a></li>
+<li><a href="https://biocontainers.pro/">Biocontainers</a> — life-sciences tool images</li>
+<li><a href="https://rocker-project.org/">Rocker project</a> — R images for statistics and clinical programming</li>
+</ul>
+<p><a href="./index.html">Back to home</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
