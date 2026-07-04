@@ -1,9 +1,253 @@
 ---
-title: "Statistics — Fundamentals"
+title: "Statistics - Fundamentals"
 ---
 
-# Statistics
+# Statistics Fundamentals
 
-Placeholder for statistics tutorials (probability, inference, regression).
+::: callout-important
+This chapter turns statistics into intuition first, formulas second. The examples are deliberately real-world and a little playful, but the definitions stay mathematically correct.
+:::
 
-[Back to home](index.qmd)
+## Part 1: Foundations of Data Analysis
+
+### 1. Descriptive vs. Inferential Statistics
+
+Think of statistics as two different jobs.
+
+- **Descriptive statistics** summarize what you already have. It is the profile grid of your data: counts, averages, percentages, and spread.
+- **Inferential statistics** uses a sample to make a claim about a larger population. It is the part where you see a few posts and try to guess the whole story.
+
+| Concept | What it does | Real-life example |
+|---|---|---|
+| Descriptive | Summarizes observed data | Average likes on your last 20 posts |
+| Inferential | Generalizes from sample to population | Predicting how all users might behave from a test group |
+
+### 2. Measures of Central Tendency
+
+Central tendency tells you where the center of the data lives.
+
+- **Mean**: the arithmetic average. It is the ultimate compromise, but it is sensitive to extreme outliers.
+- **Median**: the middle value after sorting. It is much more stable when one value is wildly unusual.
+- **Mode**: the most frequent value. It is the crowd favorite.
+
+Example: if five friends pick restaurant budgets of $20, $25, $25, $30, and $5000, the mean is dragged upward by the billionaire, while the median stays near the center.
+
+### 3. Measures of Dispersion
+
+Dispersion tells you how spread out the data is.
+
+- **Range**: the distance between the largest and smallest values.
+- **Mean deviation**: average distance from the center.
+- **Variance** and **standard deviation**: the core measures of spread.
+- **Quartile deviation**: focuses on the middle 50% and is less affected by outliers.
+
+For sample data, variance is usually written as:
+
+$$s^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1}$$
+
+and standard deviation is:
+
+$$s = \sqrt{s^2}$$
+
+Low spread means consistency. High spread means chaos, or at least a very eventful day.
+
+### 4. Skewness and Kurtosis
+
+Shape matters as much as center and spread.
+
+- **Zero skewness**: symmetric data, like a well-balanced mountain.
+- **Positive skewness**: long tail to the right. Income data is the classic example because a small number of very large values stretch the tail.
+- **Negative skewness**: long tail to the left. Early retirement ages can create this shape.
+- **Leptokurtic**: sharp peak and heavy tails. Crypto returns are a memorable example.
+- **Platykurtic**: flatter shape with lighter tails. Daily temperatures in a mild climate often feel this way.
+
+## Part 2: Probability, Sampling, and Testing
+
+### 5. Probability
+
+Probability quantifies uncertainty.
+
+- **Classical probability** assumes equally likely outcomes. A fair coin has a $1/2$ chance of landing heads.
+- **Conditional probability** updates the odds after new information arrives.
+
+If the sky is cloudy, the chance of carrying an umbrella changes. The data is the same object, but the context is different, so the probability changes too.
+
+### 6. Distribution and Sampling
+
+In the real world, you usually cannot inspect every member of the population, so you sample.
+
+- **Population**: the full group you care about.
+- **Sample**: a smaller group you actually observe.
+- **Distribution**: how values are spread across the scale.
+
+The **Central Limit Theorem** says that the distribution of sample means tends toward normality as sample size grows, even if the original data is messy.
+
+$$\bar{X} \approx N\left(\mu, \frac{\sigma}{\sqrt{n}}\right)$$
+
+That is why repeated spoonfuls of soup can reveal the flavor of the entire pot.
+
+### 7. Parametric vs. Non-Parametric Tests
+
+Use the test that matches your data, not the one that looks smartest in a slide deck.
+
+- **Parametric tests** assume structure: often normality, equal variance, and other mathematical conditions. Examples include the t-test and ANOVA.
+- **Non-parametric tests** are more flexible and often rely on ranks rather than raw values. Examples include Mann-Whitney and Kruskal-Wallis.
+
+When the data is tidy, parametric tests are powerful. When the data is messy, non-parametric tests are often safer.
+
+### 8. Hypothesis Testing
+
+Hypothesis testing asks whether an observed effect is likely real or just noise.
+
+- **Null hypothesis ($H_0$)**: no effect, no change, no difference.
+- **Alternative hypothesis ($H_1$)**: there is an effect.
+- **p-value**: how surprising the observed result would be if $H_0$ were true.
+
+Important reviewer note: a p-value is not the probability that the null hypothesis is true. It is a probability under the assumption that the null is true.
+
+If the p-value is small enough for your chosen threshold, you reject the null and move forward with the stronger claim.
+
+### 9. Type I and Type II Errors
+
+Even good tests can make mistakes.
+
+- **Type I error**: false positive. You reject $H_0$ even though it is actually true.
+- **Type II error**: false negative. You fail to reject $H_0$ even though it is false.
+
+Smoke alarms are the perfect metaphor: one false alarm is annoying, but ignoring a real fire is much worse.
+
+### 10. ANOVA
+
+If you want to compare more than two group means, ANOVA is the right tool.
+
+Instead of running many t-tests and inflating error risk, ANOVA compares:
+
+- variation **between** groups
+- variation **within** groups
+
+The big question is simple: is at least one group genuinely different?
+
+Example: if you test four diet plans at once, ANOVA tells you whether one of them stands out without turning the analysis into a pile of pairwise comparisons.
+
+### 11. Chi-Square Test
+
+Chi-square is for categorical data.
+
+- **Chi-square test of independence** checks whether two categorical variables are related.
+- **Chi-square goodness-of-fit** checks whether observed category counts match an expected pattern.
+
+Example: does relationship status depend on zodiac sign, or are the categories unrelated? Chi-square answers that with counts, not averages.
+
+## Part 3: Correlation, Regression, and Modeling
+
+### 12. Correlation and Regression
+
+- **Correlation** measures strength and direction of association, from $-1$ to $+1$.
+- **Regression** builds an equation to predict one variable from another.
+
+Positive correlation means two variables move together. Negative correlation means one rises while the other falls. Zero correlation means there is no linear relationship.
+
+Reviewer note: correlation is not causation. Two variables can move together because of a hidden third factor, coincidence, or shared trend.
+
+### 13. Regression Assumptions
+
+Linear regression works best when its assumptions are respected.
+
+1. **Linearity**: the relationship should be roughly straight.
+2. **Independence of errors**: one residual should not predict the next.
+3. **Homoscedasticity**: the error spread should stay roughly constant.
+4. **Normality of residuals**: the errors should look approximately normal.
+
+If the fit is a highway, the road should not turn into a rollercoaster with widening lanes and echoing bumps.
+
+### 14. Data Transformation for Regression
+
+Sometimes a transform makes the pattern visible.
+
+- **Log transform**: compresses large values and reduces skew.
+- **Square root transform**: useful for moderate right-skew.
+- **Power transform**: stretches or compresses the scale to improve linearity.
+
+Example: log-transforming income can make the difference between regular salaries and billionaire wealth easier to model.
+
+### 15. Dummy Variables
+
+Regression wants numbers, so categorical variables need encoding.
+
+- Use **1** for presence of a category.
+- Use **0** for absence.
+- Drop one reference category to avoid perfect multicollinearity.
+
+If you have VIP, VVIP, and General membership, you only need two dummy variables. The omitted category becomes the baseline.
+
+### 16. Variable Selection
+
+Not every available feature deserves a seat in the model.
+
+- **Forward selection** starts small and adds useful variables.
+- **Backward elimination** starts large and removes weak variables.
+- **Stepwise selection** adds and removes variables as it goes.
+
+Think of it like packing for a trip: the goal is to bring the essentials, not the entire closet.
+
+### 17. Logistic Regression
+
+When the outcome is binary, logistic regression is the right fit.
+
+It converts a linear score into a probability using the sigmoid curve:
+
+$$p = \frac{1}{1 + e^{-z}}$$
+
+Example: should a user buy or not buy, click or not click, stay or leave? Logistic regression gives a probability, then a threshold turns that probability into a class.
+
+## Part 4: Classification, Clustering, and Time Series
+
+### 18. Discriminant Analysis
+
+Discriminant analysis separates known classes using the features that best distinguish them.
+
+The Sorting Hat metaphor works well here: you already know the possible houses, and the model helps decide where a new person belongs.
+
+### 19. Cluster Analysis
+
+Cluster analysis finds natural groupings when the data has no labels.
+
+Example: people at a music festival cluster into different crowds based on taste, dress, and behavior. The algorithm groups similar points together using distance or similarity.
+
+### 20. Time Series and Forecasting
+
+Time series data has order, not just values.
+
+- **Trend**: long-term direction.
+- **Seasonality**: repeating calendar pattern.
+- **Cyclical**: longer waves without fixed timing.
+- **Noise**: the random part.
+
+Example: winter coats spike every December, but an unexpected supply shock or pandemic can create irregular movement on top of the usual pattern.
+
+### 21. Model Evaluation
+
+Once you build a model, you need to score it properly.
+
+- **Confusion matrix**: TP, TN, FP, FN.
+- **Accuracy**: overall correctness.
+- **Precision**: how many predicted positives were actually positive.
+- **Recall**: how many actual positives were found.
+- **F1-score**: balance between precision and recall.
+- **ROC-AUC**: how well the model ranks positives above negatives across thresholds.
+
+If a disease screening model predicts "healthy" for almost everyone, accuracy can look excellent while the model still fails the people who need help. That is why precision, recall, and AUC matter.
+
+::: callout-tip
+Quick reviewer rule: always ask three questions before trusting a result.
+
+1. Is the data type correct for the test?
+2. Are the assumptions reasonable?
+3. Does the metric match the real-world cost of mistakes?
+:::
+
+## Final Takeaway
+
+Statistics is not just formulas. It is the discipline of asking better questions, measuring uncertainty honestly, and choosing the right tool for the data you actually have.
+
+If you remember only one idea, remember this: describe first, infer carefully, and always check the assumptions before you trust the conclusion.
