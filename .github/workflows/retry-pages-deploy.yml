@@ -1,0 +1,30 @@
+name: Retry Pages Deployment Once
+
+on:
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    types: [completed]
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  retry-failed-pages-run:
+    if: >-
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.run_attempt == 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rerun failed jobs for transient Pages failure
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          REPO: ${{ github.repository }}
+        run: |
+          echo "Detected failed pages-build-deployment run: ${RUN_ID}"
+          echo "Requesting one automatic retry for failed jobs..."
+          gh api \
+            --method POST \
+            "repos/${REPO}/actions/runs/${RUN_ID}/rerun-failed-jobs"
+          echo "Retry requested."
