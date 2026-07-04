@@ -2,8 +2,6 @@
 title: "Statistics - Fundamentals"
 ---
 
-# Statistics Fundamentals
-
 ::: callout-important
 This chapter turns statistics into intuition first, formulas second. The examples are deliberately real-world and a little playful, but the definitions stay mathematically correct.
 :::
