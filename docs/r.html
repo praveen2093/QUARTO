@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d41f8fbef2d820d6e683603972ff1bdd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c77c9138bec0b7f87654b70582999a87.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1135,34 +1135,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Try R code directly in your browser! No installation needed.</p>
 <div id="webr-playground" style="border:3px solid #2c5aa0; padding:20px; background:#f5f9ff; border-radius:8px; margin:20px 0;">
 <div id="webr-status" style="font-weight:bold; color:#0066cc; font-size:16px; margin-bottom:12px;">
-🔄 WebR: Initializing…
+⏳ WebR: Not initialized — click “Run Code” to start
 </div>
 <div style="margin-bottom:15px;">
-<pre><code>&lt;label for="webr-example" style="font-weight:bold; display:block; margin-bottom:8px;"&gt;&lt;strong&gt;Choose a Concept to Learn:&lt;/strong&gt;&lt;/label&gt;
-&lt;select id="webr-example" style="padding:10px; width:100%; max-width:500px; font-size:14px; border:2px solid #0066cc; border-radius:4px;"&gt;
-  &lt;option value="ex1"&gt;🏥 Example 1: Variables (Patient Age &amp; BMI)&lt;/option&gt;
-  &lt;option value="ex2"&gt;📊 Example 2: Vectors (Weekly Glucose Readings)&lt;/option&gt;
-  &lt;option value="ex3"&gt;📋 Example 3: Data Frame (Clinical Trial Data)&lt;/option&gt;
-  &lt;option value="ex4"&gt;🚨 Example 4: Control Flow (Fever Alert)&lt;/option&gt;
-  &lt;option value="ex5"&gt;🔄 Example 5: Loops (Patient Screening)&lt;/option&gt;
-  &lt;option value="ex6"&gt;⚙️ Example 6: Functions (BMI Calculator)&lt;/option&gt;
-  &lt;option value="ex7"&gt;📈 Example 7: Apply Family (Dose Calculation)&lt;/option&gt;
-  &lt;option value="ex8"&gt;📝 Example 8: String Handling (Lab Notes)&lt;/option&gt;
-  &lt;option value="ex9"&gt;📅 Example 9: Dates (Patient Follow-up)&lt;/option&gt;
-  &lt;option value="ex10"&gt;🎯 Example 10: Statistics (Summary Data)&lt;/option&gt;
-&lt;/select&gt;</code></pre>
+<label for="webr-example" style="font-weight:bold; display:block; margin-bottom:8px;"><strong>Choose a Concept to Learn:</strong></label> <select id="webr-example" style="padding:10px; width:100%; max-width:500px; font-size:14px; border:2px solid #0066cc; border-radius:4px;"> <option value="ex1">🏥 Example 1: Variables (Patient Age &amp; BMI)</option> <option value="ex2">📊 Example 2: Vectors (Weekly Glucose Readings)</option> <option value="ex3">📋 Example 3: Data Frame (Clinical Trial Data)</option> <option value="ex4">🚨 Example 4: Control Flow (Fever Alert)</option> <option value="ex5">🔄 Example 5: Loops (Patient Screening)</option> <option value="ex6">⚙️ Example 6: Functions (BMI Calculator)</option> <option value="ex7">📈 Example 7: Apply Family (Dose Calculation)</option> <option value="ex8">📝 Example 8: String Handling (Lab Notes)</option> <option value="ex9">📅 Example 9: Dates (Patient Follow-up)</option> <option value="ex10">🎯 Example 10: Statistics (Summary Data)</option> </select>
 </div>
 <div style="margin-bottom:12px;">
-<pre><code>&lt;button id="webr-load" style="padding:10px 20px; background:#0066cc; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-right:8px;"&gt;📂 Load Example&lt;/button&gt;
-&lt;button id="webr-run" style="padding:10px 20px; background:#00aa00; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;"&gt;▶️ Run Code&lt;/button&gt;</code></pre>
+<button id="webr-load" style="padding:10px 20px; background:#0066cc; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-right:8px;">📂 Load Example</button> <button id="webr-run" style="padding:10px 20px; background:#00aa00; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">▶️ Run Code</button>
 </div>
 <div style="margin-bottom:12px;">
-<pre><code>&lt;label style="font-weight:bold; display:block; margin-bottom:6px;"&gt;📄 Your Code:&lt;/label&gt;
-&lt;pre id="webr-code" style="background:#ffffff; padding:12px; border:2px solid #ddd; border-radius:4px; font-family:'Courier New'; overflow-x:auto; min-height:100px; white-space:pre-wrap; max-height:300px; overflow-y:auto; font-size:13px;"&gt;&lt;/pre&gt;</code></pre>
+<label style="font-weight:bold; display:block; margin-bottom:6px;">📄 Your Code:</label>
+<pre id="webr-code" style="background:#ffffff; padding:12px; border:2px solid #ddd; border-radius:4px; font-family:'Courier New'; overflow-x:auto; min-height:100px; white-space:pre-wrap; max-height:300px; overflow-y:auto; font-size:13px;"></pre>
 </div>
 <div>
-<pre><code>&lt;label style="font-weight:bold; display:block; margin-bottom:6px;"&gt;💻 Output (Results):&lt;/label&gt;
-&lt;pre id="webr-output" style="background:#1a1a1a; color:#00ff00; padding:12px; border:2px solid #333; border-radius:4px; font-family:'Courier New'; min-height:120px; overflow-y:auto; max-height:300px; font-size:13px;"&gt;&lt;/pre&gt;</code></pre>
+<label style="font-weight:bold; display:block; margin-bottom:6px;">💻 Output (Results):</label>
+<pre id="webr-output" style="background:#1a1a1a; color:#00ff00; padding:12px; border:2px solid #333; border-radius:4px; font-family:'Courier New'; min-height:120px; overflow-y:auto; max-height:300px; font-size:13px;"></pre>
 </div>
 </div>
 <script type="module">
@@ -1324,8 +1311,8 @@ patients <- data.frame(
 cat("=== BMI ASSESSMENT ===\\n\\n")
 for (i in 1:nrow(patients)) {
   bmi <- calc_bmi(patients[i, "weight_kg"], patients[i, "height_cm"])
-  cat <- get_category(bmi)
-  cat(patients[i, "name"], "- BMI:", round(bmi, 1), "(", cat, ")\\n")
+  category <- get_category(bmi)
+  cat(patients[i, "name"], "- BMI:", round(bmi, 1), "(", category, ")\\n")
 }`,
 
   ex7: `# Example 7: Apply Family (Dose Calculation)
@@ -1471,86 +1458,86 @@ window.addEventListener('load', () => {
 <section id="easy-start-here" class="level3">
 <h3 class="anchored" data-anchor-id="easy-start-here">Easy (Start Here)</h3>
 <p><strong>1. Patient Age &amp; Weight</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create variables for a patient</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">45</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="dv">80</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate age in months and weight in pounds</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>age_months <span class="ot">&lt;-</span> age <span class="sc">*</span> <span class="dv">12</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>weight_pounds <span class="ot">&lt;-</span> weight <span class="sc">*</span> <span class="fl">2.2</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_months)</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(weight_pounds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create variables for a patient</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">45</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="dv">80</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate age in months and weight in pounds</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>age_months <span class="ot">&lt;-</span> age <span class="sc">*</span> <span class="dv">12</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>weight_pounds <span class="ot">&lt;-</span> weight <span class="sc">*</span> <span class="fl">2.2</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_months)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(weight_pounds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. Vector of Lab Values</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of cholesterol readings</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">195</span>, <span class="dv">240</span>, <span class="dv">185</span>, <span class="dv">220</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find average, min, max</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(cholesterol)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>highest <span class="ot">&lt;-</span> <span class="fu">max</span>(cholesterol)</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>lowest <span class="ot">&lt;-</span> <span class="fu">min</span>(cholesterol)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(avg)</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(highest)</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lowest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of cholesterol readings</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">195</span>, <span class="dv">240</span>, <span class="dv">185</span>, <span class="dv">220</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find average, min, max</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(cholesterol)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>highest <span class="ot">&lt;-</span> <span class="fu">max</span>(cholesterol)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>lowest <span class="ot">&lt;-</span> <span class="fu">min</span>(cholesterol)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(avg)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(highest)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lowest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>3. Simple Control Flow</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check blood pressure</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>systolic <span class="ot">&lt;-</span> <span class="dv">145</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (systolic <span class="sc">&gt;</span> <span class="dv">140</span>) {</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Stage 2 Hypertension - Require treatment"</span>)</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (systolic <span class="sc">&gt;</span> <span class="dv">130</span>) {</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Stage 1 Hypertension - Monitor"</span>)</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Normal blood pressure"</span>)</span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check blood pressure</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>systolic <span class="ot">&lt;-</span> <span class="dv">145</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (systolic <span class="sc">&gt;</span> <span class="dv">140</span>) {</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Stage 2 Hypertension - Require treatment"</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (systolic <span class="sc">&gt;</span> <span class="dv">130</span>) {</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Stage 1 Hypertension - Monitor"</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Normal blood pressure"</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="intermediate" class="level3">
 <h3 class="anchored" data-anchor-id="intermediate">Intermediate</h3>
 <p><strong>4. Loop Through Patient Data</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Patient temperatures</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">36.8</span>, <span class="fl">38.2</span>, <span class="fl">39.5</span>, <span class="fl">37.1</span>, <span class="fl">40.1</span>)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (temp <span class="cf">in</span> temps) {</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (temp <span class="sc">&gt;</span> <span class="dv">39</span>) {</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"FEVER:"</span>, temp, <span class="st">"°C"</span>))</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Normal:"</span>, temp, <span class="st">"°C"</span>))</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Patient temperatures</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">36.8</span>, <span class="fl">38.2</span>, <span class="fl">39.5</span>, <span class="fl">37.1</span>, <span class="fl">40.1</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (temp <span class="cf">in</span> temps) {</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (temp <span class="sc">&gt;</span> <span class="dv">39</span>) {</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"FEVER:"</span>, temp, <span class="st">"°C"</span>))</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Normal:"</span>, temp, <span class="st">"°C"</span>))</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>5. Create and Use a Function</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate ideal body weight (Devine formula for males)</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ideal_bmi <span class="ot">&lt;-</span> <span class="cf">function</span>(height_cm) {</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  height_inches <span class="ot">&lt;-</span> height_cm <span class="sc">/</span> <span class="fl">2.54</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  ibw <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">2.3</span> <span class="sc">*</span> (height_inches <span class="sc">-</span> <span class="dv">60</span>)</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ibw)</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use it</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="dv">175</span>  <span class="co"># cm</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>target_weight <span class="ot">&lt;-</span> <span class="fu">ideal_bmi</span>(height)</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Ideal weight for"</span>, height, <span class="st">"cm is"</span>, <span class="fu">round</span>(target_weight, <span class="dv">1</span>), <span class="st">"kg"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate ideal body weight (Devine formula for males)</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ideal_bmi <span class="ot">&lt;-</span> <span class="cf">function</span>(height_cm) {</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  height_inches <span class="ot">&lt;-</span> height_cm <span class="sc">/</span> <span class="fl">2.54</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  ibw <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">2.3</span> <span class="sc">*</span> (height_inches <span class="sc">-</span> <span class="dv">60</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ibw)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use it</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="dv">175</span>  <span class="co"># cm</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>target_weight <span class="ot">&lt;-</span> <span class="fu">ideal_bmi</span>(height)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Ideal weight for"</span>, height, <span class="st">"cm is"</span>, <span class="fu">round</span>(target_weight, <span class="dv">1</span>), <span class="st">"kg"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="advanced" class="level3">
 <h3 class="anchored" data-anchor-id="advanced">Advanced</h3>
 <p><strong>6. Data Frame Analysis</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataset and analyze</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">45</span>, <span class="dv">58</span>, <span class="dv">50</span>, <span class="dv">48</span>),</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">glucose =</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">198</span>, <span class="dv">310</span>, <span class="dv">225</span>, <span class="dv">180</span>),</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">on_insulin =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Find average glucose</span></span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>avg_glucose <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients<span class="sc">$</span>glucose)</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Find insulin users</span></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>insulin_users <span class="ot">&lt;-</span> patients[patients<span class="sc">$</span>on_insulin <span class="sc">==</span> <span class="cn">TRUE</span>, ]</span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate statistics</span></span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Average glucose:"</span>, avg_glucose, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number on insulin:"</span>, <span class="fu">nrow</span>(insulin_users), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataset and analyze</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">45</span>, <span class="dv">58</span>, <span class="dv">50</span>, <span class="dv">48</span>),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">glucose =</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">198</span>, <span class="dv">310</span>, <span class="dv">225</span>, <span class="dv">180</span>),</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">on_insulin =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Find average glucose</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>avg_glucose <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients<span class="sc">$</span>glucose)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Find insulin users</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>insulin_users <span class="ot">&lt;-</span> patients[patients<span class="sc">$</span>on_insulin <span class="sc">==</span> <span class="cn">TRUE</span>, ]</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate statistics</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Average glucose:"</span>, avg_glucose, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number on insulin:"</span>, <span class="fu">nrow</span>(insulin_users), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
