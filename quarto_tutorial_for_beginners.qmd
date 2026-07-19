@@ -398,6 +398,14 @@ format: html
 
 Quarto helps you create beautiful documents.
 
+---
+
+## Try R (optional)
+
+If you want to try a few simple R examples without installing R, open the dedicated R page with short notes and an in-browser WebR playground: [R — Getting Started](r.qmd).
+
+The playground runs small R snippets using WebR (R compiled to WebAssembly) and is intended for quick practice and learning. For larger work, consider Binder or RStudio Cloud.
+
 ## What I learned
 
 - Quarto uses `.qmd` files
