@@ -833,18 +833,18 @@ Try R code directly in your browser! No installation needed.
   </div>
   
   <div style="margin-bottom:12px;">
-    <button id="webr-load" style="padding:10px 20px; background:#0066cc; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-right:8px;">📂 Load Example</button>
-    <button id="webr-run" style="padding:10px 20px; background:#00aa00; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">▶️ Run Code</button>
+  <button id="webr-load" style="padding:10px 20px; background:#0066cc; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-right:8px;">📂 Load Example</button>
+  <button id="webr-run" style="padding:10px 20px; background:#00aa00; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">▶️ Run Code</button>
   </div>
-  
+
   <div style="margin-bottom:12px;">
-    <label style="font-weight:bold; display:block; margin-bottom:6px;">📄 Your Code:</label>
-    <pre id="webr-code" style="background:#ffffff; padding:12px; border:2px solid #ddd; border-radius:4px; font-family:'Courier New'; overflow-x:auto; min-height:100px; white-space:pre-wrap; max-height:300px; overflow-y:auto; font-size:13px;"></pre>
+  <label style="font-weight:bold; display:block; margin-bottom:6px;">📄 Your Code:</label>
+  <pre id="webr-code" style="background:#ffffff; padding:12px; border:2px solid #ddd; border-radius:4px; font-family:'Courier New'; overflow-x:auto; min-height:100px; white-space:pre-wrap; max-height:300px; overflow-y:auto; font-size:13px;"></pre>
   </div>
-  
+
   <div>
-    <label style="font-weight:bold; display:block; margin-bottom:6px;">💻 Output (Results):</label>
-    <pre id="webr-output" style="background:#1a1a1a; color:#00ff00; padding:12px; border:2px solid #333; border-radius:4px; font-family:'Courier New'; min-height:120px; overflow-y:auto; max-height:300px; font-size:13px;"></pre>
+  <label style="font-weight:bold; display:block; margin-bottom:6px;">💻 Output (Results):</label>
+  <pre id="webr-output" style="background:#1a1a1a; color:#00ff00; padding:12px; border:2px solid #333; border-radius:4px; font-family:'Courier New'; min-height:120px; overflow-y:auto; max-height:300px; font-size:13px;"></pre>
   </div>
 </div>
 
