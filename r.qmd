@@ -817,19 +817,19 @@ Try R code directly in your browser! No installation needed.
   <div id="webr-status" style="font-weight:bold; color:#0066cc; font-size:16px; margin-bottom:12px;">🔄 WebR: Initializing...</div>
   
   <div style="margin-bottom:15px;">
-    <label for="webr-example" style="font-weight:bold; display:block; margin-bottom:8px;"><strong>Choose a Concept to Learn:</strong></label>
-    <select id="webr-example" style="padding:10px; width:100%; max-width:500px; font-size:14px; border:2px solid #0066cc; border-radius:4px;">
-      <option value="ex1">🏥 Example 1: Variables (Patient Age & BMI)</option>
-      <option value="ex2">📊 Example 2: Vectors (Weekly Glucose Readings)</option>
-      <option value="ex3">📋 Example 3: Data Frame (Clinical Trial Data)</option>
-      <option value="ex4">🚨 Example 4: Control Flow (Fever Alert)</option>
-      <option value="ex5">🔄 Example 5: Loops (Patient Screening)</option>
-      <option value="ex6">⚙️ Example 6: Functions (BMI Calculator)</option>
-      <option value="ex7">📈 Example 7: Apply Family (Dose Calculation)</option>
-      <option value="ex8">📝 Example 8: String Handling (Lab Notes)</option>
-      <option value="ex9">📅 Example 9: Dates (Patient Follow-up)</option>
-      <option value="ex10">🎯 Example 10: Statistics (Summary Data)</option>
-    </select>
+  <label for="webr-example" style="font-weight:bold; display:block; margin-bottom:8px;"><strong>Choose a Concept to Learn:</strong></label>
+  <select id="webr-example" style="padding:10px; width:100%; max-width:500px; font-size:14px; border:2px solid #0066cc; border-radius:4px;">
+   <option value="ex1">🏥 Example 1: Variables (Patient Age & BMI)</option>
+   <option value="ex2">📊 Example 2: Vectors (Weekly Glucose Readings)</option>
+   <option value="ex3">📋 Example 3: Data Frame (Clinical Trial Data)</option>
+   <option value="ex4">🚨 Example 4: Control Flow (Fever Alert)</option>
+   <option value="ex5">🔄 Example 5: Loops (Patient Screening)</option>
+   <option value="ex6">⚙️ Example 6: Functions (BMI Calculator)</option>
+   <option value="ex7">📈 Example 7: Apply Family (Dose Calculation)</option>
+   <option value="ex8">📝 Example 8: String Handling (Lab Notes)</option>
+   <option value="ex9">📅 Example 9: Dates (Patient Follow-up)</option>
+   <option value="ex10">🎯 Example 10: Statistics (Summary Data)</option>
+  </select>
   </div>
   
   <div style="margin-bottom:12px;">
