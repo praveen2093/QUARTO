@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -42,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-21dfb6f5b24708782b3851273225b992.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d41f8fbef2d820d6e683603972ff1bdd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -207,7 +242,96 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-programming-tutorials" id="toc-r-programming-tutorials" class="nav-link active" data-scroll-target="#r-programming-tutorials">R Programming Tutorials</a></li>
+  <li><a href="#r-programming-tutorials" id="toc-r-programming-tutorials" class="nav-link active" data-scroll-target="#r-programming-tutorials">R Programming Tutorials</a>
+  <ul class="collapse">
+  <li><a href="#introduction-to-r-why-does-it-matter" id="toc-introduction-to-r-why-does-it-matter" class="nav-link" data-scroll-target="#introduction-to-r-why-does-it-matter">1. Introduction to R: Why Does It Matter?</a>
+  <ul class="collapse">
+  <li><a href="#the-story" id="toc-the-story" class="nav-link" data-scroll-target="#the-story">The Story</a></li>
+  <li><a href="#why-clinicians-and-sas-programmers-switch-to-r" id="toc-why-clinicians-and-sas-programmers-switch-to-r" class="nav-link" data-scroll-target="#why-clinicians-and-sas-programmers-switch-to-r">Why clinicians and SAS programmers switch to R</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  </ul></li>
+  <li><a href="#variables-operators-labeled-boxes-for-your-data" id="toc-variables-operators-labeled-boxes-for-your-data" class="nav-link" data-scroll-target="#variables-operators-labeled-boxes-for-your-data">2. Variables &amp; Operators: Labeled Boxes for Your Data</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-what-is-a-variable" id="toc-the-concept-what-is-a-variable" class="nav-link" data-scroll-target="#the-concept-what-is-a-variable">The Concept: What is a Variable?</a></li>
+  <li><a href="#real-world-story-a-clinical-example" id="toc-real-world-story-a-clinical-example" class="nav-link" data-scroll-target="#real-world-story-a-clinical-example">Real-World Story: A Clinical Example</a></li>
+  <li><a href="#operators-what-can-you-do-with-variables" id="toc-operators-what-can-you-do-with-variables" class="nav-link" data-scroll-target="#operators-what-can-you-do-with-variables">Operators: What can you do with variables?</a></li>
+  <li><a href="#practical-hospital-example" id="toc-practical-hospital-example" class="nav-link" data-scroll-target="#practical-hospital-example">Practical Hospital Example</a></li>
+  </ul></li>
+  <li><a href="#data-types-different-kinds-of-information" id="toc-data-types-different-kinds-of-information" class="nav-link" data-scroll-target="#data-types-different-kinds-of-information">3. Data Types: Different Kinds of Information</a>
+  <ul class="collapse">
+  <li><a href="#the-concept" id="toc-the-concept" class="nav-link" data-scroll-target="#the-concept">The Concept</a></li>
+  <li><a href="#the-four-main-types" id="toc-the-four-main-types" class="nav-link" data-scroll-target="#the-four-main-types">The Four Main Types</a></li>
+  <li><a href="#real-world-clinical-dataset-example" id="toc-real-world-clinical-dataset-example" class="nav-link" data-scroll-target="#real-world-clinical-dataset-example">Real-World Clinical Dataset Example</a></li>
+  <li><a href="#check-what-type-your-data-is" id="toc-check-what-type-your-data-is" class="nav-link" data-scroll-target="#check-what-type-your-data-is">Check What Type Your Data Is</a></li>
+  </ul></li>
+  <li><a href="#vectors-your-first-data-container" id="toc-vectors-your-first-data-container" class="nav-link" data-scroll-target="#vectors-your-first-data-container">4. Vectors: Your First Data Container</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-a-list-of-items-all-the-same-type" id="toc-the-concept-a-list-of-items-all-the-same-type" class="nav-link" data-scroll-target="#the-concept-a-list-of-items-all-the-same-type">The Concept: A List of Items (All the Same Type)</a></li>
+  <li><a href="#real-hospital-example-a-patients-lab-values-over-time" id="toc-real-hospital-example-a-patients-lab-values-over-time" class="nav-link" data-scroll-target="#real-hospital-example-a-patients-lab-values-over-time">Real Hospital Example: A Patient’s Lab Values Over Time</a></li>
+  <li><a href="#what-can-you-do-with-vectors" id="toc-what-can-you-do-with-vectors" class="nav-link" data-scroll-target="#what-can-you-do-with-vectors">What Can You Do With Vectors?</a></li>
+  <li><a href="#real-clinical-use-case-finding-high-risk-patients" id="toc-real-clinical-use-case-finding-high-risk-patients" class="nav-link" data-scroll-target="#real-clinical-use-case-finding-high-risk-patients">Real Clinical Use Case: Finding High-Risk Patients</a></li>
+  </ul></li>
+  <li><a href="#data-frames-spreadsheets-in-r" id="toc-data-frames-spreadsheets-in-r" class="nav-link" data-scroll-target="#data-frames-spreadsheets-in-r">5. Data Frames: Spreadsheets in R</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-organizing-data-like-excel" id="toc-the-concept-organizing-data-like-excel" class="nav-link" data-scroll-target="#the-concept-organizing-data-like-excel">The Concept: Organizing Data Like Excel</a></li>
+  <li><a href="#real-clinical-research-example" id="toc-real-clinical-research-example" class="nav-link" data-scroll-target="#real-clinical-research-example">Real Clinical Research Example</a></li>
+  <li><a href="#access-your-data-like-a-pro" id="toc-access-your-data-like-a-pro" class="nav-link" data-scroll-target="#access-your-data-like-a-pro">Access Your Data Like a Pro</a></li>
+  <li><a href="#real-hospital-workflow" id="toc-real-hospital-workflow" class="nav-link" data-scroll-target="#real-hospital-workflow">Real Hospital Workflow</a></li>
+  </ul></li>
+  <li><a href="#functions-reusable-instructions" id="toc-functions-reusable-instructions" class="nav-link" data-scroll-target="#functions-reusable-instructions">6. Functions: Reusable Instructions</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-a-recipe-or-machine" id="toc-the-concept-a-recipe-or-machine" class="nav-link" data-scroll-target="#the-concept-a-recipe-or-machine">The Concept: A Recipe or Machine</a></li>
+  <li><a href="#why-functions-matter-in-clinical-research" id="toc-why-functions-matter-in-clinical-research" class="nav-link" data-scroll-target="#why-functions-matter-in-clinical-research">Why Functions Matter in Clinical Research</a></li>
+  <li><a href="#real-clinical-example-calculate-bmi" id="toc-real-clinical-example-calculate-bmi" class="nav-link" data-scroll-target="#real-clinical-example-calculate-bmi">Real Clinical Example: Calculate BMI</a></li>
+  <li><a href="#function-with-default-values" id="toc-function-with-default-values" class="nav-link" data-scroll-target="#function-with-default-values">Function with Default Values</a></li>
+  </ul></li>
+  <li><a href="#control-flow-making-decisions" id="toc-control-flow-making-decisions" class="nav-link" data-scroll-target="#control-flow-making-decisions">7. Control Flow: Making Decisions</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-if-then-logic" id="toc-the-concept-if-then-logic" class="nav-link" data-scroll-target="#the-concept-if-then-logic">The Concept: If-Then Logic</a></li>
+  <li><a href="#real-hospital-alert-system" id="toc-real-hospital-alert-system" class="nav-link" data-scroll-target="#real-hospital-alert-system">Real Hospital Alert System</a></li>
+  <li><a href="#clinical-decision-tree-example" id="toc-clinical-decision-tree-example" class="nav-link" data-scroll-target="#clinical-decision-tree-example">Clinical Decision Tree Example</a></li>
+  <li><a href="#switch-statement-when-you-have-many-options" id="toc-switch-statement-when-you-have-many-options" class="nav-link" data-scroll-target="#switch-statement-when-you-have-many-options">Switch Statement (When You Have Many Options)</a></li>
+  </ul></li>
+  <li><a href="#loops-repeat-tasks-efficiently" id="toc-loops-repeat-tasks-efficiently" class="nav-link" data-scroll-target="#loops-repeat-tasks-efficiently">8. Loops: Repeat Tasks Efficiently</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-do-something-over-and-over" id="toc-the-concept-do-something-over-and-over" class="nav-link" data-scroll-target="#the-concept-do-something-over-and-over">The Concept: Do Something Over and Over</a></li>
+  <li><a href="#real-clinical-example-patient-screening" id="toc-real-clinical-example-patient-screening" class="nav-link" data-scroll-target="#real-clinical-example-patient-screening">Real Clinical Example: Patient Screening</a></li>
+  <li><a href="#loop-over-rows-in-a-data-frame" id="toc-loop-over-rows-in-a-data-frame" class="nav-link" data-scroll-target="#loop-over-rows-in-a-data-frame">Loop Over Rows in a Data Frame</a></li>
+  </ul></li>
+  <li><a href="#string-handling-working-with-text" id="toc-string-handling-working-with-text" class="nav-link" data-scroll-target="#string-handling-working-with-text">9. String Handling: Working With Text</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-text-manipulation" id="toc-the-concept-text-manipulation" class="nav-link" data-scroll-target="#the-concept-text-manipulation">The Concept: Text Manipulation</a></li>
+  <li><a href="#real-clinical-notes-example" id="toc-real-clinical-notes-example" class="nav-link" data-scroll-target="#real-clinical-notes-example">Real Clinical Notes Example</a></li>
+  <li><a href="#clinical-research-example-processing-lab-reports" id="toc-clinical-research-example-processing-lab-reports" class="nav-link" data-scroll-target="#clinical-research-example-processing-lab-reports">Clinical Research Example: Processing Lab Reports</a></li>
+  </ul></li>
+  <li><a href="#dates-times-handling-time-based-data" id="toc-dates-times-handling-time-based-data" class="nav-link" data-scroll-target="#dates-times-handling-time-based-data">10. Dates &amp; Times: Handling Time-Based Data</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-calendar-and-clock-data" id="toc-the-concept-calendar-and-clock-data" class="nav-link" data-scroll-target="#the-concept-calendar-and-clock-data">The Concept: Calendar and Clock Data</a></li>
+  <li><a href="#real-clinical-trial-timeline" id="toc-real-clinical-trial-timeline" class="nav-link" data-scroll-target="#real-clinical-trial-timeline">Real Clinical Trial Timeline</a></li>
+  <li><a href="#track-patient-visits" id="toc-track-patient-visits" class="nav-link" data-scroll-target="#track-patient-visits">Track Patient Visits</a></li>
+  </ul></li>
+  <li><a href="#apply-family-smart-loops-for-professionals" id="toc-apply-family-smart-loops-for-professionals" class="nav-link" data-scroll-target="#apply-family-smart-loops-for-professionals">11. Apply Family: Smart Loops for Professionals</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-vectorized-operations-rs-superpower" id="toc-the-concept-vectorized-operations-rs-superpower" class="nav-link" data-scroll-target="#the-concept-vectorized-operations-rs-superpower">The Concept: Vectorized Operations (R’s Superpower)</a></li>
+  <li><a href="#clinical-example-calculate-dose-for-multiple-patients" id="toc-clinical-example-calculate-dose-for-multiple-patients" class="nav-link" data-scroll-target="#clinical-example-calculate-dose-for-multiple-patients">Clinical Example: Calculate Dose for Multiple Patients</a></li>
+  <li><a href="#more-apply-functions" id="toc-more-apply-functions" class="nav-link" data-scroll-target="#more-apply-functions">More Apply Functions</a></li>
+  </ul></li>
+  <li><a href="#matrices-2d-data-structures" id="toc-matrices-2d-data-structures" class="nav-link" data-scroll-target="#matrices-2d-data-structures">12. Matrices: 2D Data Structures</a>
+  <ul class="collapse">
+  <li><a href="#the-concept-tables-of-numbers" id="toc-the-concept-tables-of-numbers" class="nav-link" data-scroll-target="#the-concept-tables-of-numbers">The Concept: Tables of Numbers</a></li>
+  <li><a href="#clinical-example-correlation-matrix" id="toc-clinical-example-correlation-matrix" class="nav-link" data-scroll-target="#clinical-example-correlation-matrix">Clinical Example: Correlation Matrix</a></li>
+  </ul></li>
+  <li><a href="#interactive-webr-playground" id="toc-interactive-webr-playground" class="nav-link" data-scroll-target="#interactive-webr-playground">13. Interactive WebR Playground</a></li>
+  <li><a href="#exercises-practice" id="toc-exercises-practice" class="nav-link" data-scroll-target="#exercises-practice">14. Exercises &amp; Practice</a>
+  <ul class="collapse">
+  <li><a href="#easy-start-here" id="toc-easy-start-here" class="nav-link" data-scroll-target="#easy-start-here">Easy (Start Here)</a></li>
+  <li><a href="#intermediate" id="toc-intermediate" class="nav-link" data-scroll-target="#intermediate">Intermediate</a></li>
+  <li><a href="#advanced" id="toc-advanced" class="nav-link" data-scroll-target="#advanced">Advanced</a></li>
+  </ul></li>
+  <li><a href="#quick-reference-card" id="toc-quick-reference-card" class="nav-link" data-scroll-target="#quick-reference-card">Quick Reference Card</a></li>
+  <li><a href="#resources-for-continued-learning" id="toc-resources-for-continued-learning" class="nav-link" data-scroll-target="#resources-for-continued-learning">Resources for Continued Learning</a></li>
+  <li><a href="#why-r-will-transform-your-clinical-work" id="toc-why-r-will-transform-your-clinical-work" class="nav-link" data-scroll-target="#why-r-will-transform-your-clinical-work">Why R Will Transform Your Clinical Work</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -235,10 +359,1293 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="r-programming-tutorials" class="level1">
 <h1>R Programming Tutorials</h1>
-<p>Placeholder for R tutorials and examples. Add exercises and datasets here.</p>
+<p>Welcome! This is <strong>not</strong> just code snippets. You’ll learn R the way professionals do: by understanding <strong>why</strong> we use each concept, with real-world stories, before writing a single line of code.</p>
+<p>Whether you’re a clinical programmer, SAS expert, statistician, or complete beginner—this tutorial is designed for you.</p>
+<hr>
+<section id="introduction-to-r-why-does-it-matter" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-r-why-does-it-matter">1. Introduction to R: Why Does It Matter?</h2>
+<section id="the-story" class="level3">
+<h3 class="anchored" data-anchor-id="the-story">The Story</h3>
+<p>Imagine you’re a clinical researcher with patient data from 5,000 subjects. You need to: - Clean messy data (missing values, typos, wrong formats) - Calculate statistics (mean, median, confidence intervals) - Create visualizations (plots, charts, tables) - Generate a report with all results</p>
+<p><strong>In SAS:</strong> You’d write 50+ lines of PROC code, manage libraries, and wait for compilation.</p>
+<p><strong>In R:</strong> You load a dataset, clean it, analyze it, and visualize it—all in 20 lines. The results appear instantly.</p>
+<p>R is a <strong>language designed by statisticians FOR statisticians</strong>. It’s like having a super-smart assistant who: - Understands data intuitively - Can do complex math instantly - Creates beautiful visualizations - Scales from small datasets to millions of rows - Works on any device (Windows, Mac, Linux)</p>
+</section>
+<section id="why-clinicians-and-sas-programmers-switch-to-r" class="level3">
+<h3 class="anchored" data-anchor-id="why-clinicians-and-sas-programmers-switch-to-r">Why clinicians and SAS programmers switch to R</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>SAS</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Load CSV</td>
+<td>15 lines</td>
+<td>1 line</td>
+</tr>
+<tr class="even">
+<td>Calculate summary stats</td>
+<td>10 lines</td>
+<td>1 line</td>
+</tr>
+<tr class="odd">
+<td>Create a plot</td>
+<td>20 lines</td>
+<td>2 lines</td>
+</tr>
+<tr class="even">
+<td>Manipulate data</td>
+<td>25 lines</td>
+<td>3 lines</td>
+</tr>
+<tr class="odd">
+<td>Share code</td>
+<td>Email .sas files</td>
+<td>Share one .R file</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="getting-started" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started">Getting Started</h3>
+<p><strong>Installation is simple:</strong> 1. Download R from <a href="https://r-project.org">r-project.org</a> 2. Download RStudio (free) from <a href="https://posit.co">posit.co</a> — it makes R much easier 3. Open RStudio and you’re ready</p>
+<p><strong>First command:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello, R!"</span>)  <span class="co"># This prints to the console</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That’s it! R is waiting for your instructions.</p>
+<hr>
+</section>
+</section>
+<section id="variables-operators-labeled-boxes-for-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="variables-operators-labeled-boxes-for-your-data">2. Variables &amp; Operators: Labeled Boxes for Your Data</h2>
+<section id="the-concept-what-is-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-what-is-a-variable">The Concept: What is a Variable?</h3>
+<p>Think of a <strong>variable</strong> like a labeled box in a warehouse: - You label it: <code>salary</code> - You put a value in it: <code>50000</code> - Later, you can open that box and use what’s inside: <code>salary * 1.1</code> (10% raise)</p>
+</section>
+<section id="real-world-story-a-clinical-example" class="level3">
+<h3 class="anchored" data-anchor-id="real-world-story-a-clinical-example">Real-World Story: A Clinical Example</h3>
+<p>You’re a clinical programmer analyzing patient lab values. You have: - Patient age: 45 years - Weight: 85 kg - Drug dose: 250 mg</p>
+<p>Instead of repeating these numbers everywhere, you store them in variables:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>patient_age <span class="ot">&lt;-</span> <span class="dv">45</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>patient_weight <span class="ot">&lt;-</span> <span class="dv">85</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>drug_dose <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now calculate dose per kg</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>dose_per_kg <span class="ot">&lt;-</span> drug_dose <span class="sc">/</span> patient_weight</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dose_per_kg)  <span class="co"># Output: 2.94 mg/kg</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Why this matters:</strong> If the dose changes from 250 to 300, you only change ONE number. The calculation updates automatically.</p>
+</section>
+<section id="operators-what-can-you-do-with-variables" class="level3">
+<h3 class="anchored" data-anchor-id="operators-what-can-you-do-with-variables">Operators: What can you do with variables?</h3>
+<section id="arithmetic-operators-math" class="level4">
+<h4 class="anchored" data-anchor-id="arithmetic-operators-math"><strong>Arithmetic Operators</strong> (Math)</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>+</code></td>
+<td>Add</td>
+<td><code>10 + 5</code></td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td><code>-</code></td>
+<td>Subtract</td>
+<td><code>10 - 5</code></td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td><code>*</code></td>
+<td>Multiply</td>
+<td><code>10 * 5</code></td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td><code>/</code></td>
+<td>Divide</td>
+<td><code>10 / 5</code></td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td><code>^</code></td>
+<td>Power</td>
+<td><code>2 ^ 3</code></td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td><code>%%</code></td>
+<td>Remainder</td>
+<td><code>10 %% 3</code></td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="comparison-operators-is-this-true-or-false" class="level4">
+<h4 class="anchored" data-anchor-id="comparison-operators-is-this-true-or-false"><strong>Comparison Operators</strong> (Is this true or false?)</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>Equal to?</td>
+<td><code>10 == 10</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>Not equal?</td>
+<td><code>10 != 5</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>Greater than?</td>
+<td><code>10 &gt; 5</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="even">
+<td><code>&lt;</code></td>
+<td>Less than?</td>
+<td><code>10 &lt; 5</code></td>
+<td>FALSE</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;=</code></td>
+<td>Greater or equal?</td>
+<td><code>10 &gt;= 10</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>Less or equal?</td>
+<td><code>5 &lt;= 10</code></td>
+<td>TRUE</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="practical-hospital-example" class="level3">
+<h3 class="anchored" data-anchor-id="practical-hospital-example">Practical Hospital Example</h3>
+<p>A hospital tracks: - Patient hemoglobin: 8.5 g/dL - Normal range: 12-16 g/dL (for adult males)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hemoglobin <span class="ot">&lt;-</span> <span class="fl">8.5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>is_anemic <span class="ot">&lt;-</span> hemoglobin <span class="sc">&lt;</span> <span class="dv">12</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(is_anemic)  <span class="co"># TRUE (patient needs blood transfusion)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate how much higher it needs to be</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>needed_increase <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="sc">-</span> hemoglobin</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(needed_increase)  <span class="co"># 3.5 g/dL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is how clinical algorithms work: compare, calculate, decide.</p>
+<hr>
+</section>
+</section>
+<section id="data-types-different-kinds-of-information" class="level2">
+<h2 class="anchored" data-anchor-id="data-types-different-kinds-of-information">3. Data Types: Different Kinds of Information</h2>
+<section id="the-concept" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept">The Concept</h3>
+<p>Just as you wouldn’t store a patient’s name in the same way as their age, <strong>R has different data types</strong> for different kinds of information.</p>
+</section>
+<section id="the-four-main-types" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-main-types">The Four Main Types</h3>
+<section id="numeric-numbers-with-decimals" class="level4">
+<h4 class="anchored" data-anchor-id="numeric-numbers-with-decimals"><strong>1. Numeric (Numbers with decimals)</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fl">175.5</span>  <span class="co"># Patient height in cm</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fl">82.3</span>   <span class="co"># Patient weight in kg</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>BMI <span class="ot">&lt;-</span> weight <span class="sc">/</span> (height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(BMI)  <span class="co"># 26.8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>When to use:</strong> Measurements, calculations, weights, heights, lab values, temperatures</p>
+</section>
+<section id="integer-whole-numbers" class="level4">
+<h4 class="anchored" data-anchor-id="integer-whole-numbers"><strong>2. Integer (Whole numbers)</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>num_patients <span class="ot">&lt;-</span> <span class="dv">156</span>  <span class="co"># Exact count</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>num_visits <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>year_of_birth <span class="ot">&lt;-</span> <span class="dv">1980</span>L  <span class="co"># The 'L' forces integer type</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>When to use:</strong> Counts, IDs, years, frequencies</p>
+</section>
+<section id="character-textstrings" class="level4">
+<h4 class="anchored" data-anchor-id="character-textstrings"><strong>3. Character (Text/Strings)</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>patient_name <span class="ot">&lt;-</span> <span class="st">"John Smith"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>diagnosis <span class="ot">&lt;-</span> <span class="st">"Type 2 Diabetes"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>hospital <span class="ot">&lt;-</span> <span class="st">'Mayo Clinic'</span>  <span class="co"># Single or double quotes both work</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>When to use:</strong> Names, diagnoses, categories, notes, addresses</p>
+</section>
+<section id="logical-truefalse" class="level4">
+<h4 class="anchored" data-anchor-id="logical-truefalse"><strong>4. Logical (True/False)</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>is_diabetic <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>requires_insulin <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>When to use:</strong> Yes/no questions, eligibility checks, flags</p>
+</section>
+</section>
+<section id="real-world-clinical-dataset-example" class="level3">
+<h3 class="anchored" data-anchor-id="real-world-clinical-dataset-example">Real-World Clinical Dataset Example</h3>
+<p>A clinical trial tracks different information:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Patient ID 001</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>patient_id <span class="ot">&lt;-</span> <span class="dv">1001</span>              <span class="co"># Integer: unique identifier</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>patient_name <span class="ot">&lt;-</span> <span class="st">"Alice Johnson"</span> <span class="co"># Character: person's name</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fl">52.7</span>                     <span class="co"># Numeric: age in years</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>has_hypertension <span class="ot">&lt;-</span> <span class="cn">TRUE</span>        <span class="co"># Logical: yes/no flag</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>systolic_bp <span class="ot">&lt;-</span> <span class="dv">145</span>              <span class="co"># Integer: blood pressure</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>diastolic_bp <span class="ot">&lt;-</span> <span class="fl">92.5</span>            <span class="co"># Numeric: blood pressure</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>treatment_group <span class="ot">&lt;-</span> <span class="st">"Drug_A"</span>     <span class="co"># Character: category</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>enrolled_date <span class="ot">&lt;-</span> <span class="st">"2024-01-15"</span>   <span class="co"># Character: date as text (we'll do better later)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="check-what-type-your-data-is" class="level3">
+<h3 class="anchored" data-anchor-id="check-what-type-your-data-is">Check What Type Your Data Is</h3>
+<p>R has a helper function to tell you:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fl">52.7</span>)           <span class="co"># "numeric"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">1001</span>)           <span class="co"># "numeric" (even though it's a whole number!)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">1001</span>L)          <span class="co"># "integer" (because of the L)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">"Alice"</span>)        <span class="co"># "character"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)           <span class="co"># "logical"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="vectors-your-first-data-container" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-your-first-data-container">4. Vectors: Your First Data Container</h2>
+<section id="the-concept-a-list-of-items-all-the-same-type" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-a-list-of-items-all-the-same-type">The Concept: A List of Items (All the Same Type)</h3>
+<p>A <strong>vector</strong> is like a <strong>shopping list</strong>: - All items are groceries (same type) - Each item is separate but in the same list - You can count them, sort them, or find specific ones</p>
+<p>Think of patient data from a clinical trial:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cholesterol levels for 5 patients</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">195</span>, <span class="dv">240</span>, <span class="dv">185</span>, <span class="dv">220</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That’s a <strong>vector</strong> of 5 numbers.</p>
+</section>
+<section id="real-hospital-example-a-patients-lab-values-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="real-hospital-example-a-patients-lab-values-over-time">Real Hospital Example: A Patient’s Lab Values Over Time</h3>
+<p>A diabetic patient has their glucose measured weekly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Glucose readings (mg/dL) over 6 weeks</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>week_1 <span class="ot">&lt;-</span> <span class="dv">245</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>week_2 <span class="ot">&lt;-</span> <span class="dv">238</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>week_3 <span class="ot">&lt;-</span> <span class="dv">225</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>week_4 <span class="ot">&lt;-</span> <span class="dv">212</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>week_5 <span class="ot">&lt;-</span> <span class="dv">198</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>week_6 <span class="ot">&lt;-</span> <span class="dv">185</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># OLD WAY (tedious):</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> (week_1 <span class="sc">+</span> week_2 <span class="sc">+</span> week_3 <span class="sc">+</span> week_4 <span class="sc">+</span> week_5 <span class="sc">+</span> week_6) <span class="sc">/</span> <span class="dv">6</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># NEW WAY (using a vector):</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>glucose_readings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">238</span>, <span class="dv">225</span>, <span class="dv">212</span>, <span class="dv">198</span>, <span class="dv">185</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(glucose_readings)  <span class="co"># Automatic!</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(avg)  <span class="co"># 217.17</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="what-can-you-do-with-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="what-can-you-do-with-vectors">What Can You Do With Vectors?</h3>
+<section id="get-statistics-instantly" class="level4">
+<h4 class="anchored" data-anchor-id="get-statistics-instantly"><strong>Get statistics instantly</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">195</span>, <span class="dv">240</span>, <span class="dv">185</span>, <span class="dv">220</span>, <span class="dv">205</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(cholesterol)      <span class="co"># Average: 209.17 (normal for many)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(cholesterol)    <span class="co"># Middle value: 212.5</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(cholesterol)        <span class="co"># How spread out: 19.89</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(cholesterol)       <span class="co"># Lowest: 185</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(cholesterol)       <span class="co"># Highest: 240</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cholesterol)       <span class="co"># Total: 1255</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(cholesterol)    <span class="co"># How many: 6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="get-specific-items" class="level4">
+<h4 class="anchored" data-anchor-id="get-specific-items"><strong>Get specific items</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">195</span>, <span class="dv">240</span>, <span class="dv">185</span>, <span class="dv">220</span>, <span class="dv">205</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>cholesterol[<span class="dv">1</span>]        <span class="co"># First patient: 210</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>cholesterol[<span class="dv">3</span>]        <span class="co"># Third patient: 240</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>cholesterol[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]   <span class="co"># First AND third: 210, 240</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>cholesterol[<span class="sc">-</span><span class="dv">2</span>]       <span class="co"># Everyone EXCEPT second: 210, 240, 185, 220, 205</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="filter-by-condition" class="level4">
+<h4 class="anchored" data-anchor-id="filter-by-condition"><strong>Filter by condition</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>high_cholesterol <span class="ot">&lt;-</span> cholesterol <span class="sc">&gt;</span> <span class="dv">200</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(high_cholesterol)  <span class="co"># TRUE TRUE TRUE FALSE TRUE TRUE</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the actual values</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>cholesterol[cholesterol <span class="sc">&gt;</span> <span class="dv">200</span>]  <span class="co"># 210, 240, 220, 205</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="real-clinical-use-case-finding-high-risk-patients" class="level3">
+<h3 class="anchored" data-anchor-id="real-clinical-use-case-finding-high-risk-patients">Real Clinical Use Case: Finding High-Risk Patients</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Blood pressure readings for 8 patients</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>systolic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">145</span>, <span class="dv">138</span>, <span class="dv">148</span>, <span class="dv">110</span>, <span class="dv">155</span>, <span class="dv">142</span>, <span class="dv">130</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Who has stage 2 hypertension (&gt;140)?</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>high_bp <span class="ot">&lt;-</span> systolic <span class="sc">&gt;</span> <span class="dv">140</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(high_bp)  <span class="co"># FALSE TRUE FALSE TRUE FALSE TRUE TRUE FALSE</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># How many patients are at risk?</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>num_at_risk <span class="ot">&lt;-</span> <span class="fu">sum</span>(high_bp)  <span class="co"># Counts TRUE values</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(num_at_risk)  <span class="co"># 3 patients need intervention</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># What are their exact readings?</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>risky_readings <span class="ot">&lt;-</span> systolic[systolic <span class="sc">&gt;</span> <span class="dv">140</span>]</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(risky_readings)  <span class="co"># 145, 148, 155, 142</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is how clinical alerts work—R automatically finds the patients who need attention!</p>
+<hr>
+</section>
+</section>
+<section id="data-frames-spreadsheets-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="data-frames-spreadsheets-in-r">5. Data Frames: Spreadsheets in R</h2>
+<section id="the-concept-organizing-data-like-excel" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-organizing-data-like-excel">The Concept: Organizing Data Like Excel</h3>
+<p>A <strong>data frame</strong> is like an Excel spreadsheet: - Rows = individual records (patients, visits, observations) - Columns = variables (name, age, diagnosis, treatment) - <strong>Different columns can have different types</strong> (numbers, text, dates)</p>
+</section>
+<section id="real-clinical-research-example" class="level3">
+<h3 class="anchored" data-anchor-id="real-clinical-research-example">Real Clinical Research Example</h3>
+<p>You’re conducting a diabetes study tracking:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataset of 4 patients</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient_id =</span> <span class="fu">c</span>(<span class="dv">1001</span>, <span class="dv">1002</span>, <span class="dv">1003</span>, <span class="dv">1004</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"Diana"</span>),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">45</span>, <span class="dv">58</span>, <span class="dv">50</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">glucose_baseline =</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">198</span>, <span class="dv">310</span>, <span class="dv">225</span>),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatment =</span> <span class="fu">c</span>(<span class="st">"Drug_A"</span>, <span class="st">"Drug_B"</span>, <span class="st">"Drug_A"</span>, <span class="st">"Placebo"</span>),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">improved =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># View the full dataset</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(patients)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Output:</p>
+<pre><code>  patient_id    name age glucose_baseline treatment improved
+1        1001   Alice  52              245    Drug_A     TRUE
+2        1002     Bob  45              198    Drug_B    FALSE
+3        1003 Charlie  58              310    Drug_A     TRUE
+4        1004   Diana  50              225   Placebo    FALSE</code></pre>
+</section>
+<section id="access-your-data-like-a-pro" class="level3">
+<h3 class="anchored" data-anchor-id="access-your-data-like-a-pro">Access Your Data Like a Pro</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get one column</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>patients<span class="sc">$</span>name              <span class="co"># "Alice" "Bob" "Charlie" "Diana"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get specific rows</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>patients[<span class="dv">1</span>, ]              <span class="co"># First patient's entire row</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>patients[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), ]         <span class="co"># First AND third patient</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get specific cell</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>patients[<span class="dv">2</span>, <span class="dv">3</span>]             <span class="co"># Bob's age: 45</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical indexing (find all improved patients)</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>improved_patients <span class="ot">&lt;-</span> patients[patients<span class="sc">$</span>improved <span class="sc">==</span> <span class="cn">TRUE</span>, ]</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate average baseline glucose</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>avg_glucose <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients<span class="sc">$</span>glucose_baseline)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(avg_glucose)  <span class="co"># 244.5 mg/dL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-hospital-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="real-hospital-workflow">Real Hospital Workflow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A hospital has 3 patients in a medication trial</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>trial_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient =</span> <span class="fu">c</span>(<span class="st">"P001"</span>, <span class="st">"P002"</span>, <span class="st">"P003"</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">medication =</span> <span class="fu">c</span>(<span class="st">"Aspirin_100mg"</span>, <span class="st">"Aspirin_100mg"</span>, <span class="st">"Placebo"</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_heart_rate =</span> <span class="fu">c</span>(<span class="dv">72</span>, <span class="dv">88</span>, <span class="dv">75</span>),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">day_7_heart_rate =</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">85</span>, <span class="dv">76</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">adverse_events =</span> <span class="fu">c</span>(<span class="st">"None"</span>, <span class="st">"Headache"</span>, <span class="st">"None"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Question: Did Aspirin patients improve?</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>aspirin_group <span class="ot">&lt;-</span> trial_data[trial_data<span class="sc">$</span>medication <span class="sc">==</span> <span class="st">"Aspirin_100mg"</span>, ]</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate average improvement</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>baseline_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(aspirin_group<span class="sc">$</span>baseline_heart_rate)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>day7_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(aspirin_group<span class="sc">$</span>day_7_heart_rate)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>improvement <span class="ot">&lt;-</span> baseline_avg <span class="sc">-</span> day7_avg</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Aspirin patients improved by"</span>, <span class="fu">round</span>(improvement, <span class="dv">1</span>), <span class="st">"bpm"</span>))</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: "Aspirin patients improved by 3.5 bpm"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="functions-reusable-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="functions-reusable-instructions">6. Functions: Reusable Instructions</h2>
+<section id="the-concept-a-recipe-or-machine" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-a-recipe-or-machine">The Concept: A Recipe or Machine</h3>
+<p>A <strong>function</strong> is like a <strong>recipe</strong> or <strong>vending machine</strong>: - <strong>Input:</strong> Ingredients (or coins) - <strong>Process:</strong> Follow instructions (or mechanism) - <strong>Output:</strong> Result (meal or snack)</p>
+</section>
+<section id="why-functions-matter-in-clinical-research" class="level3">
+<h3 class="anchored" data-anchor-id="why-functions-matter-in-clinical-research">Why Functions Matter in Clinical Research</h3>
+<p>Instead of writing the same calculation 50 times:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OLD (repetitive, error-prone)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> (value1 <span class="sc">-</span> min_val) <span class="sc">/</span> (max_val <span class="sc">-</span> min_val)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> (value2 <span class="sc">-</span> min_val) <span class="sc">/</span> (max_val <span class="sc">-</span> min_val)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>result3 <span class="ot">&lt;-</span> (value3 <span class="sc">-</span> min_val) <span class="sc">/</span> (max_val <span class="sc">-</span> min_val)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ... repeated 50 more times!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Write it ONCE as a function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NEW (clean, reusable)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>normalize_value <span class="ot">&lt;-</span> <span class="cf">function</span>(value, min_val, max_val) {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> (value <span class="sc">-</span> min_val) <span class="sc">/</span> (max_val <span class="sc">-</span> min_val)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Now use it 50 times easily</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> <span class="fu">normalize_value</span>(value1, <span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">normalize_value</span>(value2, <span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>result3 <span class="ot">&lt;-</span> <span class="fu">normalize_value</span>(value3, <span class="dv">0</span>, <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="real-clinical-example-calculate-bmi" class="level3">
+<h3 class="anchored" data-anchor-id="real-clinical-example-calculate-bmi">Real Clinical Example: Calculate BMI</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BMI = weight (kg) / (height (m))^2</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of calculating this for every patient...</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>calculate_bmi <span class="ot">&lt;-</span> <span class="cf">function</span>(weight_kg, height_cm) {</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  height_m <span class="ot">&lt;-</span> height_cm <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  bmi <span class="ot">&lt;-</span> weight_kg <span class="sc">/</span> (height_m <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(bmi)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Now use it for any patient</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>bmi_alice <span class="ot">&lt;-</span> <span class="fu">calculate_bmi</span>(<span class="dv">75</span>, <span class="dv">170</span>)     <span class="co"># 26.0</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>bmi_bob <span class="ot">&lt;-</span> <span class="fu">calculate_bmi</span>(<span class="dv">82</span>, <span class="dv">175</span>)       <span class="co"># 26.8</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>bmi_charlie <span class="ot">&lt;-</span> <span class="fu">calculate_bmi</span>(<span class="dv">95</span>, <span class="dv">180</span>)   <span class="co"># 29.3</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bmi_alice)    <span class="co"># 26.0</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bmi_bob)      <span class="co"># 26.8</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bmi_charlie)  <span class="co"># 29.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="function-with-default-values" class="level3">
+<h3 class="anchored" data-anchor-id="function-with-default-values">Function with Default Values</h3>
+<p>In clinical trials, you often use the same dosing formula:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Default: Adult dosing</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>calculate_dose <span class="ot">&lt;-</span> <span class="cf">function</span>(patient_weight, <span class="at">dose_per_kg =</span> <span class="dv">5</span>) {</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  total_dose <span class="ot">&lt;-</span> patient_weight <span class="sc">*</span> dose_per_kg</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total_dose)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Adult (75 kg): standard dose is 375 mg</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>adult_dose <span class="ot">&lt;-</span> <span class="fu">calculate_dose</span>(<span class="dv">75</span>)  <span class="co"># Uses default 5 mg/kg</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(adult_dose)  <span class="co"># 375</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Child (30 kg): might need different dose</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>child_dose <span class="ot">&lt;-</span> <span class="fu">calculate_dose</span>(<span class="dv">30</span>, <span class="at">dose_per_kg =</span> <span class="dv">3</span>)  <span class="co"># Custom 3 mg/kg</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(child_dose)  <span class="co"># 90</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="control-flow-making-decisions" class="level2">
+<h2 class="anchored" data-anchor-id="control-flow-making-decisions">7. Control Flow: Making Decisions</h2>
+<section id="the-concept-if-then-logic" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-if-then-logic">The Concept: If-Then Logic</h3>
+<p>Programs need to make decisions like a nurse: - <strong>IF</strong> patient temperature &gt; 38°C, <strong>THEN</strong> alert doctor - <strong>IF</strong> glucose &lt; 70 mg/dL, <strong>THEN</strong> give sugar tablet - <strong>IF</strong> medication available, <strong>THEN</strong> prescribe it</p>
+</section>
+<section id="real-hospital-alert-system" class="level3">
+<h3 class="anchored" data-anchor-id="real-hospital-alert-system">Real Hospital Alert System</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>patient_temp <span class="ot">&lt;-</span> <span class="fl">39.2</span>  <span class="co"># Celsius</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (patient_temp <span class="sc">&gt;</span> <span class="fl">38.5</span>) {</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"ALERT: Fever detected! Notify physician!"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (patient_temp <span class="sc">&gt;</span> <span class="fl">37.5</span>) {</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"WARNING: Slight elevation. Monitor closely."</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Normal temperature."</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: "ALERT: Fever detected! Notify physician!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="clinical-decision-tree-example" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-decision-tree-example">Clinical Decision Tree Example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diabetes risk assessment</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">52</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>fasting_glucose <span class="ot">&lt;-</span> <span class="dv">245</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>family_history <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (fasting_glucose <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">&amp;</span> age <span class="sc">&gt;</span> <span class="dv">45</span>) {</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  risk <span class="ot">&lt;-</span> <span class="st">"High"</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (fasting_glucose <span class="sc">&gt;</span> <span class="dv">150</span>) {</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  risk <span class="ot">&lt;-</span> <span class="st">"Moderate"</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  risk <span class="ot">&lt;-</span> <span class="st">"Low"</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Risk level:"</span>, risk))</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: "Risk level: High"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="switch-statement-when-you-have-many-options" class="level3">
+<h3 class="anchored" data-anchor-id="switch-statement-when-you-have-many-options">Switch Statement (When You Have Many Options)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lab test result classification</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>test_result <span class="ot">&lt;-</span> <span class="fl">8.5</span>  <span class="co"># Hemoglobin g/dL</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (test_result <span class="sc">&lt;</span> <span class="dv">7</span>) {</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  severity <span class="ot">&lt;-</span> <span class="st">"Critical"</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (test_result <span class="sc">&lt;</span> <span class="dv">8</span>) {</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  severity <span class="ot">&lt;-</span> <span class="st">"Severe"</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (test_result <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  severity <span class="ot">&lt;-</span> <span class="st">"Moderate"</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (test_result <span class="sc">&lt;</span> <span class="dv">12</span>) {</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  severity <span class="ot">&lt;-</span> <span class="st">"Mild"</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  severity <span class="ot">&lt;-</span> <span class="st">"Normal"</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co"># OR use switch with intervals:</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>get_severity <span class="ot">&lt;-</span> <span class="cf">function</span>(hgb) {</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (hgb <span class="sc">&lt;</span> <span class="dv">7</span>) <span class="fu">return</span>(<span class="st">"Critical"</span>)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (hgb <span class="sc">&lt;</span> <span class="dv">8</span>) <span class="fu">return</span>(<span class="st">"Severe"</span>)</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (hgb <span class="sc">&lt;</span> <span class="dv">10</span>) <span class="fu">return</span>(<span class="st">"Moderate"</span>)</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (hgb <span class="sc">&lt;</span> <span class="dv">12</span>) <span class="fu">return</span>(<span class="st">"Mild"</span>)</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="st">"Normal"</span>)</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">get_severity</span>(<span class="fl">8.5</span>))  <span class="co"># "Moderate"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="loops-repeat-tasks-efficiently" class="level2">
+<h2 class="anchored" data-anchor-id="loops-repeat-tasks-efficiently">8. Loops: Repeat Tasks Efficiently</h2>
+<section id="the-concept-do-something-over-and-over" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-do-something-over-and-over">The Concept: Do Something Over and Over</h3>
+<p>A <strong>loop</strong> is like reading a checklist: - “Check blood pressure for patient 1” - “Check blood pressure for patient 2” - …repeat for all 100 patients</p>
+</section>
+<section id="real-clinical-example-patient-screening" class="level3">
+<h3 class="anchored" data-anchor-id="real-clinical-example-patient-screening">Real Clinical Example: Patient Screening</h3>
+<p>You need to check 5 patients’ lab results:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WITHOUT loop (tedious)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>glucose_1 <span class="ot">&lt;-</span> <span class="dv">245</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>status_1 <span class="ot">&lt;-</span> <span class="cf">if</span> (glucose_1 <span class="sc">&gt;</span> <span class="dv">200</span>) <span class="st">"At Risk"</span> <span class="cf">else</span> <span class="st">"Normal"</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>glucose_2 <span class="ot">&lt;-</span> <span class="dv">198</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>status_2 <span class="ot">&lt;-</span> <span class="cf">if</span> (glucose_2 <span class="sc">&gt;</span> <span class="dv">200</span>) <span class="st">"At Risk"</span> <span class="cf">else</span> <span class="st">"Normal"</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>glucose_3 <span class="ot">&lt;-</span> <span class="dv">310</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>status_3 <span class="ot">&lt;-</span> <span class="cf">if</span> (glucose_3 <span class="sc">&gt;</span> <span class="dv">200</span>) <span class="st">"At Risk"</span> <span class="cf">else</span> <span class="st">"Normal"</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ... repeat 47 more times for 50 patients!</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># WITH loop (clean)</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>glucose_readings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">198</span>, <span class="dv">310</span>, <span class="dv">185</span>, <span class="dv">225</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (glucose <span class="cf">in</span> glucose_readings) {</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (glucose <span class="sc">&gt;</span> <span class="dv">200</span>) {</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Glucose:"</span>, glucose, <span class="st">"→ AT RISK"</span>))</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Glucose:"</span>, glucose, <span class="st">"→ Normal"</span>))</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Output:</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Glucose: 245 → AT RISK</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Glucose: 198 → Normal</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Glucose: 310 → AT RISK</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Glucose: 185 → Normal</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Glucose: 225 → AT RISK</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="loop-over-rows-in-a-data-frame" class="level3">
+<h3 class="anchored" data-anchor-id="loop-over-rows-in-a-data-frame">Loop Over Rows in a Data Frame</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check all patients in a clinical trial</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>trial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient =</span> <span class="fu">c</span>(<span class="st">"P001"</span>, <span class="st">"P002"</span>, <span class="st">"P003"</span>),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi =</span> <span class="fu">c</span>(<span class="fl">24.5</span>, <span class="fl">32.1</span>, <span class="fl">26.8</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(trial)) {</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  patient_id <span class="ot">&lt;-</span> trial[i, <span class="st">"patient"</span>]</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  bmi_value <span class="ot">&lt;-</span> trial[i, <span class="st">"bmi"</span>]</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (bmi_value <span class="sc">&gt;</span> <span class="dv">30</span>) {</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(patient_id, <span class="st">"is obese (BMI ="</span>, bmi_value, <span class="st">")"</span>))</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(patient_id, <span class="st">"is normal (BMI ="</span>, bmi_value, <span class="st">")"</span>))</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Output:</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co"># P001 is normal (BMI = 24.5 )</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co"># P002 is obese (BMI = 32.1 )</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co"># P003 is normal (BMI = 26.8 )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="string-handling-working-with-text" class="level2">
+<h2 class="anchored" data-anchor-id="string-handling-working-with-text">9. String Handling: Working With Text</h2>
+<section id="the-concept-text-manipulation" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-text-manipulation">The Concept: Text Manipulation</h3>
+<p>Clinical data often includes notes, diagnoses, and comments. R can: - Combine text (concatenate) - Extract parts of text - Search for patterns - Replace words</p>
+</section>
+<section id="real-clinical-notes-example" class="level3">
+<h3 class="anchored" data-anchor-id="real-clinical-notes-example">Real Clinical Notes Example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="ot">&lt;-</span> <span class="st">"John"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="ot">&lt;-</span> <span class="st">"Smith"</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>diagnosis <span class="ot">&lt;-</span> <span class="st">"Type 2 Diabetes"</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine text</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>full_note <span class="ot">&lt;-</span> <span class="fu">paste</span>(first_name, last_name, <span class="st">"diagnosed with"</span>, diagnosis)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full_note)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: "John Smith diagnosed with Type 2 Diabetes"</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract parts</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"Patient: John Smith, Age: 52, Diagnosis: HTN"</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>name_part <span class="ot">&lt;-</span> <span class="fu">substr</span>(text, <span class="dv">9</span>, <span class="dv">19</span>)  <span class="co"># Extract "John Smith"</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(name_part)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace text</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>original <span class="ot">&lt;-</span> <span class="st">"The patient has diabtes"</span>  <span class="co"># Typo</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>corrected <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"diabtes"</span>, <span class="st">"diabetes"</span>, original)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(corrected)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: "The patient has diabetes"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="clinical-research-example-processing-lab-reports" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-research-example-processing-lab-reports">Clinical Research Example: Processing Lab Reports</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lab report text</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>report <span class="ot">&lt;-</span> <span class="st">"WBC: 7.5 K/uL, Hemoglobin: 14.2 g/dL, Platelets: 250 K/uL"</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if abnormal values are mentioned</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>is_normal <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"abnormal|low|high"</span>, report, <span class="at">ignore.case=</span><span class="cn">TRUE</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(is_normal)  <span class="co"># TRUE (no abnormal values flagged)</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count number of tests</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>num_tests <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">strsplit</span>(report, <span class="st">","</span>)[[<span class="dv">1</span>]])</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(num_tests)  <span class="co"># 3 tests reported</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="dates-times-handling-time-based-data" class="level2">
+<h2 class="anchored" data-anchor-id="dates-times-handling-time-based-data">10. Dates &amp; Times: Handling Time-Based Data</h2>
+<section id="the-concept-calendar-and-clock-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-calendar-and-clock-data">The Concept: Calendar and Clock Data</h3>
+<p>Clinical research involves timing: - When was a patient enrolled? - How many days until follow-up? - What’s the time between baseline and week 12?</p>
+</section>
+<section id="real-clinical-trial-timeline" class="level3">
+<h3 class="anchored" data-anchor-id="real-clinical-trial-timeline">Real Clinical Trial Timeline</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Patient enrolled on January 15, 2024</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Follow-up scheduled 30 days later</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>enroll_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2024-01-15"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>followup_date <span class="ot">&lt;-</span> enroll_date <span class="sc">+</span> <span class="dv">30</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(followup_date)  <span class="co"># 2024-02-14</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># How many days between events?</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>days_passed <span class="ot">&lt;-</span> followup_date <span class="sc">-</span> enroll_date</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(days_passed)  <span class="co"># 30 days</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Is follow-up overdue? (scheduled for 35 days)</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (days_passed <span class="sc">&gt;</span> <span class="dv">35</span>) {</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"WARNING: Follow-up is overdue!"</span>)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="track-patient-visits" class="level3">
+<h3 class="anchored" data-anchor-id="track-patient-visits">Track Patient Visits</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A patient's visit schedule</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>visits <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">visit_date =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2024-01-15"</span>, <span class="st">"2024-02-14"</span>, <span class="st">"2024-04-15"</span>)),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">visit_type =</span> <span class="fu">c</span>(<span class="st">"Baseline"</span>, <span class="st">"Week 4"</span>, <span class="st">"Week 12"</span>),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">glucose =</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">215</span>, <span class="dv">185</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># How long between baseline and week 4?</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>days_to_week4 <span class="ot">&lt;-</span> visits[<span class="dv">2</span>, <span class="st">"visit_date"</span>] <span class="sc">-</span> visits[<span class="dv">1</span>, <span class="st">"visit_date"</span>]</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(days_to_week4)  <span class="co"># 30 days</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Show visit dates nicely</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(visits)) {</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  date_str <span class="ot">&lt;-</span> <span class="fu">format</span>(visits[i, <span class="st">"visit_date"</span>], <span class="st">"%B %d, %Y"</span>)  <span class="co"># "January 15, 2024"</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(visits[i, <span class="st">"visit_type"</span>], <span class="st">"→"</span>, date_str))</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="apply-family-smart-loops-for-professionals" class="level2">
+<h2 class="anchored" data-anchor-id="apply-family-smart-loops-for-professionals">11. Apply Family: Smart Loops for Professionals</h2>
+<section id="the-concept-vectorized-operations-rs-superpower" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-vectorized-operations-rs-superpower">The Concept: Vectorized Operations (R’s Superpower)</h3>
+<p><strong>Loops are slow.</strong> R has a faster way called “apply family”:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SLOW approach (loop)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>squared <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> numbers) {</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  squared <span class="ot">&lt;-</span> <span class="fu">c</span>(squared, i<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># FAST approach (vectorized)</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>squared <span class="ot">&lt;-</span> numbers<span class="sc">^</span><span class="dv">2</span>  <span class="co"># R does all 10 at once!</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># PROFESSIONAL approach (apply family)</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>squared <span class="ot">&lt;-</span> <span class="fu">sapply</span>(numbers, <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="clinical-example-calculate-dose-for-multiple-patients" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-example-calculate-dose-for-multiple-patients">Clinical Example: Calculate Dose for Multiple Patients</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 patients need weight-based dosing (5 mg/kg)</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>patient_weights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">82</span>, <span class="dv">68</span>, <span class="dv">95</span>, <span class="dv">70</span>, <span class="dv">88</span>, <span class="dv">65</span>, <span class="dv">92</span>, <span class="dv">78</span>, <span class="dv">85</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate dose for each using sapply</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>doses <span class="ot">&lt;-</span> <span class="fu">sapply</span>(patient_weights, <span class="cf">function</span>(w) w <span class="sc">*</span> <span class="dv">5</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(doses)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: 375 410 340 475 350 440 325 460 390 425</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="more-apply-functions" class="level3">
+<h3 class="anchored" data-anchor-id="more-apply-functions">More Apply Functions</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lapply returns a list</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tapply groups by category</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>glucose <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">198</span>, <span class="dv">310</span>, <span class="dv">185</span>, <span class="dv">225</span>, <span class="dv">200</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Drug_A"</span>, <span class="st">"Drug_B"</span>, <span class="st">"Drug_A"</span>, <span class="st">"Drug_B"</span>, <span class="st">"Drug_A"</span>, <span class="st">"Drug_B"</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>avg_by_group <span class="ot">&lt;-</span> <span class="fu">tapply</span>(glucose, group, mean)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Drug_A: 260, Drug_B: 191.67</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="matrices-2d-data-structures" class="level2">
+<h2 class="anchored" data-anchor-id="matrices-2d-data-structures">12. Matrices: 2D Data Structures</h2>
+<section id="the-concept-tables-of-numbers" class="level3">
+<h3 class="anchored" data-anchor-id="the-concept-tables-of-numbers">The Concept: Tables of Numbers</h3>
+<p>A <strong>matrix</strong> is a rectangular grid of numbers (like a spreadsheet with only numbers).</p>
+</section>
+<section id="clinical-example-correlation-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-example-correlation-matrix">Clinical Example: Correlation Matrix</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lab values for 4 patients</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>patient_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">245</span>, <span class="dv">185</span>, <span class="dv">65</span>,      <span class="co"># Patient 1: glucose, LDL, HDL</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">198</span>, <span class="dv">210</span>, <span class="dv">55</span>,      <span class="co"># Patient 2</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">310</span>, <span class="dv">240</span>, <span class="dv">48</span>,      <span class="co"># Patient 3</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">225</span>, <span class="dv">195</span>, <span class="dv">60</span>       <span class="co"># Patient 4</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">4</span>,</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">3</span>,</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"P001"</span>, <span class="st">"P002"</span>, <span class="st">"P003"</span>, <span class="st">"P004"</span>),</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"Glucose"</span>, <span class="st">"LDL"</span>, <span class="st">"HDL"</span>)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(patient_data)</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate average for each column</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>col_means <span class="ot">&lt;-</span> <span class="fu">apply</span>(patient_data, <span class="dv">2</span>, mean)</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(col_means)</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Glucose: 244.5, LDL: 207.5, HDL: 57</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="interactive-webr-playground" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-webr-playground">13. Interactive WebR Playground</h2>
+<p>Try R code directly in your browser! No installation needed.</p>
+<div id="webr-playground" style="border:3px solid #2c5aa0; padding:20px; background:#f5f9ff; border-radius:8px; margin:20px 0;">
+<div id="webr-status" style="font-weight:bold; color:#0066cc; font-size:16px; margin-bottom:12px;">
+🔄 WebR: Initializing…
+</div>
+<div style="margin-bottom:15px;">
+<pre><code>&lt;label for="webr-example" style="font-weight:bold; display:block; margin-bottom:8px;"&gt;&lt;strong&gt;Choose a Concept to Learn:&lt;/strong&gt;&lt;/label&gt;
+&lt;select id="webr-example" style="padding:10px; width:100%; max-width:500px; font-size:14px; border:2px solid #0066cc; border-radius:4px;"&gt;
+  &lt;option value="ex1"&gt;🏥 Example 1: Variables (Patient Age &amp; BMI)&lt;/option&gt;
+  &lt;option value="ex2"&gt;📊 Example 2: Vectors (Weekly Glucose Readings)&lt;/option&gt;
+  &lt;option value="ex3"&gt;📋 Example 3: Data Frame (Clinical Trial Data)&lt;/option&gt;
+  &lt;option value="ex4"&gt;🚨 Example 4: Control Flow (Fever Alert)&lt;/option&gt;
+  &lt;option value="ex5"&gt;🔄 Example 5: Loops (Patient Screening)&lt;/option&gt;
+  &lt;option value="ex6"&gt;⚙️ Example 6: Functions (BMI Calculator)&lt;/option&gt;
+  &lt;option value="ex7"&gt;📈 Example 7: Apply Family (Dose Calculation)&lt;/option&gt;
+  &lt;option value="ex8"&gt;📝 Example 8: String Handling (Lab Notes)&lt;/option&gt;
+  &lt;option value="ex9"&gt;📅 Example 9: Dates (Patient Follow-up)&lt;/option&gt;
+  &lt;option value="ex10"&gt;🎯 Example 10: Statistics (Summary Data)&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+</div>
+<div style="margin-bottom:12px;">
+<pre><code>&lt;button id="webr-load" style="padding:10px 20px; background:#0066cc; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-right:8px;"&gt;📂 Load Example&lt;/button&gt;
+&lt;button id="webr-run" style="padding:10px 20px; background:#00aa00; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;"&gt;▶️ Run Code&lt;/button&gt;</code></pre>
+</div>
+<div style="margin-bottom:12px;">
+<pre><code>&lt;label style="font-weight:bold; display:block; margin-bottom:6px;"&gt;📄 Your Code:&lt;/label&gt;
+&lt;pre id="webr-code" style="background:#ffffff; padding:12px; border:2px solid #ddd; border-radius:4px; font-family:'Courier New'; overflow-x:auto; min-height:100px; white-space:pre-wrap; max-height:300px; overflow-y:auto; font-size:13px;"&gt;&lt;/pre&gt;</code></pre>
+</div>
+<div>
+<pre><code>&lt;label style="font-weight:bold; display:block; margin-bottom:6px;"&gt;💻 Output (Results):&lt;/label&gt;
+&lt;pre id="webr-output" style="background:#1a1a1a; color:#00ff00; padding:12px; border:2px solid #333; border-radius:4px; font-family:'Courier New'; min-height:120px; overflow-y:auto; max-height:300px; font-size:13px;"&gt;&lt;/pre&gt;</code></pre>
+</div>
+</div>
+<script type="module">
+import WebR from 'https://webr.r-wasm.org/latest/webr.mjs'
+
+const status = document.getElementById('webr-status')
+const codeEl = document.getElementById('webr-code')
+const outEl = document.getElementById('webr-output')
+const select = document.getElementById('webr-example')
+const loadBtn = document.getElementById('webr-load')
+const runBtn = document.getElementById('webr-run')
+
+const examples = {
+  ex1: `# Example 1: Variables (Patient BMI)
+patient_name <- "John Smith"
+patient_age <- 52
+patient_weight <- 85    # kg
+patient_height <- 175   # cm
+
+# Calculate BMI
+height_m <- patient_height / 100
+bmi <- patient_weight / (height_m ^ 2)
+
+cat("Patient:", patient_name, "\\n")
+cat("Age:", patient_age, "\\n")
+cat("Weight:", patient_weight, "kg\\n")
+cat("Height:", patient_height, "cm\\n")
+cat("BMI:", round(bmi, 1), "\\n")
+
+if (bmi > 30) {
+  cat("Status: OBESE - Clinical intervention recommended\\n")
+} else if (bmi > 25) {
+  cat("Status: OVERWEIGHT - Lifestyle changes recommended\\n")
+} else {
+  cat("Status: NORMAL - Maintain current weight\\n")
+}`,
+
+  ex2: `# Example 2: Vectors (Weekly Glucose Readings)
+# Patient on new diabetes medication - track glucose
+week <- 1:6
+glucose <- c(245, 238, 225, 212, 198, 185)
+
+cat("=== 6-Week Diabetes Management ===\\n")
+for (i in 1:length(week)) {
+  cat("Week", week[i], ": Glucose =", glucose[i], "mg/dL")
+  if (glucose[i] > 200) {
+    cat(" ⚠️ HIGH\\n")
+  } else if (glucose[i] > 120) {
+    cat(" ⚡ IMPROVING\\n")
+  } else {
+    cat(" ✓ CONTROLLED\\n")
+  }
+}
+
+cat("\\n=== Summary Statistics ===\\n")
+cat("Average glucose:", round(mean(glucose), 1), "mg/dL\\n")
+cat("Improvement:", glucose[1] - glucose[6], "mg/dL\\n")`,
+
+  ex3: `# Example 3: Data Frame (Clinical Trial)
+trial <- data.frame(
+  patient_id = c("P001", "P002", "P003", "P004"),
+  baseline_glucose = c(245, 198, 310, 225),
+  week_12_glucose = c(185, 175, 220, 190),
+  treatment = c("Drug_A", "Drug_B", "Drug_A", "Placebo")
+)
+
+cat("=== CLINICAL TRIAL RESULTS ===\\n\\n")
+print(trial)
+
+cat("\\n=== Treatment Effectiveness ===\\n")
+improvement <- trial$baseline_glucose - trial$week_12_glucose
+trial$improvement <- improvement
+
+for (i in 1:nrow(trial)) {
+  imp <- trial[i, "improvement"]
+  pct <- round((imp / trial[i, "baseline_glucose"]) * 100, 1)
+  cat(trial[i, "patient_id"], "-", trial[i, "treatment"], 
+      "→ Improved", imp, "mg/dL (", pct, "%)\\n")
+}`,
+
+  ex4: `# Example 4: Control Flow (Fever Alert System)
+# Hospital monitoring 4 patients
+patients <- data.frame(
+  name = c("Alice", "Bob", "Charlie", "Diana"),
+  temperature = c(36.8, 38.2, 39.5, 37.1)
+)
+
+cat("=== FEVER ALERT SYSTEM ===\\n\\n")
+
+for (i in 1:nrow(patients)) {
+  name <- patients[i, "name"]
+  temp <- patients[i, "temperature"]
+  
+  cat(name, "- Temperature:", temp, "°C → ")
+  
+  if (temp > 39) {
+    cat("🔴 CRITICAL - Notify physician immediately!\\n")
+  } else if (temp > 38.5) {
+    cat("🟠 HIGH FEVER - Monitor closely\\n")
+  } else if (temp > 37.5) {
+    cat("🟡 MILD ELEVATION - Continue monitoring\\n")
+  } else {
+    cat("🟢 NORMAL\\n")
+  }
+}`,
+
+  ex5: `# Example 5: Loops (Patient Screening)
+# Screen 5 patients for diabetes risk
+patients <- data.frame(
+  name = c("Alice", "Bob", "Charlie", "Diana", "Eve"),
+  fasting_glucose = c(245, 110, 310, 198, 125),
+  age = c(52, 35, 58, 48, 42)
+)
+
+cat("=== DIABETES RISK SCREENING ===\\n\\n")
+
+for (i in 1:nrow(patients)) {
+  glucose <- patients[i, "fasting_glucose"]
+  age <- patients[i, "age"]
+  name <- patients[i, "name"]
+  
+  if (glucose > 200 & age > 45) {
+    risk <- "HIGH"
+    symbol <- "🔴"
+  } else if (glucose > 150 | age > 60) {
+    risk <- "MODERATE"
+    symbol <- "🟠"
+  } else {
+    risk <- "LOW"
+    symbol <- "🟢"
+  }
+  
+  cat(symbol, name, "- Glucose:", glucose, "/ Age:", age, "→", risk, "\\n")
+}`,
+
+  ex6: `# Example 6: Functions (BMI Calculator)
+# Create reusable BMI calculator
+calc_bmi <- function(weight_kg, height_cm) {
+  height_m <- height_cm / 100
+  bmi <- weight_kg / (height_m ^ 2)
+  return(bmi)
+}
+
+# Get BMI category
+get_category <- function(bmi) {
+  if (bmi < 18.5) return("Underweight")
+  if (bmi < 25) return("Normal")
+  if (bmi < 30) return("Overweight")
+  return("Obese")
+}
+
+# Apply to multiple patients
+patients <- data.frame(
+  name = c("Alice", "Bob", "Charlie"),
+  weight_kg = c(65, 85, 72),
+  height_cm = c(160, 180, 175)
+)
+
+cat("=== BMI ASSESSMENT ===\\n\\n")
+for (i in 1:nrow(patients)) {
+  bmi <- calc_bmi(patients[i, "weight_kg"], patients[i, "height_cm"])
+  cat <- get_category(bmi)
+  cat(patients[i, "name"], "- BMI:", round(bmi, 1), "(", cat, ")\\n")
+}`,
+
+  ex7: `# Example 7: Apply Family (Dose Calculation)
+# Calculate medication dose for multiple patients
+# Dose = weight (kg) × 5 mg/kg
+
+patient_weights <- c(75, 82, 68, 95, 70)
+
+# Using sapply (fast & clean)
+doses <- sapply(patient_weights, function(w) w * 5)
+
+cat("=== MEDICATION DOSING ===\\n\\n")
+for (i in 1:length(patient_weights)) {
+  cat("Patient", i, "- Weight:", patient_weights[i], "kg →", 
+      "Dose:", doses[i], "mg\\n")
+}
+
+cat("\\n=== Summary ===\\n")
+cat("Total medication needed:", sum(doses), "mg\\n")
+cat("Average dose:", round(mean(doses), 1), "mg\\n")`,
+
+  ex8: `# Example 8: String Handling (Lab Notes)
+# Process clinical laboratory notes
+note <- "Patient: John Smith, Age: 52, WBC: 8.5 K/uL, Hemoglobin: 12.5 g/dL"
+
+cat("=== LAB REPORT PROCESSING ===\\n\\n")
+cat("Original:", note, "\\n\\n")
+
+# Find if abnormal
+is_abnormal <- grepl("abnormal|critical|low|high", note, ignore.case=TRUE)
+cat("Contains abnormal flags?", is_abnormal, "\\n\\n")
+
+# Count tests
+num_tests <- length(strsplit(note, ",")[[1]])
+cat("Number of items:", num_tests, "\\n\\n")
+
+# Extract patient name
+name_part <- substr(note, 10, 20)
+cat("Patient name (extracted):", name_part, "\\n\\n")
+
+# Correct typos
+note_with_typo <- "The patient has diabtes and hyprtension"
+corrected <- gsub("diabtes", "diabetes", note_with_typo)
+corrected <- gsub("hyprtension", "hypertension", corrected)
+cat("Corrected note:", corrected, "\\n")`,
+
+  ex9: `# Example 9: Dates (Patient Follow-up)
+# Track patient visits and appointments
+visit_dates <- as.Date(c("2024-01-15", "2024-02-14", "2024-04-15"))
+visit_names <- c("Baseline", "Week 4", "Week 12")
+
+cat("=== PATIENT FOLLOW-UP SCHEDULE ===\\n\\n")
+
+for (i in 1:length(visit_dates)) {
+  date <- visit_dates[i]
+  name <- visit_names[i]
+  
+  # Format date nicely
+  date_str <- format(date, "%A, %B %d, %Y")
+  cat(name, "→", date_str, "\\n")
+}
+
+# Time between visits
+cat("\\n=== TIME INTERVALS ===\\n")
+for (i in 2:length(visit_dates)) {
+  days <- as.numeric(visit_dates[i] - visit_dates[i-1])
+  cat(visit_names[i-1], "to", visit_names[i], "→", days, "days\\n")
+}
+
+# Is follow-up overdue?
+today <- Sys.Date()
+next_visit <- visit_dates[length(visit_dates)]
+if (today > next_visit + 7) {
+  cat("\\n⚠️ WARNING: Patient is", 
+      as.numeric(today - next_visit), "days overdue!\\n")
+}`,
+
+  ex10: `# Example 10: Statistics (Summary Data)
+# Generate summary statistics from patient data
+glucose_readings <- c(245, 238, 225, 212, 198, 185, 195, 210, 220, 205)
+
+cat("=== PATIENT GLUCOSE ANALYSIS ===\\n\\n")
+cat("Raw data:", paste(glucose_readings, collapse=", "), "\\n\\n")
+
+cat("=== DESCRIPTIVE STATISTICS ===\\n")
+cat("N (observations):", length(glucose_readings), "\\n")
+cat("Mean (average):", round(mean(glucose_readings), 1), "mg/dL\\n")
+cat("Median (middle):", round(median(glucose_readings), 1), "mg/dL\\n")
+cat("SD (spread):", round(sd(glucose_readings), 1), "mg/dL\\n")
+cat("Min (lowest):", min(glucose_readings), "mg/dL\\n")
+cat("Max (highest):", max(glucose_readings), "mg/dL\\n")
+
+cat("\\n=== RISK CLASSIFICATION ===\\n")
+high_risk <- sum(glucose_readings > 200)
+normal <- sum(glucose_readings <= 120)
+cat("Readings > 200 (high):", high_risk, "\\n")
+cat("Readings ≤ 120 (controlled):", normal, "\\n")
+cat("Percentage controlled:", round((normal/length(glucose_readings))*100, 1), "%\\n")`
+}
+
+codeEl.textContent = examples[select.value]
+
+let webR = null
+
+async function initWebR() {
+  status.textContent = '⏳ WebR: Initializing... (5-10 seconds first time, then instant)'
+  try {
+    webR = new WebR()
+    await webR.init()
+    status.textContent = '✅ WebR: Ready! Click "Run Code" to execute.'
+  } catch(err) {
+    status.textContent = '❌ WebR: Failed to initialize. ' + err.toString()
+  }
+}
+
+loadBtn.addEventListener('click', () => {
+  codeEl.textContent = examples[select.value]
+  outEl.textContent = '👉 Click "Run Code" to see output'
+})
+
+runBtn.addEventListener('click', async () => {
+  if (!webR) await initWebR()
+  outEl.textContent = '⏳ Running...'
+  try {
+    const code = codeEl.textContent
+    const result = await webR.evalR(code)
+    const output = await result.toString()
+    outEl.textContent = output || '(No output)'
+  } catch(err) {
+    outEl.textContent = '❌ Error: ' + err.toString()
+  }
+})
+
+// Initialize on page load
+window.addEventListener('load', () => {
+  loadBtn.click()
+})
+</script>
+<hr>
+</section>
+<section id="exercises-practice" class="level2">
+<h2 class="anchored" data-anchor-id="exercises-practice">14. Exercises &amp; Practice</h2>
+<section id="easy-start-here" class="level3">
+<h3 class="anchored" data-anchor-id="easy-start-here">Easy (Start Here)</h3>
+<p><strong>1. Patient Age &amp; Weight</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create variables for a patient</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">45</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="dv">80</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate age in months and weight in pounds</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>age_months <span class="ot">&lt;-</span> age <span class="sc">*</span> <span class="dv">12</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>weight_pounds <span class="ot">&lt;-</span> weight <span class="sc">*</span> <span class="fl">2.2</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_months)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(weight_pounds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Vector of Lab Values</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of cholesterol readings</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">210</span>, <span class="dv">195</span>, <span class="dv">240</span>, <span class="dv">185</span>, <span class="dv">220</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find average, min, max</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(cholesterol)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>highest <span class="ot">&lt;-</span> <span class="fu">max</span>(cholesterol)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>lowest <span class="ot">&lt;-</span> <span class="fu">min</span>(cholesterol)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(avg)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(highest)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lowest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>3. Simple Control Flow</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check blood pressure</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>systolic <span class="ot">&lt;-</span> <span class="dv">145</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (systolic <span class="sc">&gt;</span> <span class="dv">140</span>) {</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Stage 2 Hypertension - Require treatment"</span>)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (systolic <span class="sc">&gt;</span> <span class="dv">130</span>) {</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Stage 1 Hypertension - Monitor"</span>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Normal blood pressure"</span>)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="intermediate" class="level3">
+<h3 class="anchored" data-anchor-id="intermediate">Intermediate</h3>
+<p><strong>4. Loop Through Patient Data</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Patient temperatures</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">36.8</span>, <span class="fl">38.2</span>, <span class="fl">39.5</span>, <span class="fl">37.1</span>, <span class="fl">40.1</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (temp <span class="cf">in</span> temps) {</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (temp <span class="sc">&gt;</span> <span class="dv">39</span>) {</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"FEVER:"</span>, temp, <span class="st">"°C"</span>))</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Normal:"</span>, temp, <span class="st">"°C"</span>))</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>5. Create and Use a Function</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate ideal body weight (Devine formula for males)</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ideal_bmi <span class="ot">&lt;-</span> <span class="cf">function</span>(height_cm) {</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  height_inches <span class="ot">&lt;-</span> height_cm <span class="sc">/</span> <span class="fl">2.54</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  ibw <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">2.3</span> <span class="sc">*</span> (height_inches <span class="sc">-</span> <span class="dv">60</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ibw)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use it</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="dv">175</span>  <span class="co"># cm</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>target_weight <span class="ot">&lt;-</span> <span class="fu">ideal_bmi</span>(height)</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Ideal weight for"</span>, height, <span class="st">"cm is"</span>, <span class="fu">round</span>(target_weight, <span class="dv">1</span>), <span class="st">"kg"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="advanced" class="level3">
+<h3 class="anchored" data-anchor-id="advanced">Advanced</h3>
+<p><strong>6. Data Frame Analysis</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataset and analyze</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">45</span>, <span class="dv">58</span>, <span class="dv">50</span>, <span class="dv">48</span>),</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">glucose =</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">198</span>, <span class="dv">310</span>, <span class="dv">225</span>, <span class="dv">180</span>),</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">on_insulin =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Find average glucose</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>avg_glucose <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients<span class="sc">$</span>glucose)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Find insulin users</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>insulin_users <span class="ot">&lt;-</span> patients[patients<span class="sc">$</span>on_insulin <span class="sc">==</span> <span class="cn">TRUE</span>, ]</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate statistics</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Average glucose:"</span>, avg_glucose, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number on insulin:"</span>, <span class="fu">nrow</span>(insulin_users), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="quick-reference-card" class="level2">
+<h2 class="anchored" data-anchor-id="quick-reference-card">Quick Reference Card</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Code Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assign variable</td>
+<td><code>x &lt;- 10</code></td>
+</tr>
+<tr class="even">
+<td>Create vector</td>
+<td><code>v &lt;- c(10, 20, 30)</code></td>
+</tr>
+<tr class="odd">
+<td>Get vector mean</td>
+<td><code>mean(v)</code></td>
+</tr>
+<tr class="even">
+<td>Create data frame</td>
+<td><code>df &lt;- data.frame(name=c('A','B'), age=c(25,30))</code></td>
+</tr>
+<tr class="odd">
+<td>Get data frame column</td>
+<td><code>df$name</code></td>
+</tr>
+<tr class="even">
+<td>If statement</td>
+<td><code>if (x &gt; 5) { ... }</code></td>
+</tr>
+<tr class="odd">
+<td>For loop</td>
+<td><code>for (i in 1:5) { print(i) }</code></td>
+</tr>
+<tr class="even">
+<td>Define function</td>
+<td><code>f &lt;- function(x) { return(x*2) }</code></td>
+</tr>
+<tr class="odd">
+<td>Apply function</td>
+<td><code>sapply(c(1,2,3), function(x) x^2)</code></td>
+</tr>
+<tr class="even">
+<td>Read CSV</td>
+<td><code>df &lt;- read.csv("file.csv")</code></td>
+</tr>
+<tr class="odd">
+<td>Get today’s date</td>
+<td><code>Sys.Date()</code></td>
+</tr>
+<tr class="even">
+<td>Vector statistics</td>
+<td><code>mean(), median(), sd(), min(), max()</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="resources-for-continued-learning" class="level2">
+<h2 class="anchored" data-anchor-id="resources-for-continued-learning">Resources for Continued Learning</h2>
+<ul>
+<li><strong>Official R Manual:</strong> https://cran.r-project.org/manuals.html</li>
+<li><strong>R for Data Science (Free Book):</strong> https://r4ds.had.co.nz/</li>
+<li><strong>RStudio Education:</strong> https://education.rstudio.com/</li>
+<li><strong>Clinical R Resources:</strong> https://www.pharmaverse.org/</li>
+<li><strong>Stack Overflow</strong> (tag <code>[r]</code>): Best community Q&amp;A</li>
+<li><strong>YouTube:</strong> “R for Beginners” and “Clinical R Programming”</li>
+</ul>
+<hr>
+</section>
+<section id="why-r-will-transform-your-clinical-work" class="level2">
+<h2 class="anchored" data-anchor-id="why-r-will-transform-your-clinical-work">Why R Will Transform Your Clinical Work</h2>
+<p>✅ Write analysis in <strong>20 lines instead of 200</strong><br>
+✅ Share reproducible code (instead of manual Excel spreadsheets)<br>
+✅ Create publication-ready graphics instantly<br>
+✅ Automate routine data cleaning and analysis<br>
+✅ Collaborate with biostatisticians seamlessly<br>
+✅ Join a global community of 2+ million R users</p>
+<p><strong>You’ve got this!</strong> Start with the WebR playground above, try the examples, and remember: every expert R programmer was once a beginner asking “What does &lt;- mean?”</p>
+<hr>
 <p><a href="./index.html">Back to home</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -4,6 +4,1296 @@ title: "R — Getting Started"
 
 # R Programming Tutorials
 
-Placeholder for R tutorials and examples. Add exercises and datasets here.
+Welcome! This is **not** just code snippets. You'll learn R the way professionals do: by understanding **why** we use each concept, with real-world stories, before writing a single line of code.
+
+Whether you're a clinical programmer, SAS expert, statistician, or complete beginner—this tutorial is designed for you.
+
+---
+
+## 1. Introduction to R: Why Does It Matter?
+
+### The Story
+
+Imagine you're a clinical researcher with patient data from 5,000 subjects. You need to:
+- Clean messy data (missing values, typos, wrong formats)
+- Calculate statistics (mean, median, confidence intervals)
+- Create visualizations (plots, charts, tables)
+- Generate a report with all results
+
+**In SAS:** You'd write 50+ lines of PROC code, manage libraries, and wait for compilation.
+
+**In R:** You load a dataset, clean it, analyze it, and visualize it—all in 20 lines. The results appear instantly.
+
+R is a **language designed by statisticians FOR statisticians**. It's like having a super-smart assistant who:
+- Understands data intuitively
+- Can do complex math instantly
+- Creates beautiful visualizations
+- Scales from small datasets to millions of rows
+- Works on any device (Windows, Mac, Linux)
+
+### Why clinicians and SAS programmers switch to R
+
+| Task | SAS | R |
+|------|-----|---|
+| Load CSV | 15 lines | 1 line |
+| Calculate summary stats | 10 lines | 1 line |
+| Create a plot | 20 lines | 2 lines |
+| Manipulate data | 25 lines | 3 lines |
+| Share code | Email .sas files | Share one .R file |
+
+### Getting Started
+
+**Installation is simple:**
+1. Download R from [r-project.org](https://r-project.org)
+2. Download RStudio (free) from [posit.co](https://posit.co) — it makes R much easier
+3. Open RStudio and you're ready
+
+**First command:**
+```r
+print("Hello, R!")  # This prints to the console
+```
+
+That's it! R is waiting for your instructions.
+
+---
+
+## 2. Variables & Operators: Labeled Boxes for Your Data
+
+### The Concept: What is a Variable?
+
+Think of a **variable** like a labeled box in a warehouse:
+- You label it: `salary`
+- You put a value in it: `50000`
+- Later, you can open that box and use what's inside: `salary * 1.1` (10% raise)
+
+### Real-World Story: A Clinical Example
+
+You're a clinical programmer analyzing patient lab values. You have:
+- Patient age: 45 years
+- Weight: 85 kg
+- Drug dose: 250 mg
+
+Instead of repeating these numbers everywhere, you store them in variables:
+
+```r
+patient_age <- 45
+patient_weight <- 85
+drug_dose <- 250
+
+# Now calculate dose per kg
+dose_per_kg <- drug_dose / patient_weight
+print(dose_per_kg)  # Output: 2.94 mg/kg
+```
+
+**Why this matters:** If the dose changes from 250 to 300, you only change ONE number. The calculation updates automatically.
+
+### Operators: What can you do with variables?
+
+#### **Arithmetic Operators** (Math)
+
+| Operator | Meaning | Example | Result |
+|----------|---------|---------|--------|
+| `+` | Add | `10 + 5` | 15 |
+| `-` | Subtract | `10 - 5` | 5 |
+| `*` | Multiply | `10 * 5` | 50 |
+| `/` | Divide | `10 / 5` | 2 |
+| `^` | Power | `2 ^ 3` | 8 |
+| `%%` | Remainder | `10 %% 3` | 1 |
+
+#### **Comparison Operators** (Is this true or false?)
+
+| Operator | Meaning | Example | Result |
+|----------|---------|---------|--------|
+| `==` | Equal to? | `10 == 10` | TRUE |
+| `!=` | Not equal? | `10 != 5` | TRUE |
+| `>` | Greater than? | `10 > 5` | TRUE |
+| `<` | Less than? | `10 < 5` | FALSE |
+| `>=` | Greater or equal? | `10 >= 10` | TRUE |
+| `<=` | Less or equal? | `5 <= 10` | TRUE |
+
+### Practical Hospital Example
+
+A hospital tracks:
+- Patient hemoglobin: 8.5 g/dL
+- Normal range: 12-16 g/dL (for adult males)
+
+```r
+hemoglobin <- 8.5
+is_anemic <- hemoglobin < 12
+print(is_anemic)  # TRUE (patient needs blood transfusion)
+
+# Calculate how much higher it needs to be
+needed_increase <- 12 - hemoglobin
+print(needed_increase)  # 3.5 g/dL
+```
+
+This is how clinical algorithms work: compare, calculate, decide.
+
+---
+
+## 3. Data Types: Different Kinds of Information
+
+### The Concept
+
+Just as you wouldn't store a patient's name in the same way as their age, **R has different data types** for different kinds of information.
+
+### The Four Main Types
+
+#### **1. Numeric (Numbers with decimals)**
+
+```r
+height <- 175.5  # Patient height in cm
+weight <- 82.3   # Patient weight in kg
+BMI <- weight / (height/100)^2
+print(BMI)  # 26.8
+```
+
+**When to use:** Measurements, calculations, weights, heights, lab values, temperatures
+
+#### **2. Integer (Whole numbers)**
+
+```r
+num_patients <- 156  # Exact count
+num_visits <- 3
+year_of_birth <- 1980L  # The 'L' forces integer type
+```
+
+**When to use:** Counts, IDs, years, frequencies
+
+#### **3. Character (Text/Strings)**
+
+```r
+patient_name <- "John Smith"
+diagnosis <- "Type 2 Diabetes"
+hospital <- 'Mayo Clinic'  # Single or double quotes both work
+```
+
+**When to use:** Names, diagnoses, categories, notes, addresses
+
+#### **4. Logical (True/False)**
+
+```r
+is_diabetic <- TRUE
+requires_insulin <- FALSE
+```
+
+**When to use:** Yes/no questions, eligibility checks, flags
+
+### Real-World Clinical Dataset Example
+
+A clinical trial tracks different information:
+
+```r
+# Patient ID 001
+patient_id <- 1001              # Integer: unique identifier
+patient_name <- "Alice Johnson" # Character: person's name
+age <- 52.7                     # Numeric: age in years
+has_hypertension <- TRUE        # Logical: yes/no flag
+systolic_bp <- 145              # Integer: blood pressure
+diastolic_bp <- 92.5            # Numeric: blood pressure
+treatment_group <- "Drug_A"     # Character: category
+enrolled_date <- "2024-01-15"   # Character: date as text (we'll do better later)
+```
+
+### Check What Type Your Data Is
+
+R has a helper function to tell you:
+
+```r
+class(52.7)           # "numeric"
+class(1001)           # "numeric" (even though it's a whole number!)
+class(1001L)          # "integer" (because of the L)
+class("Alice")        # "character"
+class(TRUE)           # "logical"
+```
+
+---
+
+## 4. Vectors: Your First Data Container
+
+### The Concept: A List of Items (All the Same Type)
+
+A **vector** is like a **shopping list**:
+- All items are groceries (same type)
+- Each item is separate but in the same list
+- You can count them, sort them, or find specific ones
+
+Think of patient data from a clinical trial:
+
+```r
+# Cholesterol levels for 5 patients
+cholesterol <- c(210, 195, 240, 185, 220)
+```
+
+That's a **vector** of 5 numbers.
+
+### Real Hospital Example: A Patient's Lab Values Over Time
+
+A diabetic patient has their glucose measured weekly:
+
+```r
+# Glucose readings (mg/dL) over 6 weeks
+week_1 <- 245
+week_2 <- 238
+week_3 <- 225
+week_4 <- 212
+week_5 <- 198
+week_6 <- 185
+
+# OLD WAY (tedious):
+avg <- (week_1 + week_2 + week_3 + week_4 + week_5 + week_6) / 6
+
+# NEW WAY (using a vector):
+glucose_readings <- c(245, 238, 225, 212, 198, 185)
+avg <- mean(glucose_readings)  # Automatic!
+print(avg)  # 217.17
+```
+
+### What Can You Do With Vectors?
+
+#### **Get statistics instantly**
+
+```r
+cholesterol <- c(210, 195, 240, 185, 220, 205)
+
+mean(cholesterol)      # Average: 209.17 (normal for many)
+median(cholesterol)    # Middle value: 212.5
+sd(cholesterol)        # How spread out: 19.89
+min(cholesterol)       # Lowest: 185
+max(cholesterol)       # Highest: 240
+sum(cholesterol)       # Total: 1255
+length(cholesterol)    # How many: 6
+```
+
+#### **Get specific items**
+
+```r
+cholesterol <- c(210, 195, 240, 185, 220, 205)
+
+cholesterol[1]        # First patient: 210
+cholesterol[3]        # Third patient: 240
+cholesterol[c(1,3)]   # First AND third: 210, 240
+cholesterol[-2]       # Everyone EXCEPT second: 210, 240, 185, 220, 205
+```
+
+#### **Filter by condition**
+
+```r
+high_cholesterol <- cholesterol > 200
+print(high_cholesterol)  # TRUE TRUE TRUE FALSE TRUE TRUE
+
+# Get the actual values
+cholesterol[cholesterol > 200]  # 210, 240, 220, 205
+```
+
+### Real Clinical Use Case: Finding High-Risk Patients
+
+```r
+# Blood pressure readings for 8 patients
+systolic <- c(120, 145, 138, 148, 110, 155, 142, 130)
+
+# Who has stage 2 hypertension (>140)?
+high_bp <- systolic > 140
+print(high_bp)  # FALSE TRUE FALSE TRUE FALSE TRUE TRUE FALSE
+
+# How many patients are at risk?
+num_at_risk <- sum(high_bp)  # Counts TRUE values
+print(num_at_risk)  # 3 patients need intervention
+
+# What are their exact readings?
+risky_readings <- systolic[systolic > 140]
+print(risky_readings)  # 145, 148, 155, 142
+```
+
+This is how clinical alerts work—R automatically finds the patients who need attention!
+
+---
+
+## 5. Data Frames: Spreadsheets in R
+
+### The Concept: Organizing Data Like Excel
+
+A **data frame** is like an Excel spreadsheet:
+- Rows = individual records (patients, visits, observations)
+- Columns = variables (name, age, diagnosis, treatment)
+- **Different columns can have different types** (numbers, text, dates)
+
+### Real Clinical Research Example
+
+You're conducting a diabetes study tracking:
+
+```r
+# Create a dataset of 4 patients
+patients <- data.frame(
+  patient_id = c(1001, 1002, 1003, 1004),
+  name = c("Alice", "Bob", "Charlie", "Diana"),
+  age = c(52, 45, 58, 50),
+  glucose_baseline = c(245, 198, 310, 225),
+  treatment = c("Drug_A", "Drug_B", "Drug_A", "Placebo"),
+  improved = c(TRUE, FALSE, TRUE, FALSE)
+)
+
+# View the full dataset
+print(patients)
+```
+
+Output:
+```
+  patient_id    name age glucose_baseline treatment improved
+1        1001   Alice  52              245    Drug_A     TRUE
+2        1002     Bob  45              198    Drug_B    FALSE
+3        1003 Charlie  58              310    Drug_A     TRUE
+4        1004   Diana  50              225   Placebo    FALSE
+```
+
+### Access Your Data Like a Pro
+
+```r
+# Get one column
+patients$name              # "Alice" "Bob" "Charlie" "Diana"
+
+# Get specific rows
+patients[1, ]              # First patient's entire row
+patients[c(1,3), ]         # First AND third patient
+
+# Get specific cell
+patients[2, 3]             # Bob's age: 45
+
+# Logical indexing (find all improved patients)
+improved_patients <- patients[patients$improved == TRUE, ]
+
+# Calculate average baseline glucose
+avg_glucose <- mean(patients$glucose_baseline)
+print(avg_glucose)  # 244.5 mg/dL
+```
+
+### Real Hospital Workflow
+
+```r
+# A hospital has 3 patients in a medication trial
+trial_data <- data.frame(
+  patient = c("P001", "P002", "P003"),
+  medication = c("Aspirin_100mg", "Aspirin_100mg", "Placebo"),
+  baseline_heart_rate = c(72, 88, 75),
+  day_7_heart_rate = c(70, 85, 76),
+  adverse_events = c("None", "Headache", "None")
+)
+
+# Question: Did Aspirin patients improve?
+aspirin_group <- trial_data[trial_data$medication == "Aspirin_100mg", ]
+
+# Calculate average improvement
+baseline_avg <- mean(aspirin_group$baseline_heart_rate)
+day7_avg <- mean(aspirin_group$day_7_heart_rate)
+improvement <- baseline_avg - day7_avg
+
+print(paste("Aspirin patients improved by", round(improvement, 1), "bpm"))
+# Output: "Aspirin patients improved by 3.5 bpm"
+```
+
+---
+
+## 6. Functions: Reusable Instructions
+
+### The Concept: A Recipe or Machine
+
+A **function** is like a **recipe** or **vending machine**:
+- **Input:** Ingredients (or coins)
+- **Process:** Follow instructions (or mechanism)
+- **Output:** Result (meal or snack)
+
+### Why Functions Matter in Clinical Research
+
+Instead of writing the same calculation 50 times:
+
+```r
+# OLD (repetitive, error-prone)
+result1 <- (value1 - min_val) / (max_val - min_val)
+result2 <- (value2 - min_val) / (max_val - min_val)
+result3 <- (value3 - min_val) / (max_val - min_val)
+# ... repeated 50 more times!
+```
+
+Write it ONCE as a function:
+
+```r
+# NEW (clean, reusable)
+normalize_value <- function(value, min_val, max_val) {
+  result <- (value - min_val) / (max_val - min_val)
+  return(result)
+}
+
+# Now use it 50 times easily
+result1 <- normalize_value(value1, 0, 100)
+result2 <- normalize_value(value2, 0, 100)
+result3 <- normalize_value(value3, 0, 100)
+```
+
+### Real Clinical Example: Calculate BMI
+
+```r
+# BMI = weight (kg) / (height (m))^2
+# Instead of calculating this for every patient...
+
+calculate_bmi <- function(weight_kg, height_cm) {
+  height_m <- height_cm / 100
+  bmi <- weight_kg / (height_m ^ 2)
+  return(bmi)
+}
+
+# Now use it for any patient
+bmi_alice <- calculate_bmi(75, 170)     # 26.0
+bmi_bob <- calculate_bmi(82, 175)       # 26.8
+bmi_charlie <- calculate_bmi(95, 180)   # 29.3
+
+print(bmi_alice)    # 26.0
+print(bmi_bob)      # 26.8
+print(bmi_charlie)  # 29.3
+```
+
+### Function with Default Values
+
+In clinical trials, you often use the same dosing formula:
+
+```r
+# Default: Adult dosing
+calculate_dose <- function(patient_weight, dose_per_kg = 5) {
+  total_dose <- patient_weight * dose_per_kg
+  return(total_dose)
+}
+
+# Adult (75 kg): standard dose is 375 mg
+adult_dose <- calculate_dose(75)  # Uses default 5 mg/kg
+print(adult_dose)  # 375
+
+# Child (30 kg): might need different dose
+child_dose <- calculate_dose(30, dose_per_kg = 3)  # Custom 3 mg/kg
+print(child_dose)  # 90
+```
+
+---
+
+## 7. Control Flow: Making Decisions
+
+### The Concept: If-Then Logic
+
+Programs need to make decisions like a nurse:
+- **IF** patient temperature > 38°C, **THEN** alert doctor
+- **IF** glucose < 70 mg/dL, **THEN** give sugar tablet
+- **IF** medication available, **THEN** prescribe it
+
+### Real Hospital Alert System
+
+```r
+patient_temp <- 39.2  # Celsius
+
+if (patient_temp > 38.5) {
+  print("ALERT: Fever detected! Notify physician!")
+} else if (patient_temp > 37.5) {
+  print("WARNING: Slight elevation. Monitor closely.")
+} else {
+  print("Normal temperature.")
+}
+
+# Output: "ALERT: Fever detected! Notify physician!"
+```
+
+### Clinical Decision Tree Example
+
+```r
+# Diabetes risk assessment
+age <- 52
+fasting_glucose <- 245
+family_history <- TRUE
+
+if (fasting_glucose > 200 & age > 45) {
+  risk <- "High"
+} else if (fasting_glucose > 150) {
+  risk <- "Moderate"
+} else {
+  risk <- "Low"
+}
+
+print(paste("Risk level:", risk))
+# Output: "Risk level: High"
+```
+
+### Switch Statement (When You Have Many Options)
+
+```r
+# Lab test result classification
+test_result <- 8.5  # Hemoglobin g/dL
+
+if (test_result < 7) {
+  severity <- "Critical"
+} else if (test_result < 8) {
+  severity <- "Severe"
+} else if (test_result < 10) {
+  severity <- "Moderate"
+} else if (test_result < 12) {
+  severity <- "Mild"
+} else {
+  severity <- "Normal"
+}
+
+# OR use switch with intervals:
+get_severity <- function(hgb) {
+  if (hgb < 7) return("Critical")
+  if (hgb < 8) return("Severe")
+  if (hgb < 10) return("Moderate")
+  if (hgb < 12) return("Mild")
+  return("Normal")
+}
+
+print(get_severity(8.5))  # "Moderate"
+```
+
+---
+
+## 8. Loops: Repeat Tasks Efficiently
+
+### The Concept: Do Something Over and Over
+
+A **loop** is like reading a checklist:
+- "Check blood pressure for patient 1"
+- "Check blood pressure for patient 2"
+- ...repeat for all 100 patients
+
+### Real Clinical Example: Patient Screening
+
+You need to check 5 patients' lab results:
+
+```r
+# WITHOUT loop (tedious)
+glucose_1 <- 245
+status_1 <- if (glucose_1 > 200) "At Risk" else "Normal"
+
+glucose_2 <- 198
+status_2 <- if (glucose_2 > 200) "At Risk" else "Normal"
+
+glucose_3 <- 310
+status_3 <- if (glucose_3 > 200) "At Risk" else "Normal"
+# ... repeat 47 more times for 50 patients!
+
+# WITH loop (clean)
+glucose_readings <- c(245, 198, 310, 185, 225)
+
+for (glucose in glucose_readings) {
+  if (glucose > 200) {
+    print(paste("Glucose:", glucose, "→ AT RISK"))
+  } else {
+    print(paste("Glucose:", glucose, "→ Normal"))
+  }
+}
+
+# Output:
+# Glucose: 245 → AT RISK
+# Glucose: 198 → Normal
+# Glucose: 310 → AT RISK
+# Glucose: 185 → Normal
+# Glucose: 225 → AT RISK
+```
+
+### Loop Over Rows in a Data Frame
+
+```r
+# Check all patients in a clinical trial
+trial <- data.frame(
+  patient = c("P001", "P002", "P003"),
+  bmi = c(24.5, 32.1, 26.8)
+)
+
+for (i in 1:nrow(trial)) {
+  patient_id <- trial[i, "patient"]
+  bmi_value <- trial[i, "bmi"]
+  
+  if (bmi_value > 30) {
+    print(paste(patient_id, "is obese (BMI =", bmi_value, ")"))
+  } else {
+    print(paste(patient_id, "is normal (BMI =", bmi_value, ")"))
+  }
+}
+
+# Output:
+# P001 is normal (BMI = 24.5 )
+# P002 is obese (BMI = 32.1 )
+# P003 is normal (BMI = 26.8 )
+```
+
+---
+
+## 9. String Handling: Working With Text
+
+### The Concept: Text Manipulation
+
+Clinical data often includes notes, diagnoses, and comments. R can:
+- Combine text (concatenate)
+- Extract parts of text
+- Search for patterns
+- Replace words
+
+### Real Clinical Notes Example
+
+```r
+first_name <- "John"
+last_name <- "Smith"
+diagnosis <- "Type 2 Diabetes"
+
+# Combine text
+full_note <- paste(first_name, last_name, "diagnosed with", diagnosis)
+print(full_note)
+# Output: "John Smith diagnosed with Type 2 Diabetes"
+
+# Extract parts
+text <- "Patient: John Smith, Age: 52, Diagnosis: HTN"
+name_part <- substr(text, 9, 19)  # Extract "John Smith"
+print(name_part)
+
+# Replace text
+original <- "The patient has diabtes"  # Typo
+corrected <- gsub("diabtes", "diabetes", original)
+print(corrected)
+# Output: "The patient has diabetes"
+```
+
+### Clinical Research Example: Processing Lab Reports
+
+```r
+# Lab report text
+report <- "WBC: 7.5 K/uL, Hemoglobin: 14.2 g/dL, Platelets: 250 K/uL"
+
+# Check if abnormal values are mentioned
+is_normal <- !grepl("abnormal|low|high", report, ignore.case=TRUE)
+print(is_normal)  # TRUE (no abnormal values flagged)
+
+# Count number of tests
+num_tests <- length(strsplit(report, ",")[[1]])
+print(num_tests)  # 3 tests reported
+```
+
+---
+
+## 10. Dates & Times: Handling Time-Based Data
+
+### The Concept: Calendar and Clock Data
+
+Clinical research involves timing:
+- When was a patient enrolled?
+- How many days until follow-up?
+- What's the time between baseline and week 12?
+
+### Real Clinical Trial Timeline
+
+```r
+# Patient enrolled on January 15, 2024
+# Follow-up scheduled 30 days later
+enroll_date <- as.Date("2024-01-15")
+followup_date <- enroll_date + 30
+
+print(followup_date)  # 2024-02-14
+
+# How many days between events?
+days_passed <- followup_date - enroll_date
+print(days_passed)  # 30 days
+
+# Is follow-up overdue? (scheduled for 35 days)
+if (days_passed > 35) {
+  print("WARNING: Follow-up is overdue!")
+}
+```
+
+### Track Patient Visits
+
+```r
+# A patient's visit schedule
+visits <- data.frame(
+  visit_date = as.Date(c("2024-01-15", "2024-02-14", "2024-04-15")),
+  visit_type = c("Baseline", "Week 4", "Week 12"),
+  glucose = c(245, 215, 185)
+)
+
+# How long between baseline and week 4?
+days_to_week4 <- visits[2, "visit_date"] - visits[1, "visit_date"]
+print(days_to_week4)  # 30 days
+
+# Show visit dates nicely
+for (i in 1:nrow(visits)) {
+  date_str <- format(visits[i, "visit_date"], "%B %d, %Y")  # "January 15, 2024"
+  print(paste(visits[i, "visit_type"], "→", date_str))
+}
+```
+
+---
+
+## 11. Apply Family: Smart Loops for Professionals
+
+### The Concept: Vectorized Operations (R's Superpower)
+
+**Loops are slow.** R has a faster way called "apply family":
+
+```r
+# SLOW approach (loop)
+numbers <- 1:10
+squared <- c()
+for (i in numbers) {
+  squared <- c(squared, i^2)
+}
+
+# FAST approach (vectorized)
+squared <- numbers^2  # R does all 10 at once!
+
+# PROFESSIONAL approach (apply family)
+squared <- sapply(numbers, function(x) x^2)
+```
+
+### Clinical Example: Calculate Dose for Multiple Patients
+
+```r
+# 10 patients need weight-based dosing (5 mg/kg)
+patient_weights <- c(75, 82, 68, 95, 70, 88, 65, 92, 78, 85)
+
+# Calculate dose for each using sapply
+doses <- sapply(patient_weights, function(w) w * 5)
+print(doses)
+# Output: 375 410 340 475 350 440 325 460 390 425
+```
+
+### More Apply Functions
+
+```r
+# lapply returns a list
+results <- lapply(c(2, 3, 4), function(x) x^2)
+
+# tapply groups by category
+glucose <- c(245, 198, 310, 185, 225, 200)
+group <- c("Drug_A", "Drug_B", "Drug_A", "Drug_B", "Drug_A", "Drug_B")
+avg_by_group <- tapply(glucose, group, mean)
+# Drug_A: 260, Drug_B: 191.67
+```
+
+---
+
+## 12. Matrices: 2D Data Structures
+
+### The Concept: Tables of Numbers
+
+A **matrix** is a rectangular grid of numbers (like a spreadsheet with only numbers).
+
+### Clinical Example: Correlation Matrix
+
+```r
+# Lab values for 4 patients
+patient_data <- matrix(
+  c(
+    245, 185, 65,      # Patient 1: glucose, LDL, HDL
+    198, 210, 55,      # Patient 2
+    310, 240, 48,      # Patient 3
+    225, 195, 60       # Patient 4
+  ),
+  nrow = 4,
+  ncol = 3,
+  byrow = TRUE,
+  dimnames = list(
+    c("P001", "P002", "P003", "P004"),
+    c("Glucose", "LDL", "HDL")
+  )
+)
+
+print(patient_data)
+
+# Calculate average for each column
+col_means <- apply(patient_data, 2, mean)
+print(col_means)
+# Glucose: 244.5, LDL: 207.5, HDL: 57
+```
+
+---
+
+## 13. Interactive WebR Playground
+
+Try R code directly in your browser! No installation needed.
+
+<div id="webr-playground" style="border:3px solid #2c5aa0; padding:20px; background:#f5f9ff; border-radius:8px; margin:20px 0;">
+  <div id="webr-status" style="font-weight:bold; color:#0066cc; font-size:16px; margin-bottom:12px;">🔄 WebR: Initializing...</div>
+  
+  <div style="margin-bottom:15px;">
+    <label for="webr-example" style="font-weight:bold; display:block; margin-bottom:8px;"><strong>Choose a Concept to Learn:</strong></label>
+    <select id="webr-example" style="padding:10px; width:100%; max-width:500px; font-size:14px; border:2px solid #0066cc; border-radius:4px;">
+      <option value="ex1">🏥 Example 1: Variables (Patient Age & BMI)</option>
+      <option value="ex2">📊 Example 2: Vectors (Weekly Glucose Readings)</option>
+      <option value="ex3">📋 Example 3: Data Frame (Clinical Trial Data)</option>
+      <option value="ex4">🚨 Example 4: Control Flow (Fever Alert)</option>
+      <option value="ex5">🔄 Example 5: Loops (Patient Screening)</option>
+      <option value="ex6">⚙️ Example 6: Functions (BMI Calculator)</option>
+      <option value="ex7">📈 Example 7: Apply Family (Dose Calculation)</option>
+      <option value="ex8">📝 Example 8: String Handling (Lab Notes)</option>
+      <option value="ex9">📅 Example 9: Dates (Patient Follow-up)</option>
+      <option value="ex10">🎯 Example 10: Statistics (Summary Data)</option>
+    </select>
+  </div>
+  
+  <div style="margin-bottom:12px;">
+    <button id="webr-load" style="padding:10px 20px; background:#0066cc; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-right:8px;">📂 Load Example</button>
+    <button id="webr-run" style="padding:10px 20px; background:#00aa00; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">▶️ Run Code</button>
+  </div>
+  
+  <div style="margin-bottom:12px;">
+    <label style="font-weight:bold; display:block; margin-bottom:6px;">📄 Your Code:</label>
+    <pre id="webr-code" style="background:#ffffff; padding:12px; border:2px solid #ddd; border-radius:4px; font-family:'Courier New'; overflow-x:auto; min-height:100px; white-space:pre-wrap; max-height:300px; overflow-y:auto; font-size:13px;"></pre>
+  </div>
+  
+  <div>
+    <label style="font-weight:bold; display:block; margin-bottom:6px;">💻 Output (Results):</label>
+    <pre id="webr-output" style="background:#1a1a1a; color:#00ff00; padding:12px; border:2px solid #333; border-radius:4px; font-family:'Courier New'; min-height:120px; overflow-y:auto; max-height:300px; font-size:13px;"></pre>
+  </div>
+</div>
+
+<script type="module">
+import WebR from 'https://webr.r-wasm.org/latest/webr.mjs'
+
+const status = document.getElementById('webr-status')
+const codeEl = document.getElementById('webr-code')
+const outEl = document.getElementById('webr-output')
+const select = document.getElementById('webr-example')
+const loadBtn = document.getElementById('webr-load')
+const runBtn = document.getElementById('webr-run')
+
+const examples = {
+  ex1: `# Example 1: Variables (Patient BMI)
+patient_name <- "John Smith"
+patient_age <- 52
+patient_weight <- 85    # kg
+patient_height <- 175   # cm
+
+# Calculate BMI
+height_m <- patient_height / 100
+bmi <- patient_weight / (height_m ^ 2)
+
+cat("Patient:", patient_name, "\\n")
+cat("Age:", patient_age, "\\n")
+cat("Weight:", patient_weight, "kg\\n")
+cat("Height:", patient_height, "cm\\n")
+cat("BMI:", round(bmi, 1), "\\n")
+
+if (bmi > 30) {
+  cat("Status: OBESE - Clinical intervention recommended\\n")
+} else if (bmi > 25) {
+  cat("Status: OVERWEIGHT - Lifestyle changes recommended\\n")
+} else {
+  cat("Status: NORMAL - Maintain current weight\\n")
+}`,
+
+  ex2: `# Example 2: Vectors (Weekly Glucose Readings)
+# Patient on new diabetes medication - track glucose
+week <- 1:6
+glucose <- c(245, 238, 225, 212, 198, 185)
+
+cat("=== 6-Week Diabetes Management ===\\n")
+for (i in 1:length(week)) {
+  cat("Week", week[i], ": Glucose =", glucose[i], "mg/dL")
+  if (glucose[i] > 200) {
+    cat(" ⚠️ HIGH\\n")
+  } else if (glucose[i] > 120) {
+    cat(" ⚡ IMPROVING\\n")
+  } else {
+    cat(" ✓ CONTROLLED\\n")
+  }
+}
+
+cat("\\n=== Summary Statistics ===\\n")
+cat("Average glucose:", round(mean(glucose), 1), "mg/dL\\n")
+cat("Improvement:", glucose[1] - glucose[6], "mg/dL\\n")`,
+
+  ex3: `# Example 3: Data Frame (Clinical Trial)
+trial <- data.frame(
+  patient_id = c("P001", "P002", "P003", "P004"),
+  baseline_glucose = c(245, 198, 310, 225),
+  week_12_glucose = c(185, 175, 220, 190),
+  treatment = c("Drug_A", "Drug_B", "Drug_A", "Placebo")
+)
+
+cat("=== CLINICAL TRIAL RESULTS ===\\n\\n")
+print(trial)
+
+cat("\\n=== Treatment Effectiveness ===\\n")
+improvement <- trial$baseline_glucose - trial$week_12_glucose
+trial$improvement <- improvement
+
+for (i in 1:nrow(trial)) {
+  imp <- trial[i, "improvement"]
+  pct <- round((imp / trial[i, "baseline_glucose"]) * 100, 1)
+  cat(trial[i, "patient_id"], "-", trial[i, "treatment"], 
+      "→ Improved", imp, "mg/dL (", pct, "%)\\n")
+}`,
+
+  ex4: `# Example 4: Control Flow (Fever Alert System)
+# Hospital monitoring 4 patients
+patients <- data.frame(
+  name = c("Alice", "Bob", "Charlie", "Diana"),
+  temperature = c(36.8, 38.2, 39.5, 37.1)
+)
+
+cat("=== FEVER ALERT SYSTEM ===\\n\\n")
+
+for (i in 1:nrow(patients)) {
+  name <- patients[i, "name"]
+  temp <- patients[i, "temperature"]
+  
+  cat(name, "- Temperature:", temp, "°C → ")
+  
+  if (temp > 39) {
+    cat("🔴 CRITICAL - Notify physician immediately!\\n")
+  } else if (temp > 38.5) {
+    cat("🟠 HIGH FEVER - Monitor closely\\n")
+  } else if (temp > 37.5) {
+    cat("🟡 MILD ELEVATION - Continue monitoring\\n")
+  } else {
+    cat("🟢 NORMAL\\n")
+  }
+}`,
+
+  ex5: `# Example 5: Loops (Patient Screening)
+# Screen 5 patients for diabetes risk
+patients <- data.frame(
+  name = c("Alice", "Bob", "Charlie", "Diana", "Eve"),
+  fasting_glucose = c(245, 110, 310, 198, 125),
+  age = c(52, 35, 58, 48, 42)
+)
+
+cat("=== DIABETES RISK SCREENING ===\\n\\n")
+
+for (i in 1:nrow(patients)) {
+  glucose <- patients[i, "fasting_glucose"]
+  age <- patients[i, "age"]
+  name <- patients[i, "name"]
+  
+  if (glucose > 200 & age > 45) {
+    risk <- "HIGH"
+    symbol <- "🔴"
+  } else if (glucose > 150 | age > 60) {
+    risk <- "MODERATE"
+    symbol <- "🟠"
+  } else {
+    risk <- "LOW"
+    symbol <- "🟢"
+  }
+  
+  cat(symbol, name, "- Glucose:", glucose, "/ Age:", age, "→", risk, "\\n")
+}`,
+
+  ex6: `# Example 6: Functions (BMI Calculator)
+# Create reusable BMI calculator
+calc_bmi <- function(weight_kg, height_cm) {
+  height_m <- height_cm / 100
+  bmi <- weight_kg / (height_m ^ 2)
+  return(bmi)
+}
+
+# Get BMI category
+get_category <- function(bmi) {
+  if (bmi < 18.5) return("Underweight")
+  if (bmi < 25) return("Normal")
+  if (bmi < 30) return("Overweight")
+  return("Obese")
+}
+
+# Apply to multiple patients
+patients <- data.frame(
+  name = c("Alice", "Bob", "Charlie"),
+  weight_kg = c(65, 85, 72),
+  height_cm = c(160, 180, 175)
+)
+
+cat("=== BMI ASSESSMENT ===\\n\\n")
+for (i in 1:nrow(patients)) {
+  bmi <- calc_bmi(patients[i, "weight_kg"], patients[i, "height_cm"])
+  cat <- get_category(bmi)
+  cat(patients[i, "name"], "- BMI:", round(bmi, 1), "(", cat, ")\\n")
+}`,
+
+  ex7: `# Example 7: Apply Family (Dose Calculation)
+# Calculate medication dose for multiple patients
+# Dose = weight (kg) × 5 mg/kg
+
+patient_weights <- c(75, 82, 68, 95, 70)
+
+# Using sapply (fast & clean)
+doses <- sapply(patient_weights, function(w) w * 5)
+
+cat("=== MEDICATION DOSING ===\\n\\n")
+for (i in 1:length(patient_weights)) {
+  cat("Patient", i, "- Weight:", patient_weights[i], "kg →", 
+      "Dose:", doses[i], "mg\\n")
+}
+
+cat("\\n=== Summary ===\\n")
+cat("Total medication needed:", sum(doses), "mg\\n")
+cat("Average dose:", round(mean(doses), 1), "mg\\n")`,
+
+  ex8: `# Example 8: String Handling (Lab Notes)
+# Process clinical laboratory notes
+note <- "Patient: John Smith, Age: 52, WBC: 8.5 K/uL, Hemoglobin: 12.5 g/dL"
+
+cat("=== LAB REPORT PROCESSING ===\\n\\n")
+cat("Original:", note, "\\n\\n")
+
+# Find if abnormal
+is_abnormal <- grepl("abnormal|critical|low|high", note, ignore.case=TRUE)
+cat("Contains abnormal flags?", is_abnormal, "\\n\\n")
+
+# Count tests
+num_tests <- length(strsplit(note, ",")[[1]])
+cat("Number of items:", num_tests, "\\n\\n")
+
+# Extract patient name
+name_part <- substr(note, 10, 20)
+cat("Patient name (extracted):", name_part, "\\n\\n")
+
+# Correct typos
+note_with_typo <- "The patient has diabtes and hyprtension"
+corrected <- gsub("diabtes", "diabetes", note_with_typo)
+corrected <- gsub("hyprtension", "hypertension", corrected)
+cat("Corrected note:", corrected, "\\n")`,
+
+  ex9: `# Example 9: Dates (Patient Follow-up)
+# Track patient visits and appointments
+visit_dates <- as.Date(c("2024-01-15", "2024-02-14", "2024-04-15"))
+visit_names <- c("Baseline", "Week 4", "Week 12")
+
+cat("=== PATIENT FOLLOW-UP SCHEDULE ===\\n\\n")
+
+for (i in 1:length(visit_dates)) {
+  date <- visit_dates[i]
+  name <- visit_names[i]
+  
+  # Format date nicely
+  date_str <- format(date, "%A, %B %d, %Y")
+  cat(name, "→", date_str, "\\n")
+}
+
+# Time between visits
+cat("\\n=== TIME INTERVALS ===\\n")
+for (i in 2:length(visit_dates)) {
+  days <- as.numeric(visit_dates[i] - visit_dates[i-1])
+  cat(visit_names[i-1], "to", visit_names[i], "→", days, "days\\n")
+}
+
+# Is follow-up overdue?
+today <- Sys.Date()
+next_visit <- visit_dates[length(visit_dates)]
+if (today > next_visit + 7) {
+  cat("\\n⚠️ WARNING: Patient is", 
+      as.numeric(today - next_visit), "days overdue!\\n")
+}`,
+
+  ex10: `# Example 10: Statistics (Summary Data)
+# Generate summary statistics from patient data
+glucose_readings <- c(245, 238, 225, 212, 198, 185, 195, 210, 220, 205)
+
+cat("=== PATIENT GLUCOSE ANALYSIS ===\\n\\n")
+cat("Raw data:", paste(glucose_readings, collapse=", "), "\\n\\n")
+
+cat("=== DESCRIPTIVE STATISTICS ===\\n")
+cat("N (observations):", length(glucose_readings), "\\n")
+cat("Mean (average):", round(mean(glucose_readings), 1), "mg/dL\\n")
+cat("Median (middle):", round(median(glucose_readings), 1), "mg/dL\\n")
+cat("SD (spread):", round(sd(glucose_readings), 1), "mg/dL\\n")
+cat("Min (lowest):", min(glucose_readings), "mg/dL\\n")
+cat("Max (highest):", max(glucose_readings), "mg/dL\\n")
+
+cat("\\n=== RISK CLASSIFICATION ===\\n")
+high_risk <- sum(glucose_readings > 200)
+normal <- sum(glucose_readings <= 120)
+cat("Readings > 200 (high):", high_risk, "\\n")
+cat("Readings ≤ 120 (controlled):", normal, "\\n")
+cat("Percentage controlled:", round((normal/length(glucose_readings))*100, 1), "%\\n")`
+}
+
+codeEl.textContent = examples[select.value]
+
+let webR = null
+
+async function initWebR() {
+  status.textContent = '⏳ WebR: Initializing... (5-10 seconds first time, then instant)'
+  try {
+    webR = new WebR()
+    await webR.init()
+    status.textContent = '✅ WebR: Ready! Click "Run Code" to execute.'
+  } catch(err) {
+    status.textContent = '❌ WebR: Failed to initialize. ' + err.toString()
+  }
+}
+
+loadBtn.addEventListener('click', () => {
+  codeEl.textContent = examples[select.value]
+  outEl.textContent = '👉 Click "Run Code" to see output'
+})
+
+runBtn.addEventListener('click', async () => {
+  if (!webR) await initWebR()
+  outEl.textContent = '⏳ Running...'
+  try {
+    const code = codeEl.textContent
+    const result = await webR.evalR(code)
+    const output = await result.toString()
+    outEl.textContent = output || '(No output)'
+  } catch(err) {
+    outEl.textContent = '❌ Error: ' + err.toString()
+  }
+})
+
+// Initialize on page load
+window.addEventListener('load', () => {
+  loadBtn.click()
+})
+</script>
+
+---
+
+## 14. Exercises & Practice
+
+### Easy (Start Here)
+
+**1. Patient Age & Weight**
+```r
+# Create variables for a patient
+age <- 45
+weight <- 80
+
+# Calculate age in months and weight in pounds
+age_months <- age * 12
+weight_pounds <- weight * 2.2
+
+print(age_months)
+print(weight_pounds)
+```
+
+**2. Vector of Lab Values**
+```r
+# Create a vector of cholesterol readings
+cholesterol <- c(210, 195, 240, 185, 220)
+
+# Find average, min, max
+avg <- mean(cholesterol)
+highest <- max(cholesterol)
+lowest <- min(cholesterol)
+
+print(avg)
+print(highest)
+print(lowest)
+```
+
+**3. Simple Control Flow**
+```r
+# Check blood pressure
+systolic <- 145
+
+if (systolic > 140) {
+  print("Stage 2 Hypertension - Require treatment")
+} else if (systolic > 130) {
+  print("Stage 1 Hypertension - Monitor")
+} else {
+  print("Normal blood pressure")
+}
+```
+
+### Intermediate
+
+**4. Loop Through Patient Data**
+```r
+# Patient temperatures
+temps <- c(36.8, 38.2, 39.5, 37.1, 40.1)
+
+for (temp in temps) {
+  if (temp > 39) {
+    print(paste("FEVER:", temp, "°C"))
+  } else {
+    print(paste("Normal:", temp, "°C"))
+  }
+}
+```
+
+**5. Create and Use a Function**
+```r
+# Function to calculate ideal body weight (Devine formula for males)
+ideal_bmi <- function(height_cm) {
+  height_inches <- height_cm / 2.54
+  ibw <- 50 + 2.3 * (height_inches - 60)
+  return(ibw)
+}
+
+# Use it
+height <- 175  # cm
+target_weight <- ideal_bmi(height)
+print(paste("Ideal weight for", height, "cm is", round(target_weight, 1), "kg"))
+```
+
+### Advanced
+
+**6. Data Frame Analysis**
+```r
+# Create a dataset and analyze
+patients <- data.frame(
+  id = 1:5,
+  age = c(52, 45, 58, 50, 48),
+  glucose = c(245, 198, 310, 225, 180),
+  on_insulin = c(TRUE, FALSE, TRUE, FALSE, FALSE)
+)
+
+# Find average glucose
+avg_glucose <- mean(patients$glucose)
+
+# Find insulin users
+insulin_users <- patients[patients$on_insulin == TRUE, ]
+
+# Calculate statistics
+cat("Average glucose:", avg_glucose, "\n")
+cat("Number on insulin:", nrow(insulin_users), "\n")
+```
+
+---
+
+## Quick Reference Card
+
+| Concept | Code Example |
+|---------|--------------|
+| Assign variable | `x <- 10` |
+| Create vector | `v <- c(10, 20, 30)` |
+| Get vector mean | `mean(v)` |
+| Create data frame | `df <- data.frame(name=c('A','B'), age=c(25,30))` |
+| Get data frame column | `df$name` |
+| If statement | `if (x > 5) { ... }` |
+| For loop | `for (i in 1:5) { print(i) }` |
+| Define function | `f <- function(x) { return(x*2) }` |
+| Apply function | `sapply(c(1,2,3), function(x) x^2)` |
+| Read CSV | `df <- read.csv("file.csv")` |
+| Get today's date | `Sys.Date()` |
+| Vector statistics | `mean(), median(), sd(), min(), max()` |
+
+---
+
+## Resources for Continued Learning
+
+- **Official R Manual:** https://cran.r-project.org/manuals.html
+- **R for Data Science (Free Book):** https://r4ds.had.co.nz/
+- **RStudio Education:** https://education.rstudio.com/
+- **Clinical R Resources:** https://www.pharmaverse.org/
+- **Stack Overflow** (tag `[r]`): Best community Q&A
+- **YouTube:** "R for Beginners" and "Clinical R Programming"
+
+---
+
+## Why R Will Transform Your Clinical Work
+
+✅ Write analysis in **20 lines instead of 200**  
+✅ Share reproducible code (instead of manual Excel spreadsheets)  
+✅ Create publication-ready graphics instantly  
+✅ Automate routine data cleaning and analysis  
+✅ Collaborate with biostatisticians seamlessly  
+✅ Join a global community of 2+ million R users  
+
+**You've got this!** Start with the WebR playground above, try the examples, and remember: every expert R programmer was once a beginner asking "What does <-  mean?"
+
+---
 
 [Back to home](index.qmd)
