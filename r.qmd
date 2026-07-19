@@ -814,7 +814,7 @@ print(col_means)
 Try R code directly in your browser! No installation needed.
 
 <div id="webr-playground" style="border:3px solid #2c5aa0; padding:20px; background:#f5f9ff; border-radius:8px; margin:20px 0;">
-  <div id="webr-status" style="font-weight:bold; color:#0066cc; font-size:16px; margin-bottom:12px;">🔄 WebR: Initializing...</div>
+  <div id="webr-status" style="font-weight:bold; color:#0066cc; font-size:16px; margin-bottom:12px;">⏳ WebR: Not initialized — click "Run Code" to start</div>
   
   <div style="margin-bottom:15px;">
   <label for="webr-example" style="font-weight:bold; display:block; margin-bottom:8px;"><strong>Choose a Concept to Learn:</strong></label>
