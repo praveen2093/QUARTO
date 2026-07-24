@@ -31,6 +31,7 @@ quarto render index.qmd
 This repository now includes a GitHub Actions workflow at `.github/workflows/quarto-deploy.yml`.
 
 When you push to `main`, GitHub will:
+
 - install Quarto
 - render the website into `docs`
 - commit the generated site back to `main`
@@ -45,3 +46,4 @@ Set GitHub Pages source to:
 Your site URL will be:
 
 `https://<your-github-username>.github.io/<repository-name>/`
+`Python is coming next week`
