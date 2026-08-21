@@ -2,17 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Version control for reproducible analysis, pipelines, and collaborative clinical programming.">
+<meta name="description" content="A practical Git and GitHub field guide for bioinformatics, biostatistics, clinical programming, and regulated pharmaceutical teams.">
 
-<title>Git — Version Control for Regulated Teams – StatiX AI &amp; Data Labs</title>
+<title>StatiX AI &amp; Data Labs - Git and GitHub — Reproducible Collaboration for Life Sciences</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -24,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -34,16 +65,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c77c9138bec0b7f87654b70582999a87.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,12 +102,15 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -89,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -100,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-layers" role="img">
 </i> 
  <span class="menu-text">Foundations</span>
@@ -139,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--clinical" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-heart-pulse" role="img">
 </i> 
  <span class="menu-text">Data &amp; Clinical</span>
@@ -194,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -208,7 +241,30 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#why-git-matters" id="toc-why-git-matters" class="nav-link active" data-scroll-target="#why-git-matters">1. Why Git matters</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">2. Learning objectives</a></li>
+  <li><a href="#git-and-github-in-one-picture" id="toc-git-and-github-in-one-picture" class="nav-link" data-scroll-target="#git-and-github-in-one-picture">3. Git and GitHub in one picture</a></li>
+  <li><a href="#install-and-configure-git" id="toc-install-and-configure-git" class="nav-link" data-scroll-target="#install-and-configure-git">4. Install and configure Git</a></li>
+  <li><a href="#start-a-project-safely" id="toc-start-a-project-safely" class="nav-link" data-scroll-target="#start-a-project-safely">5. Start a project safely</a></li>
+  <li><a href="#the-everyday-git-workflow" id="toc-the-everyday-git-workflow" class="nav-link" data-scroll-target="#the-everyday-git-workflow">6. The everyday Git workflow</a></li>
+  <li><a href="#a-first-hands-on-exercise" id="toc-a-first-hands-on-exercise" class="nav-link" data-scroll-target="#a-first-hands-on-exercise">7. A first hands-on exercise</a></li>
+  <li><a href="#branches-and-pull-requests" id="toc-branches-and-pull-requests" class="nav-link" data-scroll-target="#branches-and-pull-requests">8. Branches and pull requests</a></li>
+  <li><a href="#github-collaboration-features" id="toc-github-collaboration-features" class="nav-link" data-scroll-target="#github-collaboration-features">9. GitHub collaboration features</a></li>
+  <li><a href="#connecting-git-to-reproducibility" id="toc-connecting-git-to-reproducibility" class="nav-link" data-scroll-target="#connecting-git-to-reproducibility">10. Connecting Git to reproducibility</a></li>
+  <li><a href="#git-for-r-sas-python-and-quarto" id="toc-git-for-r-sas-python-and-quarto" class="nav-link" data-scroll-target="#git-for-r-sas-python-and-quarto">11. Git for R, SAS, Python, and Quarto</a></li>
+  <li><a href="#gitignore-keep-the-repository-clean" id="toc-gitignore-keep-the-repository-clean" class="nav-link" data-scroll-target="#gitignore-keep-the-repository-clean">12. <code>.gitignore</code>: keep the repository clean</a></li>
+  <li><a href="#essential-inspection-commands" id="toc-essential-inspection-commands" class="nav-link" data-scroll-target="#essential-inspection-commands">13. Essential inspection commands</a></li>
+  <li><a href="#undoing-mistakes-without-panic" id="toc-undoing-mistakes-without-panic" class="nav-link" data-scroll-target="#undoing-mistakes-without-panic">14. Undoing mistakes without panic</a></li>
+  <li><a href="#pulling-merging-and-resolving-conflicts" id="toc-pulling-merging-and-resolving-conflicts" class="nav-link" data-scroll-target="#pulling-merging-and-resolving-conflicts">15. Pulling, merging, and resolving conflicts</a></li>
+  <li><a href="#tags-releases-and-traceable-delivery" id="toc-tags-releases-and-traceable-delivery" class="nav-link" data-scroll-target="#tags-releases-and-traceable-delivery">16. Tags, releases, and traceable delivery</a></li>
+  <li><a href="#team-workflow-for-a-cro-or-pharma-project" id="toc-team-workflow-for-a-cro-or-pharma-project" class="nav-link" data-scroll-target="#team-workflow-for-a-cro-or-pharma-project">17. Team workflow for a CRO or pharma project</a></li>
+  <li><a href="#common-mistakes-and-troubleshooting" id="toc-common-mistakes-and-troubleshooting" class="nav-link" data-scroll-target="#common-mistakes-and-troubleshooting">18. Common mistakes and troubleshooting</a></li>
+  <li><a href="#practical-review-checklist" id="toc-practical-review-checklist" class="nav-link" data-scroll-target="#practical-review-checklist">19. Practical review checklist</a></li>
+  <li><a href="#mini-project-a-traceable-analysis-change" id="toc-mini-project-a-traceable-analysis-change" class="nav-link" data-scroll-target="#mini-project-a-traceable-analysis-change">20. Mini project: a traceable analysis change</a></li>
+  <li><a href="#interview-questions" id="toc-interview-questions" class="nav-link" data-scroll-target="#interview-questions">21. Interview questions</a></li>
+  <li><a href="#command-cheat-sheet" id="toc-command-cheat-sheet" class="nav-link" data-scroll-target="#command-cheat-sheet">22. Command cheat sheet</a></li>
+  <li><a href="#final-summary" id="toc-final-summary" class="nav-link" data-scroll-target="#final-summary">23. Final summary</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">24. Further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -217,12 +273,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Git — Version Control for Regulated Teams</h1>
+<h1 class="title">Git and GitHub — Reproducible Collaboration for Life Sciences</h1>
 </div>
 
 <div>
   <div class="description">
-    Version control for reproducible analysis, pipelines, and collaborative clinical programming.
+    A practical Git and GitHub field guide for bioinformatics, biostatistics, clinical programming, and regulated pharmaceutical teams.
   </div>
 </div>
 
@@ -239,89 +295,741 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-success">
+<p><strong>Status: Available</strong> — This guide takes you from your first commit to a reviewable, reproducible workflow for R, SAS, Python, Quarto, clinical reporting, and bioinformatics pipelines.</p>
+</div>
+<section id="why-git-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-git-matters">1. Why Git matters</h2>
+<p>Imagine a statistician edits a survival-analysis program on Monday, a reviewer changes it on Tuesday, and a client asks on Friday, “Which code produced this table?” Without version control, the answer may depend on memory, file names such as <code>analysis_final_v7_really_final.sas</code>, and a crowded shared drive.</p>
+<p>Git gives the team a time-stamped history of text files. It records <strong>what</strong> changed, <strong>who</strong> changed it, <strong>when</strong> it changed, and the commit message explaining <strong>why</strong>. GitHub adds a shared home for Git repositories, code review, issue tracking, automation, and controlled collaboration.</p>
+<p>Git does not validate an analysis by itself, and a Git repository is not automatically a complete electronic record or regulated document-management system. In a regulated environment, use it with your organization’s approved procedures, access controls, review requirements, retention rules, validation evidence, and electronic-signature expectations.</p>
+<section id="who-this-guide-is-for" class="level3">
+<h3 class="anchored" data-anchor-id="who-this-guide-is-for">Who this guide is for</h3>
+<ul>
+<li>Bioinformaticians building reference-genome, RNA-seq, variant-calling, or Nextflow workflows</li>
+<li>Statisticians and biostatisticians maintaining analysis plans, simulations, and statistical programs</li>
+<li>Clinical and statistical programmers producing SDTM, ADaM, TLFs, and submission deliverables</li>
+<li>SAS-to-R programmers translating validated logic while keeping old and new implementations comparable</li>
+<li>Python and R programmers developing models, reports, APIs, and data-quality checks</li>
+<li>Bio and pharma CRO teams coordinating work across sponsors, programming teams, reviewers, and vendors</li>
+</ul>
+</section>
+</section>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">2. Learning objectives</h2>
+<p>By the end, you will be able to:</p>
+<ol type="1">
+<li>Explain Git, GitHub, a repository, a commit, a branch, and a pull request in plain language.</li>
+<li>Create a repository, make safe commits, inspect history, and recover from common mistakes.</li>
+<li>Use branches and pull requests so another person can review analysis code before release.</li>
+<li>Keep secrets, participant data, generated outputs, and temporary files out of source control.</li>
+<li>Design a repository that makes an analysis reproducible and easy to audit.</li>
+<li>Apply a simple team workflow to R, SAS, Python, Quarto, Docker, and Nextflow projects.</li>
+</ol>
+</section>
+<section id="git-and-github-in-one-picture" class="level2">
+<h2 class="anchored" data-anchor-id="git-and-github-in-one-picture">3. Git and GitHub in one picture</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Your working folder] --&gt;|git add| B[Staging area]
+    B --&gt;|git commit| C[Local Git history]
+    C --&gt;|git push| D[GitHub repository]
+    D --&gt;|Pull request| E[Review and discussion]
+    E --&gt;|Merge| F[Approved main branch]
+    F --&gt;|Tag and release| G[Reproducible delivery]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="the-simple-mental-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-simple-mental-model">The simple mental model</h3>
+<p>Think of a repository as a lab notebook for the files that define your work:</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Git idea</th>
+<th>Plain-language meaning</th>
+<th>Life-sciences example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Repository</td>
+<td>Project folder plus its history</td>
+<td>An ADaM derivation project</td>
+</tr>
+<tr class="even">
+<td>Working tree</td>
+<td>Files you are editing now</td>
+<td>The R script you changed today</td>
+</tr>
+<tr class="odd">
+<td>Staging area</td>
+<td>Changes selected for the next snapshot</td>
+<td>Only the reviewed analysis files</td>
+</tr>
+<tr class="even">
+<td>Commit</td>
+<td>A named, permanent snapshot</td>
+<td>“Correct censoring rule for OS”</td>
+</tr>
+<tr class="odd">
+<td>Branch</td>
+<td>A separate line of work</td>
+<td>A new subgroup analysis</td>
+</tr>
+<tr class="even">
+<td>Remote</td>
+<td>A shared copy of the repository</td>
+<td>The team’s GitHub repository</td>
+</tr>
+<tr class="odd">
+<td>Pull request</td>
+<td>A request to review and merge changes</td>
+<td>Reviewer checks a new TLF program</td>
+</tr>
+<tr class="even">
+<td>Tag</td>
+<td>A fixed name attached to a commit</td>
+<td><code>v1.0.0</code> or <code>submission-2026-01</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Status: Coming soon</strong> — Full tutorial in progress. Start with <a href="./docker.html">Docker</a> if you need reproducible environments today.</p>
+<p><strong>The key distinction:</strong> Git is the version-control tool on your computer. GitHub is a web service that hosts Git repositories and team workflows. You can use Git without GitHub, and GitHub repositories are managed locally with Git.</p>
 </div>
 </div>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
-<p><strong>Git</strong> tracks changes to code, scripts, Dockerfiles, and Quarto documents — essential for audit trails and team collaboration.</p>
-<section id="why-git-matters-in-pharma-and-bioinformatics" class="level3">
-<h3 class="anchored" data-anchor-id="why-git-matters-in-pharma-and-bioinformatics">Why Git matters in pharma and bioinformatics</h3>
+</section>
+</section>
+<section id="install-and-configure-git" class="level2">
+<h2 class="anchored" data-anchor-id="install-and-configure-git">4. Install and configure Git</h2>
+<p>Check whether Git is installed:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Install Git from <a href="https://git-scm.com/downloads">git-scm.com</a>, or use your organization’s approved software process. On macOS, Xcode Command Line Tools may provide Git. On Windows, Git for Windows provides Git Bash. On Linux, use your distribution’s package manager.</p>
+<p>Configure the identity written into your commits:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Full Name"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@example.com"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Inspect the configuration:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--list</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config user.name</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config user.email</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use the email address required by your organization. A commit identity is not the same thing as authentication. GitHub authentication normally uses a browser login, SSH key, or a personal access token through an approved enterprise process. Never paste a password, token, private key, participant data, or sponsor data into a commit.</p>
+</section>
+<section id="start-a-project-safely" class="level2">
+<h2 class="anchored" data-anchor-id="start-a-project-safely">5. Start a project safely</h2>
+<section id="option-a-start-a-new-local-project" class="level3">
+<h3 class="anchored" data-anchor-id="option-a-start-a-new-local-project">Option A: Start a new local project</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> trial-analysis</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> trial-analysis</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>git init</code> creates the hidden <code>.git</code> directory that stores history. It does not upload anything and it does not create a backup by itself.</p>
+<p>Create a small project structure:</p>
+<pre class="text"><code>trial-analysis/
+├── README.md
+├── .gitignore
+├── data/
+│   └── README.md
+├── R/
+├── sas/
+├── python/
+├── tests/
+├── reports/
+└── renv.lock or requirements.txt</code></pre>
+</section>
+<section id="option-b-copy-an-existing-github-project" class="level3">
+<h3 class="anchored" data-anchor-id="option-b-copy-an-existing-github-project">Option B: Copy an existing GitHub project</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/organization/project.git</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> project</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cloning downloads the project and its history. It does not give you permission to push. For a private sponsor repository, follow the approved access and authentication process.</p>
+</section>
+<section id="a-useful-readme" class="level3">
+<h3 class="anchored" data-anchor-id="a-useful-readme">A useful README</h3>
+<p>A good README answers: What is this project? What data may be used? How is the environment installed? How is the analysis run? What is the review status? Who owns it? What is intentionally not stored here?</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Trial analysis</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Purpose: derive analysis datasets and produce descriptive tables.</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Run</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Install the approved R/Python environment.</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Place authorized input data in <span class="in">`data/`</span> as described in <span class="in">`data/README.md`</span>.</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run <span class="in">`make all`</span> or the documented workflow command.</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data policy</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>Participant-level data is not stored in this repository. Use the approved secure data location.</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Status</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>Code is under development. Release tags identify reviewed versions.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="the-everyday-git-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-everyday-git-workflow">6. The everyday Git workflow</h2>
+<p>The basic loop is: <strong>inspect, select, save a meaningful snapshot, share, review</strong>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add R/derive_adam.R tests/test-derive.R</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--staged</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Correct treatment-emergent event derivation"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--decorate</span> <span class="at">--graph</span> <span class="at">-10</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin your-branch-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-each-step-protects-you-from" class="level3">
+<h3 class="anchored" data-anchor-id="what-each-step-protects-you-from">What each step protects you from</h3>
 <ul>
-<li>Reproducible analysis scripts under change control</li>
-<li>Code review before production pipeline releases</li>
-<li>Linking commits to validated container tags</li>
+<li><code>git status</code> shows files changed, untracked, or staged.</li>
+<li><code>git diff</code> shows unstaged edits before you record them.</li>
+<li><code>git add</code> selects exactly what belongs in the next commit.</li>
+<li><code>git diff --staged</code> is the final inspection before recording the snapshot.</li>
+<li><code>git commit</code> creates a local, named checkpoint.</li>
+<li><code>git log</code> lets you see the story of the project.</li>
+<li><code>git push</code> sends local commits to the shared GitHub copy.</li>
+</ul>
+<p>Write commit messages for a reviewer who was not sitting beside you:</p>
+<pre class="text"><code>Good: Fix missing baseline flag in ADaM derivation
+Weak: changes</code></pre>
+<p>One commit should usually represent one coherent idea. Do not mix a censoring-rule change, a new logo, and a mass formatting rewrite in one commit.</p>
+</section>
+</section>
+<section id="a-first-hands-on-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="a-first-hands-on-exercise">7. A first hands-on exercise</h2>
+<p>This exercise uses harmless text files. In a real study, use only authorized data and repositories.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> git-practice</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> git-practice</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">"subject_id,visit,score\n001,Baseline,10\n"</span> <span class="op">&gt;</span> analysis-data.csv</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">"# Analysis practice\n"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md analysis-data.csv</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add initial analysis inputs and README"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now change the score, inspect the difference, and commit the correction:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">"subject_id,visit,score\n001,Baseline,12\n"</span> <span class="op">&gt;</span> analysis-data.csv</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add analysis-data.csv</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Correct baseline score in practice data"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The important lesson is not the CSV. It is the habit: make a small change, inspect it, explain it, and preserve it.</p>
+</section>
+<section id="branches-and-pull-requests" class="level2">
+<h2 class="anchored" data-anchor-id="branches-and-pull-requests">8. Branches and pull requests</h2>
+<p>The <code>main</code> branch should represent the team’s trusted line of work. Create a branch for a change:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> fix-baseline-derivation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Work, test, and commit on the branch:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add R/derive_adam.R tests/test-derive.R</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Fix baseline derivation and add test"</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin fix-baseline-derivation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Open a pull request on GitHub. A useful pull request description states:</p>
+<ul>
+<li><strong>What changed:</strong> corrected the baseline flag for the specified visit window.</li>
+<li><strong>Why:</strong> the prior logic excluded valid baseline records.</li>
+<li><strong>Evidence:</strong> unit tests pass; comparison output is attached in the approved location.</li>
+<li><strong>Impact:</strong> affected dataset, tables, listings, figures, and known limitations.</li>
+<li><strong>Reviewers:</strong> the programmer and statistician responsible for the analysis.</li>
+</ul>
+<p>Reviewers should inspect the diff, run the documented checks, consider edge cases, and record their decision. After approval and passing checks, merge according to team policy. Delete the branch only after it is no longer needed.</p>
+</section>
+<section id="github-collaboration-features" class="level2">
+<h2 class="anchored" data-anchor-id="github-collaboration-features">9. GitHub collaboration features</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Practical use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Repository</td>
+<td>Store code, documentation, tests, and configuration</td>
+</tr>
+<tr class="even">
+<td>Pull request</td>
+<td>Discuss and approve a proposed change</td>
+</tr>
+<tr class="odd">
+<td>Issue</td>
+<td>Track a bug, question, decision, or improvement</td>
+</tr>
+<tr class="even">
+<td>Discussion</td>
+<td>Ask a broader design or community question</td>
+</tr>
+<tr class="odd">
+<td>Actions</td>
+<td>Run tests, linting, rendering, or other automation</td>
+</tr>
+<tr class="even">
+<td>Release</td>
+<td>Publish a named package of reviewed work</td>
+</tr>
+<tr class="odd">
+<td>CODEOWNERS</td>
+<td>Route changes to responsible reviewers</td>
+</tr>
+<tr class="even">
+<td>Branch protection</td>
+<td>Require reviews and checks before merging</td>
+</tr>
+<tr class="odd">
+<td>Projects</td>
+<td>Organize work across issues and milestones</td>
+</tr>
+</tbody>
+</table>
+<p>For regulated teams, configure repository visibility, least-privilege access, two-factor authentication, branch protection, required reviews, status checks, and audit logging according to organizational policy. GitHub settings do not replace a validated process; they help enforce one.</p>
+</section>
+<section id="connecting-git-to-reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-git-to-reproducibility">10. Connecting Git to reproducibility</h2>
+<p>Git can record the code, but reproducibility also depends on inputs, software versions, parameters, and execution instructions.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Reviewed commit] --&gt; B[Dependency lockfile]
+    A --&gt; C[Input data version or controlled reference]
+    A --&gt; D[Parameters and analysis plan]
+    B --&gt; E[Reproducible environment]
+    C --&gt; F[Traceable inputs]
+    D --&gt; G[Traceable decisions]
+    E --&gt; H[Re-run and compare outputs]
+    F --&gt; H
+    G --&gt; H
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Record the things that define an execution:</p>
+<ul>
+<li>Git commit ID or release tag</li>
+<li>R package lockfile such as <code>renv.lock</code></li>
+<li>Python dependencies such as <code>requirements.txt</code>, <code>pyproject.toml</code>, or a lockfile</li>
+<li>SAS version and approved macros or configuration</li>
+<li>Docker image digest where containers are used</li>
+<li>Nextflow version, pipeline revision, parameters, and reference files</li>
+<li>Input-data location and controlled data version, never an unauthorized copy of the data</li>
+<li>Output checksums where appropriate</li>
+</ul>
+<p>Example provenance note:</p>
+<pre class="text"><code>Analysis release: v1.2.0
+Git commit: 8f31c2a
+R: 4.4.1
+Packages: renv.lock
+Input snapshot: secure-data-release-2026-01
+Workflow: nextflow run main.nf -r v1.2.0
+Review: approved pull request #42</code></pre>
+</section>
+<section id="git-for-r-sas-python-and-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="git-for-r-sas-python-and-quarto">11. Git for R, SAS, Python, and Quarto</h2>
+<section id="r-and-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="r-and-quarto">R and Quarto</h3>
+<p>Track <code>.R</code>, <code>.Rmd</code>, <code>.qmd</code>, project configuration, tests, and lockfiles. Do not track rendered HTML, caches, local history, or large confidential data unless the project specifically requires it.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add analysis.qmd R/ tests/ renv.lock</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add reviewed descriptive statistics report"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render analysis.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sas" class="level3">
+<h3 class="anchored" data-anchor-id="sas">SAS</h3>
+<p>Track <code>.sas</code> programs, approved macro source, metadata, test fixtures, and documentation. Coordinate line-ending and encoding conventions with the team. Keep controlled source separate from generated logs and output unless the process requires those artifacts to be retained.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--</span> sas/adam_adsl.sas</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add sas/adam_adsl.sas</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Derive age group using approved specification"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="python" class="level3">
+<h3 class="anchored" data-anchor-id="python">Python</h3>
+<p>Track <code>.py</code>, tests, configuration, packaging files, and dependency lockfiles. Never commit <code>.env</code> files containing credentials.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add src/ tests/ pyproject.toml</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add validation for missing laboratory values"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sas-to-r-translation" class="level3">
+<h3 class="anchored" data-anchor-id="sas-to-r-translation">SAS-to-R translation</h3>
+<p>Use a branch for the translation, preserve the original specification, and create paired tests. Compare row counts, keys, variable types, missing-value behavior, sort order, and numeric results within an agreed tolerance. A successful translation is demonstrated by evidence, not by similar-looking code.</p>
+</section>
+</section>
+<section id="gitignore-keep-the-repository-clean" class="level2">
+<h2 class="anchored" data-anchor-id="gitignore-keep-the-repository-clean">12. <code>.gitignore</code>: keep the repository clean</h2>
+<p><code>.gitignore</code> tells Git which files should normally remain untracked. It is a convenience, not a data-security boundary.</p>
+<pre class="gitignore"><code># Operating-system and editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+.venv/
+*.py[cod]
+.pytest_cache/
+
+# R
+.Rhistory
+.Rproj.user/
+*.Rproj
+renv/library/
+renv/local/
+
+# Quarto and report outputs
+_site/
+*.html
+*.log
+*_cache/
+
+# Data and secrets: use approved secure storage instead
+data/raw/
+data/derived/
+*.sas7bdat
+.env
+*.pem
+*.key</code></pre>
+<p>Before the first push, search for secrets and sensitive data. If a secret was committed, removing the file in a later commit is not enough: revoke or rotate the secret immediately and follow the incident process. History may still contain it.</p>
+</section>
+<section id="essential-inspection-commands" class="level2">
+<h2 class="anchored" data-anchor-id="essential-inspection-commands">13. Essential inspection commands</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Where am I and what changed?</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--stat</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># What has been recorded?</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--decorate</span> <span class="at">--graph</span> <span class="at">--all</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show <span class="at">--stat</span> HEAD</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show HEAD~1:path/to/file.R</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Which commit changed a line or file?</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--follow</span> <span class="at">--</span> path/to/file.R</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> blame <span class="at">-L</span> 20,40 path/to/file.R</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># What is shared and which branch is active?</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">--show-current</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-vv</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch <span class="at">--prune</span> origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>git blame</code> is a tracing tool, not a way to assign blame to a person. Use it to find the commit and discussion that explain a line.</p>
+</section>
+<section id="undoing-mistakes-without-panic" class="level2">
+<h2 class="anchored" data-anchor-id="undoing-mistakes-without-panic">14. Undoing mistakes without panic</h2>
+<p>Read <code>git status</code> first. The right command depends on whether the change is unstaged, staged, committed locally, or already shared.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unstage a file, keeping its edits</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> path/to/file.R</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Discard an unstaged edit; this cannot be easily recovered</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore path/to/file.R</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Edit the most recent commit message</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">-m</span> <span class="st">"Better explanation of the change"</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new commit that reverses a shared commit</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert <span class="op">&lt;</span>commit-id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Avoid rewriting shared history with <code>git reset --hard</code> or force-pushing unless your team explicitly authorizes it. For a public or regulated branch, <code>git revert</code> is usually easier to understand and audit.</p>
+<p>Recover an earlier file version for inspection without changing the branch:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show <span class="op">&lt;</span>commit-id<span class="op">&gt;</span>:path/to/file.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pulling-merging-and-resolving-conflicts" class="level2">
+<h2 class="anchored" data-anchor-id="pulling-merging-and-resolving-conflicts">15. Pulling, merging, and resolving conflicts</h2>
+<p>Before starting work, update your branch:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--ff-only</span> origin main</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch your-branch-name</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A conflict means Git found two edits to the same part of a file and cannot safely choose. Open the file and look for markers:</p>
+<pre class="text"><code>CURRENT_BRANCH_VERSION
+======================
+INCOMING_BRANCH_VERSION</code></pre>
+<p>Choose the correct content, remove all markers, run the relevant tests, then finish:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add path/to/resolved-file.R</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For an approved analysis, do not resolve a conflict by guessing. Ask the responsible statistician or programmer when the conflict changes derivation logic, endpoint definitions, population flags, or output meaning.</p>
+</section>
+<section id="tags-releases-and-traceable-delivery" class="level2">
+<h2 class="anchored" data-anchor-id="tags-releases-and-traceable-delivery">16. Tags, releases, and traceable delivery</h2>
+<p>A tag gives a stable name to an exact commit:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--ff-only</span> origin main</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1.0.0 <span class="at">-m</span> <span class="st">"Reviewed analysis release 1.0.0"</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin v1.0.0</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show v1.0.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use a naming convention agreed by the team. For example, <code>v1.0.0</code> can mean a first reviewed release, while <code>submission-2026-01</code> can identify a delivery milestone. Never move a release tag silently. If a correction is needed, create a new tag and document the reason.</p>
+</section>
+<section id="team-workflow-for-a-cro-or-pharma-project" class="level2">
+<h2 class="anchored" data-anchor-id="team-workflow-for-a-cro-or-pharma-project">17. Team workflow for a CRO or pharma project</h2>
+<ol type="1">
+<li>The sponsor-approved specification and repository ownership are documented.</li>
+<li>Access is granted to named users with the least privilege needed.</li>
+<li>The team agrees on branches, review roles, commit messages, checks, and release tags.</li>
+<li>A programmer creates a focused branch and links it to an issue or requirement.</li>
+<li>The programmer commits code and tests in small, understandable units.</li>
+<li>A reviewer checks the diff and runs documented validation steps.</li>
+<li>The statistician or designated approver reviews the analysis impact.</li>
+<li>The pull request is merged only after required checks and approvals pass.</li>
+<li>A release tag, environment record, and output evidence are created.</li>
+<li>The repository, logs, approvals, and linked artifacts are retained under the approved process.</li>
+</ol>
+<p>This workflow makes a handoff easier: a new programmer can see the current state, understand why a decision was made, and reproduce the intended run without relying on an informal conversation.</p>
+</section>
+<section id="common-mistakes-and-troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="common-mistakes-and-troubleshooting">18. Common mistakes and troubleshooting</h2>
+<section id="permission-denied-when-pushing" class="level3">
+<h3 class="anchored" data-anchor-id="permission-denied-when-pushing">“Permission denied” when pushing</h3>
+<p>Check the remote URL and your account access:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-vv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You may be authenticated as the wrong account, missing repository permission, or using an unapproved authentication method. Ask the repository administrator rather than sharing credentials.</p>
+</section>
+<section id="your-branch-is-behind" class="level3">
+<h3 class="anchored" data-anchor-id="your-branch-is-behind">“Your branch is behind”</h3>
+<p>Save your work in a commit or stash, fetch the remote, then integrate the latest approved changes:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Save work before updating branch"</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--rebase</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use the team’s merge or rebase policy. Do not rebase a branch that other people are actively using without coordinating.</p>
+</section>
+<section id="a-file-still-appears-after-.gitignore" class="level3">
+<h3 class="anchored" data-anchor-id="a-file-still-appears-after-.gitignore">A file still appears after <code>.gitignore</code></h3>
+<p>Ignore rules do not remove files already tracked:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> path/to/file</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Stop tracking generated file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-large-or-sensitive-file-was-committed" class="level3">
+<h3 class="anchored" data-anchor-id="a-large-or-sensitive-file-was-committed">A large or sensitive file was committed</h3>
+<p>Stop pushing, notify the responsible security or project contact, revoke exposed credentials, and follow the approved remediation process. History rewriting may be necessary, but it must be coordinated because it changes commit IDs and other people’s clones.</p>
+</section>
+</section>
+<section id="practical-review-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="practical-review-checklist">19. Practical review checklist</h2>
+<p>Before opening a pull request, confirm:</p>
+<ul>
+<li>The branch starts from the intended base branch.</li>
+<li>The diff contains only the requested change.</li>
+<li>No participant-level data, credentials, tokens, or private keys are included.</li>
+<li>Tests cover changed logic and important edge cases.</li>
+<li>R, SAS, Python, Quarto, Docker, or Nextflow versions are documented.</li>
+<li>Variable labels, derivation rules, population flags, and output changes are explained.</li>
+<li>The README or run instructions still work.</li>
+<li>Generated files are handled according to project policy.</li>
+<li>The commit and pull request messages explain purpose and impact.</li>
+<li>The reviewer can reproduce the check from a clean checkout.</li>
+</ul>
+</section>
+<section id="mini-project-a-traceable-analysis-change" class="level2">
+<h2 class="anchored" data-anchor-id="mini-project-a-traceable-analysis-change">20. Mini project: a traceable analysis change</h2>
+<p>Create a small repository containing a README, a script, a test, and a <code>.gitignore</code>. Make an intentionally small change, such as correcting the handling of a missing value. Then:</p>
+<ol type="1">
+<li>Open an issue describing the problem and expected behavior.</li>
+<li>Create a branch named after the issue.</li>
+<li>Add a test that demonstrates the intended behavior.</li>
+<li>Change the analysis code.</li>
+<li>Run the test and record the command and result.</li>
+<li>Commit the test and code with separate, meaningful messages if appropriate.</li>
+<li>Open a pull request with impact and evidence.</li>
+<li>Ask a colleague to review the diff.</li>
+<li>Merge after approval and tag the reviewed state.</li>
+<li>Write a short provenance note with the tag, environment, inputs, and output location.</li>
+</ol>
+<p>The finished repository should let another person answer: What changed? Why? Who reviewed it? Which code and environment produced the result?</p>
+</section>
+<section id="interview-questions" class="level2">
+<h2 class="anchored" data-anchor-id="interview-questions">21. Interview questions</h2>
+<section id="what-is-the-difference-between-git-and-github" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-the-difference-between-git-and-github">What is the difference between Git and GitHub?</h3>
+<p>Git is a distributed version-control system. GitHub hosts repositories and provides collaboration features such as pull requests, issues, permissions, and Actions.</p>
+</section>
+<section id="why-use-a-branch" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-a-branch">Why use a branch?</h3>
+<p>A branch isolates work so the trusted branch remains stable while a change is developed, tested, and reviewed.</p>
+</section>
+<section id="what-is-a-commit" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-commit">What is a commit?</h3>
+<p>A commit is a named snapshot of selected changes, with an author, timestamp, parent history, and message.</p>
+</section>
+<section id="how-would-you-protect-clinical-analysis-code" class="level3">
+<h3 class="anchored" data-anchor-id="how-would-you-protect-clinical-analysis-code">How would you protect clinical analysis code?</h3>
+<p>Use approved access controls, protected branches, required review, traceable issues and pull requests, automated checks, release tags, dependency records, controlled data references, and documented retention and validation procedures.</p>
+</section>
+<section id="what-would-you-do-after-committing-a-token" class="level3">
+<h3 class="anchored" data-anchor-id="what-would-you-do-after-committing-a-token">What would you do after committing a token?</h3>
+<p>Treat it as exposed: revoke or rotate it immediately, notify the responsible security contact, preserve incident evidence, and follow the approved history-remediation process. Deleting the file in a new commit does not make the token safe.</p>
+</section>
+</section>
+<section id="command-cheat-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="command-cheat-sheet">22. Command cheat sheet</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Create repository</td>
+<td><code>git init</code></td>
+</tr>
+<tr class="even">
+<td>Copy repository</td>
+<td><code>git clone URL</code></td>
+</tr>
+<tr class="odd">
+<td>See state</td>
+<td><code>git status</code></td>
+</tr>
+<tr class="even">
+<td>See edits</td>
+<td><code>git diff</code></td>
+</tr>
+<tr class="odd">
+<td>Stage one file</td>
+<td><code>git add path/to/file</code></td>
+</tr>
+<tr class="even">
+<td>Stage all intentional edits</td>
+<td><code>git add -p</code></td>
+</tr>
+<tr class="odd">
+<td>Inspect staged edits</td>
+<td><code>git diff --staged</code></td>
+</tr>
+<tr class="even">
+<td>Save snapshot</td>
+<td><code>git commit -m "message"</code></td>
+</tr>
+<tr class="odd">
+<td>View history</td>
+<td><code>git log --oneline --graph --all</code></td>
+</tr>
+<tr class="even">
+<td>Create branch</td>
+<td><code>git switch -c branch-name</code></td>
+</tr>
+<tr class="odd">
+<td>Change branch</td>
+<td><code>git switch branch-name</code></td>
+</tr>
+<tr class="even">
+<td>Download remote history</td>
+<td><code>git fetch origin</code></td>
+</tr>
+<tr class="odd">
+<td>Update current branch</td>
+<td><code>git pull --ff-only</code></td>
+</tr>
+<tr class="even">
+<td>Share branch</td>
+<td><code>git push -u origin branch-name</code></td>
+</tr>
+<tr class="odd">
+<td>List remotes</td>
+<td><code>git remote -v</code></td>
+</tr>
+<tr class="even">
+<td>Compare branches</td>
+<td><code>git diff main...branch-name</code></td>
+</tr>
+<tr class="odd">
+<td>Find a change</td>
+<td><code>git log -S"text" -- path/to/file</code></td>
+</tr>
+<tr class="even">
+<td>Undo shared commit</td>
+<td><code>git revert COMMIT_ID</code></td>
+</tr>
+<tr class="odd">
+<td>Create release tag</td>
+<td><code>git tag -a v1.0.0 -m "message"</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="final-summary" class="level2">
+<h2 class="anchored" data-anchor-id="final-summary">23. Final summary</h2>
+<p>Git is a disciplined memory for your project. GitHub turns that memory into a team practice: reviewable changes, visible decisions, automated checks, and named releases. For bioinformatics and regulated programming, the real value is not knowing every command. It is being able to connect a requirement, a change, a review, an environment, an input version, and a delivered result.</p>
+<p>Start small: initialize one safe practice repository, make one meaningful commit, create one branch, and review one pull request. The habit scales from a personal Python script to a multi-programmer clinical submission.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">24. Further reading</h2>
+<ul>
+<li><a href="https://git-scm.com/doc">Git documentation</a></li>
+<li><a href="https://git-scm.com/book/en/v2">Pro Git book</a></li>
+<li><a href="https://docs.github.com/">GitHub documentation</a></li>
+<li><a href="https://docs.github.com/en/get-started/using-github/github-flow">GitHub flow</a></li>
+<li><a href="https://docs.github.com/en/code-security">GitHub security best practices</a></li>
+<li><a href="https://quarto.org/">Quarto</a></li>
 </ul>
 <p><a href="./index.html">Back to home</a></p>
 
 
 </section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -329,184 +1037,162 @@ Important
       }
       return codeEl.innerText;
     }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
           }
         }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+        return container.innerHTML
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
-        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -514,161 +1200,185 @@ Important
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 </div> <!-- /content -->
 
 

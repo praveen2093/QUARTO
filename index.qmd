@@ -27,7 +27,7 @@ Click any tile below to open the corresponding tutorial. Tiles marked **Availabl
   </div>
   <div class="tech-card">
     <a href="git.html">
-      <span class="tech-status tech-status--soon">Coming soon</span>
+      <span class="tech-status tech-status--available">Available</span>
       <div class="tech-logo"><i class="bi bi-git" aria-hidden="true"></i></div>
       <div class="tech-name">Git</div>
       <span class="tech-open"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i> Open guide</span>

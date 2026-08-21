@@ -1,21 +1,626 @@
 ---
-title: "Git — Version Control for Regulated Teams"
-description: "Version control for reproducible analysis, pipelines, and collaborative clinical programming."
+title: "Git and GitHub — Reproducible Collaboration for Life Sciences"
+description: "A practical Git and GitHub field guide for bioinformatics, biostatistics, clinical programming, and regulated pharmaceutical teams."
 toc-depth: 2
 ---
 
-::: {.callout-important}
-**Status: Coming soon** — Full tutorial in progress. Start with [Docker](docker.qmd) if you need reproducible environments today.
+::: {.callout-success}
+**Status: Available** — This guide takes you from your first commit to a reviewable, reproducible workflow for R, SAS, Python, Quarto, clinical reporting, and bioinformatics pipelines.
 :::
 
-## 1. Introduction
+## 1. Why Git matters
 
-**Git** tracks changes to code, scripts, Dockerfiles, and Quarto documents — essential for audit trails and team collaboration.
+Imagine a statistician edits a survival-analysis program on Monday, a reviewer changes it on Tuesday, and a client asks on Friday, "Which code produced this table?" Without version control, the answer may depend on memory, file names such as `analysis_final_v7_really_final.sas`, and a crowded shared drive.
 
-### Why Git matters in pharma and bioinformatics
+Git gives the team a time-stamped history of text files. It records **what** changed, **who** changed it, **when** it changed, and the commit message explaining **why**. GitHub adds a shared home for Git repositories, code review, issue tracking, automation, and controlled collaboration.
 
-- Reproducible analysis scripts under change control
-- Code review before production pipeline releases
-- Linking commits to validated container tags
+Git does not validate an analysis by itself, and a Git repository is not automatically a complete electronic record or regulated document-management system. In a regulated environment, use it with your organization's approved procedures, access controls, review requirements, retention rules, validation evidence, and electronic-signature expectations.
+
+### Who this guide is for
+
+- Bioinformaticians building reference-genome, RNA-seq, variant-calling, or Nextflow workflows
+- Statisticians and biostatisticians maintaining analysis plans, simulations, and statistical programs
+- Clinical and statistical programmers producing SDTM, ADaM, TLFs, and submission deliverables
+- SAS-to-R programmers translating validated logic while keeping old and new implementations comparable
+- Python and R programmers developing models, reports, APIs, and data-quality checks
+- Bio and pharma CRO teams coordinating work across sponsors, programming teams, reviewers, and vendors
+
+## 2. Learning objectives
+
+By the end, you will be able to:
+
+1. Explain Git, GitHub, a repository, a commit, a branch, and a pull request in plain language.
+2. Create a repository, make safe commits, inspect history, and recover from common mistakes.
+3. Use branches and pull requests so another person can review analysis code before release.
+4. Keep secrets, participant data, generated outputs, and temporary files out of source control.
+5. Design a repository that makes an analysis reproducible and easy to audit.
+6. Apply a simple team workflow to R, SAS, Python, Quarto, Docker, and Nextflow projects.
+
+## 3. Git and GitHub in one picture
+
+```{mermaid}
+flowchart LR
+	A[Your working folder] -->|git add| B[Staging area]
+	B -->|git commit| C[Local Git history]
+	C -->|git push| D[GitHub repository]
+	D -->|Pull request| E[Review and discussion]
+	E -->|Merge| F[Approved main branch]
+	F -->|Tag and release| G[Reproducible delivery]
+```
+
+### The simple mental model
+
+Think of a repository as a lab notebook for the files that define your work:
+
+| Git idea | Plain-language meaning | Life-sciences example |
+|---|---|---|
+| Repository | Project folder plus its history | An ADaM derivation project |
+| Working tree | Files you are editing now | The R script you changed today |
+| Staging area | Changes selected for the next snapshot | Only the reviewed analysis files |
+| Commit | A named, permanent snapshot | "Correct censoring rule for OS" |
+| Branch | A separate line of work | A new subgroup analysis |
+| Remote | A shared copy of the repository | The team's GitHub repository |
+| Pull request | A request to review and merge changes | Reviewer checks a new TLF program |
+| Tag | A fixed name attached to a commit | `v1.0.0` or `submission-2026-01` |
+
+::: {.callout-tip}
+**The key distinction:** Git is the version-control tool on your computer. GitHub is a web service that hosts Git repositories and team workflows. You can use Git without GitHub, and GitHub repositories are managed locally with Git.
+:::
+
+## 4. Install and configure Git
+
+Check whether Git is installed:
+
+```bash
+git --version
+```
+
+Install Git from [git-scm.com](https://git-scm.com/downloads), or use your organization's approved software process. On macOS, Xcode Command Line Tools may provide Git. On Windows, Git for Windows provides Git Bash. On Linux, use your distribution's package manager.
+
+Configure the identity written into your commits:
+
+```bash
+git config --global user.name "Your Full Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main
+git config --global pull.rebase false
+```
+
+Inspect the configuration:
+
+```bash
+git config --global --list
+git config user.name
+git config user.email
+```
+
+Use the email address required by your organization. A commit identity is not the same thing as authentication. GitHub authentication normally uses a browser login, SSH key, or a personal access token through an approved enterprise process. Never paste a password, token, private key, participant data, or sponsor data into a commit.
+
+## 5. Start a project safely
+
+### Option A: Start a new local project
+
+```bash
+mkdir trial-analysis
+cd trial-analysis
+git init
+git status
+```
+
+`git init` creates the hidden `.git` directory that stores history. It does not upload anything and it does not create a backup by itself.
+
+Create a small project structure:
+
+```text
+trial-analysis/
+├── README.md
+├── .gitignore
+├── data/
+│   └── README.md
+├── R/
+├── sas/
+├── python/
+├── tests/
+├── reports/
+└── renv.lock or requirements.txt
+```
+
+### Option B: Copy an existing GitHub project
+
+```bash
+git clone https://github.com/organization/project.git
+cd project
+git remote -v
+```
+
+Cloning downloads the project and its history. It does not give you permission to push. For a private sponsor repository, follow the approved access and authentication process.
+
+### A useful README
+
+A good README answers: What is this project? What data may be used? How is the environment installed? How is the analysis run? What is the review status? Who owns it? What is intentionally not stored here?
+
+```markdown
+# Trial analysis
+
+Purpose: derive analysis datasets and produce descriptive tables.
+
+## Run
+
+1. Install the approved R/Python environment.
+2. Place authorized input data in `data/` as described in `data/README.md`.
+3. Run `make all` or the documented workflow command.
+
+## Data policy
+
+Participant-level data is not stored in this repository. Use the approved secure data location.
+
+## Status
+
+Code is under development. Release tags identify reviewed versions.
+
+```
+
+## 6. The everyday Git workflow
+
+The basic loop is: **inspect, select, save a meaningful snapshot, share, review**.
+
+```bash
+git status
+git diff
+git add R/derive_adam.R tests/test-derive.R
+git diff --staged
+git commit -m "Correct treatment-emergent event derivation"
+git log --oneline --decorate --graph -10
+git push origin your-branch-name
+```
+
+### What each step protects you from
+
+- `git status` shows files changed, untracked, or staged.
+- `git diff` shows unstaged edits before you record them.
+- `git add` selects exactly what belongs in the next commit.
+- `git diff --staged` is the final inspection before recording the snapshot.
+- `git commit` creates a local, named checkpoint.
+- `git log` lets you see the story of the project.
+- `git push` sends local commits to the shared GitHub copy.
+
+Write commit messages for a reviewer who was not sitting beside you:
+
+```text
+Good: Fix missing baseline flag in ADaM derivation
+Weak: changes
+```
+
+One commit should usually represent one coherent idea. Do not mix a censoring-rule change, a new logo, and a mass formatting rewrite in one commit.
+
+## 7. A first hands-on exercise
+
+This exercise uses harmless text files. In a real study, use only authorized data and repositories.
+
+```bash
+mkdir git-practice
+cd git-practice
+git init
+printf "subject_id,visit,score\n001,Baseline,10\n" > analysis-data.csv
+printf "# Analysis practice\n" > README.md
+git status
+git add README.md analysis-data.csv
+git commit -m "Add initial analysis inputs and README"
+```
+
+Now change the score, inspect the difference, and commit the correction:
+
+```bash
+printf "subject_id,visit,score\n001,Baseline,12\n" > analysis-data.csv
+git diff
+git add analysis-data.csv
+git commit -m "Correct baseline score in practice data"
+git log --oneline
+```
+
+The important lesson is not the CSV. It is the habit: make a small change, inspect it, explain it, and preserve it.
+
+## 8. Branches and pull requests
+
+The `main` branch should represent the team's trusted line of work. Create a branch for a change:
+
+```bash
+git switch main
+git pull origin main
+git switch -c fix-baseline-derivation
+```
+
+Work, test, and commit on the branch:
+
+```bash
+git status
+git add R/derive_adam.R tests/test-derive.R
+git commit -m "Fix baseline derivation and add test"
+git push --set-upstream origin fix-baseline-derivation
+```
+
+Open a pull request on GitHub. A useful pull request description states:
+
+- **What changed:** corrected the baseline flag for the specified visit window.
+- **Why:** the prior logic excluded valid baseline records.
+- **Evidence:** unit tests pass; comparison output is attached in the approved location.
+- **Impact:** affected dataset, tables, listings, figures, and known limitations.
+- **Reviewers:** the programmer and statistician responsible for the analysis.
+
+Reviewers should inspect the diff, run the documented checks, consider edge cases, and record their decision. After approval and passing checks, merge according to team policy. Delete the branch only after it is no longer needed.
+
+## 9. GitHub collaboration features
+
+| Feature | Practical use |
+|---|---|
+| Repository | Store code, documentation, tests, and configuration |
+| Pull request | Discuss and approve a proposed change |
+| Issue | Track a bug, question, decision, or improvement |
+| Discussion | Ask a broader design or community question |
+| Actions | Run tests, linting, rendering, or other automation |
+| Release | Publish a named package of reviewed work |
+| CODEOWNERS | Route changes to responsible reviewers |
+| Branch protection | Require reviews and checks before merging |
+| Projects | Organize work across issues and milestones |
+
+For regulated teams, configure repository visibility, least-privilege access, two-factor authentication, branch protection, required reviews, status checks, and audit logging according to organizational policy. GitHub settings do not replace a validated process; they help enforce one.
+
+## 10. Connecting Git to reproducibility
+
+Git can record the code, but reproducibility also depends on inputs, software versions, parameters, and execution instructions.
+
+```{mermaid}
+flowchart TD
+	A[Reviewed commit] --> B[Dependency lockfile]
+	A --> C[Input data version or controlled reference]
+	A --> D[Parameters and analysis plan]
+	B --> E[Reproducible environment]
+	C --> F[Traceable inputs]
+	D --> G[Traceable decisions]
+	E --> H[Re-run and compare outputs]
+	F --> H
+	G --> H
+```
+
+Record the things that define an execution:
+
+- Git commit ID or release tag
+- R package lockfile such as `renv.lock`
+- Python dependencies such as `requirements.txt`, `pyproject.toml`, or a lockfile
+- SAS version and approved macros or configuration
+- Docker image digest where containers are used
+- Nextflow version, pipeline revision, parameters, and reference files
+- Input-data location and controlled data version, never an unauthorized copy of the data
+- Output checksums where appropriate
+
+Example provenance note:
+
+```text
+Analysis release: v1.2.0
+Git commit: 8f31c2a
+R: 4.4.1
+Packages: renv.lock
+Input snapshot: secure-data-release-2026-01
+Workflow: nextflow run main.nf -r v1.2.0
+Review: approved pull request #42
+```
+
+## 11. Git for R, SAS, Python, and Quarto
+
+### R and Quarto
+
+Track `.R`, `.Rmd`, `.qmd`, project configuration, tests, and lockfiles. Do not track rendered HTML, caches, local history, or large confidential data unless the project specifically requires it.
+
+```bash
+git add analysis.qmd R/ tests/ renv.lock
+git commit -m "Add reviewed descriptive statistics report"
+quarto render analysis.qmd
+```
+
+### SAS
+
+Track `.sas` programs, approved macro source, metadata, test fixtures, and documentation. Coordinate line-ending and encoding conventions with the team. Keep controlled source separate from generated logs and output unless the process requires those artifacts to be retained.
+
+```bash
+git diff -- sas/adam_adsl.sas
+git add sas/adam_adsl.sas
+git commit -m "Derive age group using approved specification"
+```
+
+### Python
+
+Track `.py`, tests, configuration, packaging files, and dependency lockfiles. Never commit `.env` files containing credentials.
+
+```bash
+python -m pytest
+git add src/ tests/ pyproject.toml
+git commit -m "Add validation for missing laboratory values"
+```
+
+### SAS-to-R translation
+
+Use a branch for the translation, preserve the original specification, and create paired tests. Compare row counts, keys, variable types, missing-value behavior, sort order, and numeric results within an agreed tolerance. A successful translation is demonstrated by evidence, not by similar-looking code.
+
+## 12. `.gitignore`: keep the repository clean
+
+`.gitignore` tells Git which files should normally remain untracked. It is a convenience, not a data-security boundary.
+
+```gitignore
+# Operating-system and editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+.venv/
+*.py[cod]
+.pytest_cache/
+
+# R
+.Rhistory
+.Rproj.user/
+*.Rproj
+renv/library/
+renv/local/
+
+# Quarto and report outputs
+_site/
+*.html
+*.log
+*_cache/
+
+# Data and secrets: use approved secure storage instead
+data/raw/
+data/derived/
+*.sas7bdat
+.env
+*.pem
+*.key
+```
+
+Before the first push, search for secrets and sensitive data. If a secret was committed, removing the file in a later commit is not enough: revoke or rotate the secret immediately and follow the incident process. History may still contain it.
+
+## 13. Essential inspection commands
+
+```bash
+# Where am I and what changed?
+pwd
+git status --short
+git diff --stat
+git diff
+
+# What has been recorded?
+git log --oneline --decorate --graph --all
+git show --stat HEAD
+git show HEAD~1:path/to/file.R
+
+# Which commit changed a line or file?
+git log --follow -- path/to/file.R
+git blame -L 20,40 path/to/file.R
+
+# What is shared and which branch is active?
+git branch --show-current
+git branch -vv
+git remote -v
+git fetch --prune origin
+```
+
+`git blame` is a tracing tool, not a way to assign blame to a person. Use it to find the commit and discussion that explain a line.
+
+## 14. Undoing mistakes without panic
+
+Read `git status` first. The right command depends on whether the change is unstaged, staged, committed locally, or already shared.
+
+```bash
+# Unstage a file, keeping its edits
+git restore --staged path/to/file.R
+
+# Discard an unstaged edit; this cannot be easily recovered
+git restore path/to/file.R
+
+# Edit the most recent commit message
+git commit --amend -m "Better explanation of the change"
+
+# Create a new commit that reverses a shared commit
+git revert <commit-id>
+```
+
+Avoid rewriting shared history with `git reset --hard` or force-pushing unless your team explicitly authorizes it. For a public or regulated branch, `git revert` is usually easier to understand and audit.
+
+Recover an earlier file version for inspection without changing the branch:
+
+```bash
+git show <commit-id>:path/to/file.R
+```
+
+## 15. Pulling, merging, and resolving conflicts
+
+Before starting work, update your branch:
+
+```bash
+git switch main
+git pull --ff-only origin main
+git switch your-branch-name
+git merge main
+```
+
+A conflict means Git found two edits to the same part of a file and cannot safely choose. Open the file and look for markers:
+
+```text
+CURRENT_BRANCH_VERSION
+======================
+INCOMING_BRANCH_VERSION
+```
+
+Choose the correct content, remove all markers, run the relevant tests, then finish:
+
+```bash
+git add path/to/resolved-file.R
+git commit
+```
+
+For an approved analysis, do not resolve a conflict by guessing. Ask the responsible statistician or programmer when the conflict changes derivation logic, endpoint definitions, population flags, or output meaning.
+
+## 16. Tags, releases, and traceable delivery
+
+A tag gives a stable name to an exact commit:
+
+```bash
+git switch main
+git pull --ff-only origin main
+git tag -a v1.0.0 -m "Reviewed analysis release 1.0.0"
+git push origin v1.0.0
+git show v1.0.0
+```
+
+Use a naming convention agreed by the team. For example, `v1.0.0` can mean a first reviewed release, while `submission-2026-01` can identify a delivery milestone. Never move a release tag silently. If a correction is needed, create a new tag and document the reason.
+
+## 17. Team workflow for a CRO or pharma project
+
+1. The sponsor-approved specification and repository ownership are documented.
+2. Access is granted to named users with the least privilege needed.
+3. The team agrees on branches, review roles, commit messages, checks, and release tags.
+4. A programmer creates a focused branch and links it to an issue or requirement.
+5. The programmer commits code and tests in small, understandable units.
+6. A reviewer checks the diff and runs documented validation steps.
+7. The statistician or designated approver reviews the analysis impact.
+8. The pull request is merged only after required checks and approvals pass.
+9. A release tag, environment record, and output evidence are created.
+10. The repository, logs, approvals, and linked artifacts are retained under the approved process.
+
+This workflow makes a handoff easier: a new programmer can see the current state, understand why a decision was made, and reproduce the intended run without relying on an informal conversation.
+
+## 18. Common mistakes and troubleshooting
+
+### "Permission denied" when pushing
+
+Check the remote URL and your account access:
+
+```bash
+git remote -v
+git branch -vv
+```
+
+You may be authenticated as the wrong account, missing repository permission, or using an unapproved authentication method. Ask the repository administrator rather than sharing credentials.
+
+### "Your branch is behind"
+
+Save your work in a commit or stash, fetch the remote, then integrate the latest approved changes:
+
+```bash
+git status
+git add .
+git commit -m "Save work before updating branch"
+git pull --rebase origin main
+```
+
+Use the team's merge or rebase policy. Do not rebase a branch that other people are actively using without coordinating.
+
+### A file still appears after `.gitignore`
+
+Ignore rules do not remove files already tracked:
+
+```bash
+git rm --cached path/to/file
+git commit -m "Stop tracking generated file"
+```
+
+### A large or sensitive file was committed
+
+Stop pushing, notify the responsible security or project contact, revoke exposed credentials, and follow the approved remediation process. History rewriting may be necessary, but it must be coordinated because it changes commit IDs and other people's clones.
+
+## 19. Practical review checklist
+
+Before opening a pull request, confirm:
+
+- The branch starts from the intended base branch.
+- The diff contains only the requested change.
+- No participant-level data, credentials, tokens, or private keys are included.
+- Tests cover changed logic and important edge cases.
+- R, SAS, Python, Quarto, Docker, or Nextflow versions are documented.
+- Variable labels, derivation rules, population flags, and output changes are explained.
+- The README or run instructions still work.
+- Generated files are handled according to project policy.
+- The commit and pull request messages explain purpose and impact.
+- The reviewer can reproduce the check from a clean checkout.
+
+## 20. Mini project: a traceable analysis change
+
+Create a small repository containing a README, a script, a test, and a `.gitignore`. Make an intentionally small change, such as correcting the handling of a missing value. Then:
+
+1. Open an issue describing the problem and expected behavior.
+2. Create a branch named after the issue.
+3. Add a test that demonstrates the intended behavior.
+4. Change the analysis code.
+5. Run the test and record the command and result.
+6. Commit the test and code with separate, meaningful messages if appropriate.
+7. Open a pull request with impact and evidence.
+8. Ask a colleague to review the diff.
+9. Merge after approval and tag the reviewed state.
+10. Write a short provenance note with the tag, environment, inputs, and output location.
+
+The finished repository should let another person answer: What changed? Why? Who reviewed it? Which code and environment produced the result?
+
+## 21. Interview questions
+
+### What is the difference between Git and GitHub?
+
+Git is a distributed version-control system. GitHub hosts repositories and provides collaboration features such as pull requests, issues, permissions, and Actions.
+
+### Why use a branch?
+
+A branch isolates work so the trusted branch remains stable while a change is developed, tested, and reviewed.
+
+### What is a commit?
+
+A commit is a named snapshot of selected changes, with an author, timestamp, parent history, and message.
+
+### How would you protect clinical analysis code?
+
+Use approved access controls, protected branches, required review, traceable issues and pull requests, automated checks, release tags, dependency records, controlled data references, and documented retention and validation procedures.
+
+### What would you do after committing a token?
+
+Treat it as exposed: revoke or rotate it immediately, notify the responsible security contact, preserve incident evidence, and follow the approved history-remediation process. Deleting the file in a new commit does not make the token safe.
+
+## 22. Command cheat sheet
+
+| Goal | Command |
+|---|---|
+| Create repository | `git init` |
+| Copy repository | `git clone URL` |
+| See state | `git status` |
+| See edits | `git diff` |
+| Stage one file | `git add path/to/file` |
+| Stage all intentional edits | `git add -p` |
+| Inspect staged edits | `git diff --staged` |
+| Save snapshot | `git commit -m "message"` |
+| View history | `git log --oneline --graph --all` |
+| Create branch | `git switch -c branch-name` |
+| Change branch | `git switch branch-name` |
+| Download remote history | `git fetch origin` |
+| Update current branch | `git pull --ff-only` |
+| Share branch | `git push -u origin branch-name` |
+| List remotes | `git remote -v` |
+| Compare branches | `git diff main...branch-name` |
+| Find a change | `git log -S"text" -- path/to/file` |
+| Undo shared commit | `git revert COMMIT_ID` |
+| Create release tag | `git tag -a v1.0.0 -m "message"` |
+
+## 23. Final summary
+
+Git is a disciplined memory for your project. GitHub turns that memory into a team practice: reviewable changes, visible decisions, automated checks, and named releases. For bioinformatics and regulated programming, the real value is not knowing every command. It is being able to connect a requirement, a change, a review, an environment, an input version, and a delivered result.
+
+Start small: initialize one safe practice repository, make one meaningful commit, create one branch, and review one pull request. The habit scales from a personal Python script to a multi-programmer clinical submission.
+
+## 24. Further reading
+
+- [Git documentation](https://git-scm.com/doc)
+- [Pro Git book](https://git-scm.com/book/en/v2)
+- [GitHub documentation](https://docs.github.com/)
+- [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow)
+- [GitHub security best practices](https://docs.github.com/en/code-security)
+- [Quarto](https://quarto.org/)
 
 [Back to home](index.qmd)

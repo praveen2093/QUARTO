@@ -2,9 +2,9 @@
   {
     "objectID": "git.html",
     "href": "git.html",
-    "title": "Git — Version Control for Regulated Teams",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
     "section": "",
-    "text": "Important\n\n\n\nStatus: Coming soon — Full tutorial in progress. Start with Docker if you need reproducible environments today."
+    "text": "Status: Available — This guide takes you from your first commit to a reviewable, reproducible workflow for R, SAS, Python, Quarto, clinical reporting, and bioinformatics pipelines."
   },
   {
     "objectID": "git.html#introduction",
@@ -894,5 +894,173 @@
     "title": "Nextflow — Professional Tutorial for Bioinformatics & Cloud",
     "section": "Cloud execution (reference)",
     "text": "Cloud execution (reference)\n\nGoogle Cloud Platform\n// nextflow.config excerpt\nprofiles {\n  gcp {\n    process.executor = 'google-lifesciences'\n    google {\n      project = 'YOUR_PROJECT_ID'\n      region  = 'us-central1'\n      bucket = 'gs://your-nextflow-bucket'\n    }\n    workDir = 'gs://your-nextflow-bucket/work'\n  }\n}\nnextflow run main.nf -profile gcp -with-report report.html\n\n\nAWS Batch\nprofiles {\n  aws {\n    process.executor = 'awsbatch'\n    aws.region = 'us-east-1'\n    workDir = 's3://your-nextflow-bucket/work'\n  }\n}\nnextflow run main.nf -profile aws -with-report report.html\n\n\n\n\n\n\nWarning\n\n\n\nReplace placeholder project IDs, buckets, and IAM roles with your organization’s approved cloud resources.\n\n\n\nBack to home"
+  },
+  {
+    "objectID": "git.html#why-git-matters",
+    "href": "git.html#why-git-matters",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "1. Why Git matters",
+    "text": "1. Why Git matters\nImagine a statistician edits a survival-analysis program on Monday, a reviewer changes it on Tuesday, and a client asks on Friday, “Which code produced this table?” Without version control, the answer may depend on memory, file names such as analysis_final_v7_really_final.sas, and a crowded shared drive.\nGit gives the team a time-stamped history of text files. It records what changed, who changed it, when it changed, and the commit message explaining why. GitHub adds a shared home for Git repositories, code review, issue tracking, automation, and controlled collaboration.\nGit does not validate an analysis by itself, and a Git repository is not automatically a complete electronic record or regulated document-management system. In a regulated environment, use it with your organization’s approved procedures, access controls, review requirements, retention rules, validation evidence, and electronic-signature expectations.\n\nWho this guide is for\n\nBioinformaticians building reference-genome, RNA-seq, variant-calling, or Nextflow workflows\nStatisticians and biostatisticians maintaining analysis plans, simulations, and statistical programs\nClinical and statistical programmers producing SDTM, ADaM, TLFs, and submission deliverables\nSAS-to-R programmers translating validated logic while keeping old and new implementations comparable\nPython and R programmers developing models, reports, APIs, and data-quality checks\nBio and pharma CRO teams coordinating work across sponsors, programming teams, reviewers, and vendors"
+  },
+  {
+    "objectID": "git.html#learning-objectives",
+    "href": "git.html#learning-objectives",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "2. Learning objectives",
+    "text": "2. Learning objectives\nBy the end, you will be able to:\n\nExplain Git, GitHub, a repository, a commit, a branch, and a pull request in plain language.\nCreate a repository, make safe commits, inspect history, and recover from common mistakes.\nUse branches and pull requests so another person can review analysis code before release.\nKeep secrets, participant data, generated outputs, and temporary files out of source control.\nDesign a repository that makes an analysis reproducible and easy to audit.\nApply a simple team workflow to R, SAS, Python, Quarto, Docker, and Nextflow projects."
+  },
+  {
+    "objectID": "git.html#git-and-github-in-one-picture",
+    "href": "git.html#git-and-github-in-one-picture",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "3. Git and GitHub in one picture",
+    "text": "3. Git and GitHub in one picture\n\n\n\n\n\nflowchart LR\n    A[Your working folder] --&gt;|git add| B[Staging area]\n    B --&gt;|git commit| C[Local Git history]\n    C --&gt;|git push| D[GitHub repository]\n    D --&gt;|Pull request| E[Review and discussion]\n    E --&gt;|Merge| F[Approved main branch]\n    F --&gt;|Tag and release| G[Reproducible delivery]\n\n\n\n\n\n\n\nThe simple mental model\nThink of a repository as a lab notebook for the files that define your work:\n\n\n\n\n\n\n\n\nGit idea\nPlain-language meaning\nLife-sciences example\n\n\n\n\nRepository\nProject folder plus its history\nAn ADaM derivation project\n\n\nWorking tree\nFiles you are editing now\nThe R script you changed today\n\n\nStaging area\nChanges selected for the next snapshot\nOnly the reviewed analysis files\n\n\nCommit\nA named, permanent snapshot\n“Correct censoring rule for OS”\n\n\nBranch\nA separate line of work\nA new subgroup analysis\n\n\nRemote\nA shared copy of the repository\nThe team’s GitHub repository\n\n\nPull request\nA request to review and merge changes\nReviewer checks a new TLF program\n\n\nTag\nA fixed name attached to a commit\nv1.0.0 or submission-2026-01\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe key distinction: Git is the version-control tool on your computer. GitHub is a web service that hosts Git repositories and team workflows. You can use Git without GitHub, and GitHub repositories are managed locally with Git."
+  },
+  {
+    "objectID": "git.html#install-and-configure-git",
+    "href": "git.html#install-and-configure-git",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "4. Install and configure Git",
+    "text": "4. Install and configure Git\nCheck whether Git is installed:\ngit --version\nInstall Git from git-scm.com, or use your organization’s approved software process. On macOS, Xcode Command Line Tools may provide Git. On Windows, Git for Windows provides Git Bash. On Linux, use your distribution’s package manager.\nConfigure the identity written into your commits:\ngit config --global user.name \"Your Full Name\"\ngit config --global user.email \"you@example.com\"\ngit config --global init.defaultBranch main\ngit config --global pull.rebase false\nInspect the configuration:\ngit config --global --list\ngit config user.name\ngit config user.email\nUse the email address required by your organization. A commit identity is not the same thing as authentication. GitHub authentication normally uses a browser login, SSH key, or a personal access token through an approved enterprise process. Never paste a password, token, private key, participant data, or sponsor data into a commit."
+  },
+  {
+    "objectID": "git.html#start-a-project-safely",
+    "href": "git.html#start-a-project-safely",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "5. Start a project safely",
+    "text": "5. Start a project safely\n\nOption A: Start a new local project\nmkdir trial-analysis\ncd trial-analysis\ngit init\ngit status\ngit init creates the hidden .git directory that stores history. It does not upload anything and it does not create a backup by itself.\nCreate a small project structure:\ntrial-analysis/\n├── README.md\n├── .gitignore\n├── data/\n│   └── README.md\n├── R/\n├── sas/\n├── python/\n├── tests/\n├── reports/\n└── renv.lock or requirements.txt\n\n\nOption B: Copy an existing GitHub project\ngit clone https://github.com/organization/project.git\ncd project\ngit remote -v\nCloning downloads the project and its history. It does not give you permission to push. For a private sponsor repository, follow the approved access and authentication process.\n\n\nA useful README\nA good README answers: What is this project? What data may be used? How is the environment installed? How is the analysis run? What is the review status? Who owns it? What is intentionally not stored here?\n# Trial analysis\n\nPurpose: derive analysis datasets and produce descriptive tables.\n\n## Run\n\n1. Install the approved R/Python environment.\n2. Place authorized input data in `data/` as described in `data/README.md`.\n3. Run `make all` or the documented workflow command.\n\n## Data policy\n\nParticipant-level data is not stored in this repository. Use the approved secure data location.\n\n## Status\n\nCode is under development. Release tags identify reviewed versions."
+  },
+  {
+    "objectID": "git.html#the-everyday-git-workflow",
+    "href": "git.html#the-everyday-git-workflow",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "6. The everyday Git workflow",
+    "text": "6. The everyday Git workflow\nThe basic loop is: inspect, select, save a meaningful snapshot, share, review.\ngit status\ngit diff\ngit add R/derive_adam.R tests/test-derive.R\ngit diff --staged\ngit commit -m \"Correct treatment-emergent event derivation\"\ngit log --oneline --decorate --graph -10\ngit push origin your-branch-name\n\nWhat each step protects you from\n\ngit status shows files changed, untracked, or staged.\ngit diff shows unstaged edits before you record them.\ngit add selects exactly what belongs in the next commit.\ngit diff --staged is the final inspection before recording the snapshot.\ngit commit creates a local, named checkpoint.\ngit log lets you see the story of the project.\ngit push sends local commits to the shared GitHub copy.\n\nWrite commit messages for a reviewer who was not sitting beside you:\nGood: Fix missing baseline flag in ADaM derivation\nWeak: changes\nOne commit should usually represent one coherent idea. Do not mix a censoring-rule change, a new logo, and a mass formatting rewrite in one commit."
+  },
+  {
+    "objectID": "git.html#a-first-hands-on-exercise",
+    "href": "git.html#a-first-hands-on-exercise",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "7. A first hands-on exercise",
+    "text": "7. A first hands-on exercise\nThis exercise uses harmless text files. In a real study, use only authorized data and repositories.\nmkdir git-practice\ncd git-practice\ngit init\nprintf \"subject_id,visit,score\\n001,Baseline,10\\n\" &gt; analysis-data.csv\nprintf \"# Analysis practice\\n\" &gt; README.md\ngit status\ngit add README.md analysis-data.csv\ngit commit -m \"Add initial analysis inputs and README\"\nNow change the score, inspect the difference, and commit the correction:\nprintf \"subject_id,visit,score\\n001,Baseline,12\\n\" &gt; analysis-data.csv\ngit diff\ngit add analysis-data.csv\ngit commit -m \"Correct baseline score in practice data\"\ngit log --oneline\nThe important lesson is not the CSV. It is the habit: make a small change, inspect it, explain it, and preserve it."
+  },
+  {
+    "objectID": "git.html#branches-and-pull-requests",
+    "href": "git.html#branches-and-pull-requests",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "8. Branches and pull requests",
+    "text": "8. Branches and pull requests\nThe main branch should represent the team’s trusted line of work. Create a branch for a change:\ngit switch main\ngit pull origin main\ngit switch -c fix-baseline-derivation\nWork, test, and commit on the branch:\ngit status\ngit add R/derive_adam.R tests/test-derive.R\ngit commit -m \"Fix baseline derivation and add test\"\ngit push --set-upstream origin fix-baseline-derivation\nOpen a pull request on GitHub. A useful pull request description states:\n\nWhat changed: corrected the baseline flag for the specified visit window.\nWhy: the prior logic excluded valid baseline records.\nEvidence: unit tests pass; comparison output is attached in the approved location.\nImpact: affected dataset, tables, listings, figures, and known limitations.\nReviewers: the programmer and statistician responsible for the analysis.\n\nReviewers should inspect the diff, run the documented checks, consider edge cases, and record their decision. After approval and passing checks, merge according to team policy. Delete the branch only after it is no longer needed."
+  },
+  {
+    "objectID": "git.html#github-collaboration-features",
+    "href": "git.html#github-collaboration-features",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "9. GitHub collaboration features",
+    "text": "9. GitHub collaboration features\n\n\n\nFeature\nPractical use\n\n\n\n\nRepository\nStore code, documentation, tests, and configuration\n\n\nPull request\nDiscuss and approve a proposed change\n\n\nIssue\nTrack a bug, question, decision, or improvement\n\n\nDiscussion\nAsk a broader design or community question\n\n\nActions\nRun tests, linting, rendering, or other automation\n\n\nRelease\nPublish a named package of reviewed work\n\n\nCODEOWNERS\nRoute changes to responsible reviewers\n\n\nBranch protection\nRequire reviews and checks before merging\n\n\nProjects\nOrganize work across issues and milestones\n\n\n\nFor regulated teams, configure repository visibility, least-privilege access, two-factor authentication, branch protection, required reviews, status checks, and audit logging according to organizational policy. GitHub settings do not replace a validated process; they help enforce one."
+  },
+  {
+    "objectID": "git.html#connecting-git-to-reproducibility",
+    "href": "git.html#connecting-git-to-reproducibility",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "10. Connecting Git to reproducibility",
+    "text": "10. Connecting Git to reproducibility\nGit can record the code, but reproducibility also depends on inputs, software versions, parameters, and execution instructions.\n\n\n\n\n\nflowchart TD\n    A[Reviewed commit] --&gt; B[Dependency lockfile]\n    A --&gt; C[Input data version or controlled reference]\n    A --&gt; D[Parameters and analysis plan]\n    B --&gt; E[Reproducible environment]\n    C --&gt; F[Traceable inputs]\n    D --&gt; G[Traceable decisions]\n    E --&gt; H[Re-run and compare outputs]\n    F --&gt; H\n    G --&gt; H\n\n\n\n\n\n\nRecord the things that define an execution:\n\nGit commit ID or release tag\nR package lockfile such as renv.lock\nPython dependencies such as requirements.txt, pyproject.toml, or a lockfile\nSAS version and approved macros or configuration\nDocker image digest where containers are used\nNextflow version, pipeline revision, parameters, and reference files\nInput-data location and controlled data version, never an unauthorized copy of the data\nOutput checksums where appropriate\n\nExample provenance note:\nAnalysis release: v1.2.0\nGit commit: 8f31c2a\nR: 4.4.1\nPackages: renv.lock\nInput snapshot: secure-data-release-2026-01\nWorkflow: nextflow run main.nf -r v1.2.0\nReview: approved pull request #42"
+  },
+  {
+    "objectID": "git.html#git-for-r-sas-python-and-quarto",
+    "href": "git.html#git-for-r-sas-python-and-quarto",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "11. Git for R, SAS, Python, and Quarto",
+    "text": "11. Git for R, SAS, Python, and Quarto\n\nR and Quarto\nTrack .R, .Rmd, .qmd, project configuration, tests, and lockfiles. Do not track rendered HTML, caches, local history, or large confidential data unless the project specifically requires it.\ngit add analysis.qmd R/ tests/ renv.lock\ngit commit -m \"Add reviewed descriptive statistics report\"\nquarto render analysis.qmd\n\n\nSAS\nTrack .sas programs, approved macro source, metadata, test fixtures, and documentation. Coordinate line-ending and encoding conventions with the team. Keep controlled source separate from generated logs and output unless the process requires those artifacts to be retained.\ngit diff -- sas/adam_adsl.sas\ngit add sas/adam_adsl.sas\ngit commit -m \"Derive age group using approved specification\"\n\n\nPython\nTrack .py, tests, configuration, packaging files, and dependency lockfiles. Never commit .env files containing credentials.\npython -m pytest\ngit add src/ tests/ pyproject.toml\ngit commit -m \"Add validation for missing laboratory values\"\n\n\nSAS-to-R translation\nUse a branch for the translation, preserve the original specification, and create paired tests. Compare row counts, keys, variable types, missing-value behavior, sort order, and numeric results within an agreed tolerance. A successful translation is demonstrated by evidence, not by similar-looking code."
+  },
+  {
+    "objectID": "git.html#gitignore-keep-the-repository-clean",
+    "href": "git.html#gitignore-keep-the-repository-clean",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "12. .gitignore: keep the repository clean",
+    "text": "12. .gitignore: keep the repository clean\n.gitignore tells Git which files should normally remain untracked. It is a convenience, not a data-security boundary.\n# Operating-system and editor files\n.DS_Store\n.vscode/\n.idea/\n\n# Python\n__pycache__/\n.venv/\n*.py[cod]\n.pytest_cache/\n\n# R\n.Rhistory\n.Rproj.user/\n*.Rproj\nrenv/library/\nrenv/local/\n\n# Quarto and report outputs\n_site/\n*.html\n*.log\n*_cache/\n\n# Data and secrets: use approved secure storage instead\ndata/raw/\ndata/derived/\n*.sas7bdat\n.env\n*.pem\n*.key\nBefore the first push, search for secrets and sensitive data. If a secret was committed, removing the file in a later commit is not enough: revoke or rotate the secret immediately and follow the incident process. History may still contain it."
+  },
+  {
+    "objectID": "git.html#essential-inspection-commands",
+    "href": "git.html#essential-inspection-commands",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "13. Essential inspection commands",
+    "text": "13. Essential inspection commands\n# Where am I and what changed?\npwd\ngit status --short\ngit diff --stat\ngit diff\n\n# What has been recorded?\ngit log --oneline --decorate --graph --all\ngit show --stat HEAD\ngit show HEAD~1:path/to/file.R\n\n# Which commit changed a line or file?\ngit log --follow -- path/to/file.R\ngit blame -L 20,40 path/to/file.R\n\n# What is shared and which branch is active?\ngit branch --show-current\ngit branch -vv\ngit remote -v\ngit fetch --prune origin\ngit blame is a tracing tool, not a way to assign blame to a person. Use it to find the commit and discussion that explain a line."
+  },
+  {
+    "objectID": "git.html#undoing-mistakes-without-panic",
+    "href": "git.html#undoing-mistakes-without-panic",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "14. Undoing mistakes without panic",
+    "text": "14. Undoing mistakes without panic\nRead git status first. The right command depends on whether the change is unstaged, staged, committed locally, or already shared.\n# Unstage a file, keeping its edits\ngit restore --staged path/to/file.R\n\n# Discard an unstaged edit; this cannot be easily recovered\ngit restore path/to/file.R\n\n# Edit the most recent commit message\ngit commit --amend -m \"Better explanation of the change\"\n\n# Create a new commit that reverses a shared commit\ngit revert &lt;commit-id&gt;\nAvoid rewriting shared history with git reset --hard or force-pushing unless your team explicitly authorizes it. For a public or regulated branch, git revert is usually easier to understand and audit.\nRecover an earlier file version for inspection without changing the branch:\ngit show &lt;commit-id&gt;:path/to/file.R"
+  },
+  {
+    "objectID": "git.html#pulling-merging-and-resolving-conflicts",
+    "href": "git.html#pulling-merging-and-resolving-conflicts",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "15. Pulling, merging, and resolving conflicts",
+    "text": "15. Pulling, merging, and resolving conflicts\nBefore starting work, update your branch:\ngit switch main\ngit pull --ff-only origin main\ngit switch your-branch-name\ngit merge main\nA conflict means Git found two edits to the same part of a file and cannot safely choose. Open the file and look for markers:\nCURRENT_BRANCH_VERSION\n======================\nINCOMING_BRANCH_VERSION\nChoose the correct content, remove all markers, run the relevant tests, then finish:\ngit add path/to/resolved-file.R\ngit commit\nFor an approved analysis, do not resolve a conflict by guessing. Ask the responsible statistician or programmer when the conflict changes derivation logic, endpoint definitions, population flags, or output meaning."
+  },
+  {
+    "objectID": "git.html#tags-releases-and-traceable-delivery",
+    "href": "git.html#tags-releases-and-traceable-delivery",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "16. Tags, releases, and traceable delivery",
+    "text": "16. Tags, releases, and traceable delivery\nA tag gives a stable name to an exact commit:\ngit switch main\ngit pull --ff-only origin main\ngit tag -a v1.0.0 -m \"Reviewed analysis release 1.0.0\"\ngit push origin v1.0.0\ngit show v1.0.0\nUse a naming convention agreed by the team. For example, v1.0.0 can mean a first reviewed release, while submission-2026-01 can identify a delivery milestone. Never move a release tag silently. If a correction is needed, create a new tag and document the reason."
+  },
+  {
+    "objectID": "git.html#team-workflow-for-a-cro-or-pharma-project",
+    "href": "git.html#team-workflow-for-a-cro-or-pharma-project",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "17. Team workflow for a CRO or pharma project",
+    "text": "17. Team workflow for a CRO or pharma project\n\nThe sponsor-approved specification and repository ownership are documented.\nAccess is granted to named users with the least privilege needed.\nThe team agrees on branches, review roles, commit messages, checks, and release tags.\nA programmer creates a focused branch and links it to an issue or requirement.\nThe programmer commits code and tests in small, understandable units.\nA reviewer checks the diff and runs documented validation steps.\nThe statistician or designated approver reviews the analysis impact.\nThe pull request is merged only after required checks and approvals pass.\nA release tag, environment record, and output evidence are created.\nThe repository, logs, approvals, and linked artifacts are retained under the approved process.\n\nThis workflow makes a handoff easier: a new programmer can see the current state, understand why a decision was made, and reproduce the intended run without relying on an informal conversation."
+  },
+  {
+    "objectID": "git.html#common-mistakes-and-troubleshooting",
+    "href": "git.html#common-mistakes-and-troubleshooting",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "18. Common mistakes and troubleshooting",
+    "text": "18. Common mistakes and troubleshooting\n\n“Permission denied” when pushing\nCheck the remote URL and your account access:\ngit remote -v\ngit branch -vv\nYou may be authenticated as the wrong account, missing repository permission, or using an unapproved authentication method. Ask the repository administrator rather than sharing credentials.\n\n\n“Your branch is behind”\nSave your work in a commit or stash, fetch the remote, then integrate the latest approved changes:\ngit status\ngit add .\ngit commit -m \"Save work before updating branch\"\ngit pull --rebase origin main\nUse the team’s merge or rebase policy. Do not rebase a branch that other people are actively using without coordinating.\n\n\nA file still appears after .gitignore\nIgnore rules do not remove files already tracked:\ngit rm --cached path/to/file\ngit commit -m \"Stop tracking generated file\"\n\n\nA large or sensitive file was committed\nStop pushing, notify the responsible security or project contact, revoke exposed credentials, and follow the approved remediation process. History rewriting may be necessary, but it must be coordinated because it changes commit IDs and other people’s clones."
+  },
+  {
+    "objectID": "git.html#practical-review-checklist",
+    "href": "git.html#practical-review-checklist",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "19. Practical review checklist",
+    "text": "19. Practical review checklist\nBefore opening a pull request, confirm:\n\nThe branch starts from the intended base branch.\nThe diff contains only the requested change.\nNo participant-level data, credentials, tokens, or private keys are included.\nTests cover changed logic and important edge cases.\nR, SAS, Python, Quarto, Docker, or Nextflow versions are documented.\nVariable labels, derivation rules, population flags, and output changes are explained.\nThe README or run instructions still work.\nGenerated files are handled according to project policy.\nThe commit and pull request messages explain purpose and impact.\nThe reviewer can reproduce the check from a clean checkout."
+  },
+  {
+    "objectID": "git.html#mini-project-a-traceable-analysis-change",
+    "href": "git.html#mini-project-a-traceable-analysis-change",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "20. Mini project: a traceable analysis change",
+    "text": "20. Mini project: a traceable analysis change\nCreate a small repository containing a README, a script, a test, and a .gitignore. Make an intentionally small change, such as correcting the handling of a missing value. Then:\n\nOpen an issue describing the problem and expected behavior.\nCreate a branch named after the issue.\nAdd a test that demonstrates the intended behavior.\nChange the analysis code.\nRun the test and record the command and result.\nCommit the test and code with separate, meaningful messages if appropriate.\nOpen a pull request with impact and evidence.\nAsk a colleague to review the diff.\nMerge after approval and tag the reviewed state.\nWrite a short provenance note with the tag, environment, inputs, and output location.\n\nThe finished repository should let another person answer: What changed? Why? Who reviewed it? Which code and environment produced the result?"
+  },
+  {
+    "objectID": "git.html#interview-questions",
+    "href": "git.html#interview-questions",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "21. Interview questions",
+    "text": "21. Interview questions\n\nWhat is the difference between Git and GitHub?\nGit is a distributed version-control system. GitHub hosts repositories and provides collaboration features such as pull requests, issues, permissions, and Actions.\n\n\nWhy use a branch?\nA branch isolates work so the trusted branch remains stable while a change is developed, tested, and reviewed.\n\n\nWhat is a commit?\nA commit is a named snapshot of selected changes, with an author, timestamp, parent history, and message.\n\n\nHow would you protect clinical analysis code?\nUse approved access controls, protected branches, required review, traceable issues and pull requests, automated checks, release tags, dependency records, controlled data references, and documented retention and validation procedures.\n\n\nWhat would you do after committing a token?\nTreat it as exposed: revoke or rotate it immediately, notify the responsible security contact, preserve incident evidence, and follow the approved history-remediation process. Deleting the file in a new commit does not make the token safe."
+  },
+  {
+    "objectID": "git.html#command-cheat-sheet",
+    "href": "git.html#command-cheat-sheet",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "22. Command cheat sheet",
+    "text": "22. Command cheat sheet\n\n\n\nGoal\nCommand\n\n\n\n\nCreate repository\ngit init\n\n\nCopy repository\ngit clone URL\n\n\nSee state\ngit status\n\n\nSee edits\ngit diff\n\n\nStage one file\ngit add path/to/file\n\n\nStage all intentional edits\ngit add -p\n\n\nInspect staged edits\ngit diff --staged\n\n\nSave snapshot\ngit commit -m \"message\"\n\n\nView history\ngit log --oneline --graph --all\n\n\nCreate branch\ngit switch -c branch-name\n\n\nChange branch\ngit switch branch-name\n\n\nDownload remote history\ngit fetch origin\n\n\nUpdate current branch\ngit pull --ff-only\n\n\nShare branch\ngit push -u origin branch-name\n\n\nList remotes\ngit remote -v\n\n\nCompare branches\ngit diff main...branch-name\n\n\nFind a change\ngit log -S\"text\" -- path/to/file\n\n\nUndo shared commit\ngit revert COMMIT_ID\n\n\nCreate release tag\ngit tag -a v1.0.0 -m \"message\""
+  },
+  {
+    "objectID": "git.html#final-summary",
+    "href": "git.html#final-summary",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "23. Final summary",
+    "text": "23. Final summary\nGit is a disciplined memory for your project. GitHub turns that memory into a team practice: reviewable changes, visible decisions, automated checks, and named releases. For bioinformatics and regulated programming, the real value is not knowing every command. It is being able to connect a requirement, a change, a review, an environment, an input version, and a delivered result.\nStart small: initialize one safe practice repository, make one meaningful commit, create one branch, and review one pull request. The habit scales from a personal Python script to a multi-programmer clinical submission."
+  },
+  {
+    "objectID": "git.html#further-reading",
+    "href": "git.html#further-reading",
+    "title": "Git and GitHub — Reproducible Collaboration for Life Sciences",
+    "section": "24. Further reading",
+    "text": "24. Further reading\n\nGit documentation\nPro Git book\nGitHub documentation\nGitHub flow\nGitHub security best practices\nQuarto\n\nBack to home"
   }
 ]
