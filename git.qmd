@@ -263,7 +263,7 @@ Reviewers should inspect the diff, run the documented checks, consider edge case
 | Branch protection | Require reviews and checks before merging |
 | Projects | Organize work across issues and milestones |
 
-For regulated teams, configure repository visibility, least-privilege access, two-factor authentication, branch protection, required reviews, status checks, and audit logging according to organizational policy. GitHub settings do not replace a validated process; they help enforce one.
+For regulated teams, configure repository visibility, least-privilege access, two-factor authentication, branch protection, required reviews, status checks, & audit logging according to organizational policy. GitHub settings do not replace a validated process; they help enforce one.
 
 ## 10. Connecting Git to reproducibility
 
