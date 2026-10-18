@@ -1,26 +1,1010 @@
 ---
 title: "Linux — Foundations for Life Sciences Computing"
-description: "Command-line foundations for bioinformatics, clinical programming, and data science."
+description: "A beginner-friendly Why, What, How guide to everyday Linux for life sciences."
 toc-depth: 2
+code-fold: false
+execute: {eval: false}
 ---
 
-::: {.callout-important}
-**Status: Coming soon** — This tutorial will follow the full StatiX documentation standard (25 sections). [Docker](docker.qmd) and [Nextflow](nextflow.qmd) are available now.
+::: {.callout-note}
+**No Linux experience needed.** Work with invented study records and tiny sequencing files. No patient data or paid software is needed for the core exercises. Examples target **Bash on Ubuntu/Linux**. Remote-server and specialist-tool examples are templates, clearly separated from runnable practice.
 :::
 
-## 1. Introduction
+## 1. Linux in plain language
 
-**Linux** is the operating system that powers most servers, HPC clusters, and cloud instances used in bioinformatics and pharmaceutical computing.
+### Why
 
-### Why Linux exists in your workflow
+Before you analyze data, you must find the correct input, check it, run a program, and inspect its output. Linux makes these tasks repeatable on research servers, clinical platforms, and cloud computers.
 
-Clinical SAS/R environments may run on Windows, but **cloud pipelines**, **sequencing cores**, and **DevOps tooling** overwhelmingly run on Linux.
+### What
 
-### What you will learn here (upcoming)
+An **operating system** manages files, memory, hardware, and programs. Linux is technically its core, the **kernel**. A distribution such as Ubuntu combines that kernel with useful software.
 
-- Navigating the filesystem
-- Permissions, processes, and shell scripting
-- Connecting to remote servers (SSH)
-- Preparing for Docker, Git, and Nextflow
+| Word | Plain-language meaning | Example |
+|---|---|---|
+| Distribution | An installable Linux system | Ubuntu, Debian, Rocky Linux |
+| Terminal | Window where you type commands | VS Code's integrated terminal |
+| Shell | Program that interprets your commands | Bash |
+| Command | Instruction to a tool | `pwd` |
+| Filesystem | Hierarchy of files and folders | `/home/analyst/study` |
+| Server | Computer reached over a network | Institution's analysis machine |
+| HPC cluster | Computers managed by a scheduler | University Slurm cluster |
+
+### How
+
+Think of the terminal as a text-based file manager plus a programmable workbench. Instead of clicking a folder, type `cd`. Instead of opening a huge log, search it with `grep`.
+
+| Role | Daily Linux use |
+|---|---|
+| Bioinformatician | Check FASTQ inputs, run alignments, inspect pipeline logs |
+| Clinical programmer | Organize inputs, launch approved R/SAS jobs, reconcile deliveries |
+| Data scientist | Inspect datasets, manage environments, monitor model training |
+
+Linux supports reproducibility. It does **not** establish scientific validity or regulatory compliance by itself.
+
+## 2. Your learning to-do list
+
+### Why
+
+Learning useful actions in order is easier than memorizing hundreds of commands.
+
+### What
+
+Use this checklist as a learning route. You do not need to finish it in one sitting.
+
+### How
+
+- [ ] Open Bash and explain the operating system, terminal, and shell.
+- [ ] Read a command and find help.
+- [ ] Create the synthetic study in Section 6.
+- [ ] Navigate, copy, move, and delete safely.
+- [ ] Read, search, count, and compare files.
+- [ ] Combine commands and capture logs and exit statuses.
+- [ ] Check permissions, storage, memory, and processes.
+- [ ] Understand environments, remote access, and transfers.
+- [ ] Write and test a small script.
+- [ ] Recognize bioinformatics, clinical, and HPC workflow boundaries.
+- [ ] Complete the mini-project and explain its checks.
+
+**First session:** Sections 1-10. **Daily productivity:** Sections 11-20. **Applied practice:** Sections 21-25. Section 25 is your quick reference.
+
+## 3. Open a safe Linux workspace
+
+### Why
+
+You need a real Bash session before these commands will behave as described.
+
+### What
+
+Choose one route. Windows PowerShell is not Bash. A macOS terminal is not automatically Linux, and some command options differ.
+
+### How
+
+| Your computer | Starting point |
+|---|---|
+| Windows | Ubuntu through WSL, following your organization's installation policy |
+| macOS | Approved Linux virtual machine or Linux development container |
+| Linux | Open the Terminal application |
+| Managed work computer | Ask for an approved training environment |
+| GitHub Codespaces | Open **Terminal > New Terminal**; use synthetic data only |
+
+On a personally managed Windows machine, run this in **administrator PowerShell**, not Bash. Installation may require a restart and Ubuntu account setup:
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+Inside Linux, inspect your environment:
+
+```bash
+uname -s
+cat /etc/os-release
+bash --version
+whoami
+```
+
+`uname -s` should print `Linux`. `cat` displays the distribution information. `bash --version` identifies Bash; version numbers vary. `whoami` prints your account name. None changes your files.
+
+::: {.callout-warning}
+Use approved systems for real study data. Never upload patient records, credentials, or proprietary research to public repositories or personal training services. De-identified data can still be sensitive.
+:::
+
+## 4. Read your first command
+
+### Why
+
+Understanding command structure lets you adapt examples instead of copying blindly.
+
+### What
+
+The usual structure is `command options arguments`. Options change behavior; arguments identify what to act on.
+
+### How
+
+```bash
+ls -lh /tmp
+```
+
+`ls` lists contents, `-l` requests details, `-h` makes sizes readable, and `/tmp` is the directory to inspect. Combined short options such as `-lh` mean the same as `-l -h` here.
+
+A prompt might be `analyst@server:~$`. **Do not type the prompt or its `$`.** A prompt ending in `#` often indicates an administrator account; avoid one for practice.
+
+| Symbol or key | Meaning |
+|---|---|
+| `~` | Your home directory |
+| `.` / `..` | Current directory / parent directory |
+| `/` | Filesystem root, and path separator |
+| `Ctrl+C` | Interrupt the foreground command; not copy-to-clipboard here |
+| `Ctrl+D` | End input; at an empty prompt it can close the shell |
+| Up arrow | Recall a previous command |
+| Tab | Complete a command or path when possible |
+| `#` | Starts a shell comment when unquoted and in comment position |
+
+Names are case-sensitive: `ADSL.csv` and `adsl.csv` can be different files. Prefer names such as `study_001`. Quote paths containing spaces: `ls "Study Files"`.
+
+## 5. Find help and recover calmly
+
+### Why
+
+You do not need to memorize every option; learn how to verify one.
+
+### What
+
+Tools provide help; Bash has separate help for built-in commands.
+
+### How
+
+```bash
+ls --help
+help cd
+command -v bash
+type cd
+```
+
+`--help` usually shows usage. `help cd` explains Bash's built-in directory changer. `command -v` locates a tool, or returns failure if unavailable. `type` identifies a built-in, alias, or executable.
+
+If available, `man ls` opens a manual. Search with `/`, type a term, press Enter, and quit with `q`. Minimal containers may not include manuals.
+
+| Symptom | First action |
+|---|---|
+| `command not found` | Check spelling, `command -v`, and the approved environment |
+| `No such file or directory` | Check `pwd`, `ls`, spelling, and case |
+| `Permission denied` | Inspect access; do not automatically add `sudo` |
+| A `>` continuation prompt | A quote or command is incomplete; `Ctrl+C` cancels it |
+| A viewer seems stuck | Try `q` if it is `less` or `man` |
+| A running command seems stuck | Inspect before interrupting; partial output may remain |
+
+## 6. Create your synthetic practice study
+
+### Why
+
+Tiny, predictable data lets you check whether each command worked.
+
+### What
+
+Create four invented subject records, a tab-separated sample sheet, two toy sequencing reads, and a log. This is **not** patient data or a validated clinical data structure.
+
+### How
+
+Run the whole block in Bash. It refuses to replace an existing practice study.
+
+```bash
+mkdir -p "$HOME/linux-life-sciences"
+cd "$HOME/linux-life-sciences"
+if [[ -e study_001 ]]; then
+	printf 'study_001 already exists; keep it or choose a new practice folder.\n'
+else
+	mkdir -p study_001/{raw,scripts,results,logs,scratch}
+	cd study_001
+	cat > raw/subjects.csv <<'EOF'
+subject_id,arm,age
+S001,Placebo,34
+S002,Drug,57
+S003,Drug,46
+S004,Placebo,62
+EOF
+	printf 'sample_id\tgroup\nS001\tcontrol\nS002\ttreated\n' > raw/samples.tsv
+	cat > raw/reads.fastq <<'EOF'
+@read001
+ACGTACGT
++
+IIIIIIII
+@read002
+GGCCTTAA
++
+IIIIIIII
+EOF
+	printf 'INFO start\nWARNING low coverage\nERROR missing reference\nINFO end\n' > logs/demo.log
+	printf 'Practice study created in %s\n' "$PWD"
+fi
+```
+
+`mkdir -p` creates folders and missing parents. Bash expands `{raw,scripts,results,logs,scratch}` into five paths. `cd` changes location. `$HOME` is your home path; `$PWD` is your current directory. `[[ -e ... ]]` tests existence; `if`, `else`, and `fi` choose which commands run.
+
+`cat > file <<'EOF'` writes the lines up to `EOF` into a file: a **here-document**. Quoting `'EOF'` prevents variable substitution inside that data. `printf` writes formatted text: `\n` means newline, `\t` means tab. `>` creates or **overwrites** a file, which is why the existence guard matters.
+
+Before later sections, return to the study root:
+
+```bash
+cd "$HOME/linux-life-sciences/study_001"
+pwd
+ls
+```
+
+Expected directories: `logs`, `raw`, `results`, `scratch`, and `scripts`.
+
+## 7. Navigate without getting lost
+
+### Why
+
+Many analysis failures are commands run in the wrong directory.
+
+### What
+
+An **absolute path** starts at `/`; a **relative path** starts from your current directory.
+
+### How
+
+```bash
+cd "$HOME/linux-life-sciences/study_001"
+pwd
+ls -lah
+cd raw
+ls
+cd ..
+```
+
+`pwd` prints your location. `ls -lah` combines details, hidden names (`-a`), and readable sizes. `cd raw` enters the folder; `cd ..` returns to its parent.
+
+| Command | Everyday use |
+|---|---|
+| `cd ~` | Return home |
+| `cd -` | Return to the previous directory |
+| `ls raw` | Inspect without entering |
+| `ls -ld raw` | Inspect the directory itself |
+| `realpath raw/subjects.csv` | Resolve the absolute path on Linux |
+
+`/home/analyst/study` is an illustrative path, not one guaranteed to exist. The `$HOME` practice paths work with your actual account.
+
+## 8. Create, copy, move, and delete safely
+
+### Why
+
+Keep received inputs unchanged and experiment on copies.
+
+### What
+
+`cp` copies; `mv` moves or renames; `rm` removes. `rm` normally bypasses any recycle bin.
+
+### How
+
+From the study root:
+
+```bash
+mkdir -p scratch/copy_demo
+cp -i raw/subjects.csv scratch/copy_demo/subjects.csv
+mv -i scratch/copy_demo/subjects.csv scratch/copy_demo/subjects_copy.csv
+ls -l scratch/copy_demo
+rm -i scratch/copy_demo/subjects_copy.csv
+rmdir scratch/copy_demo
+```
+
+`-i` prompts before certain overwrites/removals; read and answer deliberately. `rmdir` removes **only empty directories**. `cp -r source_directory destination_directory` copies a tree, but inspect the destination first because an existing directory can change the resulting layout.
+
+`touch scratch/notes.txt` creates an empty file if absent or updates timestamps if present. It is not an editor. Use VS Code or an approved editor to write text; `nano scratch/notes.txt` is another option if installed. In nano, save with `Ctrl+O`, confirm with Enter, and exit with `Ctrl+X`.
+
+::: {.callout-warning}
+Before deleting, run `pwd` and list the exact target. Do not practice recursive force deletion or wildcard cleanup on study data. Removal is not an approved secure-erasure procedure.
+:::
+
+## 9. Read files without opening everything
+
+### Why
+
+Do not load a multi-gigabyte dataset into a spreadsheet merely to inspect its beginning.
+
+### What
+
+`head` previews the beginning; `tail` previews the end; `less` browses interactively. `cat` prints everything, so reserve it for small files.
+
+### How
+
+```bash
+head -n 3 raw/subjects.csv
+tail -n 2 raw/subjects.csv
+cat raw/samples.tsv
+wc -l raw/subjects.csv
+file raw/subjects.csv
+```
+
+The first preview shows the header, S001, and S002. The last shows S003 and S004. `wc -l` reports **5 newline characters**: a header plus four records here. It is not a general CSV record counter because fields can contain newlines. `file` inspects file type, not scientific validity, and may be absent from minimal environments.
+
+Try `less raw/subjects.csv`: search with `/S003`, advance with `n`, and quit with `q`. `tail -f logs/demo.log` follows a growing log; `Ctrl+C` stops following, not the separate analysis that writes it.
+
+## 10. Find files and search their contents
+
+### Why
+
+Finding a filename and finding a message inside a file are different tasks.
+
+### What
+
+`find` searches paths. `grep` searches text lines.
+
+### How
+
+```bash
+find raw -type f -name '*.csv'
+find raw -type f -name '*.fastq'
+grep -n 'S002' raw/subjects.csv
+grep -nE 'WARNING|ERROR' logs/demo.log
+grep -nF 'S002,Drug' raw/subjects.csv
+```
+
+`-type f` matches regular files. Quote `'*.csv'` so `find`, not Bash, expands the pattern. Expect `raw/subjects.csv` and `raw/reads.fastq` in the first two searches.
+
+`grep -n` includes line numbers: S002 is on line 3. `-E` enables extended regular expressions, where `|` means either alternative: log lines 2 and 3 match. `-F` treats a pattern literally. `grep -rni --include='*.log' 'error' logs` searches logs recursively (`-r`) without case sensitivity (`-i`). A matching message is evidence to inspect, not proof of run failure.
+
+Do **not** count arbitrary FASTQ reads with `grep '^@'`: quality lines can also begin with `@`. Use a FASTQ-aware tool, as explained in Section 21.
+
+## 11. Combine commands and capture output
+
+### Why
+
+Small tools become powerful when combined, and saved output makes review easier.
+
+### What
+
+Programs write normal output to **stdout**, diagnostic output to **stderr**, and return an **exit status**. Zero normally means success; interpret nonzero values using the tool's documentation.
+
+### How
+
+```bash
+grep -nE 'WARNING|ERROR' logs/demo.log > results/flagged_messages.txt
+cat results/flagged_messages.txt
+printf 'Reviewed synthetic log\n' >> logs/review.log
+cut -d, -f2 raw/subjects.csv | tail -n +2 | LC_ALL=C sort | uniq -c
+```
+
+The final pipeline prints two Drug and two Placebo records. `cut -d, -f2` selects field two using comma separation; `tail -n +2` skips the header; `sort` puts equal values together; `uniq -c` counts adjacent repetitions. `LC_ALL=C` gives this sort a stable byte-based ordering. This works for our simple CSV, **not arbitrary quoted CSV**.
+
+| Operator/tool | Meaning |
+|---|---|
+| `|` | Send stdout into the next command's input |
+| `>` / `>>` | Replace a file / append to it |
+| `2>` | Redirect stderr |
+| `> logs/run.log 2>&1` | Put stdout and stderr in one log; order matters |
+| `tee results/copy.txt` | Copy input to both stdout and a file; overwrites the file unless `-a` is used |
+| `&&` | Run the next command only after success |
+| `||` | Run the next command only after failure |
+| `;` | Run the next command regardless of status |
+
+```bash
+if grep -q 'ERROR' logs/demo.log; then
+	printf 'An ERROR message was found; review the log.\n'
+else
+	status=$?
+	printf 'grep exit status: %s\n' "$status"
+fi
+```
+
+`-q` suppresses output. `grep` returns `0` for a match, `1` for no match, and typically `2` for an error. `$?` holds the immediately previous command's status; another command replaces it. The example prints the review message because the toy log contains `ERROR`.
+
+Never write a command's output back to its input with `sort input.tsv > input.tsv`: the shell can empty the file **before** `sort` reads it.
+
+## 12. Inspect tabular text carefully
+
+### Why
+
+Sample sheets and simple summaries can be inspected quickly without launching an analysis application.
+
+### What
+
+`cut` selects fields, `awk` filters and calculates, and `sort` plus `uniq` summarizes text. These do not implement all CSV quoting rules.
+
+### How
+
+```bash
+cut -f1 raw/samples.tsv
+awk -F '\t' 'NR > 1 && $2 == "treated" { print $1 }' raw/samples.tsv
+awk -F, 'NR > 1 { total += $3; count++ } END { if (count) print total / count }' raw/subjects.csv
+```
+
+Expected: the sample ID column including its header, then `S002`, then mean age `49.75`. `cut` defaults to tabs. In `awk`, `-F` chooses the separator, `NR` is the record number, `$1` is field one, and `END` runs after all records. `$2` inside the single-quoted awk program is an **awk field**, not a Bash argument.
+
+A real CSV record such as `S001,"Placebo, blinded",34` breaks naive comma splitting. Use an approved CSV-aware library. Optional example requiring Python 3:
+
+```bash
+python3 - <<'PY'
+import csv
+
+with open("raw/subjects.csv", newline="", encoding="utf-8") as input_file:
+		subjects = list(csv.DictReader(input_file))
+ages = [int(subject["age"]) for subject in subjects]
+print(f"Subjects: {len(subjects)}; mean age: {sum(ages) / len(ages):.2f}")
+PY
+```
+
+Expected: `Subjects: 4; mean age: 49.75`. Production readers also need rules for missingness, types, duplicate IDs, and allowed values.
+
+## 13. Compare files and verify integrity
+
+### Why
+
+A familiar filename does not prove that a delivery contains the same bytes.
+
+### What
+
+`diff` shows text differences, `cmp` compares bytes, and `sha256sum` makes and verifies checksums.
+
+### How
+
+```bash
+cp raw/subjects.csv scratch/subjects_check.csv
+diff -u raw/subjects.csv scratch/subjects_check.csv
+cmp raw/subjects.csv scratch/subjects_check.csv
+sha256sum raw/subjects.csv > results/subjects.sha256
+sha256sum -c results/subjects.sha256
+```
+
+The comparisons are silent on identical files and return zero. `diff` returns `1` for differences and a greater value for trouble. Checksum verification should print `raw/subjects.csv: OK`. Run from the study root because the manifest contains a relative path.
+
+Checksums detect byte changes, including line endings. They do not prove authenticity if someone can replace both the file and manifest: receive expected checksums through a trusted channel. Byte-identical data can still be scientifically incorrect.
+
+## 14. Compress and package files
+
+### Why
+
+Sequencing inputs and study deliveries are often compressed to reduce storage and transfer time.
+
+### What
+
+`gzip` compresses, `zcat` reads gzip content, and `tar` packages a directory tree.
+
+### How
+
+```bash
+gzip -c raw/reads.fastq > scratch/reads.fastq.gz
+gzip -t scratch/reads.fastq.gz
+zcat scratch/reads.fastq.gz | head -n 8
+tar -czf scratch/study_inputs.tar.gz raw
+tar -tzf scratch/study_inputs.tar.gz
+mkdir -p scratch/unpacked
+tar -xzf scratch/study_inputs.tar.gz -C scratch/unpacked
+```
+
+`gzip -c` preserves the original and writes compressed bytes to stdout. Plain `gzip file` normally replaces the original with `file.gz`. `gzip -t` tests integrity and is normally silent on success.
+
+For `tar`, `-c` creates, `-t` lists, `-x` extracts, `-z` uses gzip, `-f` introduces the archive filename, and `-C` chooses the extraction directory.
+
+Compression is **not encryption**. Inspect an archive's origin and paths before extraction; use an empty destination and never extract untrusted archives as administrator. For large streams, `head` can close the pipe early; upstream tools may report a broken pipe under `pipefail` even when a preview appears.
+
+## 15. Understand permissions before changing them
+
+### Why
+
+Authorized collaborators need access; unrelated server accounts should not automatically receive it.
+
+### What
+
+Traditional permissions apply to **owner**, **group**, and **others**. `r`, `w`, `x` mean read, write, execute. On directories, `x` means permission to traverse.
+
+### How
+
+```bash
+id
+ls -ld raw
+ls -l raw/subjects.csv
+cp raw/subjects.csv scratch/private_subjects.csv
+chmod 600 scratch/private_subjects.csv
+ls -l scratch/private_subjects.csv
+umask
+```
+
+`id` shows user/group identities. `chmod 600` gives the owner read/write and removes traditional group/other permission bits. The practice copy's listing should start `-rw-------`.
+
+| Mode/command | Typical meaning |
+|---|---|
+| `600` | Private file: owner read/write |
+| `640` | Owner read/write, group read |
+| `700` | Private directory: owner can list, modify, traverse |
+| `750` | Owner full access, group list/traverse |
+| `chmod u+x scripts/count_subjects.sh` | Add executable permission for the owner |
+
+`umask` displays the mask for newly created files. In a **personal practice shell**, `umask 077` requests private creation defaults; it does not change existing files. Follow institutional defaults for shared projects.
+
+ACLs, parent directories, shared mounts, and administrator privileges also affect access. Permissions are not encryption or an audit trail. Avoid `chmod 777`; do not change ownership or use `sudo` without an approved reason.
+
+## 16. Check storage, memory, and processes
+
+### Why
+
+Correct code can fail because a filesystem is full or a job exceeds its memory allowance.
+
+### What
+
+Inspect filesystem capacity, folder usage, memory, and your own processes separately.
+
+### How
+
+```bash
+df -h .
+du -sh raw results scratch
+free -h
+ps -u "$USER" -o pid,etime,%cpu,%mem,args
+```
+
+| Command | Question answered |
+|---|---|
+| `df -h .` | Free space on this filesystem? |
+| `du -sh raw results scratch` | Disk usage of these directories? |
+| `free -h` | Memory reported by this Linux environment? |
+| `ps ...` | Processes belonging to this account? |
+| `top` | Interactive activity view; quit with `q` |
+| `quota -s` | Personal quota, if installed and supported here? |
+
+In `ps`, PID is a process ID, `etime` is elapsed time, and `args` shows the command. Container/cluster limits can be lower than the reported host capacity. Avoid repeatedly scanning huge shared trees with `du`.
+
+To stop a process, identify its PID, owner, and purpose first. `kill -TERM PID` requests graceful termination after you replace `PID` with its numeric value. Do not paste the placeholder. Avoid starting with `kill -9`, which prevents cleanup. Cancel scheduled work through its scheduler instead.
+
+## 17. Manage software environments
+
+### Why
+
+Different projects may need incompatible tool versions. One uncontrolled shared environment makes results difficult to reproduce.
+
+### What
+
+System packages, Python environments, research package managers, and HPC modules solve different problems.
+
+### How
+
+```bash
+command -v python3
+command -v Rscript
+command -v samtools
+printf '%s\n' "$PATH"
+```
+
+`PATH` lists directories searched for executables. A missing tool may need installation or activation of the correct environment.
+
+| Situation | Appropriate approach |
+|---|---|
+| Personally managed Ubuntu | Approved `apt` packages; these change the OS and may require admin rights |
+| Python project | `venv` isolates Python packages, not the whole operating system |
+| Bioinformatics project | Approved Conda/Mamba environment or container with recorded versions |
+| HPC | Site-provided `module` system; names and versions are local |
+| Validated clinical platform | Approved change control, not ad hoc upgrades |
+
+Optional exercise, if Python and its venv support are installed:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python --version
+python -m pip --version
+deactivate
+```
+
+`source` runs activation in the current shell. `deactivate` restores the previous environment. If support is missing, use the approved installation process. Never pipe an unknown downloaded installation script directly into Bash or upgrade production tools to satisfy a tutorial.
+
+## 18. Connect and transfer securely
+
+### Why
+
+Run large analyses near the data on approved infrastructure rather than moving restricted inputs onto personal devices.
+
+### What
+
+`ssh` opens a remote shell, `scp` copies files over SSH, and `rsync` synchronizes trees. They require installed tools, authorized accounts, and network access.
+
+### How
+
+**Templates only:** replace the account, reserved example hostname, and paths with administrator-provided values. Run transfers from the **local** terminal unless you intend otherwise.
+
+```bash
+ssh analyst@analysis.example.org
+```
+
+Verify a new server's host-key fingerprint through a trusted administrator before accepting it. After login, use `hostname`, `whoami`, and `pwd` to confirm your location. `exit` closes the remote shell.
+
+```bash
+scp raw/samples.tsv analyst@analysis.example.org:/approved/project/incoming/
+rsync -av --dry-run results/ analyst@analysis.example.org:/approved/project/results/
+rsync -av results/ analyst@analysis.example.org:/approved/project/results/
+```
+
+`-a` requests archive behavior, `-v` shows activity, and `--dry-run` previews without transferring. `results/` means the directory's **contents**; omitting its trailing slash can change the destination layout. Inspect the preview first. Do not casually add `--delete`, which can remove destination files.
+
+Follow approved SSH-key/MFA practices. Never store passwords or private keys in Git or scripts. SSH protects transport, not destination authorization or retention; verify important transfers with trusted checksums.
+
+## 19. Run programs and retain logs
+
+### Why
+
+Reproducibility needs the command, software version, inputs, outputs, and completion status, not just a screenshot.
+
+### What
+
+Foreground, background, persistent-terminal, and scheduler jobs have different lifecycles.
+
+### How
+
+These are **templates** requiring your own analysis scripts and approved installations:
+
+```bash
+Rscript scripts/analysis.R > logs/analysis.log 2>&1
+python3 scripts/analysis.py > logs/python_analysis.log 2>&1
+```
+
+Run the relevant command, then immediately use `printf 'Exit status: %s\n' "$?"`. Review logs and expected outputs too. These example scripts are not created by the practice exercise.
+
+For a personal, non-HPC Bash session, the background pattern is:
+
+```bash
+python3 scripts/analysis.py > logs/background.log 2>&1 &
+job_pid=$!
+printf 'Started PID %s\n' "$job_pid"
+wait "$job_pid"
+job_status=$?
+printf 'Job exit status: %s\n' "$job_status"
+```
+
+`&` starts the job; `$!` captures its PID; `wait` returns its completion status. `jobs -l` lists jobs in this shell. Backgrounding does **not** guarantee survival after logout.
+
+Where installed and permitted, `tmux new -s study` opens a persistent session. Detach with `Ctrl+B` then `D`; return with `tmux attach -t study`. `tmux` does not allocate compute resources. For clusters, use Section 23; do not run heavy analyses on login nodes.
+
+## 20. Write and test a defensive Bash script
+
+### Why
+
+A small script makes repeated checks consistent and reviewable.
+
+### What
+
+Count physical data lines in the known simple synthetic CSV. Refuse accidental overwrites. This is **not** a general clinical CSV validator.
+
+### How
+
+From the practice root, create and run the script:
+
+```bash
+cat > scripts/count_subjects.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 2 ]]; then
+	printf 'Usage: bash count_subjects.sh INPUT.csv OUTPUT.txt\n' >&2
+	exit 2
+fi
+
+input_path=$1
+output_path=$2
+if [[ ! -f "$input_path" || ! -r "$input_path" || ! -s "$input_path" ]]; then
+	printf 'Input must be a readable, nonempty regular file: %s\n' "$input_path" >&2
+	exit 1
+fi
+if [[ -e "$output_path" ]]; then
+	printf 'Output already exists: %s\n' "$output_path" >&2
+	exit 1
+fi
+
+subject_count=$(awk 'END { print NR - 1 }' "$input_path")
+printf 'subject_count\n%s\n' "$subject_count" > "$output_path"
+printf 'Wrote %s\n' "$output_path"
+EOF
+bash -n scripts/count_subjects.sh
+bash scripts/count_subjects.sh raw/subjects.csv results/subject_count.txt
+cat results/subject_count.txt
+```
+
+Expected:
+
+```text
+subject_count
+4
+```
+
+| Element | Meaning |
+|---|---|
+| `#!/usr/bin/env bash` | Select Bash when executing the script directly |
+| `set -e` | Exit on many unhandled failures; exceptions exist in conditionals and other contexts |
+| `set -u` | Treat unset variable expansion as an error |
+| `set -o pipefail` | Pipeline status reflects its rightmost failure, not just its last command |
+| `$#`, `$1`, `$2` | Argument count, first argument, second argument |
+| `-f`, `-r`, `-s` | Regular file, readable, nonempty tests |
+| `>&2` | Send the message to stderr |
+| `exit 1` / `exit 2` | Explicit failure statuses chosen by this script |
+| `$(...)` | Capture a command's stdout |
+| `bash -n` | Check syntax without execution |
+
+**Negative tests:** rerun with the same output path; expect status `1` and unchanged output. Supply a nonexistent input and a fresh output path; expect `1` and no output. Omit arguments; expect `2`.
+
+Strict mode is a guardrail, not correctness: `grep` with no match can intentionally return nonzero. The existence check protects ordinary reruns, not simultaneous writers racing for a path. Production output handling needs stronger controls.
+
+For direct execution, use `chmod u+x scripts/count_subjects.sh` and then `./scripts/count_subjects.sh INPUT.csv OUTPUT.txt` with actual paths and a fresh output. `./` explicitly identifies a file in the current directory.
+
+To repeat a check across several files, use a loop instead of retyping commands:
+
+```bash
+for input_path in raw/subjects.csv raw/samples.tsv; do
+	printf 'Checking %s\n' "$input_path"
+	wc -l "$input_path"
+done
+```
+
+`for` assigns each listed path to `input_path`; `do` and `done` surround the repeated commands. Expect 5 lines for subjects and 3 for the sample sheet. Keep `"$input_path"` quoted so a filename containing spaces remains one argument. Use loops for controlled file operations, not as a substitute for a workflow engine's scheduling and recovery.
+
+## 21. Bioinformatics: inspect before computing
+
+### Why
+
+Checking input types and integrity before an expensive alignment can save hours of cluster time.
+
+### What
+
+| Format | Usually contains | Suitable approach |
+|---|---|---|
+| FASTQ / FASTQ.gz | Read IDs, sequences, base qualities | FASTQ-aware statistics and QC |
+| FASTA | Reference sequences | Sequence-aware checks and reference provenance |
+| SAM / BAM / CRAM | Read alignments | `samtools`; reference access where required |
+| VCF / BCF | Variant records and metadata | `bcftools` or another format-aware reader |
+| BED / GTF / GFF | Intervals or annotations | Validate format and coordinate conventions |
+
+### How
+
+Start with the toy input:
+
+```bash
+head -n 8 raw/reads.fastq
+awk 'END { print NR / 4 }' raw/reads.fastq
+```
+
+The answer is `2`. **Dividing lines by four works here because this file is known to contain complete, four-line records.** It does not validate real FASTQ, reliably handle wrapped records, or establish paired-end consistency.
+
+The following are **real-work templates**, requiring installed SeqKit, FastQC, samtools, or bcftools and your own files:
+
+```bash
+seqkit stats reads_R1.fastq.gz reads_R2.fastq.gz
+fastqc --threads 2 --outdir results reads_R1.fastq.gz reads_R2.fastq.gz
+samtools quickcheck -v aligned.bam
+samtools flagstat aligned.bam
+bcftools stats variants.vcf.gz > results/variants_stats.txt
+```
+
+| Command | Purpose and limits |
+|---|---|
+| `seqkit stats` | Sequence counts/lengths; equal mate counts do not prove paired IDs agree |
+| `fastqc` | QC reports; `--threads 2` sets concurrency but does not allocate cluster CPUs |
+| `samtools quickcheck -v` | Limited structural checks with problem reporting; does not read every alignment |
+| `samtools flagstat` | Alignment-flag summaries; mapping rates need protocol-specific interpretation |
+| `bcftools stats` | Variant summaries, not proof of biological validity |
+
+Preserve sample metadata, reference assembly/checksum, annotation version, tool versions, parameters, resource requests, and logs. Do not use `cat` or a text editor to interpret binary BAM or BCF data as plain text.
+
+## 22. Clinical programming: traceable inputs and outputs
+
+### Why
+
+Clinical deliverables need traceability to approved inputs and specifications. Shell tools support this; they do not replace independent QC, SOPs, or validation.
+
+### What
+
+Separate received inputs, programs, derived datasets, reports, logs, and review evidence. SDTM and ADaM are clinical data standards; XPT and SAS datasets need appropriate readers, not comma splitting.
+
+### How
+
+Create an illustrative output structure and input manifest using synthetic files:
+
+```bash
+mkdir -p results/clinical_demo/{sdtm,adam,tlf,qc}
+sha256sum raw/subjects.csv raw/samples.tsv > results/clinical_demo/input_manifest.sha256
+sha256sum -c results/clinical_demo/input_manifest.sha256
+date -u +'%Y-%m-%dT%H:%M:%SZ'
+```
+
+`tlf` means tables, listings, and figures; `qc` means quality control. The manifest should verify both inputs as `OK`. `date -u` prints UTC; the format produces a timestamp such as `2026-10-18T09:30:00Z`. A timestamp alone is not a trustworthy audit trail.
+
+An actual R batch run might use this **template**, after the script and controlled environment exist:
+
+```bash
+Rscript --vanilla scripts/create_adsl.R > logs/create_adsl.log 2>&1
+```
+
+`--vanilla` suppresses normal startup customizations, including user profiles and saved workspace restoration. It does not pin package versions or validate analysis. Follow controlled-platform startup requirements rather than assuming this flag is always appropriate.
+
+For SAS, the launcher, license, batch options, exit-status behavior, and log conventions are platform-specific. Use the approved launcher. Review errors, relevant warnings, and unexpected notes according to study rules.
+
+| Review question | Evidence needed beyond a successful command |
+|---|---|
+| Correct inputs? | Approved snapshot, manifest, transfer documentation |
+| Controlled environment? | Approved R/SAS versions, package inventory, configuration |
+| Completed processing? | Exit status, reviewed log, expected nonempty outputs |
+| Correct results? | Specification checks, reconciliation, independent programming/QC |
+| Reconstructable run? | Program version, parameters, provenance, controlled run record |
+
+Keep participant identifiers out of filenames, shell history, unnecessary logs, and public examples. Never edit received data merely to make a check pass. This guide is educational, not a validated GxP process or submission standard.
+
+## 23. HPC: use the scheduler
+
+### Why
+
+Shared clusters need fair resource allocation. Login nodes support light interaction, not large alignments or model fits.
+
+### What
+
+A scheduler starts work on compute nodes using requested CPUs, memory, and time. **Slurm** is common; PBS and LSF use other commands.
+
+### How
+
+This is the **content of a Slurm job file**, for example `scripts/qc.slurm`, not commands to paste individually. It requires your own `scripts/qc.py`, an approved Python environment, and site-appropriate resources:
+
+```bash
+#!/usr/bin/env bash
+#SBATCH --job-name=study_qc
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=4G
+#SBATCH --time=00:10:00
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
+
+set -euo pipefail
+python3 scripts/qc.py
+```
+
+`#SBATCH` lines are directives read by `sbatch`, not Bash options. They must precede executable commands. `%x` becomes the job name and `%j` the job ID. Requesting two CPUs does not automatically make Python use two CPUs. Add site-required account, partition, environment setup, and application-specific thread options.
+
+On a Slurm cluster, after creating the file, submit from the project directory:
+
+```bash
+mkdir -p logs
+sbatch scripts/qc.slurm
+squeue -u "$USER"
+```
+
+`sbatch` returns a submission ID, **not proof of analysis success**. `squeue` lists active jobs. `scancel JOB_ID` cancels after you replace `JOB_ID` with the actual ID. Where accounting exists, `sacct -j JOB_ID --format=JobID,State,ExitCode,Elapsed,MaxRSS` helps inspect completed work. The `logs` directory must exist before Slurm opens its output files.
+
+Use resource values justified by your program and input size, then inspect actual usage before scaling up. Do not request every CPU by habit.
+
+## 24. Mini-project: a reviewable study snapshot
+
+### Why
+
+One short workflow connects navigation, calculations, logs, checksums, and verification.
+
+### What
+
+Create a fresh output directory, record input checksums, summarize four synthetic subjects, and check the known answers without changing raw inputs. Requirements: Bash, standard Ubuntu tools, and Section 6 data. No R, Python, or scientific packages are needed.
+
+### How
+
+Run the entire block. Parentheses create a subshell so directory changes and shell options stay local. `mktemp -d` creates a unique directory for each run.
+
+```bash
+(
+	set -euo pipefail
+	cd "$HOME/linux-life-sciences/study_001"
+	run_dir=$(mktemp -d results/review_XXXXXX)
+
+	sha256sum raw/subjects.csv raw/samples.tsv raw/reads.fastq > "$run_dir/inputs.sha256"
+	date -u +'%Y-%m-%dT%H:%M:%SZ' > "$run_dir/started_utc.txt"
+	bash --version > "$run_dir/bash_version.txt"
+	awk --version > "$run_dir/awk_version.txt" 2>&1 || awk -W version > "$run_dir/awk_version.txt" 2>&1
+
+	awk -F, '
+		NR > 1 { subjects++; total_age += $3; arms[$2]++ }
+		END {
+			print "metric,value"
+			print "subjects," subjects
+			printf "mean_age,%.2f\n", total_age / subjects
+			print "Drug," arms["Drug"]
+			print "Placebo," arms["Placebo"]
+		}
+	' raw/subjects.csv > "$run_dir/summary.csv"
+
+	grep -qxF 'subjects,4' "$run_dir/summary.csv"
+	grep -qxF 'mean_age,49.75' "$run_dir/summary.csv"
+	grep -qxF 'Drug,2' "$run_dir/summary.csv"
+	grep -qxF 'Placebo,2' "$run_dir/summary.csv"
+	sha256sum -c "$run_dir/inputs.sha256" > "$run_dir/integrity.log"
+	printf 'PASS: expected synthetic summary and unchanged inputs\n' > "$run_dir/review.log"
+	cat "$run_dir/summary.csv"
+	cat "$run_dir/integrity.log"
+	cat "$run_dir/review.log"
+	printf 'Review files: %s\n' "$run_dir"
+)
+```
+
+Expected summary:
+
+```text
+metric,value
+subjects,4
+mean_age,49.75
+Drug,2
+Placebo,2
+```
+
+Expect three `OK` integrity checks and a review message starting `PASS`. `grep -q` is silent, `-x` requires a full-line match, and `-F` treats the expected text literally, including the decimal point. `||` runs the fallback awk version command only if the first fails: Ubuntu can provide GNU awk or mawk, which expose versions differently.
+
+These checks assert **known toy answers**. If they fail, inspect the error and inputs; do not simply change expected values to obtain `PASS`. This example is not designed for empty, malformed, quoted, or real clinical CSV files.
+
+**Self-check:** Why keep inputs separate? Why create a fresh run directory? Why do matching counts not prove correct data? Why is byte integrity different from statistical QC?
+
+## 25. Daily reference and next steps
+
+### Why
+
+Good notes should help when a job has failed and a deadline is close.
+
+### What
+
+Use this reference after reading the relevant section. Paths refer to the synthetic study unless marked as templates.
+
+### How: daily command reference
+
+| Need | Command | Remember |
+|---|---|---|
+| Locate yourself | `pwd` | Check before modifying anything |
+| Identify machine/account | `hostname` and `whoami` | Especially after remote login |
+| List files | `ls -lah` | Includes hidden names |
+| Enter the study | `cd "$HOME/linux-life-sciences/study_001"` | Quote paths |
+| Create folders | `mkdir -p results/qc` | Cannot bypass protected parents |
+| Copy a file | `cp -i raw/subjects.csv scratch/subjects.csv` | Preserve original inputs |
+| Rename a copy | `mv -i scratch/subjects.csv scratch/subjects_old.csv` | Check overwrite prompts |
+| Remove one file | `rm -i scratch/subjects_old.csv` | No ordinary undo |
+| Remove empty folder | `rmdir scratch/empty_folder` | Fails if nonempty |
+| Preview | `head -n 5 raw/subjects.csv` | Not validation |
+| Inspect log end | `tail -n 20 logs/demo.log` | Follow with `-f`, stop with `Ctrl+C` |
+| Browse text | `less logs/demo.log` | `/` searches, `q` quits |
+| Count newlines | `wc -l raw/subjects.csv` | Headers and multiline fields matter |
+| Find files | `find raw -type f -name '*.csv'` | Quote the pattern |
+| Search literally | `grep -nF 'S002' raw/subjects.csv` | `-F` means literal text |
+| Extract TSV field | `cut -f1 raw/samples.tsv` | Not a CSV parser |
+| Summarize simple text | `awk -F, 'NR > 1 { print $2 }' raw/subjects.csv` | Toy comma-separated text only |
+| Count categories | `cut -f2 raw/samples.tsv \| tail -n +2 \| sort \| uniq -c` | Sort before `uniq` |
+| Compare text | `diff -u raw/subjects.csv scratch/subjects_check.csv` | Exit `1` means different |
+| Check bytes | `sha256sum -c results/subjects.sha256` | Correct working directory matters |
+| Test gzip | `gzip -t scratch/reads.fastq.gz` | Silent success is normal |
+| Inspect archive | `tar -tzf scratch/study_inputs.tar.gz` | Inspect before extracting |
+| Check identities/access | `id` and `ls -l raw/subjects.csv` | Administrator rights are not the default fix |
+| Private copy permissions | `chmod 600 scratch/private_subjects.csv` | Not encryption |
+| Check free space | `df -h .` | Not your personal quota |
+| Check folder usage | `du -sh results` | Avoid repeated scans of huge shared trees |
+| Check memory | `free -h` | Check platform limits separately |
+| Inspect own processes | `ps -u "$USER" -o pid,etime,args` | Confirm before stopping anything |
+| Locate tool | `command -v Rscript` | Missing output means unresolved |
+| Check script syntax | `bash -n scripts/count_subjects.sh` | Does not prove logic |
+| Remote login, template | `ssh analyst@analysis.example.org` | Verify fingerprint; use real approved account |
+| Transfer preview, template | `rsync -av --dry-run results/ analyst@analysis.example.org:/approved/project/results/` | Inspect before sending |
+
+### How: troubleshoot in the right order
+
+| Symptom | Likely issue | Safe next step |
+|---|---|---|
+| File not found | Location, case, spelling | `pwd`, `ls`, inspect exact path |
+| Command not found | Installation or environment | `command -v`, approved environment setup |
+| Access denied | File, parent, ACL, execution restriction | `id`, `ls -ld`, ask owner |
+| Disk full | Capacity or quota | `df -h .`, `du -sh`, quota check |
+| Job killed or vanished | Memory/time limit, logout, administrator action | Logs and scheduler accounting |
+| Wrong record count | Header, duplicates, delimiter, multiline fields | Preview and format-aware parsing |
+| `bad interpreter` with `^M` | Windows CRLF script line endings | Save script as LF in editor; leave raw inputs unchanged |
+| No command output | Silent success or no matches | Check documented status and expected files |
+| Checksum mismatch | Changed bytes or different delivery | Stop and reconcile; do not regenerate expected checksum to hide it |
+| Partial output | Interrupted or failed analysis | Review status/logs; rerun to a fresh output location |
+
+### How: a five-minute daily routine
+
+1. Confirm machine, account, directory, and approved environment.
+2. Confirm input identity, permissions, storage, and resource allocation.
+3. Run the reviewed script with logs and explicit output locations.
+4. Review completion status, logs, outputs, and scientific/domain QC.
+5. Preserve provenance and deliver approved outputs through approved channels.
+
+### How: keep learning
+
+Read the [GNU Bash manual](https://www.gnu.org/software/bash/manual/), [GNU Coreutils documentation](https://www.gnu.org/software/coreutils/manual/), [Ubuntu command-line introduction](https://ubuntu.com/tutorials/command-line-for-beginners), and institutional HPC/data-handling guidance. Specialist references: [samtools](https://www.htslib.org/doc/), [SeqKit](https://bioinf.shenwei.me/seqkit/usage/), and [Slurm](https://slurm.schedmd.com/documentation.html).
+
+Continue here with [Git](git.qmd), [Docker](docker.qmd), [Nextflow](nextflow.qmd), [R](r.qmd), [Python](python.qmd), and [Clinical R](clinical-r.qmd).
 
 [Back to home](index.qmd)

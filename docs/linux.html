@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Command-line foundations for bioinformatics, clinical programming, and data science.">
+<meta name="description" content="A beginner-friendly Why, What, How guide to everyday Linux for life sciences.">
 
 <title>Linux — Foundations for Life Sciences Computing – StatiX AI &amp; Data Labs</title>
 <style>
@@ -27,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -43,10 +78,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-89af0c2d685ccb09a4d7d65decb66752.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2a2253514b1b981d1166767bded3c22f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -211,7 +246,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#linux-in-plain-language" id="toc-linux-in-plain-language" class="nav-link active" data-scroll-target="#linux-in-plain-language">1. Linux in plain language</a></li>
+  <li><a href="#your-learning-to-do-list" id="toc-your-learning-to-do-list" class="nav-link" data-scroll-target="#your-learning-to-do-list">2. Your learning to-do list</a></li>
+  <li><a href="#open-a-safe-linux-workspace" id="toc-open-a-safe-linux-workspace" class="nav-link" data-scroll-target="#open-a-safe-linux-workspace">3. Open a safe Linux workspace</a></li>
+  <li><a href="#read-your-first-command" id="toc-read-your-first-command" class="nav-link" data-scroll-target="#read-your-first-command">4. Read your first command</a></li>
+  <li><a href="#find-help-and-recover-calmly" id="toc-find-help-and-recover-calmly" class="nav-link" data-scroll-target="#find-help-and-recover-calmly">5. Find help and recover calmly</a></li>
+  <li><a href="#create-your-synthetic-practice-study" id="toc-create-your-synthetic-practice-study" class="nav-link" data-scroll-target="#create-your-synthetic-practice-study">6. Create your synthetic practice study</a></li>
+  <li><a href="#navigate-without-getting-lost" id="toc-navigate-without-getting-lost" class="nav-link" data-scroll-target="#navigate-without-getting-lost">7. Navigate without getting lost</a></li>
+  <li><a href="#create-copy-move-and-delete-safely" id="toc-create-copy-move-and-delete-safely" class="nav-link" data-scroll-target="#create-copy-move-and-delete-safely">8. Create, copy, move, and delete safely</a></li>
+  <li><a href="#read-files-without-opening-everything" id="toc-read-files-without-opening-everything" class="nav-link" data-scroll-target="#read-files-without-opening-everything">9. Read files without opening everything</a></li>
+  <li><a href="#find-files-and-search-their-contents" id="toc-find-files-and-search-their-contents" class="nav-link" data-scroll-target="#find-files-and-search-their-contents">10. Find files and search their contents</a></li>
+  <li><a href="#combine-commands-and-capture-output" id="toc-combine-commands-and-capture-output" class="nav-link" data-scroll-target="#combine-commands-and-capture-output">11. Combine commands and capture output</a></li>
+  <li><a href="#inspect-tabular-text-carefully" id="toc-inspect-tabular-text-carefully" class="nav-link" data-scroll-target="#inspect-tabular-text-carefully">12. Inspect tabular text carefully</a></li>
+  <li><a href="#compare-files-and-verify-integrity" id="toc-compare-files-and-verify-integrity" class="nav-link" data-scroll-target="#compare-files-and-verify-integrity">13. Compare files and verify integrity</a></li>
+  <li><a href="#compress-and-package-files" id="toc-compress-and-package-files" class="nav-link" data-scroll-target="#compress-and-package-files">14. Compress and package files</a></li>
+  <li><a href="#understand-permissions-before-changing-them" id="toc-understand-permissions-before-changing-them" class="nav-link" data-scroll-target="#understand-permissions-before-changing-them">15. Understand permissions before changing them</a></li>
+  <li><a href="#check-storage-memory-and-processes" id="toc-check-storage-memory-and-processes" class="nav-link" data-scroll-target="#check-storage-memory-and-processes">16. Check storage, memory, and processes</a></li>
+  <li><a href="#manage-software-environments" id="toc-manage-software-environments" class="nav-link" data-scroll-target="#manage-software-environments">17. Manage software environments</a></li>
+  <li><a href="#connect-and-transfer-securely" id="toc-connect-and-transfer-securely" class="nav-link" data-scroll-target="#connect-and-transfer-securely">18. Connect and transfer securely</a></li>
+  <li><a href="#run-programs-and-retain-logs" id="toc-run-programs-and-retain-logs" class="nav-link" data-scroll-target="#run-programs-and-retain-logs">19. Run programs and retain logs</a></li>
+  <li><a href="#write-and-test-a-defensive-bash-script" id="toc-write-and-test-a-defensive-bash-script" class="nav-link" data-scroll-target="#write-and-test-a-defensive-bash-script">20. Write and test a defensive Bash script</a></li>
+  <li><a href="#bioinformatics-inspect-before-computing" id="toc-bioinformatics-inspect-before-computing" class="nav-link" data-scroll-target="#bioinformatics-inspect-before-computing">21. Bioinformatics: inspect before computing</a></li>
+  <li><a href="#clinical-programming-traceable-inputs-and-outputs" id="toc-clinical-programming-traceable-inputs-and-outputs" class="nav-link" data-scroll-target="#clinical-programming-traceable-inputs-and-outputs">22. Clinical programming: traceable inputs and outputs</a></li>
+  <li><a href="#hpc-use-the-scheduler" id="toc-hpc-use-the-scheduler" class="nav-link" data-scroll-target="#hpc-use-the-scheduler">23. HPC: use the scheduler</a></li>
+  <li><a href="#mini-project-a-reviewable-study-snapshot" id="toc-mini-project-a-reviewable-study-snapshot" class="nav-link" data-scroll-target="#mini-project-a-reviewable-study-snapshot">24. Mini-project: a reviewable study snapshot</a></li>
+  <li><a href="#daily-reference-and-next-steps" id="toc-daily-reference-and-next-steps" class="nav-link" data-scroll-target="#daily-reference-and-next-steps">25. Daily reference and next steps</a></li>
   </ul>
 </nav>
     </div>
@@ -225,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Command-line foundations for bioinformatics, clinical programming, and data science.
+    A beginner-friendly Why, What, How guide to everyday Linux for life sciences.
   </div>
 </div>
 
@@ -242,34 +301,1505 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Status: Coming soon</strong> — This tutorial will follow the full StatiX documentation standard (25 sections). <a href="./docker.html">Docker</a> and <a href="./nextflow.html">Nextflow</a> are available now.</p>
+<p><strong>No Linux experience needed.</strong> Work with invented study records and tiny sequencing files. No patient data or paid software is needed for the core exercises. Examples target <strong>Bash on Ubuntu/Linux</strong>. Remote-server and specialist-tool examples are templates, clearly separated from runnable practice.</p>
 </div>
 </div>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
-<p><strong>Linux</strong> is the operating system that powers most servers, HPC clusters, and cloud instances used in bioinformatics and pharmaceutical computing.</p>
-<section id="why-linux-exists-in-your-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="why-linux-exists-in-your-workflow">Why Linux exists in your workflow</h3>
-<p>Clinical SAS/R environments may run on Windows, but <strong>cloud pipelines</strong>, <strong>sequencing cores</strong>, and <strong>DevOps tooling</strong> overwhelmingly run on Linux.</p>
+<section id="linux-in-plain-language" class="level2">
+<h2 class="anchored" data-anchor-id="linux-in-plain-language">1. Linux in plain language</h2>
+<section id="why" class="level3">
+<h3 class="anchored" data-anchor-id="why">Why</h3>
+<p>Before you analyze data, you must find the correct input, check it, run a program, and inspect its output. Linux makes these tasks repeatable on research servers, clinical platforms, and cloud computers.</p>
 </section>
-<section id="what-you-will-learn-here-upcoming" class="level3">
-<h3 class="anchored" data-anchor-id="what-you-will-learn-here-upcoming">What you will learn here (upcoming)</h3>
-<ul>
-<li>Navigating the filesystem</li>
-<li>Permissions, processes, and shell scripting</li>
-<li>Connecting to remote servers (SSH)</li>
-<li>Preparing for Docker, Git, and Nextflow</li>
+<section id="what" class="level3">
+<h3 class="anchored" data-anchor-id="what">What</h3>
+<p>An <strong>operating system</strong> manages files, memory, hardware, and programs. Linux is technically its core, the <strong>kernel</strong>. A distribution such as Ubuntu combines that kernel with useful software.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Word</th>
+<th>Plain-language meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Distribution</td>
+<td>An installable Linux system</td>
+<td>Ubuntu, Debian, Rocky Linux</td>
+</tr>
+<tr class="even">
+<td>Terminal</td>
+<td>Window where you type commands</td>
+<td>VS Code’s integrated terminal</td>
+</tr>
+<tr class="odd">
+<td>Shell</td>
+<td>Program that interprets your commands</td>
+<td>Bash</td>
+</tr>
+<tr class="even">
+<td>Command</td>
+<td>Instruction to a tool</td>
+<td><code>pwd</code></td>
+</tr>
+<tr class="odd">
+<td>Filesystem</td>
+<td>Hierarchy of files and folders</td>
+<td><code>/home/analyst/study</code></td>
+</tr>
+<tr class="even">
+<td>Server</td>
+<td>Computer reached over a network</td>
+<td>Institution’s analysis machine</td>
+</tr>
+<tr class="odd">
+<td>HPC cluster</td>
+<td>Computers managed by a scheduler</td>
+<td>University Slurm cluster</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how" class="level3">
+<h3 class="anchored" data-anchor-id="how">How</h3>
+<p>Think of the terminal as a text-based file manager plus a programmable workbench. Instead of clicking a folder, type <code>cd</code>. Instead of opening a huge log, search it with <code>grep</code>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Daily Linux use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bioinformatician</td>
+<td>Check FASTQ inputs, run alignments, inspect pipeline logs</td>
+</tr>
+<tr class="even">
+<td>Clinical programmer</td>
+<td>Organize inputs, launch approved R/SAS jobs, reconcile deliveries</td>
+</tr>
+<tr class="odd">
+<td>Data scientist</td>
+<td>Inspect datasets, manage environments, monitor model training</td>
+</tr>
+</tbody>
+</table>
+<p>Linux supports reproducibility. It does <strong>not</strong> establish scientific validity or regulatory compliance by itself.</p>
+</section>
+</section>
+<section id="your-learning-to-do-list" class="level2">
+<h2 class="anchored" data-anchor-id="your-learning-to-do-list">2. Your learning to-do list</h2>
+<section id="why-1" class="level3">
+<h3 class="anchored" data-anchor-id="why-1">Why</h3>
+<p>Learning useful actions in order is easier than memorizing hundreds of commands.</p>
+</section>
+<section id="what-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-1">What</h3>
+<p>Use this checklist as a learning route. You do not need to finish it in one sitting.</p>
+</section>
+<section id="how-1" class="level3">
+<h3 class="anchored" data-anchor-id="how-1">How</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Open Bash and explain the operating system, terminal, and shell.</label></li>
+<li><label><input type="checkbox">Read a command and find help.</label></li>
+<li><label><input type="checkbox">Create the synthetic study in Section 6.</label></li>
+<li><label><input type="checkbox">Navigate, copy, move, and delete safely.</label></li>
+<li><label><input type="checkbox">Read, search, count, and compare files.</label></li>
+<li><label><input type="checkbox">Combine commands and capture logs and exit statuses.</label></li>
+<li><label><input type="checkbox">Check permissions, storage, memory, and processes.</label></li>
+<li><label><input type="checkbox">Understand environments, remote access, and transfers.</label></li>
+<li><label><input type="checkbox">Write and test a small script.</label></li>
+<li><label><input type="checkbox">Recognize bioinformatics, clinical, and HPC workflow boundaries.</label></li>
+<li><label><input type="checkbox">Complete the mini-project and explain its checks.</label></li>
 </ul>
+<p><strong>First session:</strong> Sections 1-10. <strong>Daily productivity:</strong> Sections 11-20. <strong>Applied practice:</strong> Sections 21-25. Section 25 is your quick reference.</p>
+</section>
+</section>
+<section id="open-a-safe-linux-workspace" class="level2">
+<h2 class="anchored" data-anchor-id="open-a-safe-linux-workspace">3. Open a safe Linux workspace</h2>
+<section id="why-2" class="level3">
+<h3 class="anchored" data-anchor-id="why-2">Why</h3>
+<p>You need a real Bash session before these commands will behave as described.</p>
+</section>
+<section id="what-2" class="level3">
+<h3 class="anchored" data-anchor-id="what-2">What</h3>
+<p>Choose one route. Windows PowerShell is not Bash. A macOS terminal is not automatically Linux, and some command options differ.</p>
+</section>
+<section id="how-2" class="level3">
+<h3 class="anchored" data-anchor-id="how-2">How</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Your computer</th>
+<th>Starting point</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Windows</td>
+<td>Ubuntu through WSL, following your organization’s installation policy</td>
+</tr>
+<tr class="even">
+<td>macOS</td>
+<td>Approved Linux virtual machine or Linux development container</td>
+</tr>
+<tr class="odd">
+<td>Linux</td>
+<td>Open the Terminal application</td>
+</tr>
+<tr class="even">
+<td>Managed work computer</td>
+<td>Ask for an approved training environment</td>
+</tr>
+<tr class="odd">
+<td>GitHub Codespaces</td>
+<td>Open <strong>Terminal &gt; New Terminal</strong>; use synthetic data only</td>
+</tr>
+</tbody>
+</table>
+<p>On a personally managed Windows machine, run this in <strong>administrator PowerShell</strong>, not Bash. Installation may require a restart and Ubuntu account setup:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install <span class="op">-</span>d Ubuntu</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inside Linux, inspect your environment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uname</span> <span class="at">-s</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /etc/os-release</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> <span class="at">--version</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">whoami</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>uname -s</code> should print <code>Linux</code>. <code>cat</code> displays the distribution information. <code>bash --version</code> identifies Bash; version numbers vary. <code>whoami</code> prints your account name. None changes your files.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use approved systems for real study data. Never upload patient records, credentials, or proprietary research to public repositories or personal training services. De-identified data can still be sensitive.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="read-your-first-command" class="level2">
+<h2 class="anchored" data-anchor-id="read-your-first-command">4. Read your first command</h2>
+<section id="why-3" class="level3">
+<h3 class="anchored" data-anchor-id="why-3">Why</h3>
+<p>Understanding command structure lets you adapt examples instead of copying blindly.</p>
+</section>
+<section id="what-3" class="level3">
+<h3 class="anchored" data-anchor-id="what-3">What</h3>
+<p>The usual structure is <code>command options arguments</code>. Options change behavior; arguments identify what to act on.</p>
+</section>
+<section id="how-3" class="level3">
+<h3 class="anchored" data-anchor-id="how-3">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> /tmp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>ls</code> lists contents, <code>-l</code> requests details, <code>-h</code> makes sizes readable, and <code>/tmp</code> is the directory to inspect. Combined short options such as <code>-lh</code> mean the same as <code>-l -h</code> here.</p>
+<p>A prompt might be <code>analyst@server:~$</code>. <strong>Do not type the prompt or its <code>$</code>.</strong> A prompt ending in <code>#</code> often indicates an administrator account; avoid one for practice.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol or key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>~</code></td>
+<td>Your home directory</td>
+</tr>
+<tr class="even">
+<td><code>.</code> / <code>..</code></td>
+<td>Current directory / parent directory</td>
+</tr>
+<tr class="odd">
+<td><code>/</code></td>
+<td>Filesystem root, and path separator</td>
+</tr>
+<tr class="even">
+<td><code>Ctrl+C</code></td>
+<td>Interrupt the foreground command; not copy-to-clipboard here</td>
+</tr>
+<tr class="odd">
+<td><code>Ctrl+D</code></td>
+<td>End input; at an empty prompt it can close the shell</td>
+</tr>
+<tr class="even">
+<td>Up arrow</td>
+<td>Recall a previous command</td>
+</tr>
+<tr class="odd">
+<td>Tab</td>
+<td>Complete a command or path when possible</td>
+</tr>
+<tr class="even">
+<td><code>#</code></td>
+<td>Starts a shell comment when unquoted and in comment position</td>
+</tr>
+</tbody>
+</table>
+<p>Names are case-sensitive: <code>ADSL.csv</code> and <code>adsl.csv</code> can be different files. Prefer names such as <code>study_001</code>. Quote paths containing spaces: <code>ls "Study Files"</code>.</p>
+</section>
+</section>
+<section id="find-help-and-recover-calmly" class="level2">
+<h2 class="anchored" data-anchor-id="find-help-and-recover-calmly">5. Find help and recover calmly</h2>
+<section id="why-4" class="level3">
+<h3 class="anchored" data-anchor-id="why-4">Why</h3>
+<p>You do not need to memorize every option; learn how to verify one.</p>
+</section>
+<section id="what-4" class="level3">
+<h3 class="anchored" data-anchor-id="what-4">What</h3>
+<p>Tools provide help; Bash has separate help for built-in commands.</p>
+</section>
+<section id="how-4" class="level3">
+<h3 class="anchored" data-anchor-id="how-4">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">--help</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span> cd</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> bash</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span> cd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>--help</code> usually shows usage. <code>help cd</code> explains Bash’s built-in directory changer. <code>command -v</code> locates a tool, or returns failure if unavailable. <code>type</code> identifies a built-in, alias, or executable.</p>
+<p>If available, <code>man ls</code> opens a manual. Search with <code>/</code>, type a term, press Enter, and quit with <code>q</code>. Minimal containers may not include manuals.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>First action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>command not found</code></td>
+<td>Check spelling, <code>command -v</code>, and the approved environment</td>
+</tr>
+<tr class="even">
+<td><code>No such file or directory</code></td>
+<td>Check <code>pwd</code>, <code>ls</code>, spelling, and case</td>
+</tr>
+<tr class="odd">
+<td><code>Permission denied</code></td>
+<td>Inspect access; do not automatically add <code>sudo</code></td>
+</tr>
+<tr class="even">
+<td>A <code>&gt;</code> continuation prompt</td>
+<td>A quote or command is incomplete; <code>Ctrl+C</code> cancels it</td>
+</tr>
+<tr class="odd">
+<td>A viewer seems stuck</td>
+<td>Try <code>q</code> if it is <code>less</code> or <code>man</code></td>
+</tr>
+<tr class="even">
+<td>A running command seems stuck</td>
+<td>Inspect before interrupting; partial output may remain</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="create-your-synthetic-practice-study" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-synthetic-practice-study">6. Create your synthetic practice study</h2>
+<section id="why-5" class="level3">
+<h3 class="anchored" data-anchor-id="why-5">Why</h3>
+<p>Tiny, predictable data lets you check whether each command worked.</p>
+</section>
+<section id="what-5" class="level3">
+<h3 class="anchored" data-anchor-id="what-5">What</h3>
+<p>Create four invented subject records, a tab-separated sample sheet, two toy sequencing reads, and a log. This is <strong>not</strong> patient data or a validated clinical data structure.</p>
+</section>
+<section id="how-5" class="level3">
+<h3 class="anchored" data-anchor-id="how-5">How</h3>
+<p>Run the whole block in Bash. It refuses to replace an existing practice study.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">/linux-life-sciences"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">/linux-life-sciences"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-e</span> study_001 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'study_001 already exists; keep it or choose a new practice folder.\n'</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mkdir</span> <span class="at">-p</span> study_001/<span class="dt">{raw</span><span class="op">,</span><span class="dt">scripts</span><span class="op">,</span><span class="dt">results</span><span class="op">,</span><span class="dt">logs</span><span class="op">,</span><span class="dt">scratch}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> study_001</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span> <span class="op">&gt;</span> raw/subjects.csv <span class="op">&lt;&lt;'EOF'</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">subject_id,arm,age</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">S001,Placebo,34</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">S002,Drug,57</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">S003,Drug,46</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">S004,Placebo,62</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'sample_id\tgroup\nS001\tcontrol\nS002\ttreated\n'</span> <span class="op">&gt;</span> raw/samples.tsv</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span> <span class="op">&gt;</span> raw/reads.fastq <span class="op">&lt;&lt;'EOF'</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="st">@read001</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="st">ACGTACGT</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="st">+</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">IIIIIIII</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="st">@read002</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="st">GGCCTTAA</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="st">+</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">IIIIIIII</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'INFO start\nWARNING low coverage\nERROR missing reference\nINFO end\n'</span> <span class="op">&gt;</span> logs/demo.log</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'Practice study created in %s\n'</span> <span class="st">"</span><span class="va">$PWD</span><span class="st">"</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>mkdir -p</code> creates folders and missing parents. Bash expands <code>{raw,scripts,results,logs,scratch}</code> into five paths. <code>cd</code> changes location. <code>$HOME</code> is your home path; <code>$PWD</code> is your current directory. <code>[[ -e ... ]]</code> tests existence; <code>if</code>, <code>else</code>, and <code>fi</code> choose which commands run.</p>
+<p><code>cat &gt; file &lt;&lt;'EOF'</code> writes the lines up to <code>EOF</code> into a file: a <strong>here-document</strong>. Quoting <code>'EOF'</code> prevents variable substitution inside that data. <code>printf</code> writes formatted text: <code>\n</code> means newline, <code>\t</code> means tab. <code>&gt;</code> creates or <strong>overwrites</strong> a file, which is why the existence guard matters.</p>
+<p>Before later sections, return to the study root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">/linux-life-sciences/study_001"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Expected directories: <code>logs</code>, <code>raw</code>, <code>results</code>, <code>scratch</code>, and <code>scripts</code>.</p>
+</section>
+</section>
+<section id="navigate-without-getting-lost" class="level2">
+<h2 class="anchored" data-anchor-id="navigate-without-getting-lost">7. Navigate without getting lost</h2>
+<section id="why-6" class="level3">
+<h3 class="anchored" data-anchor-id="why-6">Why</h3>
+<p>Many analysis failures are commands run in the wrong directory.</p>
+</section>
+<section id="what-6" class="level3">
+<h3 class="anchored" data-anchor-id="what-6">What</h3>
+<p>An <strong>absolute path</strong> starts at <code>/</code>; a <strong>relative path</strong> starts from your current directory.</p>
+</section>
+<section id="how-6" class="level3">
+<h3 class="anchored" data-anchor-id="how-6">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">/linux-life-sciences/study_001"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> raw</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>pwd</code> prints your location. <code>ls -lah</code> combines details, hidden names (<code>-a</code>), and readable sizes. <code>cd raw</code> enters the folder; <code>cd ..</code> returns to its parent.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Everyday use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cd ~</code></td>
+<td>Return home</td>
+</tr>
+<tr class="even">
+<td><code>cd -</code></td>
+<td>Return to the previous directory</td>
+</tr>
+<tr class="odd">
+<td><code>ls raw</code></td>
+<td>Inspect without entering</td>
+</tr>
+<tr class="even">
+<td><code>ls -ld raw</code></td>
+<td>Inspect the directory itself</td>
+</tr>
+<tr class="odd">
+<td><code>realpath raw/subjects.csv</code></td>
+<td>Resolve the absolute path on Linux</td>
+</tr>
+</tbody>
+</table>
+<p><code>/home/analyst/study</code> is an illustrative path, not one guaranteed to exist. The <code>$HOME</code> practice paths work with your actual account.</p>
+</section>
+</section>
+<section id="create-copy-move-and-delete-safely" class="level2">
+<h2 class="anchored" data-anchor-id="create-copy-move-and-delete-safely">8. Create, copy, move, and delete safely</h2>
+<section id="why-7" class="level3">
+<h3 class="anchored" data-anchor-id="why-7">Why</h3>
+<p>Keep received inputs unchanged and experiment on copies.</p>
+</section>
+<section id="what-7" class="level3">
+<h3 class="anchored" data-anchor-id="what-7">What</h3>
+<p><code>cp</code> copies; <code>mv</code> moves or renames; <code>rm</code> removes. <code>rm</code> normally bypasses any recycle bin.</p>
+</section>
+<section id="how-7" class="level3">
+<h3 class="anchored" data-anchor-id="how-7">How</h3>
+<p>From the study root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> scratch/copy_demo</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-i</span> raw/subjects.csv scratch/copy_demo/subjects.csv</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> <span class="at">-i</span> scratch/copy_demo/subjects.csv scratch/copy_demo/subjects_copy.csv</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> scratch/copy_demo</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-i</span> scratch/copy_demo/subjects_copy.csv</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdir</span> scratch/copy_demo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>-i</code> prompts before certain overwrites/removals; read and answer deliberately. <code>rmdir</code> removes <strong>only empty directories</strong>. <code>cp -r source_directory destination_directory</code> copies a tree, but inspect the destination first because an existing directory can change the resulting layout.</p>
+<p><code>touch scratch/notes.txt</code> creates an empty file if absent or updates timestamps if present. It is not an editor. Use VS Code or an approved editor to write text; <code>nano scratch/notes.txt</code> is another option if installed. In nano, save with <code>Ctrl+O</code>, confirm with Enter, and exit with <code>Ctrl+X</code>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before deleting, run <code>pwd</code> and list the exact target. Do not practice recursive force deletion or wildcard cleanup on study data. Removal is not an approved secure-erasure procedure.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="read-files-without-opening-everything" class="level2">
+<h2 class="anchored" data-anchor-id="read-files-without-opening-everything">9. Read files without opening everything</h2>
+<section id="why-8" class="level3">
+<h3 class="anchored" data-anchor-id="why-8">Why</h3>
+<p>Do not load a multi-gigabyte dataset into a spreadsheet merely to inspect its beginning.</p>
+</section>
+<section id="what-8" class="level3">
+<h3 class="anchored" data-anchor-id="what-8">What</h3>
+<p><code>head</code> previews the beginning; <code>tail</code> previews the end; <code>less</code> browses interactively. <code>cat</code> prints everything, so reserve it for small files.</p>
+</section>
+<section id="how-8" class="level3">
+<h3 class="anchored" data-anchor-id="how-8">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 raw/subjects.csv</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> 2 raw/subjects.csv</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> raw/samples.tsv</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> raw/subjects.csv</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> raw/subjects.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first preview shows the header, S001, and S002. The last shows S003 and S004. <code>wc -l</code> reports <strong>5 newline characters</strong>: a header plus four records here. It is not a general CSV record counter because fields can contain newlines. <code>file</code> inspects file type, not scientific validity, and may be absent from minimal environments.</p>
+<p>Try <code>less raw/subjects.csv</code>: search with <code>/S003</code>, advance with <code>n</code>, and quit with <code>q</code>. <code>tail -f logs/demo.log</code> follows a growing log; <code>Ctrl+C</code> stops following, not the separate analysis that writes it.</p>
+</section>
+</section>
+<section id="find-files-and-search-their-contents" class="level2">
+<h2 class="anchored" data-anchor-id="find-files-and-search-their-contents">10. Find files and search their contents</h2>
+<section id="why-9" class="level3">
+<h3 class="anchored" data-anchor-id="why-9">Why</h3>
+<p>Finding a filename and finding a message inside a file are different tasks.</p>
+</section>
+<section id="what-9" class="level3">
+<h3 class="anchored" data-anchor-id="what-9">What</h3>
+<p><code>find</code> searches paths. <code>grep</code> searches text lines.</p>
+</section>
+<section id="how-9" class="level3">
+<h3 class="anchored" data-anchor-id="how-9">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> raw <span class="at">-type</span> f <span class="at">-name</span> <span class="st">'*.csv'</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> raw <span class="at">-type</span> f <span class="at">-name</span> <span class="st">'*.fastq'</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-n</span> <span class="st">'S002'</span> raw/subjects.csv</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-nE</span> <span class="st">'WARNING|ERROR'</span> logs/demo.log</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-nF</span> <span class="st">'S002,Drug'</span> raw/subjects.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>-type f</code> matches regular files. Quote <code>'*.csv'</code> so <code>find</code>, not Bash, expands the pattern. Expect <code>raw/subjects.csv</code> and <code>raw/reads.fastq</code> in the first two searches.</p>
+<p><code>grep -n</code> includes line numbers: S002 is on line 3. <code>-E</code> enables extended regular expressions, where <code>|</code> means either alternative: log lines 2 and 3 match. <code>-F</code> treats a pattern literally. <code>grep -rni --include='*.log' 'error' logs</code> searches logs recursively (<code>-r</code>) without case sensitivity (<code>-i</code>). A matching message is evidence to inspect, not proof of run failure.</p>
+<p>Do <strong>not</strong> count arbitrary FASTQ reads with <code>grep '^@'</code>: quality lines can also begin with <code>@</code>. Use a FASTQ-aware tool, as explained in Section 21.</p>
+</section>
+</section>
+<section id="combine-commands-and-capture-output" class="level2">
+<h2 class="anchored" data-anchor-id="combine-commands-and-capture-output">11. Combine commands and capture output</h2>
+<section id="why-10" class="level3">
+<h3 class="anchored" data-anchor-id="why-10">Why</h3>
+<p>Small tools become powerful when combined, and saved output makes review easier.</p>
+</section>
+<section id="what-10" class="level3">
+<h3 class="anchored" data-anchor-id="what-10">What</h3>
+<p>Programs write normal output to <strong>stdout</strong>, diagnostic output to <strong>stderr</strong>, and return an <strong>exit status</strong>. Zero normally means success; interpret nonzero values using the tool’s documentation.</p>
+</section>
+<section id="how-10" class="level3">
+<h3 class="anchored" data-anchor-id="how-10">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-nE</span> <span class="st">'WARNING|ERROR'</span> logs/demo.log <span class="op">&gt;</span> results/flagged_messages.txt</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> results/flagged_messages.txt</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'Reviewed synthetic log\n'</span> <span class="op">&gt;&gt;</span> logs/review.log</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d,</span> <span class="at">-f2</span> raw/subjects.csv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> +2 <span class="kw">|</span> <span class="va">LC_ALL</span><span class="op">=</span>C <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The final pipeline prints two Drug and two Placebo records. <code>cut -d, -f2</code> selects field two using comma separation; <code>tail -n +2</code> skips the header; <code>sort</code> puts equal values together; <code>uniq -c</code> counts adjacent repetitions. <code>LC_ALL=C</code> gives this sort a stable byte-based ordering. This works for our simple CSV, <strong>not arbitrary quoted CSV</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator/tool</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>|</code></td>
+<td>Send stdout into the next command’s input</td>
+</tr>
+<tr class="even">
+<td><code>&gt;</code> / <code>&gt;&gt;</code></td>
+<td>Replace a file / append to it</td>
+</tr>
+<tr class="odd">
+<td><code>2&gt;</code></td>
+<td>Redirect stderr</td>
+</tr>
+<tr class="even">
+<td><code>&gt; logs/run.log 2&gt;&amp;1</code></td>
+<td>Put stdout and stderr in one log; order matters</td>
+</tr>
+<tr class="odd">
+<td><code>tee results/copy.txt</code></td>
+<td>Copy input to both stdout and a file; overwrites the file unless <code>-a</code> is used</td>
+</tr>
+<tr class="even">
+<td><code>&amp;&amp;</code></td>
+<td>Run the next command only after success</td>
+</tr>
+<tr class="odd">
+<td><code>||</code></td>
+<td>Run the next command only after failure</td>
+</tr>
+<tr class="even">
+<td><code>;</code></td>
+<td>Run the next command regardless of status</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="fu">grep</span> <span class="at">-q</span> <span class="st">'ERROR'</span> logs/demo.log<span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'An ERROR message was found; review the log.\n'</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">status</span><span class="op">=</span><span class="va">$?</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'grep exit status: %s\n'</span> <span class="st">"</span><span class="va">$status</span><span class="st">"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>-q</code> suppresses output. <code>grep</code> returns <code>0</code> for a match, <code>1</code> for no match, and typically <code>2</code> for an error. <code>$?</code> holds the immediately previous command’s status; another command replaces it. The example prints the review message because the toy log contains <code>ERROR</code>.</p>
+<p>Never write a command’s output back to its input with <code>sort input.tsv &gt; input.tsv</code>: the shell can empty the file <strong>before</strong> <code>sort</code> reads it.</p>
+</section>
+</section>
+<section id="inspect-tabular-text-carefully" class="level2">
+<h2 class="anchored" data-anchor-id="inspect-tabular-text-carefully">12. Inspect tabular text carefully</h2>
+<section id="why-11" class="level3">
+<h3 class="anchored" data-anchor-id="why-11">Why</h3>
+<p>Sample sheets and simple summaries can be inspected quickly without launching an analysis application.</p>
+</section>
+<section id="what-11" class="level3">
+<h3 class="anchored" data-anchor-id="what-11">What</h3>
+<p><code>cut</code> selects fields, <code>awk</code> filters and calculates, and <code>sort</code> plus <code>uniq</code> summarizes text. These do not implement all CSV quoting rules.</p>
+</section>
+<section id="how-11" class="level3">
+<h3 class="anchored" data-anchor-id="how-11">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> raw/samples.tsv</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span> <span class="st">'\t'</span> <span class="st">'NR &gt; 1 &amp;&amp; $2 == "treated" { print $1 }'</span> raw/samples.tsv</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F,</span> <span class="st">'NR &gt; 1 { total += $3; count++ } END { if (count) print total / count }'</span> raw/subjects.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Expected: the sample ID column including its header, then <code>S002</code>, then mean age <code>49.75</code>. <code>cut</code> defaults to tabs. In <code>awk</code>, <code>-F</code> chooses the separator, <code>NR</code> is the record number, <code>$1</code> is field one, and <code>END</code> runs after all records. <code>$2</code> inside the single-quoted awk program is an <strong>awk field</strong>, not a Bash argument.</p>
+<p>A real CSV record such as <code>S001,"Placebo, blinded",34</code> breaks naive comma splitting. Use an approved CSV-aware library. Optional example requiring Python 3:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-</span> <span class="op">&lt;&lt;'PY'</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">import csv</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">with open("raw/subjects.csv", newline="", encoding="utf-8") as input_file:</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">        subjects = list(csv.DictReader(input_file))</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">ages = [int(subject["age"]) for subject in subjects]</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">print(f"Subjects: {len(subjects)}; mean age: {sum(ages) / len(ages):.2f}")</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="op">PY</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Expected: <code>Subjects: 4; mean age: 49.75</code>. Production readers also need rules for missingness, types, duplicate IDs, and allowed values.</p>
+</section>
+</section>
+<section id="compare-files-and-verify-integrity" class="level2">
+<h2 class="anchored" data-anchor-id="compare-files-and-verify-integrity">13. Compare files and verify integrity</h2>
+<section id="why-12" class="level3">
+<h3 class="anchored" data-anchor-id="why-12">Why</h3>
+<p>A familiar filename does not prove that a delivery contains the same bytes.</p>
+</section>
+<section id="what-12" class="level3">
+<h3 class="anchored" data-anchor-id="what-12">What</h3>
+<p><code>diff</code> shows text differences, <code>cmp</code> compares bytes, and <code>sha256sum</code> makes and verifies checksums.</p>
+</section>
+<section id="how-12" class="level3">
+<h3 class="anchored" data-anchor-id="how-12">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> raw/subjects.csv scratch/subjects_check.csv</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">-u</span> raw/subjects.csv scratch/subjects_check.csv</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cmp</span> raw/subjects.csv scratch/subjects_check.csv</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sha256sum</span> raw/subjects.csv <span class="op">&gt;</span> results/subjects.sha256</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sha256sum</span> <span class="at">-c</span> results/subjects.sha256</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The comparisons are silent on identical files and return zero. <code>diff</code> returns <code>1</code> for differences and a greater value for trouble. Checksum verification should print <code>raw/subjects.csv: OK</code>. Run from the study root because the manifest contains a relative path.</p>
+<p>Checksums detect byte changes, including line endings. They do not prove authenticity if someone can replace both the file and manifest: receive expected checksums through a trusted channel. Byte-identical data can still be scientifically incorrect.</p>
+</section>
+</section>
+<section id="compress-and-package-files" class="level2">
+<h2 class="anchored" data-anchor-id="compress-and-package-files">14. Compress and package files</h2>
+<section id="why-13" class="level3">
+<h3 class="anchored" data-anchor-id="why-13">Why</h3>
+<p>Sequencing inputs and study deliveries are often compressed to reduce storage and transfer time.</p>
+</section>
+<section id="what-13" class="level3">
+<h3 class="anchored" data-anchor-id="what-13">What</h3>
+<p><code>gzip</code> compresses, <code>zcat</code> reads gzip content, and <code>tar</code> packages a directory tree.</p>
+</section>
+<section id="how-13" class="level3">
+<h3 class="anchored" data-anchor-id="how-13">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="at">-c</span> raw/reads.fastq <span class="op">&gt;</span> scratch/reads.fastq.gz</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="at">-t</span> scratch/reads.fastq.gz</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> scratch/reads.fastq.gz <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 8</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czf</span> scratch/study_inputs.tar.gz raw</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-tzf</span> scratch/study_inputs.tar.gz</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> scratch/unpacked</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> scratch/study_inputs.tar.gz <span class="at">-C</span> scratch/unpacked</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>gzip -c</code> preserves the original and writes compressed bytes to stdout. Plain <code>gzip file</code> normally replaces the original with <code>file.gz</code>. <code>gzip -t</code> tests integrity and is normally silent on success.</p>
+<p>For <code>tar</code>, <code>-c</code> creates, <code>-t</code> lists, <code>-x</code> extracts, <code>-z</code> uses gzip, <code>-f</code> introduces the archive filename, and <code>-C</code> chooses the extraction directory.</p>
+<p>Compression is <strong>not encryption</strong>. Inspect an archive’s origin and paths before extraction; use an empty destination and never extract untrusted archives as administrator. For large streams, <code>head</code> can close the pipe early; upstream tools may report a broken pipe under <code>pipefail</code> even when a preview appears.</p>
+</section>
+</section>
+<section id="understand-permissions-before-changing-them" class="level2">
+<h2 class="anchored" data-anchor-id="understand-permissions-before-changing-them">15. Understand permissions before changing them</h2>
+<section id="why-14" class="level3">
+<h3 class="anchored" data-anchor-id="why-14">Why</h3>
+<p>Authorized collaborators need access; unrelated server accounts should not automatically receive it.</p>
+</section>
+<section id="what-14" class="level3">
+<h3 class="anchored" data-anchor-id="what-14">What</h3>
+<p>Traditional permissions apply to <strong>owner</strong>, <strong>group</strong>, and <strong>others</strong>. <code>r</code>, <code>w</code>, <code>x</code> mean read, write, execute. On directories, <code>x</code> means permission to traverse.</p>
+</section>
+<section id="how-14" class="level3">
+<h3 class="anchored" data-anchor-id="how-14">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">id</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-ld</span> raw</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> raw/subjects.csv</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> raw/subjects.csv scratch/private_subjects.csv</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 scratch/private_subjects.csv</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> scratch/private_subjects.csv</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">umask</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>id</code> shows user/group identities. <code>chmod 600</code> gives the owner read/write and removes traditional group/other permission bits. The practice copy’s listing should start <code>-rw-------</code>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode/command</th>
+<th>Typical meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>600</code></td>
+<td>Private file: owner read/write</td>
+</tr>
+<tr class="even">
+<td><code>640</code></td>
+<td>Owner read/write, group read</td>
+</tr>
+<tr class="odd">
+<td><code>700</code></td>
+<td>Private directory: owner can list, modify, traverse</td>
+</tr>
+<tr class="even">
+<td><code>750</code></td>
+<td>Owner full access, group list/traverse</td>
+</tr>
+<tr class="odd">
+<td><code>chmod u+x scripts/count_subjects.sh</code></td>
+<td>Add executable permission for the owner</td>
+</tr>
+</tbody>
+</table>
+<p><code>umask</code> displays the mask for newly created files. In a <strong>personal practice shell</strong>, <code>umask 077</code> requests private creation defaults; it does not change existing files. Follow institutional defaults for shared projects.</p>
+<p>ACLs, parent directories, shared mounts, and administrator privileges also affect access. Permissions are not encryption or an audit trail. Avoid <code>chmod 777</code>; do not change ownership or use <code>sudo</code> without an approved reason.</p>
+</section>
+</section>
+<section id="check-storage-memory-and-processes" class="level2">
+<h2 class="anchored" data-anchor-id="check-storage-memory-and-processes">16. Check storage, memory, and processes</h2>
+<section id="why-15" class="level3">
+<h3 class="anchored" data-anchor-id="why-15">Why</h3>
+<p>Correct code can fail because a filesystem is full or a job exceeds its memory allowance.</p>
+</section>
+<section id="what-15" class="level3">
+<h3 class="anchored" data-anchor-id="what-15">What</h3>
+<p>Inspect filesystem capacity, folder usage, memory, and your own processes separately.</p>
+</section>
+<section id="how-15" class="level3">
+<h3 class="anchored" data-anchor-id="how-15">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span> .</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">du</span> <span class="at">-sh</span> raw results scratch</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">free</span> <span class="at">-h</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-u</span> <span class="st">"</span><span class="va">$USER</span><span class="st">"</span> <span class="at">-o</span> pid,etime,%cpu,%mem,args</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Question answered</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>df -h .</code></td>
+<td>Free space on this filesystem?</td>
+</tr>
+<tr class="even">
+<td><code>du -sh raw results scratch</code></td>
+<td>Disk usage of these directories?</td>
+</tr>
+<tr class="odd">
+<td><code>free -h</code></td>
+<td>Memory reported by this Linux environment?</td>
+</tr>
+<tr class="even">
+<td><code>ps ...</code></td>
+<td>Processes belonging to this account?</td>
+</tr>
+<tr class="odd">
+<td><code>top</code></td>
+<td>Interactive activity view; quit with <code>q</code></td>
+</tr>
+<tr class="even">
+<td><code>quota -s</code></td>
+<td>Personal quota, if installed and supported here?</td>
+</tr>
+</tbody>
+</table>
+<p>In <code>ps</code>, PID is a process ID, <code>etime</code> is elapsed time, and <code>args</code> shows the command. Container/cluster limits can be lower than the reported host capacity. Avoid repeatedly scanning huge shared trees with <code>du</code>.</p>
+<p>To stop a process, identify its PID, owner, and purpose first. <code>kill -TERM PID</code> requests graceful termination after you replace <code>PID</code> with its numeric value. Do not paste the placeholder. Avoid starting with <code>kill -9</code>, which prevents cleanup. Cancel scheduled work through its scheduler instead.</p>
+</section>
+</section>
+<section id="manage-software-environments" class="level2">
+<h2 class="anchored" data-anchor-id="manage-software-environments">17. Manage software environments</h2>
+<section id="why-16" class="level3">
+<h3 class="anchored" data-anchor-id="why-16">Why</h3>
+<p>Different projects may need incompatible tool versions. One uncontrolled shared environment makes results difficult to reproduce.</p>
+</section>
+<section id="what-16" class="level3">
+<h3 class="anchored" data-anchor-id="what-16">What</h3>
+<p>System packages, Python environments, research package managers, and HPC modules solve different problems.</p>
+</section>
+<section id="how-16" class="level3">
+<h3 class="anchored" data-anchor-id="how-16">How</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> python3</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> Rscript</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> samtools</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'%s\n'</span> <span class="st">"</span><span class="va">$PATH</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>PATH</code> lists directories searched for executables. A missing tool may need installation or activation of the correct environment.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Appropriate approach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Personally managed Ubuntu</td>
+<td>Approved <code>apt</code> packages; these change the OS and may require admin rights</td>
+</tr>
+<tr class="even">
+<td>Python project</td>
+<td><code>venv</code> isolates Python packages, not the whole operating system</td>
+</tr>
+<tr class="odd">
+<td>Bioinformatics project</td>
+<td>Approved Conda/Mamba environment or container with recorded versions</td>
+</tr>
+<tr class="even">
+<td>HPC</td>
+<td>Site-provided <code>module</code> system; names and versions are local</td>
+</tr>
+<tr class="odd">
+<td>Validated clinical platform</td>
+<td>Approved change control, not ad hoc upgrades</td>
+</tr>
+</tbody>
+</table>
+<p>Optional exercise, if Python and its venv support are installed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip <span class="at">--version</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">deactivate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>source</code> runs activation in the current shell. <code>deactivate</code> restores the previous environment. If support is missing, use the approved installation process. Never pipe an unknown downloaded installation script directly into Bash or upgrade production tools to satisfy a tutorial.</p>
+</section>
+</section>
+<section id="connect-and-transfer-securely" class="level2">
+<h2 class="anchored" data-anchor-id="connect-and-transfer-securely">18. Connect and transfer securely</h2>
+<section id="why-17" class="level3">
+<h3 class="anchored" data-anchor-id="why-17">Why</h3>
+<p>Run large analyses near the data on approved infrastructure rather than moving restricted inputs onto personal devices.</p>
+</section>
+<section id="what-17" class="level3">
+<h3 class="anchored" data-anchor-id="what-17">What</h3>
+<p><code>ssh</code> opens a remote shell, <code>scp</code> copies files over SSH, and <code>rsync</code> synchronizes trees. They require installed tools, authorized accounts, and network access.</p>
+</section>
+<section id="how-17" class="level3">
+<h3 class="anchored" data-anchor-id="how-17">How</h3>
+<p><strong>Templates only:</strong> replace the account, reserved example hostname, and paths with administrator-provided values. Run transfers from the <strong>local</strong> terminal unless you intend otherwise.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> analyst@analysis.example.org</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verify a new server’s host-key fingerprint through a trusted administrator before accepting it. After login, use <code>hostname</code>, <code>whoami</code>, and <code>pwd</code> to confirm your location. <code>exit</code> closes the remote shell.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> raw/samples.tsv analyst@analysis.example.org:/approved/project/incoming/</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--dry-run</span> results/ analyst@analysis.example.org:/approved/project/results/</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-av</span> results/ analyst@analysis.example.org:/approved/project/results/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>-a</code> requests archive behavior, <code>-v</code> shows activity, and <code>--dry-run</code> previews without transferring. <code>results/</code> means the directory’s <strong>contents</strong>; omitting its trailing slash can change the destination layout. Inspect the preview first. Do not casually add <code>--delete</code>, which can remove destination files.</p>
+<p>Follow approved SSH-key/MFA practices. Never store passwords or private keys in Git or scripts. SSH protects transport, not destination authorization or retention; verify important transfers with trusted checksums.</p>
+</section>
+</section>
+<section id="run-programs-and-retain-logs" class="level2">
+<h2 class="anchored" data-anchor-id="run-programs-and-retain-logs">19. Run programs and retain logs</h2>
+<section id="why-18" class="level3">
+<h3 class="anchored" data-anchor-id="why-18">Why</h3>
+<p>Reproducibility needs the command, software version, inputs, outputs, and completion status, not just a screenshot.</p>
+</section>
+<section id="what-18" class="level3">
+<h3 class="anchored" data-anchor-id="what-18">What</h3>
+<p>Foreground, background, persistent-terminal, and scheduler jobs have different lifecycles.</p>
+</section>
+<section id="how-18" class="level3">
+<h3 class="anchored" data-anchor-id="how-18">How</h3>
+<p>These are <strong>templates</strong> requiring your own analysis scripts and approved installations:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/analysis.R <span class="op">&gt;</span> logs/analysis.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> scripts/analysis.py <span class="op">&gt;</span> logs/python_analysis.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run the relevant command, then immediately use <code>printf 'Exit status: %s\n' "$?"</code>. Review logs and expected outputs too. These example scripts are not created by the practice exercise.</p>
+<p>For a personal, non-HPC Bash session, the background pattern is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> scripts/analysis.py <span class="op">&gt;</span> logs/background.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="va">job_pid</span><span class="op">=</span><span class="va">$!</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'Started PID %s\n'</span> <span class="st">"</span><span class="va">$job_pid</span><span class="st">"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">wait</span> <span class="st">"</span><span class="va">$job_pid</span><span class="st">"</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="va">job_status</span><span class="op">=</span><span class="va">$?</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'Job exit status: %s\n'</span> <span class="st">"</span><span class="va">$job_status</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>&amp;</code> starts the job; <code>$!</code> captures its PID; <code>wait</code> returns its completion status. <code>jobs -l</code> lists jobs in this shell. Backgrounding does <strong>not</strong> guarantee survival after logout.</p>
+<p>Where installed and permitted, <code>tmux new -s study</code> opens a persistent session. Detach with <code>Ctrl+B</code> then <code>D</code>; return with <code>tmux attach -t study</code>. <code>tmux</code> does not allocate compute resources. For clusters, use Section 23; do not run heavy analyses on login nodes.</p>
+</section>
+</section>
+<section id="write-and-test-a-defensive-bash-script" class="level2">
+<h2 class="anchored" data-anchor-id="write-and-test-a-defensive-bash-script">20. Write and test a defensive Bash script</h2>
+<section id="why-19" class="level3">
+<h3 class="anchored" data-anchor-id="why-19">Why</h3>
+<p>A small script makes repeated checks consistent and reviewable.</p>
+</section>
+<section id="what-19" class="level3">
+<h3 class="anchored" data-anchor-id="what-19">What</h3>
+<p>Count physical data lines in the known simple synthetic CSV. Refuse accidental overwrites. This is <strong>not</strong> a general clinical CSV validator.</p>
+</section>
+<section id="how-19" class="level3">
+<h3 class="anchored" data-anchor-id="how-19">How</h3>
+<p>From the practice root, create and run the script:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&gt;</span> scripts/count_subjects.sh <span class="op">&lt;&lt;'EOF'</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="st">#!/usr/bin/env bash</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="st">set -euo pipefail</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="st">if [[ $# -ne 2 ]]; then</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="st">    printf 'Usage: bash count_subjects.sh INPUT.csv OUTPUT.txt\n' &gt;&amp;2</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="st">    exit 2</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="st">fi</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="st">input_path=$1</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="st">output_path=$2</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="st">if [[ ! -f "$input_path" || ! -r "$input_path" || ! -s "$input_path" ]]; then</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="st">    printf 'Input must be a readable, nonempty regular file: %s\n' "$input_path" &gt;&amp;2</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="st">    exit 1</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="st">fi</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="st">if [[ -e "$output_path" ]]; then</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="st">    printf 'Output already exists: %s\n' "$output_path" &gt;&amp;2</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="st">    exit 1</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="st">fi</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="st">subject_count=$(awk 'END { print NR - 1 }' "$input_path")</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="st">printf 'subject_count\n%s\n' "$subject_count" &gt; "$output_path"</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="st">printf 'Wrote %s\n' "$output_path"</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> <span class="at">-n</span> scripts/count_subjects.sh</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/count_subjects.sh raw/subjects.csv results/subject_count.txt</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> results/subject_count.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Expected:</p>
+<pre class="text"><code>subject_count
+4</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>#!/usr/bin/env bash</code></td>
+<td>Select Bash when executing the script directly</td>
+</tr>
+<tr class="even">
+<td><code>set -e</code></td>
+<td>Exit on many unhandled failures; exceptions exist in conditionals and other contexts</td>
+</tr>
+<tr class="odd">
+<td><code>set -u</code></td>
+<td>Treat unset variable expansion as an error</td>
+</tr>
+<tr class="even">
+<td><code>set -o pipefail</code></td>
+<td>Pipeline status reflects its rightmost failure, not just its last command</td>
+</tr>
+<tr class="odd">
+<td><code>$#</code>, <code>$1</code>, <code>$2</code></td>
+<td>Argument count, first argument, second argument</td>
+</tr>
+<tr class="even">
+<td><code>-f</code>, <code>-r</code>, <code>-s</code></td>
+<td>Regular file, readable, nonempty tests</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;&amp;2</code></td>
+<td>Send the message to stderr</td>
+</tr>
+<tr class="even">
+<td><code>exit 1</code> / <code>exit 2</code></td>
+<td>Explicit failure statuses chosen by this script</td>
+</tr>
+<tr class="odd">
+<td><code>$(...)</code></td>
+<td>Capture a command’s stdout</td>
+</tr>
+<tr class="even">
+<td><code>bash -n</code></td>
+<td>Check syntax without execution</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Negative tests:</strong> rerun with the same output path; expect status <code>1</code> and unchanged output. Supply a nonexistent input and a fresh output path; expect <code>1</code> and no output. Omit arguments; expect <code>2</code>.</p>
+<p>Strict mode is a guardrail, not correctness: <code>grep</code> with no match can intentionally return nonzero. The existence check protects ordinary reruns, not simultaneous writers racing for a path. Production output handling needs stronger controls.</p>
+<p>For direct execution, use <code>chmod u+x scripts/count_subjects.sh</code> and then <code>./scripts/count_subjects.sh INPUT.csv OUTPUT.txt</code> with actual paths and a fresh output. <code>./</code> explicitly identifies a file in the current directory.</p>
+<p>To repeat a check across several files, use a loop instead of retyping commands:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> input_path <span class="kw">in</span> raw/subjects.csv raw/samples.tsv<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'Checking %s\n'</span> <span class="st">"</span><span class="va">$input_path</span><span class="st">"</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wc</span> <span class="at">-l</span> <span class="st">"</span><span class="va">$input_path</span><span class="st">"</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>for</code> assigns each listed path to <code>input_path</code>; <code>do</code> and <code>done</code> surround the repeated commands. Expect 5 lines for subjects and 3 for the sample sheet. Keep <code>"$input_path"</code> quoted so a filename containing spaces remains one argument. Use loops for controlled file operations, not as a substitute for a workflow engine’s scheduling and recovery.</p>
+</section>
+</section>
+<section id="bioinformatics-inspect-before-computing" class="level2">
+<h2 class="anchored" data-anchor-id="bioinformatics-inspect-before-computing">21. Bioinformatics: inspect before computing</h2>
+<section id="why-20" class="level3">
+<h3 class="anchored" data-anchor-id="why-20">Why</h3>
+<p>Checking input types and integrity before an expensive alignment can save hours of cluster time.</p>
+</section>
+<section id="what-20" class="level3">
+<h3 class="anchored" data-anchor-id="what-20">What</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Format</th>
+<th>Usually contains</th>
+<th>Suitable approach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FASTQ / FASTQ.gz</td>
+<td>Read IDs, sequences, base qualities</td>
+<td>FASTQ-aware statistics and QC</td>
+</tr>
+<tr class="even">
+<td>FASTA</td>
+<td>Reference sequences</td>
+<td>Sequence-aware checks and reference provenance</td>
+</tr>
+<tr class="odd">
+<td>SAM / BAM / CRAM</td>
+<td>Read alignments</td>
+<td><code>samtools</code>; reference access where required</td>
+</tr>
+<tr class="even">
+<td>VCF / BCF</td>
+<td>Variant records and metadata</td>
+<td><code>bcftools</code> or another format-aware reader</td>
+</tr>
+<tr class="odd">
+<td>BED / GTF / GFF</td>
+<td>Intervals or annotations</td>
+<td>Validate format and coordinate conventions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-20" class="level3">
+<h3 class="anchored" data-anchor-id="how-20">How</h3>
+<p>Start with the toy input:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 8 raw/reads.fastq</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'END { print NR / 4 }'</span> raw/reads.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The answer is <code>2</code>. <strong>Dividing lines by four works here because this file is known to contain complete, four-line records.</strong> It does not validate real FASTQ, reliably handle wrapped records, or establish paired-end consistency.</p>
+<p>The following are <strong>real-work templates</strong>, requiring installed SeqKit, FastQC, samtools, or bcftools and your own files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> stats reads_R1.fastq.gz reads_R2.fastq.gz</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--threads</span> 2 <span class="at">--outdir</span> results reads_R1.fastq.gz reads_R2.fastq.gz</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> quickcheck <span class="at">-v</span> aligned.bam</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> flagstat aligned.bam</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> stats variants.vcf.gz <span class="op">&gt;</span> results/variants_stats.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Purpose and limits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>seqkit stats</code></td>
+<td>Sequence counts/lengths; equal mate counts do not prove paired IDs agree</td>
+</tr>
+<tr class="even">
+<td><code>fastqc</code></td>
+<td>QC reports; <code>--threads 2</code> sets concurrency but does not allocate cluster CPUs</td>
+</tr>
+<tr class="odd">
+<td><code>samtools quickcheck -v</code></td>
+<td>Limited structural checks with problem reporting; does not read every alignment</td>
+</tr>
+<tr class="even">
+<td><code>samtools flagstat</code></td>
+<td>Alignment-flag summaries; mapping rates need protocol-specific interpretation</td>
+</tr>
+<tr class="odd">
+<td><code>bcftools stats</code></td>
+<td>Variant summaries, not proof of biological validity</td>
+</tr>
+</tbody>
+</table>
+<p>Preserve sample metadata, reference assembly/checksum, annotation version, tool versions, parameters, resource requests, and logs. Do not use <code>cat</code> or a text editor to interpret binary BAM or BCF data as plain text.</p>
+</section>
+</section>
+<section id="clinical-programming-traceable-inputs-and-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="clinical-programming-traceable-inputs-and-outputs">22. Clinical programming: traceable inputs and outputs</h2>
+<section id="why-21" class="level3">
+<h3 class="anchored" data-anchor-id="why-21">Why</h3>
+<p>Clinical deliverables need traceability to approved inputs and specifications. Shell tools support this; they do not replace independent QC, SOPs, or validation.</p>
+</section>
+<section id="what-21" class="level3">
+<h3 class="anchored" data-anchor-id="what-21">What</h3>
+<p>Separate received inputs, programs, derived datasets, reports, logs, and review evidence. SDTM and ADaM are clinical data standards; XPT and SAS datasets need appropriate readers, not comma splitting.</p>
+</section>
+<section id="how-21" class="level3">
+<h3 class="anchored" data-anchor-id="how-21">How</h3>
+<p>Create an illustrative output structure and input manifest using synthetic files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> results/clinical_demo/<span class="dt">{sdtm</span><span class="op">,</span><span class="dt">adam</span><span class="op">,</span><span class="dt">tlf</span><span class="op">,</span><span class="dt">qc}</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sha256sum</span> raw/subjects.csv raw/samples.tsv <span class="op">&gt;</span> results/clinical_demo/input_manifest.sha256</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sha256sum</span> <span class="at">-c</span> results/clinical_demo/input_manifest.sha256</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span> <span class="at">-u</span> +<span class="st">'%Y-%m-%dT%H:%M:%SZ'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>tlf</code> means tables, listings, and figures; <code>qc</code> means quality control. The manifest should verify both inputs as <code>OK</code>. <code>date -u</code> prints UTC; the format produces a timestamp such as <code>2026-10-18T09:30:00Z</code>. A timestamp alone is not a trustworthy audit trail.</p>
+<p>An actual R batch run might use this <strong>template</strong>, after the script and controlled environment exist:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">--vanilla</span> scripts/create_adsl.R <span class="op">&gt;</span> logs/create_adsl.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>--vanilla</code> suppresses normal startup customizations, including user profiles and saved workspace restoration. It does not pin package versions or validate analysis. Follow controlled-platform startup requirements rather than assuming this flag is always appropriate.</p>
+<p>For SAS, the launcher, license, batch options, exit-status behavior, and log conventions are platform-specific. Use the approved launcher. Review errors, relevant warnings, and unexpected notes according to study rules.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Review question</th>
+<th>Evidence needed beyond a successful command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Correct inputs?</td>
+<td>Approved snapshot, manifest, transfer documentation</td>
+</tr>
+<tr class="even">
+<td>Controlled environment?</td>
+<td>Approved R/SAS versions, package inventory, configuration</td>
+</tr>
+<tr class="odd">
+<td>Completed processing?</td>
+<td>Exit status, reviewed log, expected nonempty outputs</td>
+</tr>
+<tr class="even">
+<td>Correct results?</td>
+<td>Specification checks, reconciliation, independent programming/QC</td>
+</tr>
+<tr class="odd">
+<td>Reconstructable run?</td>
+<td>Program version, parameters, provenance, controlled run record</td>
+</tr>
+</tbody>
+</table>
+<p>Keep participant identifiers out of filenames, shell history, unnecessary logs, and public examples. Never edit received data merely to make a check pass. This guide is educational, not a validated GxP process or submission standard.</p>
+</section>
+</section>
+<section id="hpc-use-the-scheduler" class="level2">
+<h2 class="anchored" data-anchor-id="hpc-use-the-scheduler">23. HPC: use the scheduler</h2>
+<section id="why-22" class="level3">
+<h3 class="anchored" data-anchor-id="why-22">Why</h3>
+<p>Shared clusters need fair resource allocation. Login nodes support light interaction, not large alignments or model fits.</p>
+</section>
+<section id="what-22" class="level3">
+<h3 class="anchored" data-anchor-id="what-22">What</h3>
+<p>A scheduler starts work on compute nodes using requested CPUs, memory, and time. <strong>Slurm</strong> is common; PBS and LSF use other commands.</p>
+</section>
+<section id="how-22" class="level3">
+<h3 class="anchored" data-anchor-id="how-22">How</h3>
+<p>This is the <strong>content of a Slurm job file</strong>, for example <code>scripts/qc.slurm</code>, not commands to paste individually. It requires your own <code>scripts/qc.py</code>, an approved Python environment, and site-appropriate resources:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=study_qc</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=2</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=4G</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=00:10:00</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=logs/%x-%j.out</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error=logs/%x-%j.err</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> scripts/qc.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>#SBATCH</code> lines are directives read by <code>sbatch</code>, not Bash options. They must precede executable commands. <code>%x</code> becomes the job name and <code>%j</code> the job ID. Requesting two CPUs does not automatically make Python use two CPUs. Add site-required account, partition, environment setup, and application-specific thread options.</p>
+<p>On a Slurm cluster, after creating the file, submit from the project directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> logs</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/qc.slurm</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="st">"</span><span class="va">$USER</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>sbatch</code> returns a submission ID, <strong>not proof of analysis success</strong>. <code>squeue</code> lists active jobs. <code>scancel JOB_ID</code> cancels after you replace <code>JOB_ID</code> with the actual ID. Where accounting exists, <code>sacct -j JOB_ID --format=JobID,State,ExitCode,Elapsed,MaxRSS</code> helps inspect completed work. The <code>logs</code> directory must exist before Slurm opens its output files.</p>
+<p>Use resource values justified by your program and input size, then inspect actual usage before scaling up. Do not request every CPU by habit.</p>
+</section>
+</section>
+<section id="mini-project-a-reviewable-study-snapshot" class="level2">
+<h2 class="anchored" data-anchor-id="mini-project-a-reviewable-study-snapshot">24. Mini-project: a reviewable study snapshot</h2>
+<section id="why-23" class="level3">
+<h3 class="anchored" data-anchor-id="why-23">Why</h3>
+<p>One short workflow connects navigation, calculations, logs, checksums, and verification.</p>
+</section>
+<section id="what-23" class="level3">
+<h3 class="anchored" data-anchor-id="what-23">What</h3>
+<p>Create a fresh output directory, record input checksums, summarize four synthetic subjects, and check the known answers without changing raw inputs. Requirements: Bash, standard Ubuntu tools, and Section 6 data. No R, Python, or scientific packages are needed.</p>
+</section>
+<section id="how-23" class="level3">
+<h3 class="anchored" data-anchor-id="how-23">How</h3>
+<p>Run the entire block. Parentheses create a subshell so directory changes and shell options stay local. <code>mktemp -d</code> creates a unique directory for each run.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">/linux-life-sciences/study_001"</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">run_dir</span><span class="op">=</span><span class="va">$(</span><span class="fu">mktemp</span> <span class="at">-d</span> results/review_XXXXXX<span class="va">)</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sha256sum</span> raw/subjects.csv raw/samples.tsv raw/reads.fastq <span class="op">&gt;</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/inputs.sha256"</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">date</span> <span class="at">-u</span> +<span class="st">'%Y-%m-%dT%H:%M:%SZ'</span> <span class="op">&gt;</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/started_utc.txt"</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> <span class="at">--version</span> <span class="op">&gt;</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/bash_version.txt"</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">awk</span> <span class="at">--version</span> <span class="op">&gt;</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/awk_version.txt"</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">||</span> <span class="fu">awk</span> <span class="at">-W</span> version <span class="op">&gt;</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/awk_version.txt"</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">awk</span> <span class="at">-F,</span> <span class="st">'</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="st">        NR &gt; 1 { subjects++; total_age += $3; arms[$2]++ }</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="st">        END {</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="st">            print "metric,value"</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="st">            print "subjects," subjects</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="st">            printf "mean_age,%.2f\n", total_age / subjects</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="st">            print "Drug," arms["Drug"]</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="st">            print "Placebo," arms["Placebo"]</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="st">    '</span> raw/subjects.csv <span class="op">&gt;</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/summary.csv"</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grep</span> <span class="at">-qxF</span> <span class="st">'subjects,4'</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/summary.csv"</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grep</span> <span class="at">-qxF</span> <span class="st">'mean_age,49.75'</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/summary.csv"</span></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grep</span> <span class="at">-qxF</span> <span class="st">'Drug,2'</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/summary.csv"</span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grep</span> <span class="at">-qxF</span> <span class="st">'Placebo,2'</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/summary.csv"</span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sha256sum</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/inputs.sha256"</span> <span class="op">&gt;</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/integrity.log"</span></span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'PASS: expected synthetic summary and unchanged inputs\n'</span> <span class="op">&gt;</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/review.log"</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/summary.csv"</span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/integrity.log"</span></span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">/review.log"</span></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">'Review files: %s\n'</span> <span class="st">"</span><span class="va">$run_dir</span><span class="st">"</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Expected summary:</p>
+<pre class="text"><code>metric,value
+subjects,4
+mean_age,49.75
+Drug,2
+Placebo,2</code></pre>
+<p>Expect three <code>OK</code> integrity checks and a review message starting <code>PASS</code>. <code>grep -q</code> is silent, <code>-x</code> requires a full-line match, and <code>-F</code> treats the expected text literally, including the decimal point. <code>||</code> runs the fallback awk version command only if the first fails: Ubuntu can provide GNU awk or mawk, which expose versions differently.</p>
+<p>These checks assert <strong>known toy answers</strong>. If they fail, inspect the error and inputs; do not simply change expected values to obtain <code>PASS</code>. This example is not designed for empty, malformed, quoted, or real clinical CSV files.</p>
+<p><strong>Self-check:</strong> Why keep inputs separate? Why create a fresh run directory? Why do matching counts not prove correct data? Why is byte integrity different from statistical QC?</p>
+</section>
+</section>
+<section id="daily-reference-and-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="daily-reference-and-next-steps">25. Daily reference and next steps</h2>
+<section id="why-24" class="level3">
+<h3 class="anchored" data-anchor-id="why-24">Why</h3>
+<p>Good notes should help when a job has failed and a deadline is close.</p>
+</section>
+<section id="what-24" class="level3">
+<h3 class="anchored" data-anchor-id="what-24">What</h3>
+<p>Use this reference after reading the relevant section. Paths refer to the synthetic study unless marked as templates.</p>
+</section>
+<section id="how-daily-command-reference" class="level3">
+<h3 class="anchored" data-anchor-id="how-daily-command-reference">How: daily command reference</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Need</th>
+<th>Command</th>
+<th>Remember</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Locate yourself</td>
+<td><code>pwd</code></td>
+<td>Check before modifying anything</td>
+</tr>
+<tr class="even">
+<td>Identify machine/account</td>
+<td><code>hostname</code> and <code>whoami</code></td>
+<td>Especially after remote login</td>
+</tr>
+<tr class="odd">
+<td>List files</td>
+<td><code>ls -lah</code></td>
+<td>Includes hidden names</td>
+</tr>
+<tr class="even">
+<td>Enter the study</td>
+<td><code>cd "$HOME/linux-life-sciences/study_001"</code></td>
+<td>Quote paths</td>
+</tr>
+<tr class="odd">
+<td>Create folders</td>
+<td><code>mkdir -p results/qc</code></td>
+<td>Cannot bypass protected parents</td>
+</tr>
+<tr class="even">
+<td>Copy a file</td>
+<td><code>cp -i raw/subjects.csv scratch/subjects.csv</code></td>
+<td>Preserve original inputs</td>
+</tr>
+<tr class="odd">
+<td>Rename a copy</td>
+<td><code>mv -i scratch/subjects.csv scratch/subjects_old.csv</code></td>
+<td>Check overwrite prompts</td>
+</tr>
+<tr class="even">
+<td>Remove one file</td>
+<td><code>rm -i scratch/subjects_old.csv</code></td>
+<td>No ordinary undo</td>
+</tr>
+<tr class="odd">
+<td>Remove empty folder</td>
+<td><code>rmdir scratch/empty_folder</code></td>
+<td>Fails if nonempty</td>
+</tr>
+<tr class="even">
+<td>Preview</td>
+<td><code>head -n 5 raw/subjects.csv</code></td>
+<td>Not validation</td>
+</tr>
+<tr class="odd">
+<td>Inspect log end</td>
+<td><code>tail -n 20 logs/demo.log</code></td>
+<td>Follow with <code>-f</code>, stop with <code>Ctrl+C</code></td>
+</tr>
+<tr class="even">
+<td>Browse text</td>
+<td><code>less logs/demo.log</code></td>
+<td><code>/</code> searches, <code>q</code> quits</td>
+</tr>
+<tr class="odd">
+<td>Count newlines</td>
+<td><code>wc -l raw/subjects.csv</code></td>
+<td>Headers and multiline fields matter</td>
+</tr>
+<tr class="even">
+<td>Find files</td>
+<td><code>find raw -type f -name '*.csv'</code></td>
+<td>Quote the pattern</td>
+</tr>
+<tr class="odd">
+<td>Search literally</td>
+<td><code>grep -nF 'S002' raw/subjects.csv</code></td>
+<td><code>-F</code> means literal text</td>
+</tr>
+<tr class="even">
+<td>Extract TSV field</td>
+<td><code>cut -f1 raw/samples.tsv</code></td>
+<td>Not a CSV parser</td>
+</tr>
+<tr class="odd">
+<td>Summarize simple text</td>
+<td><code>awk -F, 'NR &gt; 1 { print $2 }' raw/subjects.csv</code></td>
+<td>Toy comma-separated text only</td>
+</tr>
+<tr class="even">
+<td>Count categories</td>
+<td><code>cut -f2 raw/samples.tsv \| tail -n +2 \| sort \| uniq -c</code></td>
+<td>Sort before <code>uniq</code></td>
+</tr>
+<tr class="odd">
+<td>Compare text</td>
+<td><code>diff -u raw/subjects.csv scratch/subjects_check.csv</code></td>
+<td>Exit <code>1</code> means different</td>
+</tr>
+<tr class="even">
+<td>Check bytes</td>
+<td><code>sha256sum -c results/subjects.sha256</code></td>
+<td>Correct working directory matters</td>
+</tr>
+<tr class="odd">
+<td>Test gzip</td>
+<td><code>gzip -t scratch/reads.fastq.gz</code></td>
+<td>Silent success is normal</td>
+</tr>
+<tr class="even">
+<td>Inspect archive</td>
+<td><code>tar -tzf scratch/study_inputs.tar.gz</code></td>
+<td>Inspect before extracting</td>
+</tr>
+<tr class="odd">
+<td>Check identities/access</td>
+<td><code>id</code> and <code>ls -l raw/subjects.csv</code></td>
+<td>Administrator rights are not the default fix</td>
+</tr>
+<tr class="even">
+<td>Private copy permissions</td>
+<td><code>chmod 600 scratch/private_subjects.csv</code></td>
+<td>Not encryption</td>
+</tr>
+<tr class="odd">
+<td>Check free space</td>
+<td><code>df -h .</code></td>
+<td>Not your personal quota</td>
+</tr>
+<tr class="even">
+<td>Check folder usage</td>
+<td><code>du -sh results</code></td>
+<td>Avoid repeated scans of huge shared trees</td>
+</tr>
+<tr class="odd">
+<td>Check memory</td>
+<td><code>free -h</code></td>
+<td>Check platform limits separately</td>
+</tr>
+<tr class="even">
+<td>Inspect own processes</td>
+<td><code>ps -u "$USER" -o pid,etime,args</code></td>
+<td>Confirm before stopping anything</td>
+</tr>
+<tr class="odd">
+<td>Locate tool</td>
+<td><code>command -v Rscript</code></td>
+<td>Missing output means unresolved</td>
+</tr>
+<tr class="even">
+<td>Check script syntax</td>
+<td><code>bash -n scripts/count_subjects.sh</code></td>
+<td>Does not prove logic</td>
+</tr>
+<tr class="odd">
+<td>Remote login, template</td>
+<td><code>ssh analyst@analysis.example.org</code></td>
+<td>Verify fingerprint; use real approved account</td>
+</tr>
+<tr class="even">
+<td>Transfer preview, template</td>
+<td><code>rsync -av --dry-run results/ analyst@analysis.example.org:/approved/project/results/</code></td>
+<td>Inspect before sending</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-troubleshoot-in-the-right-order" class="level3">
+<h3 class="anchored" data-anchor-id="how-troubleshoot-in-the-right-order">How: troubleshoot in the right order</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>Likely issue</th>
+<th>Safe next step</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>File not found</td>
+<td>Location, case, spelling</td>
+<td><code>pwd</code>, <code>ls</code>, inspect exact path</td>
+</tr>
+<tr class="even">
+<td>Command not found</td>
+<td>Installation or environment</td>
+<td><code>command -v</code>, approved environment setup</td>
+</tr>
+<tr class="odd">
+<td>Access denied</td>
+<td>File, parent, ACL, execution restriction</td>
+<td><code>id</code>, <code>ls -ld</code>, ask owner</td>
+</tr>
+<tr class="even">
+<td>Disk full</td>
+<td>Capacity or quota</td>
+<td><code>df -h .</code>, <code>du -sh</code>, quota check</td>
+</tr>
+<tr class="odd">
+<td>Job killed or vanished</td>
+<td>Memory/time limit, logout, administrator action</td>
+<td>Logs and scheduler accounting</td>
+</tr>
+<tr class="even">
+<td>Wrong record count</td>
+<td>Header, duplicates, delimiter, multiline fields</td>
+<td>Preview and format-aware parsing</td>
+</tr>
+<tr class="odd">
+<td><code>bad interpreter</code> with <code>^M</code></td>
+<td>Windows CRLF script line endings</td>
+<td>Save script as LF in editor; leave raw inputs unchanged</td>
+</tr>
+<tr class="even">
+<td>No command output</td>
+<td>Silent success or no matches</td>
+<td>Check documented status and expected files</td>
+</tr>
+<tr class="odd">
+<td>Checksum mismatch</td>
+<td>Changed bytes or different delivery</td>
+<td>Stop and reconcile; do not regenerate expected checksum to hide it</td>
+</tr>
+<tr class="even">
+<td>Partial output</td>
+<td>Interrupted or failed analysis</td>
+<td>Review status/logs; rerun to a fresh output location</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-a-five-minute-daily-routine" class="level3">
+<h3 class="anchored" data-anchor-id="how-a-five-minute-daily-routine">How: a five-minute daily routine</h3>
+<ol type="1">
+<li>Confirm machine, account, directory, and approved environment.</li>
+<li>Confirm input identity, permissions, storage, and resource allocation.</li>
+<li>Run the reviewed script with logs and explicit output locations.</li>
+<li>Review completion status, logs, outputs, and scientific/domain QC.</li>
+<li>Preserve provenance and deliver approved outputs through approved channels.</li>
+</ol>
+</section>
+<section id="how-keep-learning" class="level3">
+<h3 class="anchored" data-anchor-id="how-keep-learning">How: keep learning</h3>
+<p>Read the <a href="https://www.gnu.org/software/bash/manual/">GNU Bash manual</a>, <a href="https://www.gnu.org/software/coreutils/manual/">GNU Coreutils documentation</a>, <a href="https://ubuntu.com/tutorials/command-line-for-beginners">Ubuntu command-line introduction</a>, and institutional HPC/data-handling guidance. Specialist references: <a href="https://www.htslib.org/doc/">samtools</a>, <a href="https://bioinf.shenwei.me/seqkit/usage/">SeqKit</a>, and <a href="https://slurm.schedmd.com/documentation.html">Slurm</a>.</p>
+<p>Continue here with <a href="./git.html">Git</a>, <a href="./docker.html">Docker</a>, <a href="./nextflow.html">Nextflow</a>, <a href="./r.html">R</a>, <a href="./python.html">Python</a>, and <a href="./clinical-r.html">Clinical R</a>.</p>
 <p><a href="./index.html">Back to home</a></p>
 
 
