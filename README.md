@@ -46,4 +46,4 @@ Set GitHub Pages source to:
 Your site URL will be:
 
 `https://<your-github-username>.github.io/<repository-name>/`
-`Python is coming next week`
+- Linux, R is live now
